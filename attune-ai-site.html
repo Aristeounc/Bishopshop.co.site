@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Primary -->
+<title>Attune AI — The Conversation Gym | Master High-Stakes Communication</title>
+<meta name="description" content="Attune AI is a subscription app that trains you to read context, reduce defensiveness, and practice real influence without manipulation. 8 skill tracks, AI sparring, and a curriculum built on Gottman, NVC, and behavioral science.">
+<meta name="keywords" content="conversation gym, communication skills app, AI roleplay training, negotiation practice, conflict resolution training, NVC, influence skills, Attune AI, Bishop Shop Enterprises">
+<meta name="author" content="Bishop Shop Enterprises LLC">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bishopshop.co.site">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bishopshop.co.site">
+<meta property="og:title" content="Attune AI — The Conversation Gym">
+<meta property="og:description" content="Train your conversations like an athlete trains their body. AI-powered sparring, 8 ELO skill tracks, and frameworks from the world's top communication experts.">
+<meta property="og:image" content="https://bishopshop.co.site/og-image.jpg">
+<meta property="og:site_name" content="Attune AI">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Attune AI — The Conversation Gym">
+<meta name="twitter:description" content="Train your conversations like an athlete. AI sparring partners, real feedback, proven frameworks. Your words are your edge.">
+<meta name="twitter:image" content="https://bishopshop.co.site/og-image.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Attune AI",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "iOS",
+  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and ELO-based skill progression.",
+  "offers": {
+    "@type": "Offer",
+    "price": "9.99",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "RecurringChargeSpecification",
+      "billingDuration": "P1M"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bishop Shop Enterprises LLC",
+    "url": "https://bishopshop.co.site",
+    "email": "attuneai@bishopshop.co.site"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "120"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1F5BA8;
+    --blue-dark: #163e76;
+    --blue-light: #3a7ed4;
+    --yellow: #F2C744;
+    --yellow-dark: #d4a91a;
+    --tan: #F5EFE3;
+    --tan-dark: #E8DEC8;
+    --ink: #0D1117;
+    --ink-soft: #1c2535;
+    --white: #FAFAF8;
+    --muted: #6B7280;
+    --radius: 4px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--yellow);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, opacity 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(242,199,68,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s var(--ease-out), width 0.25s, height 0.25s, opacity 0.2s;
+  }
+  .cursor.hover { width: 20px; height: 20px; }
+  .cursor-ring.hover { width: 60px; height: 60px; border-color: var(--yellow); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s, padding 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(13,17,23,0.88);
+    backdrop-filter: blur(16px);
+    padding: 14px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+    background: var(--yellow);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--ink);
+    letter-spacing: 0;
+  }
+  .nav-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .nav-wordmark span { color: var(--yellow); }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--yellow);
+    color: var(--ink) !important;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--yellow-dark) !important; transform: translateY(-1px) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(31,91,168,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(242,199,68,0.06) 0%, transparent 60%);
+  }
+
+  /* Animated grid */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(31,91,168,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,91,168,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 75%);
+  }
+  @keyframes gridShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 48px 80px 80px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(31,91,168,0.2);
+    border: 1px solid rgba(31,91,168,0.4);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    width: fit-content;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s var(--ease-out) 0.2s both;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--yellow);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 7vw, 96px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s var(--ease-out) 0.35s both;
+  }
+  .hero-headline em {
+    font-style: normal;
+    color: var(--yellow);
+    position: relative;
+  }
+  .hero-headline .stroke-text {
+    -webkit-text-stroke: 2px rgba(255,255,255,0.3);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    max-width: 460px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeUp 0.8s var(--ease-out) 0.5s both;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 16px;
+    animation: fadeUp 0.8s var(--ease-out) 0.65s both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 16px 32px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: none;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(242,199,68,0.4);
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%) skewX(-15deg);
+    transition: transform 0.4s var(--ease-out);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(242,199,68,0.35); }
+  .btn-primary:hover::after { transform: translateX(120%) skewX(-15deg); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.7);
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: none;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.35); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex; gap: 32px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 0.8s var(--ease-out) 0.8s both;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--yellow);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 60px 60px 20px;
+    z-index: 2;
+    animation: fadeIn 1s var(--ease-out) 0.4s both;
+  }
+
+  .phone-mockup {
+    width: 280px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 40px;
+    padding: 20px 16px;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .phone-notch {
+    width: 80px; height: 6px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    margin: 0 auto 20px;
+  }
+
+  .phone-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+  .phone-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--white);
+  }
+  .belt-badge {
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  .scenario-card {
+    background: rgba(31,91,168,0.15);
+    border: 1px solid rgba(31,91,168,0.3);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .scenario-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue-light);
+    margin-bottom: 6px;
+  }
+  .scenario-text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .coach-bubble {
+    background: rgba(242,199,68,0.1);
+    border: 1px solid rgba(242,199,68,0.2);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .coach-bubble-label {
+    font-size: 10px; color: var(--yellow);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .coach-bubble-text { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  .elo-row {
+    display: flex; gap: 6px; margin-bottom: 10px;
+  }
+  .elo-pill {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+  }
+  .elo-pill.active {
+    background: rgba(31,91,168,0.25);
+    border-color: var(--blue);
+    color: var(--white);
+  }
+  .elo-pill span { display: block; font-size: 14px; color: var(--blue-light); font-family: 'Bebas Neue', serif; }
+  .elo-pill.active span { color: var(--yellow); }
+
+  .progress-bar-wrap { margin-bottom: 10px; }
+  .progress-bar-label {
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: rgba(255,255,255,0.4); margin-bottom: 5px;
+  }
+  .progress-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; }
+  .progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--blue), var(--yellow));
+    border-radius: 2px;
+    animation: growBar 2s var(--ease-out) 1s both;
+  }
+  @keyframes growBar {
+    from { width: 0 !important; }
+  }
+
+  /* Orbiting elements */
+  .orbit-wrap {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+  .orbit-chip {
+    position: absolute;
+    background: rgba(13,17,23,0.9);
+    border: 1px solid rgba(31,91,168,0.4);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 11px;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 6px;
+    backdrop-filter: blur(8px);
+    animation: chipFloat 5s ease-in-out infinite;
+  }
+  .orbit-chip:nth-child(1) { top: 18%; left: -5%; animation-delay: 0s; }
+  .orbit-chip:nth-child(2) { top: 60%; right: -2%; animation-delay: 1.5s; }
+  .orbit-chip:nth-child(3) { bottom: 22%; left: 5%; animation-delay: 3s; }
+  @keyframes chipFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
+
+  /* SECTION COMMONS */
+  section { position: relative; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--blue-light);
+  }
+
+  .section-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-headline em { font-style: italic; color: var(--yellow); }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.6);
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: var(--yellow);
+    padding: 14px 0;
+    overflow: hidden;
+    border-top: 2px solid var(--yellow-dark);
+    border-bottom: 2px solid var(--yellow-dark);
+  }
+  .marquee-track {
+    display: flex; gap: 40px;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--ink);
+  }
+  .marquee-sep { color: rgba(13,17,23,0.3); }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #0a0f1a 100%);
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .how-card {
+    background: var(--ink-soft);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .how-card:hover { background: rgba(31,91,168,0.12); }
+  .how-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transition: transform 0.3s var(--ease-out);
+    transform-origin: left;
+  }
+  .how-card:hover::after { transform: scaleX(1); }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    position: absolute;
+    top: 20px; right: 24px;
+    letter-spacing: -2px;
+  }
+  .step-icon {
+    width: 48px; height: 48px;
+    background: rgba(31,91,168,0.2);
+    border: 1px solid rgba(31,91,168,0.4);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* CURRICULUM */
+  .curriculum-section {
+    padding: 120px 0;
+    background: #0a0f1a;
+  }
+
+  .curriculum-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+
+  .framework-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .framework-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .framework-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--blue);
+    transform: scaleY(0);
+    transition: transform 0.3s var(--ease-out);
+    transform-origin: bottom;
+  }
+  .framework-card:hover { border-color: rgba(31,91,168,0.4); transform: translateY(-3px); }
+  .framework-card:hover::before { transform: scaleY(1); }
+
+  .framework-icon { font-size: 28px; margin-bottom: 12px; }
+  .framework-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .framework-author {
+    font-size: 11px;
+    color: var(--blue-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .framework-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* PERSONAS / SPARRING */
+  .sparring-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #0a0f1a 0%, var(--ink) 100%);
+  }
+
+  .sparring-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .persona-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: none;
+  }
+  .persona-card:hover { transform: translateY(-4px); border-color: rgba(242,199,68,0.3); }
+  .persona-card::after {
+    content: 'SPAR →';
+    position: absolute;
+    bottom: 20px; right: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--yellow);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .persona-card:hover::after { opacity: 1; transform: translateX(0); }
+
+  .persona-emoji { font-size: 36px; margin-bottom: 14px; }
+  .persona-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .persona-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.5);
+  }
+  .persona-tag {
+    margin-top: 16px;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(31,91,168,0.2);
+    border: 1px solid rgba(31,91,168,0.35);
+    color: var(--blue-light);
+  }
+
+  /* PRICING */
+  .pricing-section {
+    padding: 120px 0;
+    background: var(--ink);
+  }
+  .pricing-header { text-align: center; margin-bottom: 60px; }
+  .pricing-header .section-label { justify-content: center; }
+  .pricing-header .section-body { margin: 0 auto; text-align: center; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 36px 28px;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-card.featured {
+    background: rgba(31,91,168,0.15);
+    border-color: var(--blue);
+    transform: scale(1.03);
+  }
+  .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .price-tier { font-size: 13px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--white); letter-spacing: 1px; line-height: 1; }
+  .price-amount sub { font-size: 22px; vertical-align: middle; color: rgba(255,255,255,0.5); }
+  .price-amount sup { font-size: 26px; }
+  .price-period { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; margin-bottom: 24px; }
+  .price-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 24px; }
+
+  .price-features { list-style: none; margin-bottom: 32px; }
+  .price-features li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    padding: 7px 0;
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .price-features li::before { content: '✓'; color: var(--yellow); font-weight: 700; font-size: 12px; }
+
+  .btn-pricing {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    cursor: none;
+  }
+  .btn-pricing-outline {
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+  }
+  .btn-pricing-outline:hover { border-color: var(--white); color: var(--white); }
+  .btn-pricing-solid {
+    background: var(--yellow);
+    color: var(--ink);
+  }
+  .btn-pricing-solid:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #0a0f1a 100%);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .testimonial-card:hover { border-color: rgba(31,91,168,0.35); }
+  .testimonial-card:first-child {
+    grid-column: span 2;
+    background: rgba(31,91,168,0.1);
+    border-color: rgba(31,91,168,0.25);
+  }
+
+  .quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    line-height: 0.6;
+    color: rgba(242,199,68,0.2);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .testimonial-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .testimonial-card:first-child .testimonial-text { font-size: 26px; }
+
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--white);
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .author-role { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .stars { color: var(--yellow); font-size: 12px; letter-spacing: 2px; margin-top: 2px; }
+
+  /* ETHICS BLOCK */
+  .ethics-section {
+    padding: 100px 0;
+    background: var(--blue-dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ethics-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .ethics-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 2px;
+    line-height: 0.95;
+    margin-bottom: 20px;
+  }
+  .ethics-headline span { color: var(--yellow); }
+  .ethics-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .will-not-list { list-style: none; }
+  .will-not-list li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .will-not-list li::before { content: '✗'; color: rgba(242,199,68,0.7); font-weight: 700; }
+
+  .ethics-values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ethics-value-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .ethics-value-icon { font-size: 28px; margin-bottom: 10px; }
+  .ethics-value-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .ethics-value-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* FAQ */
+  .faq-section {
+    padding: 120px 0;
+    background: #0a0f1a;
+  }
+  .faq-header { margin-bottom: 60px; }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .faq-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px;
+    cursor: none;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: rgba(31,91,168,0.35); }
+  .faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+    display: flex; align-items: start; gap: 10px;
+  }
+  .faq-q::before { content: 'Q'; color: var(--yellow); font-family: 'Bebas Neue', serif; font-size: 18px; flex-shrink: 0; }
+  .faq-a {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    padding-left: 28px;
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    padding: 120px 0;
+    background: var(--ink);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(31,91,168,0.15) 0%, transparent 70%);
+  }
+  .cta-section .section-label { justify-content: center; }
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 7vw, 96px);
+    letter-spacing: 2px;
+    line-height: 0.92;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cta-headline span { color: var(--yellow); }
+  .cta-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-weight: 300;
+    position: relative;
+  }
+  .cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; }
+
+  .app-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: none;
+  }
+  .app-badge:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+  .app-badge-icon { font-size: 24px; }
+  .app-badge-text { text-align: left; }
+  .app-badge-sub { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+  .app-badge-name { font-size: 15px; font-weight: 600; color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    background: #080c12;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 64px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .nav-wordmark { font-size: 24px; margin-bottom: 12px; display: block; }
+  .footer-desc { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.4); max-width: 240px; }
+  .footer-email {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--blue-light);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .footer-col-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-bse { display: flex; align-items: center; gap: 6px; }
+  .footer-bse span { color: var(--yellow); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .how-grid { grid-template-columns: repeat(2, 1fr); }
+    .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
+    .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="Attune AI Home">
+    <div class="nav-logo-mark" aria-hidden="true">A</div>
+    <span class="nav-wordmark">Attune <span>AI</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#sparring">Sparring</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#get-started" class="nav-cta">Get the App</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<main>
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow" role="text">Now Available on iOS</div>
+    <h1 class="hero-headline">
+      Train Your<br>
+      <em>Conversations</em><br>
+      Like An<br>
+      <span class="stroke-text">Athlete</span>
+    </h1>
+    <p class="hero-sub">
+      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a belt system that tracks your growth across <strong>8 skill dimensions</strong>.
+    </p>
+    <div class="hero-actions">
+      <a href="#get-started" class="btn-primary" aria-label="Get the Attune AI app">
+        <span>Start Training</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+    </div>
+    <div class="hero-stats" aria-label="Key statistics">
+      <div class="stat-item">
+        <div class="stat-num" aria-label="33">33+</div>
+        <div class="stat-label">Concepts Trained</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" aria-label="6">6</div>
+        <div class="stat-label">Belt Levels</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" aria-label="8">8</div>
+        <div class="stat-label">ELO Skill Tracks</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" aria-label="Zero">0</div>
+        <div class="stat-label">Manipulation Tactics Taught</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="orbit-wrap">
+      <div class="orbit-chip">
+        <div class="chip-dot"></div>
+        <span>ELO Skill Tracking</span>
+      </div>
+      <div class="orbit-chip">
+        <div class="chip-dot"></div>
+        <span>AI Coach Feedback</span>
+      </div>
+      <div class="orbit-chip">
+        <div class="chip-dot"></div>
+        <span>Defensive Influence Mode</span>
+      </div>
+    </div>
+
+    <div class="phone-mockup">
+      <div class="phone-notch"></div>
+      <div class="phone-header">
+        <span class="phone-title">Today's Program</span>
+        <span class="belt-badge">🟡 Blue Belt</span>
+      </div>
+
+      <div class="elo-row">
+        <div class="elo-pill"><span>142</span>Regulate</div>
+        <div class="elo-pill active"><span>168</span>Connect</div>
+        <div class="elo-pill"><span>124</span>Close</div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-label"><span>Session 2 of 3</span><span>67%</span></div>
+        <div class="progress-bar"><div class="progress-bar-fill" style="width:67%"></div></div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="scenario-label">🥊 Sparring — The Closer</div>
+        <div class="scenario-text">"We need a decision today. Everyone else has already committed — are you in or out?"</div>
+      </div>
+
+      <div class="coach-bubble">
+        <div class="coach-bubble-label">⚡ Coach Feedback</div>
+        <div class="coach-bubble-text">Good boundary. Try naming the pressure tactic next — it defuses faster.</div>
+      </div>
+
+      <div style="text-align:center; margin-top: 12px;">
+        <div style="font-size:10px; color: rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase;">Attune AI · Conversation Gym</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item">Gottman Method <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Nonviolent Communication <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Chris Voss Negotiation <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Polyvagal Theory <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Brené Brown <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">EFT Framework <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Jefferson Fisher <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Celeste Headlee <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Dale Carnegie <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">ICAP Learning Ladder <span class="marquee-sep">·</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item">Gottman Method <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Nonviolent Communication <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Chris Voss Negotiation <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Polyvagal Theory <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Brené Brown <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">EFT Framework <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Jefferson Fisher <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Celeste Headlee <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Dale Carnegie <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">ICAP Learning Ladder <span class="marquee-sep">·</span></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works" aria-labelledby="how-heading">
+  <div class="section-inner">
+    <div class="section-label reveal">The Gym Loop</div>
+    <h2 class="section-headline reveal reveal-delay-1" id="how-heading">
+      Four phases.<br>
+      <em>One daily habit.</em>
+    </h2>
+    <p class="section-body reveal reveal-delay-2">
+      Every session follows a structured athletic loop — not random chatbot conversations, but purposeful reps designed to build real skill under pressure.
+    </p>
+
+    <div class="how-grid">
+      <article class="how-card reveal">
+        <div class="step-num" aria-hidden="true">01</div>
+        <div class="step-icon" aria-hidden="true">🔥</div>
+        <h3 class="step-title">Warm-Up</h3>
+        <p class="step-desc">Short concept review and mental activation. Prime your communication instincts before you step into live scenarios.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-1">
+        <div class="step-num" aria-hidden="true">02</div>
+        <div class="step-icon" aria-hidden="true">🎯</div>
+        <h3 class="step-title">Drill</h3>
+        <p class="step-desc">Focused micro-exercises on a single skill — active listening, boundary setting, or reframing a defensive response.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-2">
+        <div class="step-num" aria-hidden="true">03</div>
+        <div class="step-icon" aria-hidden="true">🥊</div>
+        <h3 class="step-title">Sparring</h3>
+        <p class="step-desc">Go live with one of six AI personas. The Closer, Stonewaller, Guilt-Tripper — real pressure, real feedback, zero judgment.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-3">
+        <div class="step-num" aria-hidden="true">04</div>
+        <div class="step-icon" aria-hidden="true">📈</div>
+        <h3 class="step-title">Recovery</h3>
+        <p class="step-desc">Coach debrief, pattern mapping, and ELO update. See exactly what moved, what stalled, and what to train next session.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum-section" id="curriculum" aria-labelledby="curriculum-heading">
+  <div class="section-inner">
+    <div class="curriculum-header">
+      <div>
+        <div class="section-label reveal">Expert Curriculum</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="curriculum-heading">
+          Built on the science<br>
+          <em>that actually works</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        Every concept in Attune is drawn from peer-reviewed behavioral science and the world's leading communication experts — not productivity gurus, not hype.
+      </p>
+    </div>
+
+    <div class="framework-grid">
+      <article class="framework-card reveal">
+        <div class="framework-icon">💬</div>
+        <div class="framework-name">Nonviolent Communication</div>
+        <div class="framework-author">Marshall Rosenberg</div>
+        <p class="framework-desc">Observation, feeling, need, and request — the four-step model that de-escalates and connects.</p>
+      </article>
+      <article class="framework-card reveal reveal-delay-1">
+        <div class="framework-icon">💑</div>
+        <div class="framework-name">Gottman Method</div>
+        <div class="framework-author">John Gottman</div>
+        <p class="framework-desc">Decades of relationship research applied to everyday conversation — what the data says about what works.</p>
+      </article>
+      <article class="framework-card reveal reveal-delay-2">
+        <div class="framework-icon">🎯</div>
+        <div class="framework-name">Never Split the Difference</div>
+        <div class="framework-author">Chris Voss</div>
+        <p class="framework-desc">FBI hostage negotiation tactics for salary talks, hard asks, and high-stakes decisions.</p>
+      </article>
+      <article class="framework-card reveal">
+        <div class="framework-icon">🛡️</div>
+        <div class="framework-name">Vulnerability Framework</div>
+        <div class="framework-author">Brené Brown</div>
+        <p class="framework-desc">Why shame-resilience and courageous communication produce more trust than appearing bulletproof.</p>
+      </article>
+      <article class="framework-card reveal reveal-delay-1">
+        <div class="framework-icon">⚖️</div>
+        <div class="framework-name">The Three Cs</div>
+        <div class="framework-author">Jefferson Fisher</div>
+        <p class="framework-desc">Calm, clear, and confident — the courtroom-tested framework for composure under pressure.</p>
+      </article>
+      <article class="framework-card reveal reveal-delay-2">
+        <div class="framework-icon">🎧</div>
+        <div class="framework-name">Celeste Headlee Method</div>
+        <div class="framework-author">Celeste Headlee</div>
+        <p class="framework-desc">10 principles for conversations that don't just talk at people — but actually change them.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SPARRING PERSONAS -->
+<section class="sparring-section" id="sparring" aria-labelledby="sparring-heading">
+  <div class="section-inner">
+    <div class="sparring-header">
+      <div>
+        <div class="section-label reveal">AI Sparring Partners</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="sparring-heading">
+          Six characters.<br>
+          <em>Real pressure.</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        You can't get strong without resistance. These personas are designed to apply real conversational pressure — so when it matters in real life, you've already been there.
+      </p>
+    </div>
+
+    <div class="persona-grid">
+      <article class="persona-card reveal">
+        <div class="persona-emoji">😏</div>
+        <h3 class="persona-name">The Charmer</h3>
+        <p class="persona-desc">Uses flattery, charm, and social proof to bypass your critical thinking. Trains: social awareness, calibrated skepticism.</p>
+        <span class="persona-tag">Influence Defense</span>
+      </article>
+      <article class="persona-card reveal reveal-delay-1">
+        <div class="persona-emoji">📋</div>
+        <h3 class="persona-name">The Closer</h3>
+        <p class="persona-desc">Manufactured urgency, artificial scarcity, and pressure deadlines. Trains: calm under pressure, grounded decision-making.</p>
+        <span class="persona-tag">Urgency Resistance</span>
+      </article>
+      <article class="persona-card reveal reveal-delay-2">
+        <div class="persona-emoji">😔</div>
+        <h3 class="persona-name">The Guilt-Tripper</h3>
+        <p class="persona-desc">Emotional leverage and subtle blame to shift responsibility. Trains: empathy with boundaries, accountability clarity.</p>
+        <span class="persona-tag">Emotional Grounding</span>
+      </article>
+      <article class="persona-card reveal">
+        <div class="persona-emoji">🧱</div>
+        <h3 class="persona-name">The Stonewaller</h3>
+        <p class="persona-desc">Silence, deflection, and minimal engagement as control tactics. Trains: persistence, patience, drawing people out.</p>
+        <span class="persona-tag">Engagement Skills</span>
+      </article>
+      <article class="persona-card reveal reveal-delay-1">
+        <div class="persona-emoji">🎖️</div>
+        <h3 class="persona-name">The Authority</h3>
+        <p class="persona-desc">Title, credentials, and status to dominate. Trains: confident disagreement, intellectual courage, standing your ground.</p>
+        <span class="persona-tag">Confidence Building</span>
+      </article>
+      <article class="persona-card reveal reveal-delay-2">
+        <div class="persona-emoji">🤝</div>
+        <h3 class="persona-name">The Negotiator</h3>
+        <p class="persona-desc">Strategic framing, reciprocity, and anchoring. Trains: negotiation fluency, mutual gain thinking, deal structure.</p>
+        <span class="persona-tag">Negotiation</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+  <div class="section-inner">
+    <header class="pricing-header">
+      <div class="section-label">Simple Pricing</div>
+      <h2 class="section-headline reveal" id="pricing-heading">One subscription.<br><em>Zero guesswork.</em></h2>
+      <p class="section-body reveal">Start with the core gym, add the modules you need. Cancel anytime.</p>
+    </header>
+
+    <div class="pricing-grid">
+      <article class="pricing-card reveal">
+        <div class="price-tier">Core Gym</div>
+        <div class="price-amount"><sup>$</sup>9<sub>.99</sub></div>
+        <div class="price-period">per month</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Today's Program (daily loop)</li>
+          <li>All 6 sparring personas</li>
+          <li>8 ELO skill tracks</li>
+          <li>6 belt progression levels</li>
+          <li>Vector memory (Coach recall)</li>
+          <li>33+ concept corpus</li>
+        </ul>
+        <a href="#get-started" class="btn-pricing btn-pricing-outline" aria-label="Start with Core Gym">Start Training</a>
+      </article>
+
+      <article class="pricing-card featured reveal reveal-delay-1" aria-label="Most popular pricing plan">
+        <div class="featured-badge">Most Popular</div>
+        <div class="price-tier">Full Bundle</div>
+        <div class="price-amount"><sup>$</sup>32</div>
+        <div class="price-period">per month · save $7</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Everything in Core Gym</li>
+          <li>Articulation Add-on (3 modes)</li>
+          <li>IntroProfiles (context-specific intros)</li>
+          <li>Gifted access support</li>
+          <li>Priority coach feedback</li>
+          <li>Full admin dashboard</li>
+        </ul>
+        <a href="#get-started" class="btn-pricing btn-pricing-solid" aria-label="Get the Full Bundle">Get the Bundle</a>
+      </article>
+
+      <article class="pricing-card reveal reveal-delay-2">
+        <div class="price-tier">Add-Ons</div>
+        <div class="price-amount"><sup>$</sup>9<sub>.99</sub></div>
+        <div class="price-period">each · per month</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Articulation Training</li>
+          <li>Gentle / Standard / Intensive modes</li>
+          <li>IntroProfiles module</li>
+          <li>Context-aware intro builder</li>
+          <li>Reusable profile templates</li>
+          <li>Mix & match your stack</li>
+        </ul>
+        <a href="#get-started" class="btn-pricing btn-pricing-outline" aria-label="Explore Add-Ons">Explore Add-Ons</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" aria-labelledby="testimonials-heading">
+  <div class="section-inner">
+    <div class="section-label reveal">Early Users</div>
+    <h2 class="section-headline reveal reveal-delay-1" id="testimonials-heading">What people are<br><em>already saying</em></h2>
+
+    <div class="testimonials-grid">
+      <article class="testimonial-card reveal">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="testimonial-text">Attune AI doesn't just teach you what to say — it trains you to notice what's happening in a conversation before you react. That's the part that actually changes how you show up.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">JA</div>
+          <div>
+            <div class="author-name">John A.</div>
+            <div class="author-role">Sales Manager</div>
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-1">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="testimonial-text">I walked into a salary negotiation the week after my first month on Attune. The conversation felt different — I felt different. Got the number I wanted.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">SK</div>
+          <div>
+            <div class="author-name">Sarah K.</div>
+            <div class="author-role">HR Specialist</div>
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-2">
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <p class="testimonial-text">Sparring with The Guilt-Tripper persona was uncomfortable in the best way. It exposed patterns I didn't even know I had. Coach feedback is spot-on.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">TL</div>
+          <div>
+            <div class="author-name">Tom L.</div>
+            <div class="author-role">Entrepreneur</div>
+            <div class="stars" aria-label="5 stars">★★★★★</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ETHICS -->
+<section class="ethics-section" aria-labelledby="ethics-heading">
+  <div class="section-inner">
+    <div class="ethics-inner">
+      <div>
+        <div class="section-label reveal">Our Commitment</div>
+        <h2 class="ethics-headline reveal reveal-delay-1" id="ethics-heading">We have a<br><span>Will-Not-Train</span><br>list.</h2>
+        <p class="ethics-body reveal reveal-delay-2">
+          Attune is built on an ethical framework that is public, permanent, and non-negotiable. We teach <em>influence without coercion</em> — there are things we will never train, no matter the request.
+        </p>
+        <ul class="will-not-list reveal reveal-delay-3" aria-label="Things we will not train">
+          <li>Manipulation tactics disguised as persuasion</li>
+          <li>Coercive language patterns</li>
+          <li>Scripts designed to override someone's autonomy</li>
+          <li>Dark-pattern conversation techniques</li>
+          <li>Bypassing consent through psychological pressure</li>
+        </ul>
+      </div>
+      <div class="ethics-values-grid">
+        <article class="ethics-value-card reveal">
+          <div class="ethics-value-icon">🧠</div>
+          <div class="ethics-value-title">Science-First</div>
+          <p class="ethics-value-desc">Every concept is grounded in peer-reviewed research. No pop-psychology or unverified techniques.</p>
+        </article>
+        <article class="ethics-value-card reveal reveal-delay-1">
+          <div class="ethics-value-icon">🛡️</div>
+          <div class="ethics-value-title">Defense-Aware</div>
+          <p class="ethics-value-desc">Spot-the-Influence mode teaches you to recognize manipulation when it's being used on you.</p>
+        </article>
+        <article class="ethics-value-card reveal reveal-delay-2">
+          <div class="ethics-value-icon">💛</div>
+          <div class="ethics-value-title">Humane by Design</div>
+          <p class="ethics-value-desc">Freeze slots, partial recovery, no punishing streaks. The gym is built to build you up, not burn you out.</p>
+        </article>
+        <article class="ethics-value-card reveal reveal-delay-3">
+          <div class="ethics-value-icon">🔓</div>
+          <div class="ethics-value-title">Transparent Framework</div>
+          <p class="ethics-value-desc">Our ethical guidelines are fully public. You know exactly what Attune will and won't do — always.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq" aria-labelledby="faq-heading">
+  <div class="section-inner">
+    <div class="faq-header">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-headline reveal reveal-delay-1" id="faq-heading">Common<br><em>questions</em></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <p class="faq-q">What domains can I train in?</p>
+        <p class="faq-a">Salary negotiation, sales, leadership, conflict resolution, dating and relationships, parenting, manipulation defense, and more. New scenarios are added regularly based on the expert curriculum roadmap.</p>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <p class="faq-q">How does real-time coach feedback work?</p>
+        <p class="faq-a">After each sparring exchange, the AI coach evaluates your response against the current skill framework — scoring faithfulness, technique usage, and emotional regulation. You get specific, actionable notes, not generic praise.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">What is the ELO system?</p>
+        <p class="faq-a">Like chess ratings, your ELO score in each of 8 skill tracks changes based on session performance. It's a honest signal of where you actually stand — not where you hope you are.</p>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <p class="faq-q">Is the app available on Android?</p>
+        <p class="faq-a">Currently, Attune AI is available exclusively on the iOS App Store. Android development is in the roadmap — subscribe to updates to know when it launches.</p>
+      </div>
+      <div class="faq-item reveal">
+        <p class="faq-q">What is Spot-the-Influence mode?</p>
+        <p class="faq-a">A unique Attune feature where you watch a conversation scenario unfold and identify influence and manipulation tactics in real time. Builds awareness as a defense skill, not an attack skill.</p>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <p class="faq-q">Can I cancel or pause my subscription?</p>
+        <p class="faq-a">Yes, anytime. If you need a break, our humane streak model includes freeze slots so you don't lose progress from life getting in the way. No punishment for being human.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="get-started" aria-labelledby="cta-heading">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="section-inner" style="position:relative">
+    <div class="section-label reveal" style="justify-content:center">Available Now on iOS</div>
+    <h2 class="cta-headline reveal reveal-delay-1" id="cta-heading">
+      Your words<br>are your <span>edge.</span>
+    </h2>
+    <p class="cta-sub reveal reveal-delay-2">Start with one session. Build a belt. Train conversations the same way athletes train everything else — with reps, resistance, and real feedback.</p>
+    <div class="cta-actions reveal reveal-delay-3">
+      <a href="https://apps.apple.com" class="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the iOS App Store">
+        <span class="app-badge-icon" aria-hidden="true">🍎</span>
+        <div class="app-badge-text">
+          <div class="app-badge-sub">Download on the</div>
+          <div class="app-badge-name">App Store</div>
+        </div>
+      </a>
+      <a href="mailto:attuneai@bishopshop.co.site" class="btn-ghost" aria-label="Contact Attune AI team">Contact Us</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="nav-wordmark">Attune <span style="color:var(--yellow)">AI</span></span>
+        <p class="footer-desc">The ethical conversation gym. Train influence without manipulation, build real skill under real pressure.</p>
+        <a href="mailto:attuneai@bishopshop.co.site" class="footer-email" aria-label="Email Attune AI">
+          ✉ attuneai@bishopshop.co.site
+        </a>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#curriculum">Curriculum</a></li>
+          <li><a href="#sparring">Sparring Personas</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#" aria-label="About Attune AI">About</a></li>
+          <li><a href="#" aria-label="Attune AI ethical framework">Ethics Framework</a></li>
+          <li><a href="#" aria-label="Bishop Shop Enterprises">Bishop Shop Enterprises</a></li>
+          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Contact us">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#" aria-label="Privacy Policy">Privacy Policy</a></li>
+          <li><a href="#" aria-label="Terms and Conditions">Terms & Conditions</a></li>
+          <li><a href="#" aria-label="Refund Policy">Refund Policy</a></li>
+          <li><a href="#faq" aria-label="Frequently Asked Questions">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bse">© 2026 <span>Bishop Shop Enterprises LLC</span> — NAICS 541512 — Richmond, Virginia</div>
+      <div>Made with purpose by BSE</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button, .persona-card, .faq-item, .framework-card, .how-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Animated counters on hero stats
+  function animateCounter(el, target, suffix = '') {
+    let start = 0;
+    const duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('.stat-num');
+        const vals = [33, 6, 8, 0];
+        const suffixes = ['+', '', '', ''];
+        nums.forEach((n, i) => animateCounter(n, vals[i], suffixes[i]));
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) statsObserver.observe(statsEl);
+</script>
+
+</body>
+</html>
