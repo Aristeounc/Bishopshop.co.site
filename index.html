@@ -6,7 +6,7 @@
 
 <!-- SEO Primary -->
 <title>Attune AI — The Conversation Gym | Master High-Stakes Communication</title>
-<meta name="description" content="Attune AI is a subscription app that trains you to read context, reduce defensiveness, and practice real influence without manipulation. 8 skill tracks, AI sparring, and a curriculum built on Gottman, NVC, and behavioral science.">
+<meta name="description" content="Attune AI is a subscription app that trains you to read context, reduce defensiveness, and practice real influence without manipulation. 8 skill tracks, AI sparring, and a curriculum built on peer-reviewed behavioral science.">
 <meta name="keywords" content="conversation gym, communication skills app, AI roleplay training, negotiation practice, conflict resolution training, NVC, influence skills, Attune AI, Bishop Shop Enterprises">
 <meta name="author" content="Bishop Shop Enterprises LLC">
 <meta name="robots" content="index, follow">
@@ -569,7 +569,6 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 4px;
-    overflow: hidden;
     margin-top: 60px;
   }
 
@@ -1111,6 +1110,7 @@
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
     .how-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
     .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
     .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
@@ -1241,26 +1241,26 @@
 <!-- MARQUEE -->
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
-    <div class="marquee-item">Gottman Method <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Relationship Science <span class="marquee-sep">·</span></div>
     <div class="marquee-item">Nonviolent Communication <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Chris Voss Negotiation <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Tactical Negotiation <span class="marquee-sep">·</span></div>
     <div class="marquee-item">Polyvagal Theory <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Brené Brown <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Vulnerability Science <span class="marquee-sep">·</span></div>
     <div class="marquee-item">EFT Framework <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Jefferson Fisher <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Celeste Headlee <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Dale Carnegie <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Composure Framework <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Deep Listening <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Persuasion Principles <span class="marquee-sep">·</span></div>
     <div class="marquee-item">ICAP Learning Ladder <span class="marquee-sep">·</span></div>
     <!-- Duplicate for seamless loop -->
-    <div class="marquee-item">Gottman Method <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Relationship Science <span class="marquee-sep">·</span></div>
     <div class="marquee-item">Nonviolent Communication <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Chris Voss Negotiation <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Tactical Negotiation <span class="marquee-sep">·</span></div>
     <div class="marquee-item">Polyvagal Theory <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Brené Brown <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Vulnerability Science <span class="marquee-sep">·</span></div>
     <div class="marquee-item">EFT Framework <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Jefferson Fisher <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Celeste Headlee <span class="marquee-sep">·</span></div>
-    <div class="marquee-item">Dale Carnegie <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Composure Framework <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Deep Listening <span class="marquee-sep">·</span></div>
+    <div class="marquee-item">Persuasion Principles <span class="marquee-sep">·</span></div>
     <div class="marquee-item">ICAP Learning Ladder <span class="marquee-sep">·</span></div>
   </div>
 </div>
@@ -1311,14 +1311,14 @@
   <div class="section-inner">
     <div class="curriculum-header">
       <div>
-        <div class="section-label reveal">Expert Curriculum</div>
+        <div class="section-label reveal">Training Curriculum</div>
         <h2 class="section-headline reveal reveal-delay-1" id="curriculum-heading">
           Built on the science<br>
           <em>that actually works</em>
         </h2>
       </div>
       <p class="section-body reveal">
-        Every concept in Attune is drawn from peer-reviewed behavioral science and the world's leading communication experts — not productivity gurus, not hype.
+        Every concept in Attune is drawn from peer-reviewed behavioral science and proven communication frameworks — not productivity gurus, not hype.
       </p>
     </div>
 
@@ -1326,37 +1326,31 @@
       <article class="framework-card reveal">
         <div class="framework-icon">💬</div>
         <div class="framework-name">Nonviolent Communication</div>
-        <div class="framework-author">Marshall Rosenberg</div>
         <p class="framework-desc">Observation, feeling, need, and request — the four-step model that de-escalates and connects.</p>
       </article>
       <article class="framework-card reveal reveal-delay-1">
         <div class="framework-icon">💑</div>
-        <div class="framework-name">Gottman Method</div>
-        <div class="framework-author">John Gottman</div>
+        <div class="framework-name">Relationship Science Method</div>
         <p class="framework-desc">Decades of relationship research applied to everyday conversation — what the data says about what works.</p>
       </article>
       <article class="framework-card reveal reveal-delay-2">
         <div class="framework-icon">🎯</div>
-        <div class="framework-name">Never Split the Difference</div>
-        <div class="framework-author">Chris Voss</div>
-        <p class="framework-desc">FBI hostage negotiation tactics for salary talks, hard asks, and high-stakes decisions.</p>
+        <div class="framework-name">Tactical Negotiation</div>
+        <p class="framework-desc">High-stakes negotiation tactics for salary talks, hard asks, and critical decisions.</p>
       </article>
       <article class="framework-card reveal">
         <div class="framework-icon">🛡️</div>
         <div class="framework-name">Vulnerability Framework</div>
-        <div class="framework-author">Brené Brown</div>
         <p class="framework-desc">Why shame-resilience and courageous communication produce more trust than appearing bulletproof.</p>
       </article>
       <article class="framework-card reveal reveal-delay-1">
         <div class="framework-icon">⚖️</div>
-        <div class="framework-name">The Three Cs</div>
-        <div class="framework-author">Jefferson Fisher</div>
+        <div class="framework-name">The Three Cs — Composure Framework</div>
         <p class="framework-desc">Calm, clear, and confident — the courtroom-tested framework for composure under pressure.</p>
       </article>
       <article class="framework-card reveal reveal-delay-2">
         <div class="framework-icon">🎧</div>
-        <div class="framework-name">Celeste Headlee Method</div>
-        <div class="framework-author">Celeste Headlee</div>
+        <div class="framework-name">Deep Listening Method</div>
         <p class="framework-desc">10 principles for conversations that don't just talk at people — but actually change them.</p>
       </article>
     </div>
@@ -1583,7 +1577,7 @@
     <div class="faq-grid">
       <div class="faq-item reveal">
         <p class="faq-q">What domains can I train in?</p>
-        <p class="faq-a">Salary negotiation, sales, leadership, conflict resolution, dating and relationships, parenting, manipulation defense, and more. New scenarios are added regularly based on the expert curriculum roadmap.</p>
+        <p class="faq-a">Salary negotiation, sales, leadership, conflict resolution, dating and relationships, parenting, manipulation defense, and more. New scenarios are added regularly based on our training curriculum roadmap.</p>
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <p class="faq-q">How does real-time coach feedback work?</p>
