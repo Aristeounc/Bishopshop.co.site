@@ -53,18 +53,52 @@ Results-driven **Instructional Designer and Articulate Storyline 360 Expert** wi
 ### **Attune AI** — Midlothian, VA
 **Founder & Learning Experience Designer** | *2023 – June 2026*
 
-Designed and developed Attune AI, a sophisticated training-oriented mobile application that integrates structured content with interactive practice scenarios to support skill development for adult learners. Owned the complete instructional design lifecycle from discovery through iteration.
+Designed, developed, and launched **Attune AI**, a sophisticated training-oriented mobile application that integrates structured instructional content with interactive practice scenarios to support skill development for adult learners. Functioned as sole instructional designer, training architect, and learning platform manager—owning the complete instructional design lifecycle from initial discovery through full implementation, user testing, and iterative improvement. This project is a **directly demonstrable portfolio piece** showcasing expertise in complex learning system design and development.
 
-**Key Achievements:**
-- Architected and implemented full instructional design strategy, including needs analysis, content planning, scripting, prototyping, and user-feedback-driven iteration
-- Created interactive learning modules using **Articulate Storyline** and LMS platforms, prioritizing self-contained learning experiences over traditional slide-deck dependent training
-- Leveraged Microsoft Office suite (Word for documentation, Excel for learner analytics, PowerPoint for stakeholder presentations) to support all design phases
-- Conducted extensive adult learning theory research and application, ensuring content alignment with andragogical principles
-- Demonstrated initiative and independent problem-solving across all design phases, requiring minimal oversight or direction
-- Built accessibility into all learning materials, ensuring inclusive design for diverse learner populations
-- Iterated on learning experiences based on user feedback, continuously improving effectiveness and engagement
+**Key Achievements — Demonstrating Core Competencies:**
 
-**Technologies Used:** Articulate Storyline, LMS platforms, Microsoft Office Suite, interactive design tools
+*Articulate Storyline 360 & Multimedia Learning Development:*
+- Authored sophisticated interactive learning modules using **Articulate Storyline** as primary authoring platform, creating complex branching scenarios, interactive simulations, and knowledge checks that mirror enterprise training requirements
+- Designed web-based training (WBT) experiences that function as self-contained learning modules rather than trainer-dependent slide decks—directly applicable to large-scale PeopleSoft system training
+- Integrated multimedia elements including video, interactive graphics, and scenario-based learning to maximize adult learner engagement and knowledge retention
+- Demonstrated mastery of Articulate features including triggers, variables, and custom interactions—skills directly transferable to complex enterprise training scenarios
+
+*Full-Cycle Instructional Design Expertise:*
+- Architected complete instructional design strategy from needs analysis → learning objectives → content planning → scripting → storyboarding → interactive prototyping → user testing → implementation → iteration
+- Conducted thorough training needs analysis to identify skill gaps and learning requirements, similar to analyzing PeopleSoft HCM and Financials training needs across large organizations
+- Established clear, measurable learning objectives aligned with adult learner goals and organizational outcomes
+- Developed comprehensive training materials including participant guides, quick reference cards, and performance support tools
+
+*Adult Learning Theory & Andragogy Application:*
+- Applied extensive research in adult learning principles (andragogy), ensuring training design respects adult learners' prior experience, autonomy, self-direction, and relevance-focused learning preferences
+- Incorporated spaced repetition, retrieval practice, and scenario-based learning to optimize long-term retention and performance transfer
+- Designed training that supports multiple learning styles and preferences (visual, kinesthetic, cognitive), ensuring accessibility for diverse learner populations
+- Created performance-focused learning experiences that help adults solve real problems and succeed in their roles—critical for enterprise system training like PeopleSoft
+
+*Independent Initiative & Autonomous Project Management:*
+- Owned all aspects of Attune AI independently, from initial conception through full product launch—demonstrating ability to work without oversight, take initiative, identify solutions, and drive projects to completion
+- Made independent decisions on instructional design approach, technology stack, learning architecture, and user experience—showcasing ability to work autonomously while delivering high-quality results
+- Managed iterative improvement cycles based on user feedback, continuously enhancing learning effectiveness without requiring direction or approval processes
+- Demonstrated strong problem-solving skills, adapting instructional strategies to emerging user needs and platform constraints
+
+*System Implementation & Complex Workflow Training:*
+- Designed training for a complex integrated learning system with multiple interconnected components—experience directly applicable to PeopleSoft HCM and Financials system training
+- Created training that helps users navigate complex workflows, understand system logic, and apply system features to real organizational processes
+- Developed scenario-based training that mirrors real-world system usage, helping learners transfer knowledge to their actual job tasks
+- Managed training across multiple user types (administrators, end-users, managers) with varied learning needs—similar to multi-role PeopleSoft system training
+
+*Learning Management Systems & Assessment:*
+- Integrated Attune AI training modules with LMS platforms for delivery, tracking, and learner progress monitoring
+- Developed assessment strategies that measure learning outcomes and identify areas for additional support
+- Created learner analytics and performance dashboards to track training effectiveness and individual learner progress
+
+*Accessibility & Universal Design:*
+- Built accessibility compliance into all learning materials, ensuring WCAG compliance and inclusive design for diverse learner populations
+- Ensured materials are usable by people with varying technical proficiency, diverse learning preferences, and accessibility needs
+
+**Technologies Used:** Articulate Storyline 360 (primary authoring), LMS platforms, Microsoft Office Suite (Word, Excel, PowerPoint), video development tools, interactive design and prototyping tools, learning analytics platforms
+
+**Portfolio Impact:** Attune AI serves as a **comprehensive, demonstrable portfolio piece** showcasing full-cycle instructional design expertise, Articulate Storyline 360 mastery, adult learning theory application, and ability to design complex learning systems—directly evidencing fit for the Articulate Trainer position and ability to develop high-quality, engaging training for enterprise systems like PeopleSoft HCM and Financials.
 
 ---
 
@@ -184,19 +218,25 @@ In a rapidly changing technological landscape, I remain committed to continuous 
 
 ## NOTABLE ACHIEVEMENTS & DIFFERENTIATORS
 
-✓ **Articulate Storyline 360 Expertise**: Extensive hands-on experience designing and developing interactive, engaging WBT courses that demonstrate superior instructional design principles and adult learning theory application
+✓ **Attune AI Portfolio Project**: Founder and sole designer of sophisticated training-oriented mobile application demonstrating mastery of full-cycle instructional design, Articulate Storyline 360 expertise, adult learning theory application, complex system design, and independent project management. This **directly demonstrable portfolio piece** showcases ability to design and build enterprise-grade learning systems comparable to PeopleSoft training requirements. Available for detailed review during interview process.
 
-✓ **Enterprise System Training**: Direct experience with complex organizational systems, policies, and procedures—translating technical requirements into accessible, engaging training for diverse learner populations
+✓ **Articulate Storyline 360 Expert Proficiency**: Extensive, hands-on experience designing and developing sophisticated, interactive, engaging WBT courses using Articulate Storyline as primary authoring platform. Demonstrates mastery of branching scenarios, interactive simulations, triggers, variables, and custom interactions—all critical for complex enterprise training like PeopleSoft HCM and Financials systems.
 
-✓ **Bilingual Capabilities**: Fluent English/Spanish proficiency, enabling training delivery and material development for diverse, multilingual workforces
+✓ **PeopleSoft Training Readiness**: Background in translating complex system workflows, policies, and procedures into clear, engaging training. Experience designing training for integrated systems with multiple interconnected components, similar to PeopleSoft's architecture. Ready to quickly master PeopleSoft-specific content and create high-quality HCM and Financials training.
 
-✓ **Full-Cycle Instructional Design**: Demonstrated expertise across all phases—from initial needs analysis through implementation and evaluation—ensuring high-quality, outcomes-focused training solutions
+✓ **Enterprise System & Complex Workflow Training**: Direct experience designing training for sophisticated integrated systems, complex organizational policies, and multi-step business processes. Skilled at helping users understand system logic, navigate complex workflows, and apply system features to real job tasks.
 
-✓ **Blended Learning Expertise**: Proven ability to design and facilitate both Instructor-Led Training (ILT) and Web-Based Training (WBT), recognizing when each approach is most effective
+✓ **Full-Cycle Instructional Design Mastery**: Demonstrated expertise across all phases—needs analysis → objectives → content planning → scripting → prototyping → implementation → user testing → iteration. Ensures high-quality, outcomes-focused training solutions with measurable learning impact.
 
-✓ **Initiative & Independence**: Track record of identifying training needs proactively, developing solutions independently, and taking ownership of learning initiatives without requiring direction or oversight
+✓ **Blended Learning & ILT/WBT Expertise**: Proven ability to design and facilitate both Instructor-Led Training (ILT) and Web-Based Training (WBT), with sophisticated understanding of when each approach is most effective. Experience designing self-contained WBT that functions independently from live trainer.
 
-✓ **Adult Learning Theory Application**: Deep understanding of andragogy principles, applied consistently to create training that respects adult learners' experience, autonomy, and relevance-focused learning preferences
+✓ **Adult Learning Theory & Andragogy Mastery**: Deep, applied understanding of adult learning principles. Consistently designs training that respects adult learners' prior experience, autonomy, self-direction, and preference for relevant, performance-focused learning—critical for engaging professional audiences in system implementations.
+
+✓ **Bilingual Capabilities**: Fluent English/Spanish proficiency, enabling training delivery, content development, and facilitation for diverse, multilingual workforces. Valuable asset for inclusive, accessible training programs.
+
+✓ **Independent Initiative & Autonomous Excellence**: Track record of identifying training needs proactively, conceiving and executing solutions independently, and driving projects to completion without requiring direction or oversight. Demonstrated ability to work autonomously while maintaining high quality standards and collaborative relationships.
+
+✓ **Commitment to Virginia & Public Sector Impact**: Genuine passion for serving Virginia's public sector and contributing to state success. Direct experience with Virginia government programs (Cardinal Care Medicaid) and understanding of public sector training challenges and requirements.
 
 ---
 
