@@ -1,5 +1,5 @@
 # ADAM BISHOP
-Richmond, VA | (804) [Your Phone] | adam.bishop595@gmail.com | LinkedIn: [Your Profile]
+Richmond, VA | (804) 502-5138 | contact@bishopshop.co.site | LinkedIn: https://www.linkedin.com/in/adambishopops
 
 ---
 
@@ -50,8 +50,8 @@ Results-driven **Instructional Designer and Articulate Storyline 360 Expert** wi
 
 ## PROFESSIONAL EXPERIENCE
 
-### **Attune AI** — Midlothian, VA
-**Founder & Learning Experience Designer** | *2023 – June 2026*
+### **Attune AI** — Richmond, VA
+**Founder & Product Developer** | *December 2025 – Present*
 
 Designed, developed, and launched **Attune AI**, a sophisticated training-oriented mobile application that integrates structured instructional content with interactive practice scenarios to support skill development for adult learners. Functioned as sole instructional designer, training architect, and learning platform manager—owning the complete instructional design lifecycle from initial discovery through full implementation, user testing, and iterative improvement. This project is a **directly demonstrable portfolio piece** showcasing expertise in complex learning system design and development.
 
@@ -102,8 +102,8 @@ Designed, developed, and launched **Attune AI**, a sophisticated training-orient
 
 ---
 
-### **Virginia Cardinal Care Medicaid Program (Contractor)** — Richmond, VA  
-**Benefits Specialist & Training Support Specialist** | *August 2024 – March 2026*
+### **Maximus Global (Virginia Medicaid Cardinal Care Program)** — Richmond, VA  
+**Lead Benefits/Enrollment Specialist** | *August 2024 – March 2026*
 
 Served as a Benefits Specialist supporting Virginia's state Medicaid program (Cardinal Care), managed through Maximus, while simultaneously developing training materials and supporting staff development initiatives. Translated complex Medicaid eligibility rules and Cardinal Care policies into clear, accessible explanations and reference materials for new staff, improving onboarding efficiency and policy comprehension.
 
@@ -121,40 +121,42 @@ Served as a Benefits Specialist supporting Virginia's state Medicaid program (Ca
 
 ---
 
-### **Helix Diagnostics** — [Location], VA
-**Training Manager** | *[Dates]*
+### **Helix Diagnostics** — Waterford, Michigan
+**Senior Team Leader, Client Services** | *October 2020 – June 2023*
 
-Developed and managed comprehensive training programs for a growing diagnostic services organization. Designed and delivered instructor-led and web-based training for new staff, clinical protocols, and system updates.
+Led a client services team through the COVID-19 diagnostic surge, managing team performance and organizational challenges during unprecedented demand. Demonstrated strong leadership, team development, and operational excellence under high-pressure conditions. Developed and delivered training programs and onboarding for growing team during rapid organizational scaling.
 
 **Key Achievements:**
-- Designed and delivered both Instructor-Led Training (ILT) and Web-Based Training (WBT) programs for clinical and administrative staff
-- Identified and addressed training needs across the organization, making recommendations for curriculum updates and new training initiatives
-- Conducted training needs assessments to determine knowledge gaps and learning priorities
-- Developed engaging facilitation techniques that worked across in-person and virtual training environments
-- Collaborated with clinical SMEs to ensure training accuracy and applicability to day-to-day operations
-- Created video-based training using screen capture and instructional video principles
-- Mentored team members in adult learning principles and training delivery best practices
-- Took initiative to identify emerging training needs and develop solutions proactively
+- Led and mentored a growing team through critical scaling phases during COVID-19 diagnostic surge, ensuring service excellence and employee success
+- Designed and delivered training programs for new team members and operational staff during rapid growth periods
+- Identified and addressed training needs for clinical and administrative staff
+- Conducted training needs assessments and developed curricula for emerging organizational requirements
+- Developed engaging facilitation and mentoring techniques for team development
+- Collaborated with operational leadership to ensure training alignment with organizational goals
+- Created comprehensive onboarding and reference materials using Microsoft Office
+- Took initiative to develop solutions proactively without requiring direction from management
+- Demonstrated strong strategic planning and operations management capabilities
 
-**Technologies Used:** LMS platforms, Microsoft Office Suite, video development tools
+**Technologies Used:** Microsoft Office Suite, LMS platforms, team management and communication tools
 
 ---
 
-### **Private Trilingual Middle & High School** — [Location], VA
-**Instructor & Learning Facilitator** | *[Dates]*
+### **Colegio Lennox** — Querétaro, Mexico
+**Private Middle & High School Teacher** | *June 2016 – June 2020*
 
-Taught at a prestigious, upper-echelon trilingual (English/Spanish/French) private school, serving diverse student populations with varied learning needs. Designed engaging, interactive lessons that accommodated multiple learning styles and cultural backgrounds. Demonstrated excellence in adult learning facilitation and complex content delivery.
+Delivered bilingual (English/Spanish) instruction to 100+ students across multiple grade levels in a rigorous, academically excellent private school environment. Designed engaging, interactive lessons accommodating diverse learning styles and cultural backgrounds. Demonstrated excellence in facilitation, inclusive pedagogy, and complex content delivery to adolescent learners.
 
 **Key Achievements:**
-- Designed and delivered content-rich, engaging lessons for middle and high school students in a rigorous, trilingual academic environment
-- Adapted instructional approaches to meet diverse learner needs, demonstrating understanding of learning theory and differentiated instruction
-- Facilitated student learning in both English and Spanish, leveraging bilingual proficiency to support language learners
-- Created inclusive classroom environments where all students felt valued and supported
-- Mentored and coached students, demonstrating ability to help others succeed and improve their performance
-- Developed clear, accessible explanations of complex concepts—a skill directly transferable to adult learner training
-- Demonstrated strong facilitation and communication skills across diverse groups
+- Designed and delivered content-rich, engaging lessons for middle and high school students in a rigorous bilingual academic environment
+- Adapted instructional approaches to meet diverse learner needs, demonstrating practical application of learning theory and differentiated instruction
+- Delivered fluent bilingual instruction in English and Spanish, leveraging bilingual proficiency to support language learners and diverse student populations
+- Created inclusive, culturally-responsive classroom environments where all students felt valued and supported
+- Mentored and coached students in both languages, demonstrating ability to help others succeed and improve their performance
+- Developed clear, accessible explanations of complex concepts using adult learning principles—skills directly transferable to adult learner training
+- Demonstrated exceptional facilitation and communication skills across diverse, multilingual groups
+- Managed diverse classroom dynamics and individual learning needs with strategic planning and collaboration
 
-**Technologies Used:** Educational technology platforms, presentation software, classroom management systems
+**Technologies Used:** Educational technology platforms, presentation software, classroom management systems, bilingual learning resources
 
 ---
 
@@ -186,17 +188,48 @@ Taught at a prestigious, upper-echelon trilingual (English/Spanish/French) priva
 
 ---
 
-## EDUCATION & PROFESSIONAL DEVELOPMENT
+## EDUCATION
 
-[Your Degree(s) - e.g., Bachelor of Arts in Education / Instructional Design Certification / Master's in Learning & Development]
+**Bachelor of Arts, Fine Arts in Education**  
+Art Institute of Atlanta | August 2012 – May 2016
 
-**Relevant Professional Training:**
+**Associate's Degree, Culinary Arts/Chef Training**  
+Colegio Franco Mexicano de Puerto Vallarta | January 2014 – December 2016
+
+---
+
+## PROFESSIONAL CERTIFICATIONS & TRAINING
+
+**Certificate to Teach English as a Foreign Language (CTEFL)**  
+International Open Academy | Issued September 2018 | Credential ID 100-90291  
+*Skills: Exceptional communication, Training and Development, +17 additional skills*
+
+**HubSpot Service Hub Software Certification**  
+HubSpot Academy
+
+**HubSpot Inbound Marketing Certification**  
+HubSpot Academy | Issued May 2025
+
+**Business Operations: Implementing Strategy for Results**  
+LinkedIn Learning (Netcom CSAM)
+
+**Operations Management Foundations**  
+LinkedIn Learning Community
+
+**Customer Success Management Fundamentals**  
+LinkedIn Learning Community
+
+**Operations Strategy for Business**  
+LinkedIn Learning Community
+
+**Relevant Professional Training & Continuing Education:**
 - Adult Learning Theory & Andragogy Principles
 - Instructional Design Foundations
-- Articulate Storyline 360 Advanced Training
+- Articulate Storyline 360 Advanced Training & Application
 - Camtasia Professional Video Development
 - LMS Best Practices & Administration
 - Accessibility & Universal Design for Learning (UDL)
+- Strategic Planning & Operations Management
 
 ---
 
@@ -240,19 +273,21 @@ In a rapidly changing technological landscape, I remain committed to continuous 
 
 ---
 
-## ADDITIONAL INFORMATION
+## PORTFOLIO & WORK SAMPLES
 
-**Certifications & Training Available for Review**
-[List any relevant certifications]
+**Attune AI Mobile Application**  
+A comprehensive, production-ready training application demonstrating full-cycle instructional design expertise, Articulate Storyline 360 mastery, and sophisticated learning experience architecture. Available for detailed review during interview process.
 
-**Portfolio & Work Samples**
-[Available upon request—can provide detailed Articulate Storyline 360 projects, instructional materials, and training delivery examples]
+**Instructional Materials & Training Modules**  
+Detailed examples of Articulate Storyline 360 courses, interactive simulations, branching scenarios, and WBT learning experiences developed across various training contexts. Available upon request.
 
-**Professional References**
-[Available upon request from previous trainers, instructional design partners, and stakeholder collaborators]
+**Professional References**  
+Available upon request from previous managers, instructional design collaborators, stakeholder partners, and team members.
 
 ---
 
-**READY TO TRANSFORM VIRGINIA'S TRAINING EXCELLENCE**
+## COMMITMENT TO EXCELLENCE
 
-I am excited about the opportunity to bring my expertise in Articulate Storyline 360, instructional design, adult learning principles, and enterprise system training to the Virginia Department of Accounts. With a demonstrated track record of creating high-impact training solutions and a deep commitment to supporting Virginia's success, I am confident that I can contribute significantly to the department's training objectives and help your team achieve excellence in learning and development initiatives.
+I am genuinely excited about the opportunity to bring my expertise in **Articulate Storyline 360, instructional design, adult learning principles, and enterprise system training** to the **Virginia Department of Accounts**. With a demonstrated track record of creating high-impact training solutions, independent initiative, and a deep commitment to supporting **Virginia's success and public sector excellence**, I am confident that I can contribute significantly to the department's training objectives and help your team achieve transformational excellence in learning and development initiatives.
+
+I am ready to make a meaningful impact on Virginia's workforce development and bring my passion for learning, independent drive, and employee-focused approach to this important role.
