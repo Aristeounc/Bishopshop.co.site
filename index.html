@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Security Headers (meta equiv — GitHub Pages doesn't allow HTTP headers) -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <!-- SEO Primary -->
 <title>Attune AI — The Conversation Gym | Master High-Stakes Communication</title>
 <meta name="description" content="Attune AI is a subscription app that trains you to read context, reduce defensiveness, and practice real influence without manipulation. 8 skill tracks, AI sparring, and a curriculum built on peer-reviewed behavioral science.">
@@ -1669,6 +1675,11 @@
 </footer>
 
 <script>
+  // HTTPS upgrade — redirect HTTP visitors to HTTPS
+  if (location.protocol === 'http:' && location.hostname !== 'localhost') {
+    location.replace('https://' + location.host + location.pathname + location.search);
+  }
+
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
