@@ -1107,6 +1107,83 @@
     z-index: 1000;
   }
 
+  /* Mobile Menu Toggle */
+  .nav-menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; padding: 8px; }
+  .nav-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translateY(10px); }
+  .nav-menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
+  .nav-menu-toggle span { display: block; width: 24px; height: 2px; background: currentColor; margin: 5px 0; transition: all 0.3s var(--ease-out); }
+
+  /* Mobile Menu Active State */
+  @media (max-width: 900px) {
+    .nav-links.active {
+      display: flex !important;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--ink-soft);
+      border-top: 1px solid rgba(242,199,68,0.2);
+      padding: 16px 24px;
+      gap: 12px;
+      animation: slideDown 0.3s var(--ease-out);
+    }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-links.active li { width: 100%; }
+    .nav-links.active a { padding: 8px 0; display: block; }
+  }
+
+  /* FAQ Accordion */
+  .faq-item { cursor: pointer; padding: 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); transition: all 0.3s var(--ease-out); }
+  .faq-item:hover { background: rgba(242,199,68,0.05); border-color: rgba(242,199,68,0.2); }
+  .faq-q { font-weight: 500; margin-bottom: 8px; user-select: none; }
+  .faq-a { max-height: 1000px; overflow: hidden; transition: all 0.3s var(--ease-out); }
+  .faq-item.collapsed .faq-a { max-height: 0; margin: 0; }
+  .faq-item .faq-q::after { content: ' ▼'; font-size: 12px; transition: transform 0.3s var(--ease-out); display: inline-block; }
+  .faq-item.collapsed .faq-q::after { transform: rotate(-90deg); }
+
+  /* Modals */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center; }
+  .modal.active { display: flex; }
+  .modal-content { background: var(--ink-soft); border: 1px solid rgba(242,199,68,0.2); border-radius: 8px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
+  .modal-title { font-size: 24px; font-weight: 600; margin-bottom: 16px; }
+  .modal-subtitle { color: var(--muted); margin-bottom: 24px; }
+
+  /* Form Elements */
+  input, textarea, select { width: 100%; padding: 12px; background: var(--ink); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); color: var(--white); font-family: inherit; margin-bottom: 16px; transition: all 0.2s; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--yellow); background: rgba(242,199,68,0.05); }
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+  label { display: block; font-weight: 500; margin-bottom: 8px; }
+  .form-group { margin-bottom: 20px; }
+  .form-error { color: #ff6b6b; font-size: 12px; margin-top: -12px; margin-bottom: 12px; }
+  .form-success { color: #51cf66; font-size: 12px; margin-top: -12px; margin-bottom: 12px; }
+  .form-submit { background: var(--yellow); color: var(--ink); font-weight: 600; cursor: pointer; padding: 12px 24px; border: none; border-radius: var(--radius); transition: all 0.2s; width: 100%; }
+  .form-submit:hover { background: var(--yellow-dark); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(242,199,68,0.25); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Quiz Styles */
+  .quiz-question { margin-bottom: 24px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+  .quiz-option { padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); cursor: pointer; transition: all 0.2s; }
+  .quiz-option:hover { background: rgba(242,199,68,0.1); border-color: rgba(242,199,68,0.3); }
+  .quiz-option input { margin-right: 12px; }
+  .quiz-result { background: rgba(242,199,68,0.1); border: 1px solid rgba(242,199,68,0.3); padding: 20px; border-radius: var(--radius); margin-top: 20px; }
+  .quiz-result-title { font-weight: 600; margin-bottom: 12px; color: var(--yellow); }
+  .quiz-result-text { color: var(--white); line-height: 1.6; }
+
+  /* Scroll to Top Button */
+  .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; background: var(--yellow); color: var(--ink); border: none; border-radius: 50%; cursor: pointer; font-size: 20px; display: none; align-items: center; justify-content: center; z-index: 999; transition: all 0.3s var(--ease-out); box-shadow: 0 4px 16px rgba(242,199,68,0.3); }
+  .scroll-top.visible { display: flex; }
+  .scroll-top:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(242,199,68,0.4); }
+
+  /* Newsletter Widget */
+  .newsletter-widget { background: linear-gradient(135deg, rgba(31,91,168,0.1) 0%, rgba(242,199,68,0.05) 100%); border: 1px solid rgba(242,199,68,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
+  .newsletter-widget h4 { margin-bottom: 8px; font-size: 16px; }
+  .newsletter-widget p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
@@ -1115,10 +1192,13 @@
     .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
     .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
+    .nav-menu-toggle { display: block; }
     .hero-content { padding: 60px 24px; }
+    .modal-content { padding: 24px; max-width: 90vw; }
+    .scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 18px; }
   }
 </style>
 </head>
@@ -1134,7 +1214,7 @@
     <div class="nav-logo-mark" aria-hidden="true">A</div>
     <span class="nav-wordmark">Attune <span>AI</span></span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navMenu">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
@@ -1142,6 +1222,11 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#get-started" class="nav-cta">Get the App</a></li>
   </ul>
+  <button class="nav-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1576,27 +1661,27 @@
       <h2 class="section-headline reveal reveal-delay-1" id="faq-heading">Common<br><em>questions</em></h2>
     </div>
     <div class="faq-grid">
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What domains can I train in?</p>
         <p class="faq-a">Salary negotiation, sales, leadership, conflict resolution, dating and relationships, parenting, manipulation defense, and more. New scenarios are added regularly based on our training curriculum roadmap.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">How does real-time coach feedback work?</p>
         <p class="faq-a">After each sparring exchange, the AI coach evaluates your response against the current skill framework — scoring faithfulness, technique usage, and emotional regulation. You get specific, actionable notes, not generic praise.</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What is the ELO system?</p>
         <p class="faq-a">Like chess ratings, your ELO score in each of 8 skill tracks changes based on session performance. It's a honest signal of where you actually stand — not where you hope you are.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">Is the app available on Android?</p>
         <p class="faq-a">Currently, Attune AI is available exclusively on the iOS App Store. Android development is in the roadmap — subscribe to updates to know when it launches.</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What is Spot-the-Influence mode?</p>
         <p class="faq-a">A unique Attune feature where you watch a conversation scenario unfold and identify influence and manipulation tactics in real time. Builds awareness as a defense skill, not an attack skill.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">Can I cancel or pause my subscription?</p>
         <p class="faq-a">Yes, anytime. If you need a break, our humane streak model includes freeze slots so you don't lose progress from life getting in the way. No punishment for being human.</p>
       </div>
@@ -1621,10 +1706,91 @@
           <div class="app-badge-name">App Store</div>
         </div>
       </a>
-      <a href="mailto:attuneai@bishopshop.co.site" class="btn-ghost" aria-label="Contact Attune AI team">Contact Us</a>
+      <button class="btn-ghost" id="contactBtn" aria-label="Contact Attune AI team">Contact Us</button>
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+
+<!-- Contact Form Modal -->
+<div class="modal" id="contactModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close contact form">&times;</button>
+    <h3 class="modal-title">Get in Touch</h3>
+    <p class="modal-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+    <form id="contactForm" onsubmit="handleContactForm(event)">
+      <div class="form-group">
+        <label for="contactName">Name</label>
+        <input type="text" id="contactName" name="name" required placeholder="Your name">
+        <div class="form-error" id="nameError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Email</label>
+        <input type="email" id="contactEmail" name="email" required placeholder="your@email.com">
+        <div class="form-error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactSubject">Subject</label>
+        <input type="text" id="contactSubject" name="subject" required placeholder="What's this about?">
+        <div class="form-error" id="subjectError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" required placeholder="Tell us more..." rows="5"></textarea>
+        <div class="form-error" id="messageError"></div>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+      <div class="form-success" id="contactSuccess" style="display:none;text-align:center;margin-top:16px;">Thank you! We've received your message.</div>
+    </form>
+  </div>
+</div>
+
+<!-- Skills Assessment Quiz Modal -->
+<div class="modal" id="quizModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('quizModal')" aria-label="Close quiz">&times;</button>
+    <h3 class="modal-title">Communication Style Quiz</h3>
+    <p class="modal-subtitle">Discover your communication strengths and areas for growth.</p>
+    <form id="quizForm" onsubmit="handleQuiz(event)">
+      <div id="quizContainer"></div>
+      <button type="submit" class="form-submit">Get My Results</button>
+      <div id="quizResults" style="display:none;"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Newsletter Signup Modal -->
+<div class="modal" id="newsletterModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('newsletterModal')" aria-label="Close newsletter signup">&times;</button>
+    <h3 class="modal-title">Stay Updated</h3>
+    <p class="modal-subtitle">Get notified about new features, training tips, and Android launch updates.</p>
+    <form id="newsletterForm" onsubmit="handleNewsletter(event)">
+      <div class="form-group">
+        <label for="nlEmail">Email Address</label>
+        <input type="email" id="nlEmail" name="email" required placeholder="your@email.com">
+        <div class="form-error" id="nlEmailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="nlInterest">I'm most interested in:</label>
+        <select id="nlInterest" name="interest">
+          <option value="">Select an interest...</option>
+          <option value="features">New Features</option>
+          <option value="training">Training Tips</option>
+          <option value="android">Android Launch</option>
+          <option value="all">Everything</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit">Subscribe</button>
+      <div class="form-success" id="nlSuccess" style="display:none;text-align:center;margin-top:16px;">Thanks for subscribing!</div>
+    </form>
+  </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
 </main>
 
 <!-- FOOTER -->
@@ -1653,7 +1819,7 @@
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="About Attune AI">About</a></li>
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Attune AI ethical framework">Ethics Framework</a></li>
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Bishop Shop Enterprises">Bishop Shop Enterprises</a></li>
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Contact us">Contact</a></li>
+          <li><button onclick="openModal('contactModal')" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Contact us">Contact</button></li>
         </ul>
       </div>
       <div>
@@ -1664,6 +1830,13 @@
           <li><a href="/ip-notice.html" aria-label="Intellectual Property Notice">IP &amp; Trademark</a></li>
           <li><a href="/website-terms.html" aria-label="Website Terms of Use">Website Terms</a></li>
           <li><a href="#faq" aria-label="Frequently Asked Questions">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Engage</div>
+        <ul class="footer-links">
+          <li><button onclick="openModal('quizModal'); initQuiz();" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Take communication style quiz">Take Quiz</button></li>
+          <li><button onclick="openModal('newsletterModal')" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Subscribe to newsletter">Subscribe</button></li>
         </ul>
       </div>
     </div>
@@ -1747,6 +1920,208 @@
   }, { threshold: 0.5 });
   const statsEl = document.querySelector('.hero-stats');
   if (statsEl) statsObserver.observe(statsEl);
+
+  // ENHANCED FUNCTIONALITY
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  menuToggle?.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
+  });
+
+  // Close mobile menu when link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Modal Functions
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Close modal when clicking outside
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal(modal.id);
+    });
+  });
+
+  // Contact Form Handling
+  const contactBtn = document.getElementById('contactBtn');
+  contactBtn?.addEventListener('click', () => openModal('contactModal'));
+
+  function handleContactForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const subject = document.getElementById('contactSubject').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    // Clear previous errors
+    document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+    let isValid = true;
+
+    if (!name) {
+      document.getElementById('nameError').textContent = 'Name is required';
+      isValid = false;
+    }
+    if (!email || !email.includes('@')) {
+      document.getElementById('emailError').textContent = 'Valid email is required';
+      isValid = false;
+    }
+    if (!subject) {
+      document.getElementById('subjectError').textContent = 'Subject is required';
+      isValid = false;
+    }
+    if (!message || message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+      isValid = false;
+    }
+
+    if (isValid) {
+      const mailtoLink = `mailto:attuneai@bishopshop.co.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+      window.location.href = mailtoLink;
+      document.getElementById('contactSuccess').style.display = 'block';
+      setTimeout(() => {
+        form.reset();
+        document.getElementById('contactSuccess').style.display = 'none';
+        closeModal('contactModal');
+      }, 2000);
+    }
+  }
+
+  // Newsletter Form Handling
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('nlEmail').value.trim();
+    const emailError = document.getElementById('nlEmailError');
+    emailError.textContent = '';
+
+    if (!email || !email.includes('@')) {
+      emailError.textContent = 'Valid email is required';
+      return;
+    }
+
+    document.getElementById('nlSuccess').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('newsletterForm').reset();
+      document.getElementById('nlSuccess').style.display = 'none';
+      closeModal('newsletterModal');
+    }, 2000);
+  }
+
+  // Quiz Functionality
+  const quizData = [
+    { question: 'When facing conflict, you typically:', options: ['Listen first, respond later', 'Jump in with your perspective', 'Seek common ground', 'Avoid the conversation'] },
+    { question: 'Your communication style is best described as:', options: ['Direct and assertive', 'Collaborative and diplomatic', 'Analytical and measured', 'Empathetic and supportive'] },
+    { question: 'Under pressure, you:', options: ['Stay calm and focused', 'Get energized and motivated', 'Need time to process', 'Want support from others'] },
+    { question: 'When persuading others, you focus on:', options: ['Logic and data', 'Emotional connection', 'Building trust', 'Understanding their needs'] },
+    { question: 'Your biggest strength in conversations is:', options: ['Reading the room', 'Clarity of thought', 'Building rapport', 'Finding creative solutions'] }
+  ];
+
+  function initQuiz() {
+    const container = document.getElementById('quizContainer');
+    if (!container || container.innerHTML) return;
+
+    container.innerHTML = quizData.map((q, i) => `
+      <div class="quiz-question">
+        <label style="font-weight:600;margin-bottom:12px;display:block;">${i + 1}. ${q.question}</label>
+        <div class="quiz-options">
+          ${q.options.map((opt, j) => `
+            <label class="quiz-option" style="display:flex;align-items:center;cursor:pointer;">
+              <input type="radio" name="q${i}" value="${j}" required>
+              <span style="margin-left:8px;">${opt}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleQuiz(e) {
+    e.preventDefault();
+    const scores = { 0: 0, 1: 0, 2: 0, 3: 0 };
+
+    for (let i = 0; i < quizData.length; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) scores[selected.value]++;
+    }
+
+    const styles = ['Thoughtful Listener', 'Bold Communicator', 'Balanced Diplomat', 'Empathetic Guide'];
+    const descriptions = [
+      'You excel at understanding others before responding. Your strength is creating psychological safety in conversations.',
+      'You bring energy and confidence to discussions. Your strength is clarity and conviction in your messaging.',
+      'You navigate complexity with balance. Your strength is finding win-win solutions and building consensus.',
+      'You prioritize relationships and emotions. Your strength is making others feel heard and valued.'
+    ];
+
+    const maxScore = Math.max(...Object.values(scores));
+    const style = styles[Object.keys(scores).find(k => scores[k] === maxScore)];
+    const description = descriptions[Object.keys(scores).find(k => scores[k] === maxScore)];
+
+    document.getElementById('quizForm').innerHTML = `
+      <div class="quiz-result">
+        <div class="quiz-result-title">Your Communication Style: ${style}</div>
+        <div class="quiz-result-text">${description}</div>
+      </div>
+    `;
+  }
+
+  // FAQ Toggle
+  function toggleFAQ(element) {
+    element.classList.toggle('collapsed');
+  }
+
+  // Scroll to Top Button
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollTop?.classList.add('visible');
+    } else {
+      scrollTop?.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  scrollTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Initialize quiz when modal opens
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'quizModal' || (e.target.closest && e.target.closest('#quizModal'))) {
+      setTimeout(() => initQuiz(), 100);
+    }
+  });
+
+  // Add quiz trigger (optional button)
+  const quizTriggers = document.querySelectorAll('[data-quiz]');
+  quizTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      openModal('quizModal');
+      initQuiz();
+    });
+  });
 </script>
 
 </body>
