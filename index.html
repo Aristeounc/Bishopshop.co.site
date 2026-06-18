@@ -385,59 +385,160 @@
     font-size: 14px;
     color: var(--white);
   }
-  /* Badge Progression System */
+  /* Coat of Arms Badge System */
   .skill-badge {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 12px;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    border: 1.5px solid;
+    position: relative;
+    overflow: hidden;
     transition: all 0.3s var(--ease-out);
+    backdrop-filter: blur(8px);
   }
 
-  /* Badge Tiers - 5 progression levels */
+  .skill-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    opacity: 0.5;
+    z-index: -1;
+    animation: badgeShimmer 3s infinite;
+  }
+
+  @keyframes badgeShimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Coat of Arms Badge Tiers */
   .skill-badge-emerging {
-    background: rgba(107,168,212,0.2);
-    border-color: #6ba8d4;
+    background: linear-gradient(135deg, rgba(107,168,212,0.25) 0%, rgba(107,168,212,0.1) 100%);
+    border: 2px solid #6ba8d4;
     color: #6ba8d4;
+    box-shadow: 0 0 20px rgba(107,168,212,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .skill-badge-emerging::before {
+    background: linear-gradient(45deg, #6ba8d4, rgba(107,168,212,0.5));
   }
 
   .skill-badge-competent {
-    background: rgba(31,91,168,0.25);
-    border-color: #1F5BA8;
+    background: linear-gradient(135deg, rgba(31,91,168,0.3) 0%, rgba(31,91,168,0.15) 100%);
+    border: 2px solid #1F5BA8;
     color: #1F5BA8;
+    box-shadow: 0 0 24px rgba(31,91,168,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .skill-badge-competent::before {
+    background: linear-gradient(45deg, #1F5BA8, rgba(31,91,168,0.6));
   }
 
   .skill-badge-proficient {
-    background: rgba(242,199,68,0.25);
-    border-color: #F2C744;
+    background: linear-gradient(135deg, rgba(242,199,68,0.3) 0%, rgba(242,199,68,0.15) 100%);
+    border: 2px solid #F2C744;
     color: #F2C744;
+    box-shadow: 0 0 28px rgba(242,199,68,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  }
+
+  .skill-badge-proficient::before {
+    background: linear-gradient(45deg, #F2C744, rgba(242,199,68,0.7));
   }
 
   .skill-badge-expert {
-    background: rgba(81,207,102,0.25);
-    border-color: #51cf66;
+    background: linear-gradient(135deg, rgba(81,207,102,0.3) 0%, rgba(81,207,102,0.15) 100%);
+    border: 2px solid #51cf66;
     color: #51cf66;
+    box-shadow: 0 0 28px rgba(81,207,102,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  }
+
+  .skill-badge-expert::before {
+    background: linear-gradient(45deg, #51cf66, rgba(81,207,102,0.7));
   }
 
   .skill-badge-master {
-    background: rgba(255,193,7,0.25);
-    border-color: #FFD700;
+    background: linear-gradient(135deg, rgba(255,193,7,0.35) 0%, rgba(255,193,7,0.2) 100%);
+    border: 3px solid #FFD700;
     color: #FFD700;
+    box-shadow: 0 0 40px rgba(255,193,7,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    animation: masterBadgePulse 2s ease-in-out infinite;
   }
 
-  /* Badge Display */
+  .skill-badge-master::before {
+    background: linear-gradient(45deg, #FFD700, rgba(255,193,7,0.8));
+    animation: masterShimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes masterBadgePulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(255,193,7,0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+    50% { box-shadow: 0 0 60px rgba(255,193,7,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  }
+
+  @keyframes masterShimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Badge Display Enhancements */
   .skill-badge {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
 
   .skill-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
   }
+
+  .skill-badge:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  /* Coat of Arms Shield Style */
+  .badge-shield {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(242,199,68,0.2) 0%, rgba(31,91,168,0.1) 100%);
+    border: 2px solid var(--yellow);
+    border-radius: 8px 8px 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 8px 24px rgba(242,199,68,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    margin: 8px;
+  }
+
+  .badge-shield::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 8px 8px 50% 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Heraldic Details */
+  .badge-ornament {
+    position: absolute;
+    font-size: 12px;
+  }
+
+  .badge-ornament-top { top: -12px; }
+  .badge-ornament-left { left: -12px; }
+  .badge-ornament-right { right: -12px; }
 
   /* Badge Achievement Display */
   .badge-achievement {
@@ -2321,11 +2422,51 @@
   // BADGE PROGRESSION SYSTEM
 
   const BadgeTiers = {
-    emerging: { name: 'Emerging', icon: '🌱', color: '#6ba8d4', minScore: 0 },
-    competent: { name: 'Competent', icon: '⭐', color: '#1F5BA8', minScore: 25 },
-    proficient: { name: 'Proficient', icon: '🏅', color: '#F2C744', minScore: 50 },
-    expert: { name: 'Expert', icon: '🎯', color: '#51cf66', minScore: 75 },
-    master: { name: 'Master', icon: '👑', color: '#FFD700', minScore: 90 }
+    emerging: {
+      name: 'Emerging',
+      icon: '🌱',
+      color: '#6ba8d4',
+      minScore: 0,
+      motto: 'Initium Sapientiae',
+      ornaments: '✦ ✦',
+      description: 'First steps on the path to mastery'
+    },
+    competent: {
+      name: 'Competent',
+      icon: '⭐',
+      color: '#1F5BA8',
+      minScore: 25,
+      motto: 'Firmus et Fortis',
+      ornaments: '✦ ✦ ✦',
+      description: 'Demonstrated solid understanding'
+    },
+    proficient: {
+      name: 'Proficient',
+      icon: '🏅',
+      color: '#F2C744',
+      minScore: 50,
+      motto: 'Aureus Animus',
+      ornaments: '✦ ✦ ✦ ✦',
+      description: 'Consistent excellence in practice'
+    },
+    expert: {
+      name: 'Expert',
+      icon: '🎯',
+      color: '#51cf66',
+      minScore: 75,
+      motto: 'Viridis Victoriae',
+      ornaments: '✦ ✦ ✦ ✦ ✦',
+      description: 'Exceptional skill and mastery'
+    },
+    master: {
+      name: 'Master',
+      icon: '👑',
+      color: '#FFD700',
+      minScore: 90,
+      motto: 'Summum Fastigium',
+      ornaments: '✦ ✦ ✦ ✦ ✦ ✦',
+      description: 'Ultimate mastery achieved'
+    }
   };
 
   // Get badge tier based on skill score
@@ -2365,8 +2506,45 @@
     const badge = document.createElement('span');
     badge.className = `skill-badge skill-badge-${tier}`;
     badge.innerHTML = `${tierData.icon} ${tierData.name}`;
-    badge.title = skillName ? `${tierData.name} in ${skillName}` : tierData.name;
+    badge.title = `${tierData.name}${skillName ? ' in ' + skillName : ''}\n${tierData.motto}`;
     return badge;
+  }
+
+  // Create ornate coat of arms badge
+  function createCoatOfArmsBadge(tier, skillName = '') {
+    const tierData = BadgeTiers[tier];
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.flexDirection = 'column';
+    container.style.alignItems = 'center';
+    container.style.gap = '8px';
+
+    const shield = document.createElement('div');
+    shield.className = 'badge-shield';
+    shield.innerHTML = tierData.icon;
+    shield.style.background = `linear-gradient(135deg, rgba(${tierData.color === '#F2C744' ? '242,199,68' : tierData.color === '#51cf66' ? '81,207,102' : '31,91,168'},0.25) 0%, rgba(${tierData.color === '#F2C744' ? '242,199,68' : tierData.color === '#51cf66' ? '81,207,102' : '31,91,168'},0.08) 100%)`;
+    shield.style.borderColor = tierData.color;
+    shield.style.color = tierData.color;
+
+    const name = document.createElement('div');
+    name.style.fontSize = '12px';
+    name.style.fontWeight = '700';
+    name.style.color = tierData.color;
+    name.style.textTransform = 'uppercase';
+    name.style.letterSpacing = '1px';
+    name.innerHTML = tierData.name;
+
+    const motto = document.createElement('div');
+    motto.style.fontSize = '10px';
+    motto.style.fontStyle = 'italic';
+    motto.style.color = 'rgba(255,255,255,0.6)';
+    motto.innerHTML = tierData.motto;
+
+    container.appendChild(shield);
+    container.appendChild(name);
+    container.appendChild(motto);
+
+    return container;
   }
 
   // Display all badge tiers
