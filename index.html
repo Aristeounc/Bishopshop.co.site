@@ -41,7 +41,7 @@
   "name": "Attune AI",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS",
-  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and ELO-based skill progression.",
+  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and badge-based skill progression.",
   "offers": {
     "@type": "Offer",
     "price": "9.99",
@@ -385,14 +385,139 @@
     font-size: 14px;
     color: var(--white);
   }
-  .belt-badge {
-    background: var(--yellow);
-    color: var(--ink);
-    font-size: 10px;
+  /* Badge Progression System */
+  .skill-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 100px;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1.5px solid;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  /* Badge Tiers - 5 progression levels */
+  .skill-badge-emerging {
+    background: rgba(107,168,212,0.2);
+    border-color: #6ba8d4;
+    color: #6ba8d4;
+  }
+
+  .skill-badge-competent {
+    background: rgba(31,91,168,0.25);
+    border-color: #1F5BA8;
+    color: #1F5BA8;
+  }
+
+  .skill-badge-proficient {
+    background: rgba(242,199,68,0.25);
+    border-color: #F2C744;
+    color: #F2C744;
+  }
+
+  .skill-badge-expert {
+    background: rgba(81,207,102,0.25);
+    border-color: #51cf66;
+    color: #51cf66;
+  }
+
+  .skill-badge-master {
+    background: rgba(255,193,7,0.25);
+    border-color: #FFD700;
+    color: #FFD700;
+  }
+
+  /* Badge Display */
+  .skill-badge {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Badge Achievement Display */
+  .badge-achievement {
+    background: linear-gradient(135deg, rgba(242,199,68,0.15) 0%, rgba(31,91,168,0.08) 100%);
+    border: 2px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    animation: badgeAchievementPulse 0.8s var(--ease-out);
+  }
+
+  .badge-achievement-icon {
+    font-size: 64px;
+    margin-bottom: 12px;
+    animation: badgeAchievementBounce 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .badge-achievement-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .badge-achievement-description {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  @keyframes badgeAchievementPulse {
+    0% { box-shadow: 0 0 0 0 rgba(242,199,68,0.4); }
+    100% { box-shadow: 0 0 0 20px rgba(242,199,68,0); }
+  }
+
+  @keyframes badgeAchievementBounce {
+    0% { transform: scale(0) rotate(-45deg); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  /* Badge Tier List */
+  .badge-tier-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .badge-tier-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .badge-tier-item:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  .badge-tier-icon {
+    font-size: 32px;
+  }
+
+  .badge-tier-name {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--white);
+  }
+
+  .badge-tier-description {
+    font-size: 10px;
+    color: var(--muted);
   }
 
   .scenario-card {
@@ -1314,7 +1439,7 @@
       <span class="stroke-text">Athlete</span>
     </h1>
     <p class="hero-sub">
-      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a belt system that tracks your growth across <strong>8 skill dimensions</strong>.
+      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a badge system that tracks your growth across <strong>8 skill dimensions</strong>.
     </p>
     <div class="hero-actions">
       <a href="#get-started" class="btn-primary" aria-label="Get the Attune AI app">
@@ -1329,8 +1454,8 @@
         <div class="stat-label">Concepts Trained</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num" aria-label="6">6</div>
-        <div class="stat-label">Belt Levels</div>
+        <div class="stat-num" aria-label="5">5</div>
+        <div class="stat-label">Badge Tiers</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" aria-label="8">8</div>
@@ -1363,7 +1488,7 @@
       <div class="phone-notch"></div>
       <div class="phone-header">
         <span class="phone-title">Today's Program</span>
-        <span class="belt-badge">🟡 Blue Belt</span>
+        <span class="skill-badge skill-badge-emerging">🏅 Emerging</span>
       </div>
 
       <div class="elo-row">
@@ -1589,7 +1714,7 @@
           <li>Today's Program (daily loop)</li>
           <li>All 6 sparring personas</li>
           <li>8 ELO skill tracks</li>
-          <li>6 belt progression levels</li>
+          <li>5 badge progression tiers</li>
           <li>Vector memory (Coach recall)</li>
           <li>33+ concept corpus</li>
         </ul>
@@ -1767,7 +1892,7 @@
     <h2 class="cta-headline reveal reveal-delay-1" id="cta-heading">
       Your words<br>are your <span>edge.</span>
     </h2>
-    <p class="cta-sub reveal reveal-delay-2">Start with one session. Build a belt. Train conversations the same way athletes train everything else — with reps, resistance, and real feedback.</p>
+    <p class="cta-sub reveal reveal-delay-2">Start with one session. Earn badges. Train conversations the same way athletes train everything else — with reps, resistance, and real feedback.</p>
     <div class="cta-actions reveal reveal-delay-3">
       <a href="https://apps.apple.com/app/attuneai-plus/id6761643196" class="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the iOS App Store">
         <span class="app-badge-icon" aria-hidden="true">🍎</span>
@@ -2192,6 +2317,128 @@
       initQuiz();
     });
   });
+
+  // BADGE PROGRESSION SYSTEM
+
+  const BadgeTiers = {
+    emerging: { name: 'Emerging', icon: '🌱', color: '#6ba8d4', minScore: 0 },
+    competent: { name: 'Competent', icon: '⭐', color: '#1F5BA8', minScore: 25 },
+    proficient: { name: 'Proficient', icon: '🏅', color: '#F2C744', minScore: 50 },
+    expert: { name: 'Expert', icon: '🎯', color: '#51cf66', minScore: 75 },
+    master: { name: 'Master', icon: '👑', color: '#FFD700', minScore: 90 }
+  };
+
+  // Get badge tier based on skill score
+  function getBadgeTier(score) {
+    for (const [key, tier] of Object.entries(BadgeTiers)) {
+      if (score >= tier.minScore) {
+        if (score < 25) return 'emerging';
+        if (score < 50) return 'competent';
+        if (score < 75) return 'proficient';
+        if (score < 90) return 'expert';
+        return 'master';
+      }
+    }
+    return 'emerging';
+  }
+
+  // Display badge achievement with animation
+  function showBadgeAchievement(tier, skillName) {
+    const tierData = BadgeTiers[tier];
+    const achievement = document.createElement('div');
+    achievement.className = 'badge-achievement fade-in';
+    achievement.innerHTML = `
+      <div class="badge-achievement-icon">${tierData.icon}</div>
+      <div class="badge-achievement-title">New Badge Earned!</div>
+      <div class="badge-achievement-description">${tierData.name} in ${skillName}</div>
+    `;
+
+    document.body.appendChild(achievement);
+    showToast('Badge Earned!', `You've unlocked: ${tierData.name}`, 'success');
+
+    setTimeout(() => achievement.remove(), 3000);
+  }
+
+  // Create badge display element
+  function createBadgeElement(tier, skillName = '') {
+    const tierData = BadgeTiers[tier];
+    const badge = document.createElement('span');
+    badge.className = `skill-badge skill-badge-${tier}`;
+    badge.innerHTML = `${tierData.icon} ${tierData.name}`;
+    badge.title = skillName ? `${tierData.name} in ${skillName}` : tierData.name;
+    return badge;
+  }
+
+  // Display all badge tiers
+  function displayBadgeTiers() {
+    const tierList = document.createElement('div');
+    tierList.className = 'badge-tier-list';
+
+    Object.entries(BadgeTiers).forEach(([key, tier]) => {
+      const item = document.createElement('div');
+      item.className = 'badge-tier-item';
+      item.innerHTML = `
+        <div class="badge-tier-icon">${tier.icon}</div>
+        <div class="badge-tier-name">${tier.name}</div>
+        <div class="badge-tier-description">Score: ${tier.minScore}+</div>
+      `;
+      tierList.appendChild(item);
+    });
+
+    return tierList;
+  }
+
+  // Track badge progress
+  class BadgeProgress {
+    constructor(skillName, currentScore = 0) {
+      this.skillName = skillName;
+      this.score = currentScore;
+      this.tier = getBadgeTier(currentScore);
+    }
+
+    updateScore(newScore) {
+      const oldTier = this.tier;
+      this.score = Math.min(100, Math.max(0, newScore));
+      this.tier = getBadgeTier(this.score);
+
+      if (oldTier !== this.tier) {
+        showBadgeAchievement(this.tier, this.skillName);
+      }
+
+      return this;
+    }
+
+    getProgress() {
+      const tierKeys = Object.keys(BadgeTiers);
+      const currentIndex = tierKeys.indexOf(this.tier);
+      const nextTier = tierKeys[currentIndex + 1];
+
+      if (!nextTier) return 100;
+
+      const currentMinScore = BadgeTiers[this.tier].minScore;
+      const nextMinScore = BadgeTiers[nextTier].minScore;
+      const progressInTier = this.score - currentMinScore;
+      const tierRange = nextMinScore - currentMinScore;
+
+      return Math.round((progressInTier / tierRange) * 100);
+    }
+
+    getBadgeElement() {
+      return createBadgeElement(this.tier, this.skillName);
+    }
+  }
+
+  // Example usage: Initialize badge progress for a skill
+  window.createSkillBadge = function(skillName, initialScore = 0) {
+    return new BadgeProgress(skillName, initialScore);
+  };
+
+  // Display sample badge progression on page
+  const sampleBadgeDisplay = document.querySelector('[data-badge-demo]');
+  if (sampleBadgeDisplay) {
+    const badge = new BadgeProgress('Listening', 45);
+    sampleBadgeDisplay.appendChild(badge.getBadgeElement());
+  }
 
   // VISUAL DESIGN & NOTIFICATION SYSTEM
 
