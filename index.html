@@ -71,8 +71,10 @@
     --blue: #1F5BA8;
     --blue-dark: #163e76;
     --blue-light: #3a7ed4;
+    --blue-lighter: #6ba8d4;
     --yellow: #F2C744;
     --yellow-dark: #d4a91a;
+    --yellow-lighter: #f5e394;
     --tan: #F5EFE3;
     --tan-dark: #E8DEC8;
     --ink: #0D1117;
@@ -81,6 +83,19 @@
     --muted: #6B7280;
     --radius: 4px;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    /* Semantic Colors */
+    --success: #51cf66;
+    --success-bg: rgba(81, 207, 102, 0.1);
+    --success-border: rgba(81, 207, 102, 0.3);
+    --error: #ff6b6b;
+    --error-bg: rgba(255, 107, 107, 0.1);
+    --error-border: rgba(255, 107, 107, 0.3);
+    --warning: #ffd166;
+    --warning-bg: rgba(255, 209, 102, 0.1);
+    --warning-border: rgba(255, 209, 102, 0.3);
+    --info: #3a7ed4;
+    --info-bg: rgba(58, 126, 212, 0.1);
+    --info-border: rgba(58, 126, 212, 0.3);
   }
 
   html { scroll-behavior: smooth; }
@@ -1472,6 +1487,189 @@
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .fade-in { animation: fadeIn 0.5s var(--ease-out); }
 
+  /* In-Page Alert System */
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border-left: 4px solid;
+    background: rgba(255,255,255,0.03);
+    margin-bottom: 16px;
+    animation: slideDown 0.3s var(--ease-out);
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .alert-success {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: var(--success);
+  }
+
+  .alert-error {
+    border-color: var(--error);
+    background: var(--error-bg);
+    color: var(--error);
+  }
+
+  .alert-warning {
+    border-color: var(--warning);
+    background: var(--warning-bg);
+    color: var(--warning);
+  }
+
+  .alert-info {
+    border-color: var(--info);
+    background: var(--info-bg);
+    color: var(--info);
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+    margin-top: 2px;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .alert-description {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .alert-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 0;
+  }
+
+  .alert-close:hover {
+    opacity: 1;
+  }
+
+  /* Skeleton Screen Loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+    border-radius: 6px;
+  }
+
+  @keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .skeleton-text {
+    height: 14px;
+    width: 80%;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-heading {
+    height: 24px;
+    width: 60%;
+    margin-bottom: 16px;
+  }
+
+  .skeleton-button {
+    height: 44px;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .skeleton-card {
+    height: 200px;
+    border-radius: 8px;
+  }
+
+  .skeleton-line-short {
+    height: 12px;
+    width: 40%;
+  }
+
+  /* Enhanced Input Validation */
+  input.validation-success {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+
+  input.validation-success:focus {
+    box-shadow: 0 0 0 3px var(--success-border);
+    border-color: var(--success);
+  }
+
+  input.validation-error {
+    border-color: var(--error);
+    background: var(--error-bg);
+  }
+
+  input.validation-error:focus {
+    box-shadow: 0 0 0 3px var(--error-border);
+    border-color: var(--error);
+  }
+
+  /* Form Helper Text */
+  .form-helper {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+  }
+
+  /* Checkmark/Error Icon */
+  .validation-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+
+  .validation-icon-success {
+    color: var(--success);
+  }
+
+  .validation-icon-error {
+    color: var(--error);
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Newsletter Widget */
   .newsletter-widget { background: linear-gradient(135deg, rgba(31,91,168,0.1) 0%, rgba(242,199,68,0.05) 100%); border: 1px solid rgba(242,199,68,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
   .newsletter-widget h4 { margin-bottom: 8px; font-size: 16px; }
@@ -2616,6 +2814,157 @@
   if (sampleBadgeDisplay) {
     const badge = new BadgeProgress('Listening', 45);
     sampleBadgeDisplay.appendChild(badge.getBadgeElement());
+  }
+
+  // IN-PAGE ALERT SYSTEM
+
+  function createAlert(type, title, description, options = {}) {
+    const icons = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    alert.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+    alert.innerHTML = `
+      <div class="alert-icon">${icons[type]}</div>
+      <div class="alert-content">
+        <div class="alert-title">${title}</div>
+        <div class="alert-description">${description}</div>
+      </div>
+      <button class="alert-close" aria-label="Dismiss alert">×</button>
+    `;
+
+    // Close button handler
+    alert.querySelector('.alert-close').addEventListener('click', () => {
+      alert.classList.add('removing');
+      setTimeout(() => alert.remove(), 300);
+    });
+
+    // Auto-dismiss if specified
+    if (options.duration && options.duration > 0) {
+      setTimeout(() => {
+        if (alert.parentNode) {
+          alert.classList.add('removing');
+          setTimeout(() => alert.remove(), 300);
+        }
+      }, options.duration);
+    }
+
+    return alert;
+  }
+
+  // Helper functions for quick alert creation
+  window.showAlert = function(type, title, description, duration = 0) {
+    const alert = createAlert(type, title, description, { duration });
+    const container = document.querySelector('main') || document.body;
+    container.insertBefore(alert, container.firstChild);
+    return alert;
+  };
+
+  // SKELETON SCREEN SYSTEM
+
+  function createSkeletonLine(width = '100%', height = '14px') {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'skeleton skeleton-text';
+    skeleton.style.width = width;
+    skeleton.style.height = height;
+    return skeleton;
+  }
+
+  function createSkeletonCard(lines = 3) {
+    const container = document.createElement('div');
+    container.style.padding = '16px';
+    container.style.background = 'rgba(255,255,255,0.02)';
+    container.style.borderRadius = '8px';
+    container.style.marginBottom = '16px';
+
+    const heading = document.createElement('div');
+    heading.className = 'skeleton skeleton-heading';
+    container.appendChild(heading);
+
+    for (let i = 0; i < lines; i++) {
+      const width = i === lines - 1 ? '70%' : '100%';
+      container.appendChild(createSkeletonLine(width));
+    }
+
+    return container;
+  }
+
+  // FORM VALIDATION WITH VISUAL FEEDBACK
+
+  function setupFieldValidation(fieldId, validationRules = {}) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+
+    const validateField = () => {
+      const value = field.value.trim();
+      let isValid = true;
+      let message = '';
+
+      // Check required
+      if (validationRules.required && !value) {
+        isValid = false;
+        message = validationRules.requiredMessage || 'This field is required';
+      }
+      // Check min length
+      else if (validationRules.minLength && value.length < validationRules.minLength) {
+        isValid = false;
+        message = `Minimum ${validationRules.minLength} characters required`;
+      }
+      // Check pattern
+      else if (validationRules.pattern && !validationRules.pattern.test(value)) {
+        isValid = false;
+        message = validationRules.patternMessage || 'Invalid format';
+      }
+
+      // Update UI
+      if (isValid && value) {
+        field.classList.remove('validation-error');
+        field.classList.add('validation-success');
+      } else if (!isValid && value) {
+        field.classList.remove('validation-success');
+        field.classList.add('validation-error');
+      } else {
+        field.classList.remove('validation-success', 'validation-error');
+      }
+
+      // Update error message
+      const errorEl = field.parentElement?.querySelector('.form-error');
+      if (errorEl) {
+        errorEl.textContent = isValid || !value ? '' : message;
+      }
+
+      return isValid;
+    };
+
+    // Validate on blur
+    field.addEventListener('blur', validateField);
+
+    // Validate on input if has error
+    field.addEventListener('input', () => {
+      if (field.classList.contains('validation-error')) {
+        validateField();
+      }
+    });
+
+    return validateField;
+  }
+
+  // Initialize field validation for contact form
+  if (document.getElementById('contactForm')) {
+    setupFieldValidation('contactName', { required: true, minLength: 2 });
+    setupFieldValidation('contactEmail', {
+      required: true,
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      patternMessage: 'Please enter a valid email'
+    });
+    setupFieldValidation('contactSubject', { required: true, minLength: 3 });
+    setupFieldValidation('contactMessage', { required: true, minLength: 10 });
   }
 
   // VISUAL DESIGN & NOTIFICATION SYSTEM
