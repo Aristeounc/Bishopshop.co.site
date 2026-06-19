@@ -10,7 +10,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "clean": "cd android && ./gradlew clean && cd ..",
-    "build:release": "cd android && ./gradlew assembleRelease"
+    "build:release": "cd android && ./gradlew assembleRelease",
+    "web": "webpack serve --config webpack.config.js --mode development --port 8080",
+    "web:build": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
     "@babel/preset-react": "^8.0.1",
