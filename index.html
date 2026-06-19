@@ -1589,6 +1589,100 @@
     100% { transform: translate(10px, -10px) scale(1.05); }
   }
 
+  /* BACK TO TOP */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    z-index: 90;
+    width: 44px; height: 44px;
+    background: rgba(10,14,23,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: all 0.4s var(--ease-out);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .back-to-top:hover {
+    background: rgba(37,99,235,0.2);
+    border-color: rgba(37,99,235,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 16px rgba(37,99,235,0.15);
+  }
+  .back-to-top svg {
+    width: 18px; height: 18px;
+    stroke: var(--white);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* FEATURED CARD BORDER ANIMATION */
+  .pricing-card.featured::before {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: var(--radius-lg);
+    padding: 1px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light), var(--yellow), var(--blue));
+    background-size: 300% 300%;
+    animation: borderGlow 4s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
+  @keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* COACH BUBBLE TYPING ANIMATION */
+  .typing-dots {
+    display: inline-flex; gap: 4px;
+    padding: 4px 0;
+  }
+  .typing-dots span {
+    width: 5px; height: 5px;
+    background: rgba(251,191,36,0.5);
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  /* SCROLL PROGRESS BAR */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 3px;
+    z-index: 101;
+    background: transparent;
+  }
+  .scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--yellow));
+    width: 0%;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(37,99,235,0.4);
+  }
+
   /* SECTION DIVIDER */
   .section-divider {
     width: 100%;
@@ -1617,6 +1711,9 @@
     <div class="loader-bar"><div class="loader-bar-fill"></div></div>
   </div>
 </div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
@@ -1726,7 +1823,9 @@
 
       <div class="coach-bubble">
         <div class="coach-bubble-label">⚡ Coach Feedback</div>
-        <div class="coach-bubble-text">Good boundary. Try naming the pressure tactic next — it defuses faster.</div>
+        <div class="coach-bubble-text" id="coachText">
+          <div class="typing-dots"><span></span><span></span><span></span></div>
+        </div>
       </div>
 
       <div style="text-align:center; margin-top: 12px;">
@@ -2132,6 +2231,11 @@
 </section>
 </main>
 
+<!-- BACK TO TOP -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</a>
+
 <!-- FOOTER -->
 <footer role="contentinfo">
   <div class="section-inner">
@@ -2210,7 +2314,7 @@
     }
     animCursor();
 
-    document.querySelectorAll('a, button, .persona-card, .faq-item, .framework-card, .how-card, .pricing-card, .testimonial-card, .ethics-value-card, .app-badge').forEach(el => {
+    document.querySelectorAll('a, button, .persona-card, .faq-item, .framework-card, .how-card, .pricing-card, .testimonial-card, .ethics-value-card, .app-badge, .back-to-top').forEach(el => {
       el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
       el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
     });
@@ -2312,6 +2416,45 @@
       setTimeout(() => loader.classList.add('loaded'), 600);
       setTimeout(() => loader.remove(), 1100);
     });
+  }
+
+  // Scroll progress bar
+  const scrollProgressBar = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+
+  function updateScrollUI() {
+    const scrolled = window.pageYOffset;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.min((scrolled / maxScroll) * 100, 100);
+    if (scrollProgressBar) scrollProgressBar.style.width = pct + '%';
+    if (backToTop) backToTop.classList.toggle('visible', scrolled > 500);
+  }
+  window.addEventListener('scroll', updateScrollUI, { passive: true });
+
+  // Coach bubble typing effect
+  const coachText = document.getElementById('coachText');
+  if (coachText) {
+    const message = 'Good boundary. Try naming the pressure tactic next — it defuses faster.';
+    const coachObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            coachText.innerHTML = '';
+            let i = 0;
+            function typeChar() {
+              if (i < message.length) {
+                coachText.textContent += message[i];
+                i++;
+                setTimeout(typeChar, 22 + Math.random() * 18);
+              }
+            }
+            typeChar();
+          }, 1500);
+          coachObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    coachObserver.observe(coachText.closest('.hero-visual') || coachText);
   }
 
   // Subtle parallax on orbs
