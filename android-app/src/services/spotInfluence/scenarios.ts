@@ -17,7 +17,7 @@ export interface DialogueLine {
 export interface InfluenceTactic {
   id: string;
   name: string;
-  category: 'flattery' | 'pressure' | 'guilt' | 'authority' | 'scarcity' | 'reciprocity' | 'social_proof' | 'anchoring' | 'deflection' | 'none';
+  category: 'flattery' | 'pressure' | 'guilt' | 'authority' | 'scarcity' | 'reciprocity' | 'social_proof' | 'anchoring' | 'deflection' | 'none' | 'emotional_blackmail' | 'false_dilemma';
   description: string;
   startIndex: number;
   endIndex: number;
@@ -250,6 +250,329 @@ export const INFLUENCE_SCENARIOS: InfluenceScenario[] = [
           { id: 'dp_4a', name: 'Flattery Sandwich', category: 'flattery', description: 'Compliment wrapping a pressure move.', startIndex: 0, endIndex: 64 },
           { id: 'dp_4b', name: 'Social Proof Pressure', category: 'social_proof', description: 'Citing friends and family to imply the decision is already made.', startIndex: 65, endIndex: 147 },
           { id: 'dp_4c', name: 'Fait Accompli', category: 'pressure', description: 'Presenting the commitment as already done to make refusal feel like a breakup.', startIndex: 148, endIndex: 174 },
+        ],
+        isClean: false,
+      },
+    ],
+  },
+  {
+    id: 'real_estate_open_house',
+    title: 'The Open House',
+    context: 'You\'re attending an open house for a home slightly above your budget. The listing agent corners you in the kitchen.',
+    difficulty: 2,
+    dialogue: [
+      {
+        id: 'reo_1',
+        speaker: 'Agent',
+        text: "This is a stunning property, isn't it? I can tell you have great taste. The previous couple who looked at it this morning are already drafting an offer.",
+        tactics: [
+          { id: 'reo_1a', name: 'Flattery', category: 'flattery', description: 'Complimenting your taste to build rapport and make you feel validated.', startIndex: 39, endIndex: 70 },
+          { id: 'reo_1b', name: 'Social Proof + Scarcity', category: 'social_proof', description: 'Citing another buyer to imply competition and create urgency.', startIndex: 72, endIndex: 152 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'reo_2',
+        speaker: 'Agent',
+        text: "The sellers originally listed at $485,000, but between you and me, I think they'd consider something around $460,000 for the right buyer who can close quickly.",
+        tactics: [
+          { id: 'reo_2a', name: 'Anchoring', category: 'anchoring', description: 'Setting a high reference price to make the lower number feel like a bargain.', startIndex: 12, endIndex: 41 },
+          { id: 'reo_2b', name: 'Scarcity Qualifier', category: 'scarcity', description: 'Implying the deal is only available to someone who acts fast.', startIndex: 117, endIndex: 158 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'reo_3',
+        speaker: 'Agent',
+        text: "I'd love to tell you to take your time, but honestly, in this market? Homes in this neighborhood are going under contract within 48 hours. I'd hate for you to miss out.",
+        tactics: [
+          { id: 'reo_3a', name: 'Scarcity', category: 'scarcity', description: 'Manufacturing urgency by citing fast-moving market conditions.', startIndex: 70, endIndex: 137 },
+          { id: 'reo_3b', name: 'Loss Aversion', category: 'pressure', description: 'Framing inaction as a potential loss to push you toward a quick decision.', startIndex: 139, endIndex: 167 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'reo_4',
+        speaker: 'Agent',
+        text: "The kitchen was fully renovated last year, and the school district is one of the top five in the state.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'reo_5',
+        speaker: 'You',
+        text: "It's a nice place. I want to talk it over with my partner before making any decisions.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'reo_6',
+        speaker: 'Agent',
+        text: "Look, I'll be honest — I've been doing this for fifteen years. This is one of the best values I've seen at this price point. I wouldn't say that if I didn't mean it.",
+        tactics: [
+          { id: 'reo_6a', name: 'Authority Appeal', category: 'authority', description: 'Citing years of experience to make their opinion seem like expert fact.', startIndex: 23, endIndex: 61 },
+          { id: 'reo_6b', name: 'False Sincerity', category: 'pressure', description: 'Framing a sales pitch as rare personal honesty to bypass skepticism.', startIndex: 63, endIndex: 165 },
+        ],
+        isClean: false,
+      },
+    ],
+  },
+  {
+    id: 'gym_membership_pitch',
+    title: 'The Gym Sign-Up',
+    context: 'You walk into a gym for a free trial workout. After the session, the sales rep sits you down at a desk.',
+    difficulty: 3,
+    dialogue: [
+      {
+        id: 'gm_1',
+        speaker: 'Sales Rep',
+        text: "You look like someone who takes fitness seriously already. I can tell you've been putting in work — most people who walk in here aren't in the shape you're in.",
+        tactics: [
+          { id: 'gm_1a', name: 'Flattery', category: 'flattery', description: 'Excessive compliments to build rapport and make you feel special.', startIndex: 0, endIndex: 159 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'gm_2',
+        speaker: 'Sales Rep',
+        text: "I'm actually going to waive the enrollment fee for you — that's $200 I'm taking off right now, just because I can see you're committed.",
+        tactics: [
+          { id: 'gm_2a', name: 'Reciprocity', category: 'reciprocity', description: 'Giving you a "gift" to create a sense of obligation to sign up.', startIndex: 0, endIndex: 93 },
+          { id: 'gm_2b', name: 'Flattery', category: 'flattery', description: 'Framing the discount as recognition of your dedication.', startIndex: 95, endIndex: 134 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'gm_3',
+        speaker: 'Sales Rep',
+        text: "Our premium plan is normally $89 a month, but I can lock you in at $59 if you sign up today. That rate goes away at midnight.",
+        tactics: [
+          { id: 'gm_3a', name: 'Anchoring', category: 'anchoring', description: 'Setting a high "normal" price to make the discounted price seem like a steal.', startIndex: 0, endIndex: 40 },
+          { id: 'gm_3b', name: 'Time Pressure', category: 'pressure', description: 'Creating an artificial deadline to prevent you from comparing options.', startIndex: 46, endIndex: 125 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'gm_4',
+        speaker: 'You',
+        text: "I appreciate the offer, but I'd like to think about it first.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'gm_5',
+        speaker: 'Sales Rep',
+        text: "Totally understand. But I should mention — three people signed up for this exact plan this morning. We only have a few spots left at this rate before the system resets the pricing.",
+        tactics: [
+          { id: 'gm_5a', name: 'Social Proof', category: 'social_proof', description: 'Citing other sign-ups to make the decision feel normal and validated.', startIndex: 43, endIndex: 98 },
+          { id: 'gm_5b', name: 'Scarcity', category: 'scarcity', description: 'Implying limited availability to create fear of missing out.', startIndex: 100, endIndex: 180 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'gm_6',
+        speaker: 'Sales Rep',
+        text: "Your body will thank you six months from now. And honestly? You deserve this investment in yourself.",
+        tactics: [
+          { id: 'gm_6a', name: 'Flattery', category: 'flattery', description: 'Framing the purchase as self-care you "deserve" to make refusal feel like self-neglect.', startIndex: 60, endIndex: 100 },
+        ],
+        isClean: false,
+      },
+    ],
+  },
+  {
+    id: 'toxic_friendship',
+    title: 'The Guilt Trip',
+    context: 'Your close friend texts you after you spent the weekend with other friends instead of hanging out with them.',
+    difficulty: 4,
+    dialogue: [
+      {
+        id: 'tf_1',
+        speaker: 'Friend',
+        text: "I just think it's funny how you always have time for Jake but never for me. I guess I know where I stand.",
+        tactics: [
+          { id: 'tf_1a', name: 'Guilt Trip', category: 'guilt', description: 'Using comparison to make you feel guilty about how you spend your time.', startIndex: 28, endIndex: 74 },
+          { id: 'tf_1b', name: 'Emotional Blackmail', category: 'emotional_blackmail', description: 'Implying they are being ranked and rejected to provoke guilt.', startIndex: 76, endIndex: 105 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'tf_2',
+        speaker: 'You',
+        text: "That's not what I meant at all. You know you're important to me.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'tf_3',
+        speaker: 'Friend',
+        text: "Do I though? Because honestly, sometimes I wonder if I'm even your friend or just someone you keep around when it's convenient. Maybe I should just stop trying.",
+        tactics: [
+          { id: 'tf_3a', name: 'Identity Questioning', category: 'guilt', description: 'Questioning the entire friendship to make you scramble to prove your loyalty.', startIndex: 31, endIndex: 126 },
+          { id: 'tf_3b', name: 'Withdrawal Threat', category: 'emotional_blackmail', description: 'Threatening to pull away to force you into reassuring and accommodating them.', startIndex: 128, endIndex: 160 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'tf_4',
+        speaker: 'Friend',
+        text: "You know Megan agrees with me, right? She said she noticed it too — you've been pulling away from everyone. I'm not the only one who sees it.",
+        tactics: [
+          { id: 'tf_4a', name: 'Triangulation', category: 'social_proof', description: 'Bringing in a third party to validate their claim and isolate you.', startIndex: 9, endIndex: 65 },
+          { id: 'tf_4b', name: 'Social Proof Pressure', category: 'social_proof', description: 'Implying multiple people have noticed to make you doubt yourself.', startIndex: 68, endIndex: 141 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'tf_5',
+        speaker: 'Friend',
+        text: "I just care about you so much that it hurts when I feel like I'm losing you. If you really cared, you'd make more of an effort.",
+        tactics: [
+          { id: 'tf_5a', name: 'Emotional Blackmail', category: 'emotional_blackmail', description: 'Framing their pain as your responsibility to manage.', startIndex: 35, endIndex: 75 },
+          { id: 'tf_5b', name: 'Conditional Love', category: 'guilt', description: 'Implying your care is only real if you behave the way they want.', startIndex: 77, endIndex: 127 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'tf_6',
+        speaker: 'Friend',
+        text: "Remember everything I've done for you? I was there when nobody else was. I just expected the same loyalty back.",
+        tactics: [
+          { id: 'tf_6a', name: 'Reciprocity Guilt', category: 'reciprocity', description: 'Invoking past favors to create a debt you can never fully repay.', startIndex: 39, endIndex: 111 },
+        ],
+        isClean: false,
+      },
+    ],
+  },
+  {
+    id: 'job_interview_lowball',
+    title: 'The Lowball Offer',
+    context: 'After three rounds of interviews, the recruiter calls with an offer that\'s well below market rate.',
+    difficulty: 3,
+    dialogue: [
+      {
+        id: 'jl_1',
+        speaker: 'Recruiter',
+        text: "Great news — the team loved you and we'd like to extend an offer! Everyone was really impressed with your background.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'jl_2',
+        speaker: 'Recruiter',
+        text: "Based on industry benchmarks and the scope of this role, we've budgeted the position at $72,000. That's actually at the top of the range for someone at your experience level.",
+        tactics: [
+          { id: 'jl_2a', name: 'Anchoring', category: 'anchoring', description: 'Setting a low anchor to frame the negotiation in their favor.', startIndex: 57, endIndex: 95 },
+          { id: 'jl_2b', name: 'Authority Framing', category: 'authority', description: 'Citing benchmarks and ranges to make the number seem objective and non-negotiable.', startIndex: 97, endIndex: 174 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'jl_3',
+        speaker: 'You',
+        text: "I was actually expecting something closer to $90,000 based on my research.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'jl_4',
+        speaker: 'Recruiter',
+        text: "I hear you, but our VP of Talent has set these bands based on extensive market research. We're very data-driven here.",
+        tactics: [
+          { id: 'jl_4a', name: 'Authority Appeal', category: 'authority', description: 'Citing a senior executive to shut down negotiation and make the number seem final.', startIndex: 16, endIndex: 117 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'jl_5',
+        speaker: 'Recruiter',
+        text: "The way I see it, you can either take this offer and start building your career with us right away, or you can keep looking — but I should mention we do have two other strong candidates in final rounds.",
+        tactics: [
+          { id: 'jl_5a', name: 'False Dilemma', category: 'false_dilemma', description: 'Presenting only two options — accept or lose out — to eliminate negotiation.', startIndex: 18, endIndex: 123 },
+          { id: 'jl_5b', name: 'Scarcity', category: 'scarcity', description: 'Implying you are replaceable to pressure you into accepting.', startIndex: 147, endIndex: 201 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'jl_6',
+        speaker: 'Recruiter',
+        text: "The benefits package is excellent though — full health, dental, vision, and four weeks PTO from day one.",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'jl_7',
+        speaker: 'Recruiter',
+        text: "Look, I don't want to lose you. Let me see if I can get approval for a $3,000 signing bonus. But I'd need your answer by end of day tomorrow.",
+        tactics: [
+          { id: 'jl_7a', name: 'Flattery', category: 'flattery', description: 'Expressing personal desire to keep you to make you feel valued and lower resistance.', startIndex: 6, endIndex: 30 },
+          { id: 'jl_7b', name: 'Reciprocity', category: 'reciprocity', description: 'Offering a small concession to create obligation and distract from the low base salary.', startIndex: 32, endIndex: 92 },
+          { id: 'jl_7c', name: 'Time Pressure', category: 'pressure', description: 'Imposing a tight deadline to prevent you from getting competing offers.', startIndex: 97, endIndex: 140 },
+        ],
+        isClean: false,
+      },
+    ],
+  },
+  {
+    id: 'mlm_recruitment',
+    title: 'The Business Opportunity',
+    context: 'An old high school classmate you haven\'t spoken to in years messages you out of the blue on social media.',
+    difficulty: 5,
+    dialogue: [
+      {
+        id: 'mlm_1',
+        speaker: 'Classmate',
+        text: "I wish someone had told me about this opportunity sooner — it completely changed my family's financial future. You're so smart, you'd be amazing at this.",
+        tactics: [
+          { id: 'mlm_1a', name: 'Social Proof', category: 'social_proof', description: 'Using personal testimony to imply guaranteed life-changing results.', startIndex: 59, endIndex: 109 },
+          { id: 'mlm_1b', name: 'Flattery', category: 'flattery', description: 'Complimenting your intelligence to make you feel chosen and lower skepticism.', startIndex: 111, endIndex: 153 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'mlm_2',
+        speaker: 'You',
+        text: "What exactly does the business involve?",
+        tactics: [],
+        isClean: true,
+      },
+      {
+        id: 'mlm_3',
+        speaker: 'Classmate',
+        text: "It's a wellness company backed by doctors and endorsed by professional athletes. We've been featured on Forbes and our CEO was just on the cover of Entrepreneur magazine.",
+        tactics: [
+          { id: 'mlm_3a', name: 'False Authority', category: 'authority', description: 'Name-dropping doctors and athletes to create an illusion of legitimacy.', startIndex: 24, endIndex: 79 },
+          { id: 'mlm_3b', name: 'Authority Appeal', category: 'authority', description: 'Citing media features to make the company seem prestigious and established.', startIndex: 81, endIndex: 170 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'mlm_4',
+        speaker: 'Classmate',
+        text: "The top earners in our team made over $200,000 last year. And the couple who recruited me? They retired at 35. I'm just trying to help people I care about get in early.",
+        tactics: [
+          { id: 'mlm_4a', name: 'Social Proof', category: 'social_proof', description: 'Citing extreme success stories to imply those results are typical.', startIndex: 0, endIndex: 110 },
+          { id: 'mlm_4b', name: 'Love Bombing', category: 'flattery', description: 'Framing the recruitment as a personal favor born from caring to disguise the profit motive.', startIndex: 111, endIndex: 168 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'mlm_5',
+        speaker: 'Classmate',
+        text: "The starter kit is only $499, and honestly, it pays for itself within the first month. Everyone says that. Plus, once you're in, you're in — this is a ground-floor opportunity.",
+        tactics: [
+          { id: 'mlm_5a', name: 'Sunk Cost Setup', category: 'anchoring', description: 'Minimizing the upfront cost while implying guaranteed fast returns.', startIndex: 44, endIndex: 106 },
+          { id: 'mlm_5b', name: 'Scarcity + Sunk Cost', category: 'scarcity', description: 'Framing this as a once-in-a-lifetime window to create fear of missing out.', startIndex: 113, endIndex: 176 },
+        ],
+        isClean: false,
+      },
+      {
+        id: 'mlm_6',
+        speaker: 'Classmate',
+        text: "I believe in you so much. I can already see you on stage at our annual conference getting recognized as a top performer. Don't you want that life?",
+        tactics: [
+          { id: 'mlm_6a', name: 'Love Bombing', category: 'flattery', description: 'Overwhelming affirmation to create emotional investment and bypass rational analysis.', startIndex: 0, endIndex: 120 },
+          { id: 'mlm_6b', name: 'Emotional Pressure', category: 'pressure', description: 'Painting a vivid aspirational future to make saying no feel like giving up on your dreams.', startIndex: 121, endIndex: 146 },
         ],
         isClean: false,
       },
