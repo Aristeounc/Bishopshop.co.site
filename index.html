@@ -41,7 +41,7 @@
   "name": "Attune AI",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS",
-  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and ELO-based skill progression.",
+  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and badge-based skill progression.",
   "offers": {
     "@type": "Offer",
     "price": "9.99",
@@ -71,8 +71,10 @@
     --blue: #1F5BA8;
     --blue-dark: #163e76;
     --blue-light: #3a7ed4;
+    --blue-lighter: #6ba8d4;
     --yellow: #F2C744;
     --yellow-dark: #d4a91a;
+    --yellow-lighter: #f5e394;
     --tan: #F5EFE3;
     --tan-dark: #E8DEC8;
     --ink: #0D1117;
@@ -81,6 +83,19 @@
     --muted: #6B7280;
     --radius: 4px;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    /* Semantic Colors */
+    --success: #51cf66;
+    --success-bg: rgba(81, 207, 102, 0.1);
+    --success-border: rgba(81, 207, 102, 0.3);
+    --error: #ff6b6b;
+    --error-bg: rgba(255, 107, 107, 0.1);
+    --error-border: rgba(255, 107, 107, 0.3);
+    --warning: #ffd166;
+    --warning-bg: rgba(255, 209, 102, 0.1);
+    --warning-border: rgba(255, 209, 102, 0.3);
+    --info: #3a7ed4;
+    --info-bg: rgba(58, 126, 212, 0.1);
+    --info-border: rgba(58, 126, 212, 0.3);
   }
 
   html { scroll-behavior: smooth; }
@@ -385,14 +400,240 @@
     font-size: 14px;
     color: var(--white);
   }
-  .belt-badge {
-    background: var(--yellow);
-    color: var(--ink);
-    font-size: 10px;
+  /* Coat of Arms Badge System */
+  .skill-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 100px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out);
+    backdrop-filter: blur(8px);
+  }
+
+  .skill-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    opacity: 0.5;
+    z-index: -1;
+    animation: badgeShimmer 3s infinite;
+  }
+
+  @keyframes badgeShimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Coat of Arms Badge Tiers */
+  .skill-badge-emerging {
+    background: linear-gradient(135deg, rgba(107,168,212,0.25) 0%, rgba(107,168,212,0.1) 100%);
+    border: 2px solid #6ba8d4;
+    color: #6ba8d4;
+    box-shadow: 0 0 20px rgba(107,168,212,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .skill-badge-emerging::before {
+    background: linear-gradient(45deg, #6ba8d4, rgba(107,168,212,0.5));
+  }
+
+  .skill-badge-competent {
+    background: linear-gradient(135deg, rgba(31,91,168,0.3) 0%, rgba(31,91,168,0.15) 100%);
+    border: 2px solid #1F5BA8;
+    color: #1F5BA8;
+    box-shadow: 0 0 24px rgba(31,91,168,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .skill-badge-competent::before {
+    background: linear-gradient(45deg, #1F5BA8, rgba(31,91,168,0.6));
+  }
+
+  .skill-badge-proficient {
+    background: linear-gradient(135deg, rgba(242,199,68,0.3) 0%, rgba(242,199,68,0.15) 100%);
+    border: 2px solid #F2C744;
+    color: #F2C744;
+    box-shadow: 0 0 28px rgba(242,199,68,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  }
+
+  .skill-badge-proficient::before {
+    background: linear-gradient(45deg, #F2C744, rgba(242,199,68,0.7));
+  }
+
+  .skill-badge-expert {
+    background: linear-gradient(135deg, rgba(81,207,102,0.3) 0%, rgba(81,207,102,0.15) 100%);
+    border: 2px solid #51cf66;
+    color: #51cf66;
+    box-shadow: 0 0 28px rgba(81,207,102,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  }
+
+  .skill-badge-expert::before {
+    background: linear-gradient(45deg, #51cf66, rgba(81,207,102,0.7));
+  }
+
+  .skill-badge-master {
+    background: linear-gradient(135deg, rgba(255,193,7,0.35) 0%, rgba(255,193,7,0.2) 100%);
+    border: 3px solid #FFD700;
+    color: #FFD700;
+    box-shadow: 0 0 40px rgba(255,193,7,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    animation: masterBadgePulse 2s ease-in-out infinite;
+  }
+
+  .skill-badge-master::before {
+    background: linear-gradient(45deg, #FFD700, rgba(255,193,7,0.8));
+    animation: masterShimmer 2s ease-in-out infinite;
+  }
+
+  @keyframes masterBadgePulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(255,193,7,0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+    50% { box-shadow: 0 0 60px rgba(255,193,7,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  }
+
+  @keyframes masterShimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Badge Display Enhancements */
+  .skill-badge {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .skill-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  }
+
+  .skill-badge:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  /* Coat of Arms Shield Style */
+  .badge-shield {
+    position: relative;
+    width: 100px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(242,199,68,0.2) 0%, rgba(31,91,168,0.1) 100%);
+    border: 2px solid var(--yellow);
+    border-radius: 8px 8px 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 8px 24px rgba(242,199,68,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    margin: 8px;
+  }
+
+  .badge-shield::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 8px 8px 50% 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* Heraldic Details */
+  .badge-ornament {
+    position: absolute;
+    font-size: 12px;
+  }
+
+  .badge-ornament-top { top: -12px; }
+  .badge-ornament-left { left: -12px; }
+  .badge-ornament-right { right: -12px; }
+
+  /* Badge Achievement Display */
+  .badge-achievement {
+    background: linear-gradient(135deg, rgba(242,199,68,0.15) 0%, rgba(31,91,168,0.08) 100%);
+    border: 2px solid var(--yellow);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    animation: badgeAchievementPulse 0.8s var(--ease-out);
+  }
+
+  .badge-achievement-icon {
+    font-size: 64px;
+    margin-bottom: 12px;
+    animation: badgeAchievementBounce 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .badge-achievement-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+
+  .badge-achievement-description {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  @keyframes badgeAchievementPulse {
+    0% { box-shadow: 0 0 0 0 rgba(242,199,68,0.4); }
+    100% { box-shadow: 0 0 0 20px rgba(242,199,68,0); }
+  }
+
+  @keyframes badgeAchievementBounce {
+    0% { transform: scale(0) rotate(-45deg); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  /* Badge Tier List */
+  .badge-tier-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .badge-tier-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .badge-tier-item:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  .badge-tier-icon {
+    font-size: 32px;
+  }
+
+  .badge-tier-name {
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--white);
+  }
+
+  .badge-tier-description {
+    font-size: 10px;
+    color: var(--muted);
   }
 
   .scenario-card {
@@ -1107,6 +1348,333 @@
     z-index: 1000;
   }
 
+  /* Mobile Menu Toggle */
+  .nav-menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; padding: 8px; }
+  .nav-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translateY(10px); }
+  .nav-menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translateY(-8px); }
+  .nav-menu-toggle span { display: block; width: 24px; height: 2px; background: currentColor; margin: 5px 0; transition: all 0.3s var(--ease-out); }
+
+  /* Mobile Menu Active State */
+  @media (max-width: 900px) {
+    .nav-links.active {
+      display: flex !important;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--ink-soft);
+      border-top: 1px solid rgba(242,199,68,0.2);
+      padding: 16px 24px;
+      gap: 12px;
+      animation: slideDown 0.3s var(--ease-out);
+    }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-links.active li { width: 100%; }
+    .nav-links.active a { padding: 8px 0; display: block; }
+  }
+
+  /* FAQ Accordion */
+  .faq-item { cursor: pointer; padding: 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); transition: all 0.3s var(--ease-out); }
+  .faq-item:hover { background: rgba(242,199,68,0.05); border-color: rgba(242,199,68,0.2); }
+  .faq-q { font-weight: 500; margin-bottom: 8px; user-select: none; }
+  .faq-a { max-height: 1000px; overflow: hidden; transition: all 0.3s var(--ease-out); }
+  .faq-item.collapsed .faq-a { max-height: 0; margin: 0; }
+  .faq-item .faq-q::after { content: ' ▼'; font-size: 12px; transition: transform 0.3s var(--ease-out); display: inline-block; }
+  .faq-item.collapsed .faq-q::after { transform: rotate(-90deg); }
+
+  /* Modals */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; align-items: center; justify-content: center; }
+  .modal.active { display: flex; }
+  .modal-content { background: var(--ink-soft); border: 1px solid rgba(242,199,68,0.2); border-radius: 8px; padding: 40px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative; animation: slideIn 0.3s var(--ease-out); }
+  @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
+  .modal-title { font-size: 24px; font-weight: 600; margin-bottom: 16px; }
+  .modal-subtitle { color: var(--muted); margin-bottom: 24px; }
+
+  /* Form Elements */
+  input, textarea, select { width: 100%; padding: 12px; background: var(--ink); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); color: var(--white); font-family: inherit; margin-bottom: 16px; transition: all 0.2s; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--yellow); background: rgba(242,199,68,0.05); }
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+  label { display: block; font-weight: 500; margin-bottom: 8px; }
+  .form-group { margin-bottom: 20px; }
+  .form-error { color: #ff6b6b; font-size: 12px; margin-top: -12px; margin-bottom: 12px; }
+  .form-success { color: #51cf66; font-size: 12px; margin-top: -12px; margin-bottom: 12px; }
+  .form-submit { background: var(--yellow); color: var(--ink); font-weight: 600; cursor: pointer; padding: 12px 24px; border: none; border-radius: var(--radius); transition: all 0.2s; width: 100%; }
+  .form-submit:hover { background: var(--yellow-dark); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(242,199,68,0.25); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Quiz Styles */
+  .quiz-question { margin-bottom: 24px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+  .quiz-option { padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); cursor: pointer; transition: all 0.2s; }
+  .quiz-option:hover { background: rgba(242,199,68,0.1); border-color: rgba(242,199,68,0.3); }
+  .quiz-option input { margin-right: 12px; }
+  .quiz-result { background: rgba(242,199,68,0.1); border: 1px solid rgba(242,199,68,0.3); padding: 20px; border-radius: var(--radius); margin-top: 20px; }
+  .quiz-result-title { font-weight: 600; margin-bottom: 12px; color: var(--yellow); }
+  .quiz-result-text { color: var(--white); line-height: 1.6; }
+
+  /* Scroll to Top Button */
+  .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; background: var(--yellow); color: var(--ink); border: none; border-radius: 50%; cursor: pointer; font-size: 20px; display: none; align-items: center; justify-content: center; z-index: 999; transition: all 0.3s var(--ease-out); box-shadow: 0 4px 16px rgba(242,199,68,0.3); }
+  .scroll-top.visible { display: flex; }
+  .scroll-top:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(242,199,68,0.4); }
+
+  /* Toast Notifications */
+  .toast-container { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 12px; pointer-events: none; max-width: 400px; }
+  .toast { background: var(--ink-soft); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; min-width: 280px; animation: toastSlideIn 0.3s var(--ease-out); pointer-events: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+  @keyframes toastSlideIn { from { opacity: 0; transform: translateX(400px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes toastSlideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(400px); } }
+  .toast.removing { animation: toastSlideOut 0.3s var(--ease-out) forwards; }
+  .toast-icon { font-size: 20px; flex-shrink: 0; }
+  .toast-content { flex: 1; }
+  .toast-title { font-weight: 600; margin-bottom: 2px; }
+  .toast-message { color: var(--muted); font-size: 14px; }
+  .toast-close { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .toast-close:hover { color: var(--white); }
+  .toast.success { border-color: rgba(81,207,102,0.3); }
+  .toast.success .toast-icon { color: #51cf66; }
+  .toast.error { border-color: rgba(255,107,107,0.3); }
+  .toast.error .toast-icon { color: #ff6b6b; }
+  .toast.warning { border-color: rgba(255,193,7,0.3); }
+  .toast.warning .toast-icon { color: #ffc107; }
+  .toast.info { border-color: rgba(59,130,246,0.3); }
+  .toast.info .toast-icon { color: #3b82f6; }
+
+  /* Loading Spinner */
+  .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-top-color: var(--yellow); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  .spinner.sm { width: 16px; height: 16px; border-width: 2px; }
+  .spinner.lg { width: 32px; height: 32px; border-width: 3px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Button Enhanced States */
+  .btn-primary, .btn-ghost { position: relative; overflow: hidden; }
+  .btn-primary::before, .btn-ghost::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.1); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; }
+  .btn-primary:active::before, .btn-ghost:active::before { width: 300px; height: 300px; }
+  .btn-primary.loading, .btn-ghost.loading { opacity: 0.7; pointer-events: none; }
+  .btn-primary.loading::after, .btn-ghost.loading::after { content: ''; display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-left: 8px; }
+
+  /* Card Enhancements */
+  .persona-card, .framework-card, .pricing-card { transition: all 0.3s var(--ease-out); position: relative; overflow: hidden; }
+  .persona-card::before, .framework-card::before, .pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, transparent 0%, rgba(242,199,68,0.05) 100%); opacity: 0; transition: opacity 0.3s var(--ease-out); pointer-events: none; }
+  .persona-card:hover, .framework-card:hover, .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(242,199,68,0.2); }
+  .persona-card:hover::before, .framework-card:hover::before, .pricing-card:hover::before { opacity: 1; }
+
+  /* Input Focus Styles */
+  input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 3px rgba(242,199,68,0.15); border-color: var(--yellow) !important; }
+  input:valid { border-color: #51cf66; }
+  input:invalid { border-color: #ff6b6b; }
+
+  /* Progress Indicator */
+  .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin: 12px 0; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--yellow), var(--blue-light)); border-radius: 2px; transition: width 0.3s var(--ease-out); }
+  .progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 14px; }
+  .progress-percent { font-weight: 600; color: var(--yellow); }
+
+  /* Tooltip */
+  .tooltip-container { position: relative; display: inline-block; }
+  .tooltip { display: none; position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--white); padding: 8px 12px; border-radius: 4px; font-size: 12px; white-space: nowrap; border: 1px solid rgba(242,199,68,0.2); z-index: 10; animation: tooltipFadeIn 0.2s var(--ease-out); }
+  @keyframes tooltipFadeIn { from { opacity: 0; transform: translateX(-50%) translateY(4px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+  .tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--ink); }
+  .tooltip-container:hover .tooltip { display: block; }
+
+  /* Micro-interactions */
+  button, a { transition: all 0.2s ease; }
+  button:active, a:active { transform: scale(0.98); }
+  input:focus { transform: scale(1.01); }
+
+  /* Fade-in Animation */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .fade-in { animation: fadeIn 0.5s var(--ease-out); }
+
+  /* In-Page Alert System */
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border-left: 4px solid;
+    background: rgba(255,255,255,0.03);
+    margin-bottom: 16px;
+    animation: slideDown 0.3s var(--ease-out);
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .alert-success {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: var(--success);
+  }
+
+  .alert-error {
+    border-color: var(--error);
+    background: var(--error-bg);
+    color: var(--error);
+  }
+
+  .alert-warning {
+    border-color: var(--warning);
+    background: var(--warning-bg);
+    color: var(--warning);
+  }
+
+  .alert-info {
+    border-color: var(--info);
+    background: var(--info-bg);
+    color: var(--info);
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+    margin-top: 2px;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .alert-description {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .alert-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 0;
+  }
+
+  .alert-close:hover {
+    opacity: 1;
+  }
+
+  /* Skeleton Screen Loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.05) 0%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeletonLoading 1.5s infinite;
+    border-radius: 6px;
+  }
+
+  @keyframes skeletonLoading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .skeleton-text {
+    height: 14px;
+    width: 80%;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-heading {
+    height: 24px;
+    width: 60%;
+    margin-bottom: 16px;
+  }
+
+  .skeleton-button {
+    height: 44px;
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .skeleton-card {
+    height: 200px;
+    border-radius: 8px;
+  }
+
+  .skeleton-line-short {
+    height: 12px;
+    width: 40%;
+  }
+
+  /* Enhanced Input Validation */
+  input.validation-success {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+
+  input.validation-success:focus {
+    box-shadow: 0 0 0 3px var(--success-border);
+    border-color: var(--success);
+  }
+
+  input.validation-error {
+    border-color: var(--error);
+    background: var(--error-bg);
+  }
+
+  input.validation-error:focus {
+    box-shadow: 0 0 0 3px var(--error-border);
+    border-color: var(--error);
+  }
+
+  /* Form Helper Text */
+  .form-helper {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+  }
+
+  /* Checkmark/Error Icon */
+  .validation-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+
+  .validation-icon-success {
+    color: var(--success);
+  }
+
+  .validation-icon-error {
+    color: var(--error);
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Newsletter Widget */
+  .newsletter-widget { background: linear-gradient(135deg, rgba(31,91,168,0.1) 0%, rgba(242,199,68,0.05) 100%); border: 1px solid rgba(242,199,68,0.2); padding: 20px; border-radius: 8px; margin: 20px 0; }
+  .newsletter-widget h4 { margin-bottom: 8px; font-size: 16px; }
+  .newsletter-widget p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
@@ -1115,10 +1683,13 @@
     .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
     .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
+    .nav-menu-toggle { display: block; }
     .hero-content { padding: 60px 24px; }
+    .modal-content { padding: 24px; max-width: 90vw; }
+    .scroll-top { width: 40px; height: 40px; bottom: 20px; right: 20px; font-size: 18px; }
   }
 </style>
 </head>
@@ -1128,13 +1699,16 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- TOAST NOTIFICATIONS -->
+<div class="toast-container" id="toastContainer"></div>
+
 <!-- NAV -->
 <nav id="navbar" role="navigation" aria-label="Main navigation">
   <a href="#" class="nav-logo" aria-label="Attune AI Home">
     <div class="nav-logo-mark" aria-hidden="true">A</div>
     <span class="nav-wordmark">Attune <span>AI</span></span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navMenu">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
@@ -1142,6 +1716,11 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#get-started" class="nav-cta">Get the App</a></li>
   </ul>
+  <button class="nav-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1159,7 +1738,7 @@
       <span class="stroke-text">Athlete</span>
     </h1>
     <p class="hero-sub">
-      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a belt system that tracks your growth across <strong>8 skill dimensions</strong>.
+      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a badge system that tracks your growth across <strong>8 skill dimensions</strong>.
     </p>
     <div class="hero-actions">
       <a href="#get-started" class="btn-primary" aria-label="Get the Attune AI app">
@@ -1174,8 +1753,8 @@
         <div class="stat-label">Concepts Trained</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num" aria-label="6">6</div>
-        <div class="stat-label">Belt Levels</div>
+        <div class="stat-num" aria-label="5">5</div>
+        <div class="stat-label">Badge Tiers</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" aria-label="8">8</div>
@@ -1208,7 +1787,7 @@
       <div class="phone-notch"></div>
       <div class="phone-header">
         <span class="phone-title">Today's Program</span>
-        <span class="belt-badge">🟡 Blue Belt</span>
+        <span class="skill-badge skill-badge-emerging">🏅 Emerging</span>
       </div>
 
       <div class="elo-row">
@@ -1434,7 +2013,7 @@
           <li>Today's Program (daily loop)</li>
           <li>All 6 sparring personas</li>
           <li>8 ELO skill tracks</li>
-          <li>6 belt progression levels</li>
+          <li>5 badge progression tiers</li>
           <li>Vector memory (Coach recall)</li>
           <li>33+ concept corpus</li>
         </ul>
@@ -1576,27 +2155,27 @@
       <h2 class="section-headline reveal reveal-delay-1" id="faq-heading">Common<br><em>questions</em></h2>
     </div>
     <div class="faq-grid">
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What domains can I train in?</p>
         <p class="faq-a">Salary negotiation, sales, leadership, conflict resolution, dating and relationships, parenting, manipulation defense, and more. New scenarios are added regularly based on our training curriculum roadmap.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">How does real-time coach feedback work?</p>
         <p class="faq-a">After each sparring exchange, the AI coach evaluates your response against the current skill framework — scoring faithfulness, technique usage, and emotional regulation. You get specific, actionable notes, not generic praise.</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What is the ELO system?</p>
         <p class="faq-a">Like chess ratings, your ELO score in each of 8 skill tracks changes based on session performance. It's a honest signal of where you actually stand — not where you hope you are.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">Is the app available on Android?</p>
         <p class="faq-a">Currently, Attune AI is available exclusively on the iOS App Store. Android development is in the roadmap — subscribe to updates to know when it launches.</p>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item reveal collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">What is Spot-the-Influence mode?</p>
         <p class="faq-a">A unique Attune feature where you watch a conversation scenario unfold and identify influence and manipulation tactics in real time. Builds awareness as a defense skill, not an attack skill.</p>
       </div>
-      <div class="faq-item reveal reveal-delay-1">
+      <div class="faq-item reveal reveal-delay-1 collapsed" onclick="toggleFAQ(this)">
         <p class="faq-q">Can I cancel or pause my subscription?</p>
         <p class="faq-a">Yes, anytime. If you need a break, our humane streak model includes freeze slots so you don't lose progress from life getting in the way. No punishment for being human.</p>
       </div>
@@ -1612,7 +2191,7 @@
     <h2 class="cta-headline reveal reveal-delay-1" id="cta-heading">
       Your words<br>are your <span>edge.</span>
     </h2>
-    <p class="cta-sub reveal reveal-delay-2">Start with one session. Build a belt. Train conversations the same way athletes train everything else — with reps, resistance, and real feedback.</p>
+    <p class="cta-sub reveal reveal-delay-2">Start with one session. Earn badges. Train conversations the same way athletes train everything else — with reps, resistance, and real feedback.</p>
     <div class="cta-actions reveal reveal-delay-3">
       <a href="https://apps.apple.com/app/attuneai-plus/id6761643196" class="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Download on the iOS App Store">
         <span class="app-badge-icon" aria-hidden="true">🍎</span>
@@ -1621,10 +2200,91 @@
           <div class="app-badge-name">App Store</div>
         </div>
       </a>
-      <a href="mailto:attuneai@bishopshop.co.site" class="btn-ghost" aria-label="Contact Attune AI team">Contact Us</a>
+      <button class="btn-ghost" id="contactBtn" aria-label="Contact Attune AI team">Contact Us</button>
     </div>
   </div>
 </section>
+
+<!-- MODALS -->
+
+<!-- Contact Form Modal -->
+<div class="modal" id="contactModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('contactModal')" aria-label="Close contact form">&times;</button>
+    <h3 class="modal-title">Get in Touch</h3>
+    <p class="modal-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+    <form id="contactForm" onsubmit="handleContactForm(event)">
+      <div class="form-group">
+        <label for="contactName">Name</label>
+        <input type="text" id="contactName" name="name" required placeholder="Your name">
+        <div class="form-error" id="nameError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactEmail">Email</label>
+        <input type="email" id="contactEmail" name="email" required placeholder="your@email.com">
+        <div class="form-error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactSubject">Subject</label>
+        <input type="text" id="contactSubject" name="subject" required placeholder="What's this about?">
+        <div class="form-error" id="subjectError"></div>
+      </div>
+      <div class="form-group">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" required placeholder="Tell us more..." rows="5"></textarea>
+        <div class="form-error" id="messageError"></div>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+      <div class="form-success" id="contactSuccess" style="display:none;text-align:center;margin-top:16px;">Thank you! We've received your message.</div>
+    </form>
+  </div>
+</div>
+
+<!-- Skills Assessment Quiz Modal -->
+<div class="modal" id="quizModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('quizModal')" aria-label="Close quiz">&times;</button>
+    <h3 class="modal-title">Communication Style Quiz</h3>
+    <p class="modal-subtitle">Discover your communication strengths and areas for growth.</p>
+    <form id="quizForm" onsubmit="handleQuiz(event)">
+      <div id="quizContainer"></div>
+      <button type="submit" class="form-submit">Get My Results</button>
+      <div id="quizResults" style="display:none;"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Newsletter Signup Modal -->
+<div class="modal" id="newsletterModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('newsletterModal')" aria-label="Close newsletter signup">&times;</button>
+    <h3 class="modal-title">Stay Updated</h3>
+    <p class="modal-subtitle">Get notified about new features, training tips, and Android launch updates.</p>
+    <form id="newsletterForm" onsubmit="handleNewsletter(event)">
+      <div class="form-group">
+        <label for="nlEmail">Email Address</label>
+        <input type="email" id="nlEmail" name="email" required placeholder="your@email.com">
+        <div class="form-error" id="nlEmailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="nlInterest">I'm most interested in:</label>
+        <select id="nlInterest" name="interest">
+          <option value="">Select an interest...</option>
+          <option value="features">New Features</option>
+          <option value="training">Training Tips</option>
+          <option value="android">Android Launch</option>
+          <option value="all">Everything</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit">Subscribe</button>
+      <div class="form-success" id="nlSuccess" style="display:none;text-align:center;margin-top:16px;">Thanks for subscribing!</div>
+    </form>
+  </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
 </main>
 
 <!-- FOOTER -->
@@ -1653,7 +2313,7 @@
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="About Attune AI">About</a></li>
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Attune AI ethical framework">Ethics Framework</a></li>
           <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Bishop Shop Enterprises">Bishop Shop Enterprises</a></li>
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Contact us">Contact</a></li>
+          <li><button onclick="openModal('contactModal')" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Contact us">Contact</button></li>
         </ul>
       </div>
       <div>
@@ -1664,6 +2324,13 @@
           <li><a href="/ip-notice.html" aria-label="Intellectual Property Notice">IP &amp; Trademark</a></li>
           <li><a href="/website-terms.html" aria-label="Website Terms of Use">Website Terms</a></li>
           <li><a href="#faq" aria-label="Frequently Asked Questions">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Engage</div>
+        <ul class="footer-links">
+          <li><button onclick="openModal('quizModal'); initQuiz();" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Take communication style quiz">Take Quiz</button></li>
+          <li><button onclick="openModal('newsletterModal')" style="background:none;border:none;color:inherit;cursor:pointer;padding:0;font-size:inherit;" aria-label="Subscribe to newsletter">Subscribe</button></li>
         </ul>
       </div>
     </div>
@@ -1747,6 +2414,802 @@
   }, { threshold: 0.5 });
   const statsEl = document.querySelector('.hero-stats');
   if (statsEl) statsObserver.observe(statsEl);
+
+  // ENHANCED FUNCTIONALITY
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  menuToggle?.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
+  });
+
+  // Close mobile menu when link is clicked
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Modal Functions
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Close modal when clicking outside
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal(modal.id);
+    });
+  });
+
+  // Contact Form Handling
+  const contactBtn = document.getElementById('contactBtn');
+  contactBtn?.addEventListener('click', () => openModal('contactModal'));
+
+  function handleContactForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const subject = document.getElementById('contactSubject').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    // Clear previous errors
+    document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+    let isValid = true;
+
+    if (!name) {
+      document.getElementById('nameError').textContent = 'Name is required';
+      isValid = false;
+    }
+    if (!email || !email.includes('@')) {
+      document.getElementById('emailError').textContent = 'Valid email is required';
+      isValid = false;
+    }
+    if (!subject) {
+      document.getElementById('subjectError').textContent = 'Subject is required';
+      isValid = false;
+    }
+    if (!message || message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+      isValid = false;
+    }
+
+    if (isValid) {
+      const mailtoLink = `mailto:attuneai@bishopshop.co.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+      window.location.href = mailtoLink;
+      document.getElementById('contactSuccess').style.display = 'block';
+      setTimeout(() => {
+        form.reset();
+        document.getElementById('contactSuccess').style.display = 'none';
+        closeModal('contactModal');
+      }, 2000);
+    }
+  }
+
+  // Newsletter Form Handling
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('nlEmail').value.trim();
+    const emailError = document.getElementById('nlEmailError');
+    emailError.textContent = '';
+
+    if (!email || !email.includes('@')) {
+      emailError.textContent = 'Valid email is required';
+      return;
+    }
+
+    document.getElementById('nlSuccess').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('newsletterForm').reset();
+      document.getElementById('nlSuccess').style.display = 'none';
+      closeModal('newsletterModal');
+    }, 2000);
+  }
+
+  // Quiz Functionality
+  const quizData = [
+    { question: 'When facing conflict, you typically:', options: ['Listen first, respond later', 'Jump in with your perspective', 'Seek common ground', 'Avoid the conversation'] },
+    { question: 'Your communication style is best described as:', options: ['Direct and assertive', 'Collaborative and diplomatic', 'Analytical and measured', 'Empathetic and supportive'] },
+    { question: 'Under pressure, you:', options: ['Stay calm and focused', 'Get energized and motivated', 'Need time to process', 'Want support from others'] },
+    { question: 'When persuading others, you focus on:', options: ['Logic and data', 'Emotional connection', 'Building trust', 'Understanding their needs'] },
+    { question: 'Your biggest strength in conversations is:', options: ['Reading the room', 'Clarity of thought', 'Building rapport', 'Finding creative solutions'] }
+  ];
+
+  function initQuiz() {
+    const container = document.getElementById('quizContainer');
+    if (!container || container.innerHTML) return;
+
+    container.innerHTML = quizData.map((q, i) => `
+      <div class="quiz-question">
+        <label style="font-weight:600;margin-bottom:12px;display:block;">${i + 1}. ${q.question}</label>
+        <div class="quiz-options">
+          ${q.options.map((opt, j) => `
+            <label class="quiz-option" style="display:flex;align-items:center;cursor:pointer;">
+              <input type="radio" name="q${i}" value="${j}" required>
+              <span style="margin-left:8px;">${opt}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function handleQuiz(e) {
+    e.preventDefault();
+    const scores = { 0: 0, 1: 0, 2: 0, 3: 0 };
+
+    for (let i = 0; i < quizData.length; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) scores[selected.value]++;
+    }
+
+    const styles = ['Thoughtful Listener', 'Bold Communicator', 'Balanced Diplomat', 'Empathetic Guide'];
+    const descriptions = [
+      'You excel at understanding others before responding. Your strength is creating psychological safety in conversations.',
+      'You bring energy and confidence to discussions. Your strength is clarity and conviction in your messaging.',
+      'You navigate complexity with balance. Your strength is finding win-win solutions and building consensus.',
+      'You prioritize relationships and emotions. Your strength is making others feel heard and valued.'
+    ];
+
+    const maxScore = Math.max(...Object.values(scores));
+    const style = styles[Object.keys(scores).find(k => scores[k] === maxScore)];
+    const description = descriptions[Object.keys(scores).find(k => scores[k] === maxScore)];
+
+    document.getElementById('quizForm').innerHTML = `
+      <div class="quiz-result">
+        <div class="quiz-result-title">Your Communication Style: ${style}</div>
+        <div class="quiz-result-text">${description}</div>
+      </div>
+    `;
+  }
+
+  // FAQ Toggle
+  function toggleFAQ(element) {
+    element.classList.toggle('collapsed');
+  }
+
+  // Scroll to Top Button
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollTop?.classList.add('visible');
+    } else {
+      scrollTop?.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  scrollTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Initialize quiz when modal opens
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'quizModal' || (e.target.closest && e.target.closest('#quizModal'))) {
+      setTimeout(() => initQuiz(), 100);
+    }
+  });
+
+  // Add quiz trigger (optional button)
+  const quizTriggers = document.querySelectorAll('[data-quiz]');
+  quizTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      openModal('quizModal');
+      initQuiz();
+    });
+  });
+
+  // BADGE PROGRESSION SYSTEM
+
+  const BadgeTiers = {
+    emerging: {
+      name: 'Emerging',
+      icon: '🌱',
+      color: '#6ba8d4',
+      minScore: 0,
+      motto: 'Initium Sapientiae',
+      ornaments: '✦ ✦',
+      description: 'First steps on the path to mastery'
+    },
+    competent: {
+      name: 'Competent',
+      icon: '⭐',
+      color: '#1F5BA8',
+      minScore: 25,
+      motto: 'Firmus et Fortis',
+      ornaments: '✦ ✦ ✦',
+      description: 'Demonstrated solid understanding'
+    },
+    proficient: {
+      name: 'Proficient',
+      icon: '🏅',
+      color: '#F2C744',
+      minScore: 50,
+      motto: 'Aureus Animus',
+      ornaments: '✦ ✦ ✦ ✦',
+      description: 'Consistent excellence in practice'
+    },
+    expert: {
+      name: 'Expert',
+      icon: '🎯',
+      color: '#51cf66',
+      minScore: 75,
+      motto: 'Viridis Victoriae',
+      ornaments: '✦ ✦ ✦ ✦ ✦',
+      description: 'Exceptional skill and mastery'
+    },
+    master: {
+      name: 'Master',
+      icon: '👑',
+      color: '#FFD700',
+      minScore: 90,
+      motto: 'Summum Fastigium',
+      ornaments: '✦ ✦ ✦ ✦ ✦ ✦',
+      description: 'Ultimate mastery achieved'
+    }
+  };
+
+  // Get badge tier based on skill score
+  function getBadgeTier(score) {
+    for (const [key, tier] of Object.entries(BadgeTiers)) {
+      if (score >= tier.minScore) {
+        if (score < 25) return 'emerging';
+        if (score < 50) return 'competent';
+        if (score < 75) return 'proficient';
+        if (score < 90) return 'expert';
+        return 'master';
+      }
+    }
+    return 'emerging';
+  }
+
+  // Display badge achievement with animation
+  function showBadgeAchievement(tier, skillName) {
+    const tierData = BadgeTiers[tier];
+    const achievement = document.createElement('div');
+    achievement.className = 'badge-achievement fade-in';
+    achievement.innerHTML = `
+      <div class="badge-achievement-icon">${tierData.icon}</div>
+      <div class="badge-achievement-title">New Badge Earned!</div>
+      <div class="badge-achievement-description">${tierData.name} in ${skillName}</div>
+    `;
+
+    document.body.appendChild(achievement);
+    showToast('Badge Earned!', `You've unlocked: ${tierData.name}`, 'success');
+
+    setTimeout(() => achievement.remove(), 3000);
+  }
+
+  // Create badge display element
+  function createBadgeElement(tier, skillName = '') {
+    const tierData = BadgeTiers[tier];
+    const badge = document.createElement('span');
+    badge.className = `skill-badge skill-badge-${tier}`;
+    badge.innerHTML = `${tierData.icon} ${tierData.name}`;
+    badge.title = `${tierData.name}${skillName ? ' in ' + skillName : ''}\n${tierData.motto}`;
+    return badge;
+  }
+
+  // Create ornate coat of arms badge
+  function createCoatOfArmsBadge(tier, skillName = '') {
+    const tierData = BadgeTiers[tier];
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.flexDirection = 'column';
+    container.style.alignItems = 'center';
+    container.style.gap = '8px';
+
+    const shield = document.createElement('div');
+    shield.className = 'badge-shield';
+    shield.innerHTML = tierData.icon;
+    shield.style.background = `linear-gradient(135deg, rgba(${tierData.color === '#F2C744' ? '242,199,68' : tierData.color === '#51cf66' ? '81,207,102' : '31,91,168'},0.25) 0%, rgba(${tierData.color === '#F2C744' ? '242,199,68' : tierData.color === '#51cf66' ? '81,207,102' : '31,91,168'},0.08) 100%)`;
+    shield.style.borderColor = tierData.color;
+    shield.style.color = tierData.color;
+
+    const name = document.createElement('div');
+    name.style.fontSize = '12px';
+    name.style.fontWeight = '700';
+    name.style.color = tierData.color;
+    name.style.textTransform = 'uppercase';
+    name.style.letterSpacing = '1px';
+    name.innerHTML = tierData.name;
+
+    const motto = document.createElement('div');
+    motto.style.fontSize = '10px';
+    motto.style.fontStyle = 'italic';
+    motto.style.color = 'rgba(255,255,255,0.6)';
+    motto.innerHTML = tierData.motto;
+
+    container.appendChild(shield);
+    container.appendChild(name);
+    container.appendChild(motto);
+
+    return container;
+  }
+
+  // Display all badge tiers
+  function displayBadgeTiers() {
+    const tierList = document.createElement('div');
+    tierList.className = 'badge-tier-list';
+
+    Object.entries(BadgeTiers).forEach(([key, tier]) => {
+      const item = document.createElement('div');
+      item.className = 'badge-tier-item';
+      item.innerHTML = `
+        <div class="badge-tier-icon">${tier.icon}</div>
+        <div class="badge-tier-name">${tier.name}</div>
+        <div class="badge-tier-description">Score: ${tier.minScore}+</div>
+      `;
+      tierList.appendChild(item);
+    });
+
+    return tierList;
+  }
+
+  // Track badge progress
+  class BadgeProgress {
+    constructor(skillName, currentScore = 0) {
+      this.skillName = skillName;
+      this.score = currentScore;
+      this.tier = getBadgeTier(currentScore);
+    }
+
+    updateScore(newScore) {
+      const oldTier = this.tier;
+      this.score = Math.min(100, Math.max(0, newScore));
+      this.tier = getBadgeTier(this.score);
+
+      if (oldTier !== this.tier) {
+        showBadgeAchievement(this.tier, this.skillName);
+      }
+
+      return this;
+    }
+
+    getProgress() {
+      const tierKeys = Object.keys(BadgeTiers);
+      const currentIndex = tierKeys.indexOf(this.tier);
+      const nextTier = tierKeys[currentIndex + 1];
+
+      if (!nextTier) return 100;
+
+      const currentMinScore = BadgeTiers[this.tier].minScore;
+      const nextMinScore = BadgeTiers[nextTier].minScore;
+      const progressInTier = this.score - currentMinScore;
+      const tierRange = nextMinScore - currentMinScore;
+
+      return Math.round((progressInTier / tierRange) * 100);
+    }
+
+    getBadgeElement() {
+      return createBadgeElement(this.tier, this.skillName);
+    }
+  }
+
+  // Example usage: Initialize badge progress for a skill
+  window.createSkillBadge = function(skillName, initialScore = 0) {
+    return new BadgeProgress(skillName, initialScore);
+  };
+
+  // Display sample badge progression on page
+  const sampleBadgeDisplay = document.querySelector('[data-badge-demo]');
+  if (sampleBadgeDisplay) {
+    const badge = new BadgeProgress('Listening', 45);
+    sampleBadgeDisplay.appendChild(badge.getBadgeElement());
+  }
+
+  // IN-PAGE ALERT SYSTEM
+
+  function createAlert(type, title, description, options = {}) {
+    const icons = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    alert.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+    alert.innerHTML = `
+      <div class="alert-icon">${icons[type]}</div>
+      <div class="alert-content">
+        <div class="alert-title">${title}</div>
+        <div class="alert-description">${description}</div>
+      </div>
+      <button class="alert-close" aria-label="Dismiss alert">×</button>
+    `;
+
+    // Close button handler
+    alert.querySelector('.alert-close').addEventListener('click', () => {
+      alert.classList.add('removing');
+      setTimeout(() => alert.remove(), 300);
+    });
+
+    // Auto-dismiss if specified
+    if (options.duration && options.duration > 0) {
+      setTimeout(() => {
+        if (alert.parentNode) {
+          alert.classList.add('removing');
+          setTimeout(() => alert.remove(), 300);
+        }
+      }, options.duration);
+    }
+
+    return alert;
+  }
+
+  // Helper functions for quick alert creation
+  window.showAlert = function(type, title, description, duration = 0) {
+    const alert = createAlert(type, title, description, { duration });
+    const container = document.querySelector('main') || document.body;
+    container.insertBefore(alert, container.firstChild);
+    return alert;
+  };
+
+  // SKELETON SCREEN SYSTEM
+
+  function createSkeletonLine(width = '100%', height = '14px') {
+    const skeleton = document.createElement('div');
+    skeleton.className = 'skeleton skeleton-text';
+    skeleton.style.width = width;
+    skeleton.style.height = height;
+    return skeleton;
+  }
+
+  function createSkeletonCard(lines = 3) {
+    const container = document.createElement('div');
+    container.style.padding = '16px';
+    container.style.background = 'rgba(255,255,255,0.02)';
+    container.style.borderRadius = '8px';
+    container.style.marginBottom = '16px';
+
+    const heading = document.createElement('div');
+    heading.className = 'skeleton skeleton-heading';
+    container.appendChild(heading);
+
+    for (let i = 0; i < lines; i++) {
+      const width = i === lines - 1 ? '70%' : '100%';
+      container.appendChild(createSkeletonLine(width));
+    }
+
+    return container;
+  }
+
+  // FORM VALIDATION WITH VISUAL FEEDBACK
+
+  function setupFieldValidation(fieldId, validationRules = {}) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+
+    const validateField = () => {
+      const value = field.value.trim();
+      let isValid = true;
+      let message = '';
+
+      // Check required
+      if (validationRules.required && !value) {
+        isValid = false;
+        message = validationRules.requiredMessage || 'This field is required';
+      }
+      // Check min length
+      else if (validationRules.minLength && value.length < validationRules.minLength) {
+        isValid = false;
+        message = `Minimum ${validationRules.minLength} characters required`;
+      }
+      // Check pattern
+      else if (validationRules.pattern && !validationRules.pattern.test(value)) {
+        isValid = false;
+        message = validationRules.patternMessage || 'Invalid format';
+      }
+
+      // Update UI
+      if (isValid && value) {
+        field.classList.remove('validation-error');
+        field.classList.add('validation-success');
+      } else if (!isValid && value) {
+        field.classList.remove('validation-success');
+        field.classList.add('validation-error');
+      } else {
+        field.classList.remove('validation-success', 'validation-error');
+      }
+
+      // Update error message
+      const errorEl = field.parentElement?.querySelector('.form-error');
+      if (errorEl) {
+        errorEl.textContent = isValid || !value ? '' : message;
+      }
+
+      return isValid;
+    };
+
+    // Validate on blur
+    field.addEventListener('blur', validateField);
+
+    // Validate on input if has error
+    field.addEventListener('input', () => {
+      if (field.classList.contains('validation-error')) {
+        validateField();
+      }
+    });
+
+    return validateField;
+  }
+
+  // Initialize field validation for contact form
+  if (document.getElementById('contactForm')) {
+    setupFieldValidation('contactName', { required: true, minLength: 2 });
+    setupFieldValidation('contactEmail', {
+      required: true,
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      patternMessage: 'Please enter a valid email'
+    });
+    setupFieldValidation('contactSubject', { required: true, minLength: 3 });
+    setupFieldValidation('contactMessage', { required: true, minLength: 10 });
+  }
+
+  // VISUAL DESIGN & NOTIFICATION SYSTEM
+
+  // Toast Notification System
+  function showToast(title, message, type = 'info', duration = 4000) {
+    const container = document.getElementById('toastContainer');
+    const toastId = 'toast-' + Date.now();
+
+    const icons = {
+      success: '✓',
+      error: '✕',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+
+    const toast = document.createElement('div');
+    toast.id = toastId;
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <div class="toast-icon">${icons[type]}</div>
+      <div class="toast-content">
+        <div class="toast-title">${title}</div>
+        <div class="toast-message">${message}</div>
+      </div>
+      <button class="toast-close" onclick="removeToast('${toastId}')" aria-label="Close notification">×</button>
+    `;
+
+    container.appendChild(toast);
+
+    if (duration > 0) {
+      setTimeout(() => removeToast(toastId), duration);
+    }
+
+    return toastId;
+  }
+
+  function removeToast(toastId) {
+    const toast = document.getElementById(toastId);
+    if (toast) {
+      toast.classList.add('removing');
+      setTimeout(() => toast.remove(), 300);
+    }
+  }
+
+  // Enhanced Contact Form with Toast Feedback
+  function handleContactFormEnhanced(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const subject = document.getElementById('contactSubject').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+    let isValid = true;
+    let errors = [];
+
+    if (!name) {
+      document.getElementById('nameError').textContent = 'Name is required';
+      errors.push('Name is required');
+      isValid = false;
+    }
+    if (!email || !email.includes('@')) {
+      document.getElementById('emailError').textContent = 'Valid email is required';
+      errors.push('Valid email is required');
+      isValid = false;
+    }
+    if (!subject) {
+      document.getElementById('subjectError').textContent = 'Subject is required';
+      errors.push('Subject is required');
+      isValid = false;
+    }
+    if (!message || message.length < 10) {
+      document.getElementById('messageError').textContent = 'Message must be at least 10 characters';
+      errors.push('Message too short');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      showToast('Validation Error', errors[0], 'error');
+      return;
+    }
+
+    // Show loading state
+    const submitBtn = form.querySelector('.form-submit');
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      const mailtoLink = `mailto:attuneai@bishopshop.co.site?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+      window.location.href = mailtoLink;
+
+      showToast('Success!', 'Your message has been sent', 'success');
+      form.reset();
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      document.getElementById('contactSuccess').style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById('contactSuccess').style.display = 'none';
+        closeModal('contactModal');
+      }, 1500);
+    }, 800);
+  }
+
+  // Enhanced Newsletter with Toast
+  function handleNewsletterEnhanced(e) {
+    e.preventDefault();
+    const email = document.getElementById('nlEmail').value.trim();
+    const emailError = document.getElementById('nlEmailError');
+    emailError.textContent = '';
+
+    if (!email || !email.includes('@')) {
+      emailError.textContent = 'Valid email is required';
+      showToast('Validation Error', 'Please enter a valid email', 'error');
+      return;
+    }
+
+    const submitBtn = e.target.querySelector('.form-submit');
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      showToast('Subscribed!', 'Thank you for subscribing to Attune updates', 'success');
+      document.getElementById('newsletterForm').reset();
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+      document.getElementById('nlSuccess').style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById('nlSuccess').style.display = 'none';
+        closeModal('newsletterModal');
+      }, 1500);
+    }, 800);
+  }
+
+  // Enhanced Quiz with Progress
+  function handleQuizEnhanced(e) {
+    e.preventDefault();
+    const form = e.target;
+    const scores = { 0: 0, 1: 0, 2: 0, 3: 0 };
+    let answeredCount = 0;
+
+    for (let i = 0; i < quizData.length; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) {
+        scores[selected.value]++;
+        answeredCount++;
+      }
+    }
+
+    if (answeredCount < quizData.length) {
+      showToast('Incomplete', `Please answer all ${quizData.length} questions`, 'warning');
+      return;
+    }
+
+    const styles = ['Thoughtful Listener', 'Bold Communicator', 'Balanced Diplomat', 'Empathetic Guide'];
+    const descriptions = [
+      'You excel at understanding others before responding. Your strength is creating psychological safety in conversations.',
+      'You bring energy and confidence to discussions. Your strength is clarity and conviction in your messaging.',
+      'You navigate complexity with balance. Your strength is finding win-win solutions and building consensus.',
+      'You prioritize relationships and emotions. Your strength is making others feel heard and valued.'
+    ];
+
+    const maxScore = Math.max(...Object.values(scores));
+    const styleIndex = Object.keys(scores).find(k => scores[k] === maxScore);
+    const style = styles[styleIndex];
+    const description = descriptions[styleIndex];
+
+    form.innerHTML = `
+      <div class="quiz-result fade-in">
+        <div class="quiz-result-title">Your Communication Style: ${style}</div>
+        <div class="quiz-result-text">${description}</div>
+        <div style="margin-top:24px;display:flex;gap:12px;">
+          <button type="button" onclick="closeModal('quizModal')" class="btn-primary" style="flex:1;">Close</button>
+          <button type="button" onclick="location.reload()" class="btn-ghost" style="flex:1;">Retake Quiz</button>
+        </div>
+      </div>
+    `;
+
+    showToast('Quiz Complete!', `You are a ${style}`, 'success');
+  }
+
+  // Enhanced Button Click Feedback
+  document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (!this.classList.contains('loading')) {
+        // Visual feedback already handled by CSS
+      }
+    });
+  });
+
+  // Enhanced Input Feedback
+  document.querySelectorAll('input[type="email"]').forEach(input => {
+    input.addEventListener('blur', function() {
+      if (this.value && this.validity.valid) {
+        this.style.borderColor = '#51cf66';
+      }
+    });
+  });
+
+  // Improved Modal Interactions
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal.id);
+        showToast('Dismissed', 'Modal closed', 'info', 2000);
+      }
+    });
+  });
+
+  // Update form handlers to use enhanced versions
+  if (document.getElementById('contactForm')) {
+    document.getElementById('contactForm').onsubmit = handleContactFormEnhanced;
+  }
+  if (document.getElementById('newsletterForm')) {
+    document.getElementById('newsletterForm').onsubmit = handleNewsletterEnhanced;
+  }
+  if (document.getElementById('quizForm')) {
+    document.getElementById('quizForm').onsubmit = handleQuizEnhanced;
+  }
+
+  // Initialize tooltips
+  document.querySelectorAll('[data-tooltip]').forEach(el => {
+    const wrapper = document.createElement('span');
+    wrapper.className = 'tooltip-container';
+    wrapper.appendChild(el.cloneNode(true));
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = el.dataset.tooltip;
+    wrapper.appendChild(tooltip);
+    el.parentNode.replaceChild(wrapper, el);
+  });
+
+  // Success notification for contact form (when modal opens)
+  const contactBtn = document.getElementById('contactBtn');
+  if (contactBtn) {
+    const originalClick = contactBtn.onclick;
+    contactBtn.addEventListener('click', function() {
+      if (document.getElementById('contactForm').style.display !== 'none') {
+        // Form exists, show encouragement
+      }
+    });
+  }
 </script>
 
 </body>
