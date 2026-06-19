@@ -13,6 +13,8 @@
     "build:release": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
+    "@babel/preset-react": "^8.0.1",
+    "@babel/preset-typescript": "^8.0.1",
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-firebase/analytics": "^20.5.0",
     "@react-native-firebase/app": "^20.5.0",
@@ -22,8 +24,13 @@
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
+    "ajv": "^8.20.0",
+    "babel-loader": "^10.1.1",
+    "babel-plugin-react-native-web": "^0.21.2",
     "date-fns": "^3.6.0",
+    "html-webpack-plugin": "^5.6.7",
     "react": "18.3.1",
+    "react-dom": "^19.2.7",
     "react-native": "0.75.4",
     "react-native-gesture-handler": "^2.19.0",
     "react-native-haptic-feedback": "^2.3.3",
@@ -34,7 +41,11 @@
     "react-native-screens": "^3.34.0",
     "react-native-svg": "^15.7.1",
     "react-native-vector-icons": "^10.2.0",
+    "react-native-web": "^0.21.2",
     "uuid": "^10.0.0",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.5",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
