@@ -15,6 +15,10 @@ import { ProgressScreen } from '@/screens/ProgressScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen';
 import { DailyProgramScreen } from '@/screens/DailyProgramScreen';
 import { SpotInfluenceScreen } from '@/screens/SpotInfluenceScreen';
+import { ConversationAutopsyScreen } from '@/screens/ConversationAutopsyScreen';
+import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
+import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
+import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -117,6 +121,26 @@ export function AppNavigator() {
         <Stack.Screen
           name="SpotInfluence"
           component={SpotInfluenceScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ConversationAutopsy"
+          component={ConversationAutopsyScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="SubtextTranslator"
+          component={SubtextTranslatorScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="EscalationGauntlet"
+          component={EscalationGauntletScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="TacticForecast"
+          component={TacticForecastScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>

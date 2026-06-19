@@ -118,6 +118,40 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </View>
       </View>
 
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Training Activities</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#FF6B6B' + '15' }]}
+            onPress={() => navigation.navigate('ConversationAutopsy')}
+          >
+            <Icon name="magnify" size={28} color="#FF6B6B" />
+            <Text style={styles.actionLabel}>Autopsy</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#45B7D1' + '15' }]}
+            onPress={() => navigation.navigate('SubtextTranslator')}
+          >
+            <Icon name="translate" size={28} color="#45B7D1" />
+            <Text style={styles.actionLabel}>Subtext</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#FF8C42' + '15' }]}
+            onPress={() => navigation.navigate('EscalationGauntlet')}
+          >
+            <Icon name="fire" size={28} color="#FF8C42" />
+            <Text style={styles.actionLabel}>Gauntlet</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#7B68EE' + '15' }]}
+            onPress={() => navigation.navigate('TacticForecast')}
+          >
+            <Icon name="crystal-ball" size={28} color="#7B68EE" />
+            <Text style={styles.actionLabel}>Forecast</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.topSkills}>
         <Text style={styles.sectionTitle}>Your Strongest Skills</Text>
         {topSkills.map((sp) => {
