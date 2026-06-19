@@ -760,6 +760,195 @@
     color: var(--blue-light);
   }
 
+  /* ARTICULATION ADD-ON */
+  .artic-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #0d1520 50%, var(--ink) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .artic-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242,199,68,0.25), transparent);
+  }
+
+  .artic-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .artic-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(242,199,68,0.12);
+    border: 1px solid rgba(242,199,68,0.3);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .artic-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .artic-mode-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .artic-mode-card:hover {
+    transform: translateY(-4px);
+  }
+  .artic-mode-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+  }
+  .artic-mode-card:hover::before { opacity: 1; }
+
+  .artic-mode-card.mode-gentle { border-color: rgba(76,175,80,0.2); }
+  .artic-mode-card.mode-gentle:hover { border-color: rgba(76,175,80,0.5); }
+  .artic-mode-card.mode-gentle::before { background: #4CAF50; opacity: 0.6; }
+
+  .artic-mode-card.mode-standard { border-color: rgba(31,91,168,0.2); }
+  .artic-mode-card.mode-standard:hover { border-color: rgba(31,91,168,0.5); }
+  .artic-mode-card.mode-standard::before { background: var(--blue); opacity: 0.6; }
+
+  .artic-mode-card.mode-intensive { border-color: rgba(242,199,68,0.2); }
+  .artic-mode-card.mode-intensive:hover { border-color: rgba(242,199,68,0.5); }
+  .artic-mode-card.mode-intensive::before { background: var(--yellow); opacity: 0.6; }
+
+  .artic-mode-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .mode-gentle .artic-mode-icon { background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.3); }
+  .mode-standard .artic-mode-icon { background: rgba(31,91,168,0.2); border: 1px solid rgba(31,91,168,0.4); }
+  .mode-intensive .artic-mode-icon { background: rgba(242,199,68,0.12); border: 1px solid rgba(242,199,68,0.3); }
+
+  .artic-mode-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .artic-mode-intensity {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .mode-gentle .artic-mode-intensity { color: #4CAF50; }
+  .mode-standard .artic-mode-intensity { color: var(--blue-light); }
+  .mode-intensive .artic-mode-intensity { color: var(--yellow); }
+
+  .artic-mode-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .artic-mode-traits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .artic-mode-traits li {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .artic-mode-traits li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mode-gentle .artic-mode-traits li::before { background: #4CAF50; }
+  .mode-standard .artic-mode-traits li::before { background: var(--blue-light); }
+  .mode-intensive .artic-mode-traits li::before { background: var(--yellow); }
+
+  .artic-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+  }
+  .artic-feature-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .artic-feature-text h3 em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+  .artic-feature-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .artic-stat-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+  .artic-stat {
+    text-align: center;
+  }
+  .artic-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .artic-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .artic-mode-grid { grid-template-columns: 1fr; }
+    .artic-stat-row { flex-wrap: wrap; }
+  }
+
   /* PRICING */
   .pricing-section {
     padding: 120px 0;
@@ -1117,8 +1306,9 @@
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
     .how-grid { grid-template-columns: repeat(2, 1fr); }
-    .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
-    .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
+    .framework-grid, .persona-grid, .artic-mode-grid { grid-template-columns: repeat(2, 1fr); }
+    .curriculum-header, .sparring-header, .artic-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
+    .artic-feature-row { grid-template-columns: 1fr; gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     nav { padding: 16px 24px; }
@@ -1143,6 +1333,7 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
+    <li><a href="#articulation">Articulation</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#get-started" class="nav-cta">Get the App</a></li>
@@ -1422,6 +1613,85 @@
         <p class="persona-desc">Strategic framing, reciprocity, and anchoring. Trains: negotiation fluency, mutual gain thinking, deal structure.</p>
         <span class="persona-tag">Negotiation</span>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICULATION ADD-ON -->
+<section class="artic-section" id="articulation" aria-labelledby="artic-heading">
+  <div class="section-inner">
+    <div class="artic-header">
+      <div>
+        <div class="artic-badge reveal">Premium Add-On</div>
+        <div class="section-label reveal">Articulation Training</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="artic-heading">
+          Say what you mean.<br>
+          <em>Mean what you say.</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        The Core Gym trains you to read conversations and respond under pressure. Articulation Training goes deeper — rebuilding how you structure thoughts, hold your line, and land your point with precision.
+      </p>
+    </div>
+
+    <div class="artic-mode-grid">
+      <article class="artic-mode-card mode-gentle reveal">
+        <div class="artic-mode-icon">🌿</div>
+        <h3 class="artic-mode-name">Gentle Mode</h3>
+        <div class="artic-mode-intensity">Low Pressure</div>
+        <p class="artic-mode-desc">Guided prompts and supportive feedback. Ideal for building confidence with new frameworks or warming up before high-stakes moments.</p>
+        <ul class="artic-mode-traits">
+          <li>Scaffolded sentence starters</li>
+          <li>Tone and pacing suggestions</li>
+          <li>Encouraging corrections</li>
+          <li>Best for daily practice</li>
+        </ul>
+      </article>
+      <article class="artic-mode-card mode-standard reveal reveal-delay-1">
+        <div class="artic-mode-icon">🎯</div>
+        <h3 class="artic-mode-name">Standard Mode</h3>
+        <div class="artic-mode-intensity">Moderate Pressure</div>
+        <p class="artic-mode-desc">Real-time coaching with direct feedback on word choice, structure, and delivery. The coach points out filler, hedging, and drift.</p>
+        <ul class="artic-mode-traits">
+          <li>Live clarity scoring</li>
+          <li>Filler and hedge detection</li>
+          <li>Structure analysis</li>
+          <li>Best for skill-building</li>
+        </ul>
+      </article>
+      <article class="artic-mode-card mode-intensive reveal reveal-delay-2">
+        <div class="artic-mode-icon">🔥</div>
+        <h3 class="artic-mode-name">Intensive Mode</h3>
+        <div class="artic-mode-intensity">High Pressure</div>
+        <p class="artic-mode-desc">Unforgiving, real-world conditions. The coach interrupts, challenges weak phrasing, and demands precision. No hand-holding.</p>
+        <ul class="artic-mode-traits">
+          <li>Active interruption challenges</li>
+          <li>Point-loss on vague language</li>
+          <li>Rapid-fire rebuttals</li>
+          <li>Best for peak performance</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="artic-feature-row reveal">
+      <div class="artic-feature-text">
+        <h3>Not just what you say — <em>how you land it</em></h3>
+        <p>Articulation Training measures clarity, conciseness, and conviction across every response. Your coach tracks patterns over time — so you don't just practice once, you rewire how you communicate under pressure.</p>
+      </div>
+      <div class="artic-stat-row">
+        <div class="artic-stat">
+          <div class="artic-stat-num">3</div>
+          <div class="artic-stat-label">Intensity Modes</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">12</div>
+          <div class="artic-stat-label">Drill Types</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">1</div>
+          <div class="artic-stat-label">Clarity Score</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
