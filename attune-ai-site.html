@@ -944,9 +944,273 @@
     margin-top: 4px;
   }
 
+  /* Drill Categories */
+  .artic-drill-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .artic-drill-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-drill-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-drill-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-drill-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .artic-drill-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .artic-drill-card:hover { border-color: rgba(31,91,168,0.35); transform: translateY(-3px); }
+  .artic-drill-icon { font-size: 24px; margin-bottom: 12px; }
+  .artic-drill-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .artic-drill-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .artic-drill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .artic-drill-tag {
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(31,91,168,0.15);
+    border: 1px solid rgba(31,91,168,0.25);
+    color: var(--blue-light);
+  }
+
+  /* Scenario Labs */
+  .artic-labs-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .artic-labs-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-labs-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-labs-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-labs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+  .artic-lab-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .artic-lab-card:hover { border-color: rgba(242,199,68,0.3); transform: translateY(-3px); }
+  .artic-lab-emoji { font-size: 28px; margin-bottom: 10px; }
+  .artic-lab-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .artic-lab-skills {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Skill Ladder */
+  .artic-ladder-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .artic-ladder-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-ladder-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-ladder-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .artic-ladder-step {
+    background: var(--ink-soft);
+    padding: 28px 20px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .artic-ladder-step:hover { background: rgba(31,91,168,0.1); }
+  .artic-ladder-step::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+    opacity: 0.5;
+  }
+  .artic-ladder-step:hover::after { opacity: 1; }
+  .artic-ladder-step:nth-child(1)::after { background: #4CAF50; }
+  .artic-ladder-step:nth-child(2)::after { background: var(--blue-light); }
+  .artic-ladder-step:nth-child(3)::after { background: #9C27B0; }
+  .artic-ladder-step:nth-child(4)::after { background: #FF9800; }
+  .artic-ladder-step:nth-child(5)::after { background: var(--yellow); }
+
+  .artic-ladder-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 12px; right: 16px;
+  }
+  .artic-ladder-level {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .artic-ladder-step:nth-child(1) .artic-ladder-level { color: #4CAF50; }
+  .artic-ladder-step:nth-child(2) .artic-ladder-level { color: var(--blue-light); }
+  .artic-ladder-step:nth-child(3) .artic-ladder-level { color: #9C27B0; }
+  .artic-ladder-step:nth-child(4) .artic-ladder-level { color: #FF9800; }
+  .artic-ladder-step:nth-child(5) .artic-ladder-level { color: var(--yellow); }
+
+  .artic-ladder-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .artic-ladder-desc {
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Clarity Score */
+  .artic-score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(242,199,68,0.04);
+    border: 1px solid rgba(242,199,68,0.15);
+    border-radius: 4px;
+  }
+  .artic-score-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .artic-score-text h3 em { font-style: italic; color: var(--yellow); }
+  .artic-score-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .artic-score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .artic-score-item {
+    text-align: center;
+    padding: 16px 8px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .artic-score-icon { font-size: 20px; margin-bottom: 6px; }
+  .artic-score-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+  }
+  .artic-score-what {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .artic-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242,199,68,0.3), transparent);
+    margin: 0 auto 64px;
+  }
+
   @media (max-width: 600px) {
     .artic-mode-grid { grid-template-columns: 1fr; }
     .artic-stat-row { flex-wrap: wrap; }
+    .artic-drill-grid { grid-template-columns: 1fr; }
+    .artic-labs-grid { grid-template-columns: repeat(2, 1fr); }
+    .artic-ladder { grid-template-columns: 1fr; }
+    .artic-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .artic-score-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   /* PRICING */
@@ -1306,9 +1570,11 @@
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
     .how-grid { grid-template-columns: repeat(2, 1fr); }
-    .framework-grid, .persona-grid, .artic-mode-grid { grid-template-columns: repeat(2, 1fr); }
+    .framework-grid, .persona-grid, .artic-mode-grid, .artic-drill-grid { grid-template-columns: repeat(2, 1fr); }
     .curriculum-header, .sparring-header, .artic-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
-    .artic-feature-row { grid-template-columns: 1fr; gap: 32px; }
+    .artic-feature-row, .artic-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .artic-labs-grid { grid-template-columns: repeat(3, 1fr); }
+    .artic-ladder { grid-template-columns: repeat(3, 1fr); }
     .pricing-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     nav { padding: 16px 24px; }
@@ -1620,6 +1886,8 @@
 <!-- ARTICULATION ADD-ON -->
 <section class="artic-section" id="articulation" aria-labelledby="artic-heading">
   <div class="section-inner">
+
+    <!-- HEADER -->
     <div class="artic-header">
       <div>
         <div class="artic-badge reveal">Premium Add-On</div>
@@ -1630,69 +1898,289 @@
         </h2>
       </div>
       <p class="section-body reveal">
-        The Core Gym trains you to read conversations and respond under pressure. Articulation Training goes deeper — rebuilding how you structure thoughts, hold your line, and land your point with precision.
+        The Core Gym trains you to read conversations and respond under pressure. Articulation Training goes deeper — rebuilding how you structure thoughts, hold your line, and land your point with the precision of a courtroom advocate, the clarity of a media-trained executive, and the composure of a seasoned negotiator.
       </p>
     </div>
 
+    <!-- THREE INTENSITY MODES -->
     <div class="artic-mode-grid">
       <article class="artic-mode-card mode-gentle reveal">
         <div class="artic-mode-icon">🌿</div>
         <h3 class="artic-mode-name">Gentle Mode</h3>
         <div class="artic-mode-intensity">Low Pressure</div>
-        <p class="artic-mode-desc">Guided prompts and supportive feedback. Ideal for building confidence with new frameworks or warming up before high-stakes moments.</p>
+        <p class="artic-mode-desc">Guided prompts with supportive, encouraging feedback. Build confidence with new frameworks or warm up before a high-stakes moment. The coach scaffolds your thinking and suggests improvements without judgment.</p>
         <ul class="artic-mode-traits">
           <li>Scaffolded sentence starters</li>
           <li>Tone and pacing suggestions</li>
           <li>Encouraging corrections</li>
-          <li>Best for daily practice</li>
+          <li>Supportive audience simulation</li>
         </ul>
       </article>
       <article class="artic-mode-card mode-standard reveal reveal-delay-1">
         <div class="artic-mode-icon">🎯</div>
         <h3 class="artic-mode-name">Standard Mode</h3>
         <div class="artic-mode-intensity">Moderate Pressure</div>
-        <p class="artic-mode-desc">Real-time coaching with direct feedback on word choice, structure, and delivery. The coach points out filler, hedging, and drift.</p>
+        <p class="artic-mode-desc">Real-time coaching with direct, specific feedback. The coach flags filler words, detects hedging, analyzes your sentence structure, and scores your clarity live. No hand-holding — honest assessment.</p>
         <ul class="artic-mode-traits">
           <li>Live clarity scoring</li>
           <li>Filler and hedge detection</li>
-          <li>Structure analysis</li>
-          <li>Best for skill-building</li>
+          <li>Structure and flow analysis</li>
+          <li>Neutral audience simulation</li>
         </ul>
       </article>
       <article class="artic-mode-card mode-intensive reveal reveal-delay-2">
         <div class="artic-mode-icon">🔥</div>
         <h3 class="artic-mode-name">Intensive Mode</h3>
         <div class="artic-mode-intensity">High Pressure</div>
-        <p class="artic-mode-desc">Unforgiving, real-world conditions. The coach interrupts, challenges weak phrasing, and demands precision. No hand-holding.</p>
+        <p class="artic-mode-desc">Adversarial, real-world conditions. The coach interrupts mid-sentence, challenges weak phrasing, imposes time pressure, and demands precision. You lose points for vague language. No mercy.</p>
         <ul class="artic-mode-traits">
           <li>Active interruption challenges</li>
           <li>Point-loss on vague language</li>
           <li>Rapid-fire rebuttals</li>
-          <li>Best for peak performance</li>
+          <li>Hostile audience simulation</li>
         </ul>
       </article>
     </div>
 
-    <div class="artic-feature-row reveal">
-      <div class="artic-feature-text">
-        <h3>Not just what you say — <em>how you land it</em></h3>
-        <p>Articulation Training measures clarity, conciseness, and conviction across every response. Your coach tracks patterns over time — so you don't just practice once, you rewire how you communicate under pressure.</p>
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- DRILL CATEGORIES -->
+    <div class="artic-drill-header reveal">
+      <h3>27 drills across <em>6 categories</em></h3>
+      <p>Every drill is drawn from competitive debate, moot court advocacy, media training, executive coaching, and improv — adapted for AI-powered practice.</p>
+    </div>
+
+    <div class="artic-drill-grid">
+      <article class="artic-drill-card reveal">
+        <div class="artic-drill-icon">💎</div>
+        <h4 class="artic-drill-name">Clarity Drills</h4>
+        <p class="artic-drill-desc">Strip away complexity. Land your message so anyone can understand it — no jargon, no ambiguity, no confusion.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Plain Language Rewrite</span>
+          <span class="artic-drill-tag">Non-Expert Playback</span>
+          <span class="artic-drill-tag">Three-Sentence Story</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-1">
+        <div class="artic-drill-icon">✂️</div>
+        <h4 class="artic-drill-name">Conciseness Drills</h4>
+        <p class="artic-drill-desc">Say more with less. Eliminate padding, cut filler words, and learn to land your point in 15 seconds flat.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Countdown Rebuttal</span>
+          <span class="artic-drill-tag">Sound Bite Challenge</span>
+          <span class="artic-drill-tag">Filler Detector</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-2">
+        <div class="artic-drill-icon">🏗️</div>
+        <h4 class="artic-drill-name">Structure Drills</h4>
+        <p class="artic-drill-desc">Organize your thoughts on the fly using proven frameworks from military briefings, debate, and executive communication.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">PREP Sprint</span>
+          <span class="artic-drill-tag">BLUF Briefing</span>
+          <span class="artic-drill-tag">Argument Flip</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal">
+        <div class="artic-drill-icon">🔬</div>
+        <h4 class="artic-drill-name">Word Choice Drills</h4>
+        <p class="artic-drill-desc">Choose precise, powerful words. Eliminate hedges, strip intensifiers, and anchor your message with sticky, intentional language.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Hedge Hunter</span>
+          <span class="artic-drill-tag">Intensifier Strip</span>
+          <span class="artic-drill-tag">Word Swap</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-1">
+        <div class="artic-drill-icon">⚡</div>
+        <h4 class="artic-drill-name">Conviction Drills</h4>
+        <p class="artic-drill-desc">Deliver with confidence. Use silence as a weapon, answer without stalling, and project authority even when you feel uncertain.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Silence Hold</span>
+          <span class="artic-drill-tag">Hot Seat</span>
+          <span class="artic-drill-tag">Dynamics Drill</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-2">
+        <div class="artic-drill-icon">🛡️</div>
+        <h4 class="artic-drill-name">Composure Drills</h4>
+        <p class="artic-drill-desc">Hold your point under fire. Handle interruptions, bridge past hostile questions, and maintain your line when the pressure climbs.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">The Interrupt</span>
+          <span class="artic-drill-tag">Bridge &amp; Pivot</span>
+          <span class="artic-drill-tag">Pressure Ratchet</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- SCENARIO LABS -->
+    <div class="artic-labs-header reveal">
+      <h3>Practice where it <em>actually matters</em></h3>
+      <p>Full scenario simulations that combine multiple drill skills into realistic, high-stakes conversations you'll face in real life.</p>
+    </div>
+
+    <div class="artic-labs-grid">
+      <article class="artic-lab-card reveal">
+        <div class="artic-lab-emoji">💰</div>
+        <div class="artic-lab-name">Salary Negotiation</div>
+        <div class="artic-lab-skills">Conviction + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-1">
+        <div class="artic-lab-emoji">🚧</div>
+        <div class="artic-lab-name">Setting a Boundary</div>
+        <div class="artic-lab-skills">Word Choice + Conviction</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-2">
+        <div class="artic-lab-emoji">💡</div>
+        <div class="artic-lab-name">Defending Your Idea</div>
+        <div class="artic-lab-skills">Structure + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-3">
+        <div class="artic-lab-emoji">🎤</div>
+        <div class="artic-lab-name">Job Interview</div>
+        <div class="artic-lab-skills">Structure + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-4">
+        <div class="artic-lab-emoji">💬</div>
+        <div class="artic-lab-name">Difficult Feedback</div>
+        <div class="artic-lab-skills">Word Choice + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal">
+        <div class="artic-lab-emoji">🕊️</div>
+        <div class="artic-lab-name">Conflict De-escalation</div>
+        <div class="artic-lab-skills">Composure + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-1">
+        <div class="artic-lab-emoji">🚀</div>
+        <div class="artic-lab-name">Elevator Pitch</div>
+        <div class="artic-lab-skills">Conciseness + Conviction</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-2">
+        <div class="artic-lab-emoji">🤝</div>
+        <div class="artic-lab-name">Apologizing Well</div>
+        <div class="artic-lab-skills">Clarity + Word Choice</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-3">
+        <div class="artic-lab-emoji">✋</div>
+        <div class="artic-lab-name">Saying No</div>
+        <div class="artic-lab-skills">Conviction + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-4">
+        <div class="artic-lab-emoji">🧠</div>
+        <div class="artic-lab-name">Persuading a Skeptic</div>
+        <div class="artic-lab-skills">Structure + Composure</div>
+      </article>
+    </div>
+
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- SKILL LADDER -->
+    <div class="artic-ladder-header reveal">
+      <h3>Five levels from <em>foundations to mastery</em></h3>
+      <p>Progression modeled on how debate teams, law school moot court, improv programs, and military briefing training ladder skills from beginner to expert.</p>
+    </div>
+
+    <div class="artic-ladder">
+      <div class="artic-ladder-step reveal">
+        <div class="artic-ladder-num" aria-hidden="true">01</div>
+        <div class="artic-ladder-level">Foundations</div>
+        <div class="artic-ladder-title">Build the basics</div>
+        <p class="artic-ladder-desc">Supportive coach, no time pressure. Learn PREP and BLUF frameworks. Friendly audience.</p>
       </div>
-      <div class="artic-stat-row">
-        <div class="artic-stat">
-          <div class="artic-stat-num">3</div>
-          <div class="artic-stat-label">Intensity Modes</div>
+      <div class="artic-ladder-step reveal reveal-delay-1">
+        <div class="artic-ladder-num" aria-hidden="true">02</div>
+        <div class="artic-ladder-level">Building</div>
+        <div class="artic-ladder-title">Sharpen precision</div>
+        <p class="artic-ladder-desc">Constructive coaching. Word choice drills, conciseness training. Moderate time limits.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-2">
+        <div class="artic-ladder-num" aria-hidden="true">03</div>
+        <div class="artic-ladder-level">Sharpening</div>
+        <div class="artic-ladder-title">Deliver with conviction</div>
+        <p class="artic-ladder-desc">Performance scoring. Hot Seat, Silence Hold, real-time feedback. Strict time constraints.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-3">
+        <div class="artic-ladder-num" aria-hidden="true">04</div>
+        <div class="artic-ladder-level">Pressure Testing</div>
+        <div class="artic-ladder-title">Hold under fire</div>
+        <p class="artic-ladder-desc">Adversarial conditions. Interruptions, hostile questions, curveballs. Composure is everything.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-4">
+        <div class="artic-ladder-num" aria-hidden="true">05</div>
+        <div class="artic-ladder-level">Mastery</div>
+        <div class="artic-ladder-title">Full scenario command</div>
+        <p class="artic-ladder-desc">Combined drill chains at max difficulty. Scored against personal bests. High-stakes simulations.</p>
+      </div>
+    </div>
+
+    <!-- CLARITY SCORE -->
+    <div class="artic-score-row reveal">
+      <div class="artic-score-text">
+        <h3>One score that tracks <em>everything</em></h3>
+        <p>Your Clarity Score is a composite metric built from six sub-dimensions — tracked across every drill, every session, every scenario. Like the Core Gym's ELO, it shows exactly where you stand and what to train next.</p>
+      </div>
+      <div class="artic-score-grid">
+        <div class="artic-score-item">
+          <div class="artic-score-icon">💎</div>
+          <div class="artic-score-name">Clarity</div>
+          <div class="artic-score-what">Comprehension rate</div>
         </div>
-        <div class="artic-stat">
-          <div class="artic-stat-num">12</div>
-          <div class="artic-stat-label">Drill Types</div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">✂️</div>
+          <div class="artic-score-name">Conciseness</div>
+          <div class="artic-score-what">Signal-to-noise</div>
         </div>
-        <div class="artic-stat">
-          <div class="artic-stat-num">1</div>
-          <div class="artic-stat-label">Clarity Score</div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🏗️</div>
+          <div class="artic-score-name">Structure</div>
+          <div class="artic-score-what">Logical flow</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🔬</div>
+          <div class="artic-score-name">Precision</div>
+          <div class="artic-score-what">Hedge frequency</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">⚡</div>
+          <div class="artic-score-name">Conviction</div>
+          <div class="artic-score-what">Assertion rate</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🛡️</div>
+          <div class="artic-score-name">Composure</div>
+          <div class="artic-score-what">Pressure resilience</div>
         </div>
       </div>
     </div>
+
+    <!-- STATS SUMMARY -->
+    <div class="artic-feature-row reveal" style="margin-top: 48px;">
+      <div class="artic-feature-text">
+        <h3>Built on the science of <em>deliberate practice</em></h3>
+        <p>Every drill draws from evidence-based methodology — competitive debate, media training, moot court advocacy, executive coaching, and improv. Not random exercises. Structured, progressive training designed to produce measurable skill gains.</p>
+      </div>
+      <div class="artic-stat-row">
+        <div class="artic-stat">
+          <div class="artic-stat-num">27</div>
+          <div class="artic-stat-label">Drill Types</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">10</div>
+          <div class="artic-stat-label">Scenario Labs</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">5</div>
+          <div class="artic-stat-label">Skill Levels</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">6</div>
+          <div class="artic-stat-label">Score Dimensions</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1730,7 +2218,7 @@
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Everything in Core Gym</li>
-          <li>Articulation Add-on (3 modes)</li>
+          <li>Articulation Add-on (27 drills)</li>
           <li>IntroProfiles (context-specific intros)</li>
           <li>Gifted access support</li>
           <li>Priority coach feedback</li>
@@ -1746,7 +2234,7 @@
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Articulation Training</li>
-          <li>Gentle / Standard / Intensive modes</li>
+          <li>27 drills · 10 scenario labs</li>
           <li>IntroProfiles module</li>
           <li>Context-aware intro builder</li>
           <li>Reusable profile templates</li>
