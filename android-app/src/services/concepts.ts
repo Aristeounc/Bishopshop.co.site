@@ -574,6 +574,247 @@ export const CONCEPT_LIBRARY: Concept[] = [
       'Practice DESC for a lower-stakes situation: asking a roommate to do the dishes.',
     ],
   },
+
+  // --- Offensive / Proactive Influence Concepts ---
+
+  {
+    id: 'presuasion_priming',
+    name: 'Pre-Suasion: Setting the Stage',
+    expertSource: 'Robert Cialdini — Pre-Suasion',
+    summary: 'What you do before you make your case matters more than the case itself. Pre-suasion is the practice of arranging for recipients to be receptive to a message before they encounter it — by directing attention to concepts that are aligned with your goal.',
+    keyTakeaways: [
+      'Ask "What do I want them thinking about when I make my ask?"',
+      'Prime cooperation by starting with shared goals or past successes together',
+      'The question you ask before a request shapes the answer — "Do you consider yourself a helpful person?"',
+    ],
+    primarySkill: 'close',
+    secondarySkills: ['negotiate', 'connect'],
+    drillPrompts: [
+      'You need to ask your team to work overtime this weekend. Write two pre-suasive openers that prime cooperation before making the ask.',
+      'Before asking for a favor, practice opening with a question that activates their identity as generous or helpful.',
+    ],
+  },
+  {
+    id: 'strategic_framing',
+    name: 'Strategic Framing',
+    expertSource: 'George Lakoff — Don\'t Think of an Elephant / Tversky & Kahneman — Prospect Theory',
+    summary: 'The same information presented differently leads to different decisions. Framing is choosing which aspects to emphasize: gains vs. losses, opportunity vs. risk, investment vs. cost. The person who sets the frame controls the conversation.',
+    keyTakeaways: [
+      'Loss framing drives action: "You stand to lose X" is stronger than "You could gain X"',
+      'Reframe the other side\'s frame before arguing within it',
+      'Name the frame: "Let me offer a different way to look at this..."',
+    ],
+    primarySkill: 'negotiate',
+    secondarySkills: ['close', 'assert'],
+    drillPrompts: [
+      'Reframe this: "It will cost $5,000" into a gain frame, an investment frame, and a loss-prevention frame.',
+      'Your proposal was rejected. Practice reframing the same idea from a different angle that addresses their concerns.',
+    ],
+  },
+  {
+    id: 'storytelling_influence',
+    name: 'Storytelling for Influence',
+    expertSource: 'Chip & Dan Heath — Made to Stick / Nancy Duarte — Resonate',
+    summary: 'Stories bypass analytical resistance and embed ideas emotionally. A well-told story creates a shared experience, makes abstract concepts concrete, and is 22x more memorable than facts alone. Structure: context, conflict, resolution.',
+    keyTakeaways: [
+      'Lead with a specific person and a specific moment, not data',
+      'The conflict is the engine — what was at stake and what almost went wrong?',
+      'End with a resolution that illustrates your point without stating it explicitly',
+    ],
+    primarySkill: 'connect',
+    secondarySkills: ['close', 'empathize'],
+    drillPrompts: [
+      'Turn this data point into a story: "Customer satisfaction increased 40% after the change." Who was the customer? What was their experience?',
+      'Prepare a 60-second influence story: set the scene, introduce conflict, deliver a resolution that makes your case.',
+    ],
+  },
+  {
+    id: 'charisma_presence',
+    name: 'Commanding Presence',
+    expertSource: 'Olivia Fox Cabane — The Charisma Myth',
+    summary: 'Charisma is not innate — it is a set of trainable behaviors: presence (full attention), power (ability to affect the world), and warmth (genuine goodwill). Presence is the foundation: people can tell within seconds whether you are fully there.',
+    keyTakeaways: [
+      'Presence = focus your mind on this person, this moment. People feel the difference.',
+      'Power + warmth = charisma. Power alone is intimidating; warmth alone is passive.',
+      'Before an important conversation, adopt a high-power posture for 2 minutes',
+    ],
+    primarySkill: 'connect',
+    secondarySkills: ['close', 'assert'],
+    drillPrompts: [
+      'In your next conversation, practice full presence: no phone, no mental rehearsal, eyes on them. Notice how they respond differently.',
+      'Before a high-stakes conversation, practice a 2-minute power posture and deliberate warmth visualization. Enter the room intentionally.',
+    ],
+  },
+  {
+    id: 'socratic_method',
+    name: 'Socratic Questioning',
+    expertSource: 'Socrates via Plato — Classical Rhetoric / Paul & Elder — Critical Thinking',
+    summary: 'Instead of telling people what to think, ask questions that lead them to discover the answer themselves. People are far more committed to conclusions they reach on their own. Socratic questioning guides without dictating.',
+    keyTakeaways: [
+      'Ask "What would happen if...?" to let them discover consequences',
+      '"What makes you say that?" surfaces assumptions without challenging them',
+      'Let them arrive at your conclusion through their own reasoning',
+    ],
+    primarySkill: 'negotiate',
+    secondarySkills: ['close', 'listen'],
+    drillPrompts: [
+      'Your colleague proposes a plan you see flaws in. Instead of saying what is wrong, write three Socratic questions that lead them to discover the issues.',
+      'Practice guiding a friend to your restaurant choice using only questions — no statements or suggestions.',
+    ],
+  },
+  {
+    id: 'reciprocity_engine',
+    name: 'The Reciprocity Engine',
+    expertSource: 'Robert Cialdini — Influence / Adam Grant — Give and Take',
+    summary: 'Giving first — information, help, concessions — creates a powerful pull for the other person to reciprocate. Strategic generosity is not manipulation when the giving is genuine. The key is to give what costs you little but matters to them.',
+    keyTakeaways: [
+      'Give first, give often, give what they value — not what you value',
+      'Personalized, unexpected, and significant gifts trigger the strongest reciprocity',
+      'Make concessions visible: "I moved on X, can you move on Y?"',
+    ],
+    primarySkill: 'negotiate',
+    secondarySkills: ['connect', 'close'],
+    drillPrompts: [
+      'Before your next negotiation, identify three things you can concede that cost you little but signal generosity.',
+      'Practice making your concession visible: "I want to meet you halfway. I am willing to do X — what can you do on Y?"',
+    ],
+  },
+  {
+    id: 'objection_handling',
+    name: 'Objection Reframing',
+    expertSource: 'Neil Rackham — SPIN Selling / Oren Klaff — Pitch Anything',
+    summary: 'Objections are not rejections — they are requests for more information or different framing. The best response is not to argue against the objection but to reframe it, agree with the concern, and redirect to what matters.',
+    keyTakeaways: [
+      'Acknowledge the objection first: "That is a fair concern."',
+      'Reframe: "The question is not whether it costs more, but whether it saves more."',
+      'Isolate: "If we solved that concern, would you be ready to move forward?"',
+    ],
+    primarySkill: 'close',
+    secondarySkills: ['negotiate', 'assert'],
+    drillPrompts: [
+      'Handle this objection: "It is too expensive." Acknowledge, reframe as value, and isolate.',
+      'A friend says "I don\'t have time for that." Practice treating it as information, not rejection. What are they really telling you?',
+    ],
+  },
+  {
+    id: 'motivational_interviewing',
+    name: 'Motivational Interviewing',
+    expertSource: 'William Miller & Stephen Rollnick — Motivational Interviewing',
+    summary: 'When someone is ambivalent about change, arguing for it makes them argue against it. Motivational interviewing uses empathy to draw out their own reasons for change. You become a mirror that reflects their best intentions back to them.',
+    keyTakeaways: [
+      'OARS: Open questions, Affirm strengths, Reflect their words, Summarize',
+      'Listen for "change talk" — their own reasons for wanting to change — and amplify it',
+      'Roll with resistance: "You are not sure this would work" instead of pushing back',
+    ],
+    primarySkill: 'empathize',
+    secondarySkills: ['listen', 'close'],
+    drillPrompts: [
+      'A friend says they want to exercise more but never do. Use OARS to draw out their motivation instead of giving advice.',
+      'Practice rolling with resistance: when someone says "I can\'t," respond with a reflection that honors their autonomy.',
+    ],
+  },
+  {
+    id: 'power_dynamics',
+    name: 'Reading Power Dynamics',
+    expertSource: 'Keith Johnstone — Impro / Deborah Gruenfeld — Stanford Power Research',
+    summary: 'Every conversation has a power dynamic — who is leading, who is deferring, and why. Reading these signals lets you choose when to take space and when to yield it. Status is not fixed; it shifts with every sentence, gesture, and pause.',
+    keyTakeaways: [
+      'High-status signals: stillness, slower speech, taking space, holding eye contact',
+      'Low-status signals: fidgeting, hedging language ("I just think..."), nervous laughter',
+      'Match their status to build rapport; raise yours to lead; lower yours to invite trust',
+    ],
+    primarySkill: 'assert',
+    secondarySkills: ['negotiate', 'defend'],
+    drillPrompts: [
+      'In your next meeting, observe who takes up the most space and who defers. What specific behaviors create those dynamics?',
+      'Practice delivering your next point with high-status signals: slow speech, pause before speaking, still body, direct eye contact.',
+    ],
+  },
+  {
+    id: 'rhetorical_structure',
+    name: 'The Rhetoric Triad',
+    expertSource: 'Aristotle — Rhetoric / Jay Heinrichs — Thank You for Arguing',
+    summary: 'Persuasion has three pillars: ethos (credibility), pathos (emotion), and logos (logic). Most people rely only on logos. True persuasion requires all three: they trust you, they feel something, and the logic holds up.',
+    keyTakeaways: [
+      'Ethos first: establish why you are the right person to speak on this',
+      'Pathos moves people to act: data informs but emotion drives decisions',
+      'Logos provides the structure that makes the emotional case defensible',
+    ],
+    primarySkill: 'assert',
+    secondarySkills: ['close', 'connect'],
+    drillPrompts: [
+      'Prepare a 90-second pitch for an idea. Identify where you use ethos, pathos, and logos. Which pillar is weakest?',
+      'Rewrite a purely logical argument to include a personal story (pathos) and a credibility signal (ethos).',
+    ],
+  },
+  {
+    id: 'contrast_principle',
+    name: 'The Contrast Principle',
+    expertSource: 'Robert Cialdini — Influence / Daniel Kahneman — Thinking, Fast and Slow',
+    summary: 'People evaluate things relative to what came before, not in absolute terms. Present an extreme option first and your real proposal seems reasonable by comparison. This is not deception — it is understanding how the human brain evaluates choices.',
+    keyTakeaways: [
+      'Present three options: the ambitious, the recommended, and the minimal',
+      'The middle option benefits from contrast with both extremes',
+      'In concessions: start higher than your target so the final number feels like a win',
+    ],
+    primarySkill: 'negotiate',
+    secondarySkills: ['close', 'assert'],
+    drillPrompts: [
+      'You want a $5K budget approved. Design three options ($10K, $5K, $2K) that make $5K the obvious sweet spot.',
+      'Practice the contrast principle in a casual negotiation: suggest a bigger ask first, then your real request.',
+    ],
+  },
+  {
+    id: 'difficult_conversations',
+    name: 'Leading Difficult Conversations',
+    expertSource: 'Douglas Stone, Bruce Patton & Sheila Heen — Difficult Conversations (Harvard Negotiation Project)',
+    summary: 'Every difficult conversation is really three conversations: the "what happened" story, the feelings conversation, and the identity conversation ("what does this say about me?"). Address all three layers or the surface issue will keep recurring.',
+    keyTakeaways: [
+      'Start from the "third story" — a neutral description both sides would agree on',
+      'Share your feelings as data, not accusations: "I felt sidelined" not "You sidelined me"',
+      'Identity: separate what happened from what it means about you as a person',
+    ],
+    primarySkill: 'assert',
+    secondarySkills: ['regulate', 'empathize'],
+    drillPrompts: [
+      'Think of a difficult conversation you are avoiding. Identify all three layers: what happened, what you feel, and what identity is at stake.',
+      'Practice opening a tough conversation from the "third story": a neutral, factual description a camera would capture.',
+    ],
+  },
+  {
+    id: 'pitch_narrative',
+    name: 'The Pitch Narrative Arc',
+    expertSource: 'Oren Klaff — Pitch Anything / Daniel Pink — To Sell Is Human',
+    summary: 'A compelling pitch follows a narrative arc: establish the world as it is, reveal the tension or problem, then present your idea as the bridge to a better state. The audience should feel the gap before you fill it.',
+    keyTakeaways: [
+      'Start with the status quo and what is at stake — make them feel the problem',
+      'Create intrigue: withhold the solution until the tension peaks',
+      'End with a clear next step, not an open question',
+    ],
+    primarySkill: 'close',
+    secondarySkills: ['connect', 'assert'],
+    drillPrompts: [
+      'Restructure a flat pitch ("Our product does X, Y, Z") into a narrative arc: problem, tension, resolution.',
+      'Practice pitching an idea in 60 seconds using the "before/after" structure: here is the world without this, here is the world with it.',
+    ],
+  },
+  {
+    id: 'strategic_rapport',
+    name: 'Strategic Rapport Building',
+    expertSource: 'Robin Dreeke — It\'s Not All About Me (FBI Behavioral Analysis)',
+    summary: 'Rapport is not small talk — it is a deliberate skill of making others feel valued, understood, and safe. The FBI\'s top rapport-building technique: seek the other person\'s thoughts and opinions without judging them.',
+    keyTakeaways: [
+      'Ego suspension: put their story first, ask about their world, park your own agenda',
+      'Validate without agreeing: "I can see why you would see it that way"',
+      'Time-limit the interaction up front to reduce their guard: "I only have a minute, but..."',
+    ],
+    primarySkill: 'connect',
+    secondarySkills: ['empathize', 'listen'],
+    drillPrompts: [
+      'In your next conversation with someone new, spend the first 3 minutes asking about their perspective without sharing yours. Notice what shifts.',
+      'Practice the time-constraint opener: "I have to run in a sec, but I wanted to ask you about..." and observe how it lowers resistance.',
+    ],
+  },
 ];
 
 export function getConceptById(id: string): Concept | undefined {

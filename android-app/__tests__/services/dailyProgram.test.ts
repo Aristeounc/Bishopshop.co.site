@@ -108,8 +108,8 @@ describe('Daily Program Generator', () => {
 });
 
 describe('Concept Library', () => {
-  it('has at least 33 concepts', () => {
-    expect(CONCEPT_LIBRARY.length).toBeGreaterThanOrEqual(33);
+  it('has at least 47 concepts', () => {
+    expect(CONCEPT_LIBRARY.length).toBeGreaterThanOrEqual(47);
   });
 
   it('each concept has required fields', () => {
