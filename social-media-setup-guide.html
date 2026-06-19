@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Attune AI — Social Media Setup Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1F5BA8;
+    --blue-dark: #163e76;
+    --blue-light: #3a7ed4;
+    --yellow: #F2C744;
+    --yellow-dark: #d4a91a;
+    --tan: #F5EFE3;
+    --ink: #0D1117;
+    --ink-soft: #1c2535;
+    --white: #FAFAF8;
+    --muted: #6B7280;
+    --radius: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  .page-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 64px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31,91,168,0.2);
+    border: 1px solid rgba(31,91,168,0.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .page-title span { color: var(--yellow); }
+
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Brand Identity Section */
+  .brand-section {
+    margin-bottom: 48px;
+    padding: 32px;
+    background: var(--ink-soft);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+  }
+
+  .brand-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--yellow);
+  }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .brand-item {
+    padding: 16px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 4px;
+    border-left: 3px solid var(--blue);
+  }
+
+  .brand-item-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 6px;
+  }
+
+  .brand-item-value {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .color-swatch {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  /* Platform Card */
+  .platform-section {
+    margin-bottom: 48px;
+  }
+
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--blue);
+  }
+
+  .platform-tag {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    color: var(--ink);
+  }
+  .platform-tag.twitter { background: #1DA1F2; }
+  .platform-tag.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: var(--white); }
+  .platform-tag.linkedin { background: #0A66C2; color: var(--white); }
+  .platform-tag.facebook { background: #1877F2; color: var(--white); }
+  .platform-tag.tiktok { background: var(--white); color: var(--ink); }
+  .platform-tag.threads { background: var(--white); color: var(--ink); }
+
+  .platform-step {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+  }
+
+  .field-card {
+    background: var(--ink-soft);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 8px;
+  }
+
+  .field-value {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    padding: 14px 18px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    border-left: 3px solid var(--yellow);
+    white-space: pre-line;
+    margin-bottom: 8px;
+  }
+
+  .field-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .signup-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--yellow);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid rgba(242,199,68,0.3);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+  }
+  .signup-link:hover {
+    background: rgba(242,199,68,0.1);
+  }
+
+  .checklist {
+    list-style: none;
+    margin-top: 16px;
+  }
+  .checklist li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .checklist li::before {
+    content: '[ ]';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-family: monospace;
+    font-size: 13px;
+  }
+
+  .tip-box {
+    background: rgba(242,199,68,0.08);
+    border: 1px solid rgba(242,199,68,0.15);
+    border-radius: 4px;
+    padding: 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--yellow);
+  }
+  .tip-box strong { color: var(--yellow); }
+
+  @media (max-width: 640px) {
+    .page-wrap { padding: 32px 16px 64px; }
+    .brand-grid { grid-template-columns: 1fr; }
+    .platform-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <header class="page-header">
+    <div class="page-eyebrow">Launch Checklist</div>
+    <h1 class="page-title">Social Media <span>Setup Guide</span></h1>
+    <p class="page-subtitle">Everything you need to create and configure Attune AI profiles across all 5 platforms. Copy each field directly into the sign-up forms.</p>
+  </header>
+
+  <!-- ========================= -->
+  <!-- BRAND IDENTITY REFERENCE  -->
+  <!-- ========================= -->
+  <section class="brand-section">
+    <h2>Brand Identity Reference</h2>
+    <div class="brand-grid">
+      <div class="brand-item">
+        <div class="brand-item-label">Brand Name</div>
+        <div class="brand-item-value">Attune AI</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Company</div>
+        <div class="brand-item-value">Bishop Shop Enterprises LLC</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Tagline</div>
+        <div class="brand-item-value">The Conversation Gym</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Website</div>
+        <div class="brand-item-value">bishopshop.co.site</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Email</div>
+        <div class="brand-item-value">attuneai@bishopshop.co.site</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">App Store</div>
+        <div class="brand-item-value">Attune AI+ (iOS)</div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Primary Colors</div>
+        <div class="brand-item-value">
+          <span class="color-swatch" style="background:#0D1117"></span>#0D1117 (Ink)
+          <span class="color-swatch" style="background:#F2C744; margin-left:12px"></span>#F2C744 (Yellow)
+          <span class="color-swatch" style="background:#1F5BA8; margin-left:12px"></span>#1F5BA8 (Blue)
+        </div>
+      </div>
+      <div class="brand-item">
+        <div class="brand-item-label">Recommended Handle</div>
+        <div class="brand-item-value">@attuneai</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <strong>Tip:</strong> Try to secure <strong>@attuneai</strong> on every platform for consistency. If taken, try <strong>@attuneaiapp</strong> or <strong>@attuneai_</strong> as fallbacks.
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- 1. X / TWITTER             -->
+  <!-- ========================= -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <span class="platform-tag twitter">X / Twitter</span>
+      <h2 class="platform-step">Step 1 — Create Your X Account</h2>
+    </div>
+
+    <a class="signup-link" href="https://x.com/i/flow/signup" target="_blank" rel="noopener noreferrer">Go to X Sign-Up &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Display Name</div>
+      <div class="field-value">Attune AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Username / Handle</div>
+      <div class="field-value">@attuneai</div>
+      <div class="field-note">Fallbacks if taken: @attuneaiapp, @attune_ai, @attuneai_</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Bio (160 characters max)</div>
+      <div class="field-value">The conversation gym. Train influence without manipulation. AI sparring partners, proven frameworks, ELO skill tracking. Now on iOS.</div>
+      <div class="field-note">155 characters</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Website URL</div>
+      <div class="field-value">https://bishopshop.co.site</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Location</div>
+      <div class="field-value">Virginia, USA</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Category</div>
+      <div class="field-value">Apps &amp; Technology</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Profile Image</div>
+      <div class="field-value">Yellow "A" logo mark on dark (#0D1117) background, matching the nav logo on the website. Square, 400x400px minimum.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Header / Banner Image</div>
+      <div class="field-value">Dark background (#0D1117) with tagline "Train Your Conversations Like An Athlete" in Bebas Neue. Yellow (#F2C744) accent. 1500x500px.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Pinned Tweet (first post)</div>
+      <div class="field-value">Attune AI is the first ethical conversation gym.
+
+6 AI sparring partners that apply real pressure.
+8 ELO skill tracks that measure real growth.
+33+ concepts from peer-reviewed behavioral science.
+0 manipulation tactics. Ever.
+
+Your words are your edge. Start training.
+bishopshop.co.site</div>
+    </div>
+
+    <ul class="checklist">
+      <li>Create account with business email (attuneai@bishopshop.co.site)</li>
+      <li>Upload profile photo and banner</li>
+      <li>Fill in bio, website, and location</li>
+      <li>Publish and pin the first tweet</li>
+      <li>Follow relevant accounts in communication, AI, and personal development spaces</li>
+    </ul>
+  </section>
+
+  <!-- ========================= -->
+  <!-- 2. LINKEDIN                -->
+  <!-- ========================= -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <span class="platform-tag linkedin">LinkedIn</span>
+      <h2 class="platform-step">Step 2 — Create Your LinkedIn Page</h2>
+    </div>
+
+    <a class="signup-link" href="https://www.linkedin.com/company/setup/new/" target="_blank" rel="noopener noreferrer">Create a LinkedIn Company Page &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Company Name</div>
+      <div class="field-value">Attune AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">LinkedIn Public URL</div>
+      <div class="field-value">linkedin.com/company/attuneai</div>
+      <div class="field-note">Fallbacks: attuneai-app, attune-ai</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Tagline (120 characters max)</div>
+      <div class="field-value">The conversation gym. AI sparring, proven frameworks, and ELO skill tracking. Influence without manipulation.</div>
+      <div class="field-note">111 characters</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">About / Description</div>
+      <div class="field-value">Attune AI is the first ethical conversation gym — an iOS app that trains communication skills through AI sparring partners, structured coaching, and measurable skill progression.
+
+Every session follows an athletic training loop: Warm-Up, Drill, Sparring, and Recovery. You practice against 6 AI personas designed to apply real conversational pressure — The Closer, The Guilt-Tripper, The Stonewaller, The Charmer, The Authority, and The Negotiator. After each exchange, an AI coach provides specific, actionable feedback.
+
+Your growth is tracked across 8 ELO skill dimensions and 6 belt levels. Every concept in the curriculum is drawn from peer-reviewed behavioral science: Nonviolent Communication, Relationship Science, Tactical Negotiation, the Composure Framework, Vulnerability Science, and Deep Listening.
+
+Attune AI publishes a permanent Will-Not-Train list. We teach influence without coercion — no manipulation tactics, no dark patterns, no scripts designed to override autonomy.
+
+Built by Bishop Shop Enterprises LLC.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Industry</div>
+      <div class="field-value">Technology, Information and Internet</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Company Size</div>
+      <div class="field-value">2-10 employees</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Company Type</div>
+      <div class="field-value">Privately Held</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Specialties</div>
+      <div class="field-value">Communication Training, AI Coaching, Negotiation Skills, Emotional Intelligence, Conflict Resolution, Behavioral Science, Ethical AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Website</div>
+      <div class="field-value">https://bishopshop.co.site</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Logo</div>
+      <div class="field-value">Yellow "A" logo mark on dark background. 300x300px minimum.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Cover Image</div>
+      <div class="field-value">Dark background with "Train Your Conversations Like An Athlete" headline, phone mockup, and yellow accent. 1128x191px.</div>
+    </div>
+
+    <ul class="checklist">
+      <li>Create Company Page from your personal LinkedIn admin account</li>
+      <li>Upload logo and cover image</li>
+      <li>Fill in About, Tagline, Specialties, and Website</li>
+      <li>Add a call-to-action button: "Visit website" &rarr; https://bishopshop.co.site</li>
+      <li>Publish a first post (use Day 1 LinkedIn post from the promo calendar)</li>
+    </ul>
+  </section>
+
+  <!-- ========================= -->
+  <!-- 3. FACEBOOK                -->
+  <!-- ========================= -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <span class="platform-tag facebook">Facebook</span>
+      <h2 class="platform-step">Step 3 — Create Your Facebook Page</h2>
+    </div>
+
+    <a class="signup-link" href="https://www.facebook.com/pages/create" target="_blank" rel="noopener noreferrer">Create a Facebook Page &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Page Name</div>
+      <div class="field-value">Attune AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Username</div>
+      <div class="field-value">@attuneai</div>
+      <div class="field-note">Fallbacks: @attuneaiapp, @attuneai.app</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Category</div>
+      <div class="field-value">App (primary), Education (secondary)</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Bio / Short Description</div>
+      <div class="field-value">The ethical conversation gym. AI sparring partners, proven frameworks, and ELO skill tracking. Train influence without manipulation. Now on iOS.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">About / Long Description</div>
+      <div class="field-value">Attune AI is the first ethical conversation gym — an iOS app that trains your communication skills through AI sparring partners, structured coaching, and measurable skill progression.
+
+Practice against 6 AI personas that apply real conversational pressure. Get specific feedback from an AI coach after every exchange. Track your growth across 8 ELO skill dimensions and 6 belt levels.
+
+Every concept is built on peer-reviewed behavioral science: Nonviolent Communication, Relationship Science, Tactical Negotiation, the Composure Framework, and more.
+
+We publish a permanent Will-Not-Train list. No manipulation. No coercion. No dark patterns. Your words are your edge.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Website</div>
+      <div class="field-value">https://bishopshop.co.site</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Email</div>
+      <div class="field-value">attuneai@bishopshop.co.site</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Call-to-Action Button</div>
+      <div class="field-value">Use App &rarr; https://apps.apple.com/app/attuneai-plus/id6761643196</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Profile Photo</div>
+      <div class="field-value">Yellow "A" logo mark on dark background. 170x170px minimum.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Cover Photo</div>
+      <div class="field-value">Dark background with "Train Your Conversations Like An Athlete" headline, phone mockup with app UI, and yellow accent. 820x312px.</div>
+    </div>
+
+    <ul class="checklist">
+      <li>Create Page from your personal Facebook account</li>
+      <li>Upload profile photo and cover photo</li>
+      <li>Fill in Bio, About, Website, and Email</li>
+      <li>Set the "Use App" CTA button to the App Store link</li>
+      <li>Publish a first post (use Day 1 Facebook post from the promo calendar)</li>
+      <li>Invite friends and contacts to follow the page</li>
+    </ul>
+  </section>
+
+  <!-- ========================= -->
+  <!-- 4. TIKTOK                  -->
+  <!-- ========================= -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <span class="platform-tag tiktok">TikTok</span>
+      <h2 class="platform-step">Step 4 — Create Your TikTok Account</h2>
+    </div>
+
+    <a class="signup-link" href="https://www.tiktok.com/signup" target="_blank" rel="noopener noreferrer">Go to TikTok Sign-Up &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Display Name</div>
+      <div class="field-value">Attune AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Username</div>
+      <div class="field-value">@attuneai</div>
+      <div class="field-note">Fallbacks: @attuneaiapp, @attune.ai, @attuneai_</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Bio (80 characters max)</div>
+      <div class="field-value">The conversation gym. Train influence, not manipulation.</div>
+      <div class="field-note">56 characters</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Website / Link in Bio</div>
+      <div class="field-value">https://bishopshop.co.site</div>
+      <div class="field-note">Requires a Business Account to add a website link. Switch to Business Account under Settings &rarr; Manage Account &rarr; Switch to Business Account. Select "App" or "Education" as category.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Profile Photo</div>
+      <div class="field-value">Yellow "A" logo mark on dark background. High contrast for small circular crop.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">First Video Concept</div>
+      <div class="field-value">Use the Day 1 TikTok script from the promo calendar:
+"POV: You finally have a place to practice hard conversations"</div>
+    </div>
+
+    <ul class="checklist">
+      <li>Create account with email (attuneai@bishopshop.co.site) or phone</li>
+      <li>Switch to Business Account (Settings &rarr; Manage Account)</li>
+      <li>Upload profile photo</li>
+      <li>Fill in display name, bio, and website link</li>
+      <li>Post first video using the TikTok script from the promo calendar</li>
+    </ul>
+
+    <div class="tip-box">
+      <strong>Tip:</strong> TikTok Business Accounts get access to analytics, website links, and commercial audio. Select "Education" or "App" as your business category.
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- 5. THREADS                 -->
+  <!-- ========================= -->
+  <section class="platform-section">
+    <div class="platform-header">
+      <span class="platform-tag threads">Threads</span>
+      <h2 class="platform-step">Step 5 — Create Your Threads Profile</h2>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Important: Threads Requires Instagram</div>
+      <div class="field-value">Threads accounts are created through Instagram. You must have an Instagram account first. Your Threads username will match your Instagram handle.</div>
+    </div>
+
+    <a class="signup-link" href="https://www.instagram.com/accounts/emailsignup/" target="_blank" rel="noopener noreferrer">Step 5a: Create Instagram Account First &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Display Name</div>
+      <div class="field-value">Attune AI</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Username</div>
+      <div class="field-value">@attuneai</div>
+      <div class="field-note">Fallbacks: @attuneai.app, @attuneaiapp, @attune.ai</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Bio (150 characters max)</div>
+      <div class="field-value">The conversation gym. AI sparring, proven frameworks, ELO tracking. Train influence without manipulation. iOS app below.</div>
+      <div class="field-note">119 characters</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Website Link</div>
+      <div class="field-value">https://bishopshop.co.site</div>
+      <div class="field-note">Switch to Professional Account (Business or Creator) to add a website link, contact button, and category label.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Category</div>
+      <div class="field-value">App (or Education)</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">Instagram Profile Photo</div>
+      <div class="field-value">Yellow "A" logo mark on dark background. High contrast for circular crop. 320x320px minimum.</div>
+    </div>
+
+    <a class="signup-link" href="https://www.threads.net/" target="_blank" rel="noopener noreferrer" style="margin-top: 16px;">Step 5b: Then Open Threads &rarr;</a>
+
+    <div class="field-card">
+      <div class="field-label">Threads Bio (if customized separately)</div>
+      <div class="field-value">The conversation gym. Train influence, not manipulation. AI sparring + real feedback. iOS.</div>
+      <div class="field-note">Threads may auto-import your Instagram bio. You can customize it separately in Threads settings.</div>
+    </div>
+
+    <div class="field-card">
+      <div class="field-label">First Thread</div>
+      <div class="field-value">Use the Day 1 Threads content from the promo calendar (3-post thread introducing Attune AI and The Closer persona).</div>
+    </div>
+
+    <ul class="checklist">
+      <li>Create Instagram account with business email</li>
+      <li>Switch Instagram to Professional Account (Business)</li>
+      <li>Upload profile photo, fill in bio, website, and category</li>
+      <li>Download the Threads app (or go to threads.net)</li>
+      <li>Log in with your Instagram credentials to create the Threads profile</li>
+      <li>Customize Threads bio if desired</li>
+      <li>Publish first thread</li>
+      <li>Post first Instagram content (use Day 1 Instagram carousel from promo calendar)</li>
+    </ul>
+
+    <div class="tip-box">
+      <strong>Note:</strong> Since Threads requires Instagram, this step also sets up your Instagram account. The promo calendar already includes Instagram content for both days.
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
