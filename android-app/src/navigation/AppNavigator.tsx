@@ -13,6 +13,8 @@ import { SkillsScreen } from '@/screens/SkillsScreen';
 import { SparringScreen } from '@/screens/SparringScreen';
 import { ProgressScreen } from '@/screens/ProgressScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen';
+import { DailyProgramScreen } from '@/screens/DailyProgramScreen';
+import { SpotInfluenceScreen } from '@/screens/SpotInfluenceScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,6 +56,16 @@ function MainTabs() {
           tabBarIcon: ({ color, size }) => (
             <Icon name="chart-line" size={size} color={color} />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="Program"
+        component={DailyProgramScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="calendar-check-outline" size={size} color={color} />
+          ),
+          tabBarLabel: 'Daily',
         }}
       />
       <Tab.Screen
@@ -102,6 +114,11 @@ export function AppNavigator() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={MainTabs} />
+        <Stack.Screen
+          name="SpotInfluence"
+          component={SpotInfluenceScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

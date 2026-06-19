@@ -88,6 +88,13 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         <Text style={styles.sectionTitle}>Quick Actions</Text>
         <View style={styles.actionsGrid}>
           <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.accent + '15' }]}
+            onPress={() => navigation.navigate('Program')}
+          >
+            <Icon name="calendar-check-outline" size={28} color={colors.accent} />
+            <Text style={styles.actionLabel}>Daily Program</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[styles.actionCard, { backgroundColor: colors.primary + '15' }]}
             onPress={() => navigation.navigate('Sparring')}
           >
@@ -95,11 +102,11 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
             <Text style={styles.actionLabel}>Start Sparring</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.actionCard, { backgroundColor: colors.accent + '15' }]}
-            onPress={() => navigation.navigate('Skills')}
+            style={[styles.actionCard, { backgroundColor: colors.error + '15' }]}
+            onPress={() => navigation.navigate('SpotInfluence')}
           >
-            <Icon name="chart-line" size={28} color={colors.accent} />
-            <Text style={styles.actionLabel}>View Skills</Text>
+            <Icon name="eye-outline" size={28} color={colors.error} />
+            <Text style={styles.actionLabel}>Spot Influence</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.actionCard, { backgroundColor: colors.success + '15' }]}
@@ -107,13 +114,6 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
           >
             <Icon name="trophy-outline" size={28} color={colors.success} />
             <Text style={styles.actionLabel}>Badges</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.actionCard, { backgroundColor: colors.info + '15' }]}
-            onPress={() => navigation.navigate('Settings')}
-          >
-            <Icon name="cog-outline" size={28} color={colors.info} />
-            <Text style={styles.actionLabel}>Settings</Text>
           </TouchableOpacity>
         </View>
       </View>
