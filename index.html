@@ -754,6 +754,1267 @@
     color: var(--blue-light);
   }
 
+  /* ARTICULATION ADD-ON */
+  .artic-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #0d1520 50%, var(--ink) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .artic-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242,199,68,0.25), transparent);
+  }
+
+  .artic-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .artic-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(242,199,68,0.12);
+    border: 1px solid rgba(242,199,68,0.3);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .artic-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .artic-mode-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .artic-mode-card:hover {
+    transform: translateY(-4px);
+  }
+  .artic-mode-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+  }
+  .artic-mode-card:hover::before { opacity: 1; }
+
+  .artic-mode-card.mode-gentle { border-color: rgba(76,175,80,0.2); }
+  .artic-mode-card.mode-gentle:hover { border-color: rgba(76,175,80,0.5); }
+  .artic-mode-card.mode-gentle::before { background: #4CAF50; opacity: 0.6; }
+
+  .artic-mode-card.mode-standard { border-color: rgba(31,91,168,0.2); }
+  .artic-mode-card.mode-standard:hover { border-color: rgba(31,91,168,0.5); }
+  .artic-mode-card.mode-standard::before { background: var(--blue); opacity: 0.6; }
+
+  .artic-mode-card.mode-intensive { border-color: rgba(242,199,68,0.2); }
+  .artic-mode-card.mode-intensive:hover { border-color: rgba(242,199,68,0.5); }
+  .artic-mode-card.mode-intensive::before { background: var(--yellow); opacity: 0.6; }
+
+  .artic-mode-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .mode-gentle .artic-mode-icon { background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.3); }
+  .mode-standard .artic-mode-icon { background: rgba(31,91,168,0.2); border: 1px solid rgba(31,91,168,0.4); }
+  .mode-intensive .artic-mode-icon { background: rgba(242,199,68,0.12); border: 1px solid rgba(242,199,68,0.3); }
+
+  .artic-mode-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .artic-mode-intensity {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .mode-gentle .artic-mode-intensity { color: #4CAF50; }
+  .mode-standard .artic-mode-intensity { color: var(--blue-light); }
+  .mode-intensive .artic-mode-intensity { color: var(--yellow); }
+
+  .artic-mode-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .artic-mode-traits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .artic-mode-traits li {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .artic-mode-traits li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mode-gentle .artic-mode-traits li::before { background: #4CAF50; }
+  .mode-standard .artic-mode-traits li::before { background: var(--blue-light); }
+  .mode-intensive .artic-mode-traits li::before { background: var(--yellow); }
+
+  .artic-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+  }
+  .artic-feature-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .artic-feature-text h3 em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+  .artic-feature-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .artic-stat-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+  .artic-stat {
+    text-align: center;
+  }
+  .artic-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .artic-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* Drill Categories */
+  .artic-drill-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .artic-drill-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-drill-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-drill-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-drill-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .artic-drill-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .artic-drill-card:hover { border-color: rgba(31,91,168,0.35); transform: translateY(-3px); }
+  .artic-drill-icon { font-size: 24px; margin-bottom: 12px; }
+  .artic-drill-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .artic-drill-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .artic-drill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .artic-drill-tag {
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(31,91,168,0.15);
+    border: 1px solid rgba(31,91,168,0.25);
+    color: var(--blue-light);
+  }
+
+  /* Scenario Labs */
+  .artic-labs-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .artic-labs-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-labs-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-labs-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-labs-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+  .artic-lab-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .artic-lab-card:hover { border-color: rgba(242,199,68,0.3); transform: translateY(-3px); }
+  .artic-lab-emoji { font-size: 28px; margin-bottom: 10px; }
+  .artic-lab-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  .artic-lab-skills {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Skill Ladder */
+  .artic-ladder-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .artic-ladder-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .artic-ladder-header h3 em { font-style: italic; color: var(--yellow); }
+  .artic-ladder-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .artic-ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .artic-ladder-step {
+    background: var(--ink-soft);
+    padding: 28px 20px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .artic-ladder-step:hover { background: rgba(31,91,168,0.1); }
+  .artic-ladder-step::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+    opacity: 0.5;
+  }
+  .artic-ladder-step:hover::after { opacity: 1; }
+  .artic-ladder-step:nth-child(1)::after { background: #4CAF50; }
+  .artic-ladder-step:nth-child(2)::after { background: var(--blue-light); }
+  .artic-ladder-step:nth-child(3)::after { background: #9C27B0; }
+  .artic-ladder-step:nth-child(4)::after { background: #FF9800; }
+  .artic-ladder-step:nth-child(5)::after { background: var(--yellow); }
+
+  .artic-ladder-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 12px; right: 16px;
+  }
+  .artic-ladder-level {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .artic-ladder-step:nth-child(1) .artic-ladder-level { color: #4CAF50; }
+  .artic-ladder-step:nth-child(2) .artic-ladder-level { color: var(--blue-light); }
+  .artic-ladder-step:nth-child(3) .artic-ladder-level { color: #9C27B0; }
+  .artic-ladder-step:nth-child(4) .artic-ladder-level { color: #FF9800; }
+  .artic-ladder-step:nth-child(5) .artic-ladder-level { color: var(--yellow); }
+
+  .artic-ladder-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .artic-ladder-desc {
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Clarity Score */
+  .artic-score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(242,199,68,0.04);
+    border: 1px solid rgba(242,199,68,0.15);
+    border-radius: 4px;
+  }
+  .artic-score-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .artic-score-text h3 em { font-style: italic; color: var(--yellow); }
+  .artic-score-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .artic-score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .artic-score-item {
+    text-align: center;
+    padding: 16px 8px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .artic-score-icon { font-size: 20px; margin-bottom: 6px; }
+  .artic-score-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+  }
+  .artic-score-what {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Dividers between sub-sections */
+  .artic-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242,199,68,0.3), transparent);
+    margin: 0 auto 64px;
+  }
+
+  @media (max-width: 600px) {
+    .artic-mode-grid { grid-template-columns: 1fr; }
+    .artic-stat-row { flex-wrap: wrap; }
+    .artic-drill-grid { grid-template-columns: 1fr; }
+    .artic-labs-grid { grid-template-columns: repeat(2, 1fr); }
+    .artic-ladder { grid-template-columns: 1fr; }
+    .artic-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .artic-score-grid { grid-template-columns: repeat(3, 1fr); }
+    .parent-mode-grid { grid-template-columns: 1fr; }
+    .parent-stat-row { flex-wrap: wrap; }
+    .parent-drill-grid { grid-template-columns: 1fr; }
+    .parent-labs-grid { grid-template-columns: repeat(2, 1fr); }
+    .parent-ladder { grid-template-columns: 1fr; }
+    .parent-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .parent-score-grid { grid-template-columns: repeat(3, 1fr); }
+    .parent-games-grid { grid-template-columns: 1fr; }
+    .parent-games-motivation { grid-template-columns: 1fr; }
+    .parent-community-grid { grid-template-columns: 1fr; }
+    .parent-community-principles { grid-template-columns: repeat(2, 1fr); }
+    .parent-safe-flow { grid-template-columns: 1fr; }
+    .parent-safe-step::after { display: none; }
+    .parent-safe-features { grid-template-columns: 1fr; }
+  }
+
+  /* PARENT/CHILD ADD-ON */
+  .parent-section {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--ink) 0%, #1a0f0d 50%, var(--ink) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .parent-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232,133,101,0.25), transparent);
+  }
+
+  .parent-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  .parent-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,133,101,0.12);
+    border: 1px solid rgba(232,133,101,0.3);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #E88565;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .parent-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .parent-mode-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .parent-mode-card:hover { transform: translateY(-4px); }
+  .parent-mode-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+  }
+  .parent-mode-card:hover::before { opacity: 1; }
+
+  .parent-mode-card.mode-emotion { border-color: rgba(76,175,80,0.2); }
+  .parent-mode-card.mode-emotion:hover { border-color: rgba(76,175,80,0.5); }
+  .parent-mode-card.mode-emotion::before { background: #4CAF50; opacity: 0.6; }
+
+  .parent-mode-card.mode-adapt { border-color: rgba(66,165,245,0.2); }
+  .parent-mode-card.mode-adapt:hover { border-color: rgba(66,165,245,0.5); }
+  .parent-mode-card.mode-adapt::before { background: #42A5F5; opacity: 0.6; }
+
+  .parent-mode-card.mode-repair { border-color: rgba(232,133,101,0.2); }
+  .parent-mode-card.mode-repair:hover { border-color: rgba(232,133,101,0.5); }
+  .parent-mode-card.mode-repair::before { background: #E88565; opacity: 0.6; }
+
+  .parent-mode-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .mode-emotion .parent-mode-icon { background: rgba(76,175,80,0.15); border: 1px solid rgba(76,175,80,0.3); }
+  .mode-adapt .parent-mode-icon { background: rgba(66,165,245,0.15); border: 1px solid rgba(66,165,245,0.3); }
+  .mode-repair .parent-mode-icon { background: rgba(232,133,101,0.12); border: 1px solid rgba(232,133,101,0.3); }
+
+  .parent-mode-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .parent-mode-intensity {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .mode-emotion .parent-mode-intensity { color: #4CAF50; }
+  .mode-adapt .parent-mode-intensity { color: #42A5F5; }
+  .mode-repair .parent-mode-intensity { color: #E88565; }
+
+  .parent-mode-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .parent-mode-traits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .parent-mode-traits li {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .parent-mode-traits li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .mode-emotion .parent-mode-traits li::before { background: #4CAF50; }
+  .mode-adapt .parent-mode-traits li::before { background: #42A5F5; }
+  .mode-repair .parent-mode-traits li::before { background: #E88565; }
+
+  .parent-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+  }
+  .parent-feature-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .parent-feature-text h3 em { font-style: italic; color: #E88565; }
+  .parent-feature-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .parent-stat-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+  .parent-stat { text-align: center; }
+  .parent-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+    color: #E88565;
+    line-height: 1;
+  }
+  .parent-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .parent-drill-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .parent-drill-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .parent-drill-header h3 em { font-style: italic; color: #E88565; }
+  .parent-drill-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .parent-drill-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .parent-drill-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .parent-drill-card:hover { border-color: rgba(232,133,101,0.35); transform: translateY(-3px); }
+  .parent-drill-icon { font-size: 24px; margin-bottom: 12px; }
+  .parent-drill-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .parent-drill-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+  .parent-drill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .parent-drill-tag {
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    background: rgba(232,133,101,0.15);
+    border: 1px solid rgba(232,133,101,0.25);
+    color: #E88565;
+  }
+
+  .parent-labs-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .parent-labs-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .parent-labs-header h3 em { font-style: italic; color: #E88565; }
+  .parent-labs-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .parent-labs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+  .parent-lab-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .parent-lab-card:hover { border-color: rgba(232,133,101,0.3); transform: translateY(-3px); }
+  .parent-lab-emoji { font-size: 28px; margin-bottom: 10px; }
+  .parent-lab-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+  .parent-lab-age {
+    font-size: 9px;
+    color: #E88565;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .parent-lab-skills {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .parent-ladder-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .parent-ladder-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 12px;
+  }
+  .parent-ladder-header h3 em { font-style: italic; color: #E88565; }
+  .parent-ladder-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .parent-ladder {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .parent-ladder-step {
+    background: var(--ink-soft);
+    padding: 28px 20px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .parent-ladder-step:hover { background: rgba(232,133,101,0.08); }
+  .parent-ladder-step::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.3s;
+    opacity: 0.5;
+  }
+  .parent-ladder-step:hover::after { opacity: 1; }
+  .parent-ladder-step:nth-child(1)::after { background: #4CAF50; }
+  .parent-ladder-step:nth-child(2)::after { background: #42A5F5; }
+  .parent-ladder-step:nth-child(3)::after { background: #E88565; }
+  .parent-ladder-step:nth-child(4)::after { background: #9C27B0; }
+  .parent-ladder-step:nth-child(5)::after { background: #F2C744; }
+
+  .parent-ladder-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    position: absolute;
+    top: 12px; right: 16px;
+  }
+  .parent-ladder-level {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .parent-ladder-step:nth-child(1) .parent-ladder-level { color: #4CAF50; }
+  .parent-ladder-step:nth-child(2) .parent-ladder-level { color: #42A5F5; }
+  .parent-ladder-step:nth-child(3) .parent-ladder-level { color: #E88565; }
+  .parent-ladder-step:nth-child(4) .parent-ladder-level { color: #9C27B0; }
+  .parent-ladder-step:nth-child(5) .parent-ladder-level { color: #F2C744; }
+
+  .parent-ladder-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .parent-ladder-desc {
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .parent-score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    background: rgba(232,133,101,0.04);
+    border: 1px solid rgba(232,133,101,0.15);
+    border-radius: 4px;
+  }
+  .parent-score-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .parent-score-text h3 em { font-style: italic; color: #E88565; }
+  .parent-score-text p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+  .parent-score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .parent-score-item {
+    text-align: center;
+    padding: 16px 8px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .parent-score-icon { font-size: 20px; margin-bottom: 6px; }
+  .parent-score-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+  }
+  .parent-score-what {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .parent-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232,133,101,0.3), transparent);
+    margin: 0 auto 64px;
+  }
+
+  /* LEARNING GAMES */
+  .parent-games-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-games-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-games-header h3 em { font-style: italic; color: #E88565; }
+  .parent-games-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .parent-games-age-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .parent-age-tab {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(232,133,101,0.25);
+    color: rgba(255,255,255,0.6);
+    background: transparent;
+  }
+  .parent-age-tab.active {
+    background: rgba(232,133,101,0.15);
+    color: #E88565;
+    border-color: #E88565;
+  }
+  .parent-games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .parent-game-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 24px 20px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .parent-game-card:hover {
+    border-color: rgba(232,133,101,0.3);
+    transform: translateY(-2px);
+  }
+  .parent-game-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .parent-game-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .parent-game-age {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #E88565;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .parent-game-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  .parent-game-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .parent-game-tag.tag-coop {
+    background: rgba(76,175,80,0.12);
+    color: #66BB6A;
+    border: 1px solid rgba(76,175,80,0.25);
+  }
+  .parent-game-tag.tag-solo {
+    background: rgba(66,165,245,0.12);
+    color: #42A5F5;
+    border: 1px solid rgba(66,165,245,0.25);
+  }
+  .parent-game-tag.tag-family {
+    background: rgba(232,133,101,0.12);
+    color: #E88565;
+    border: 1px solid rgba(232,133,101,0.25);
+  }
+  .parent-games-motivation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .parent-motivation-item {
+    text-align: center;
+    padding: 24px 16px;
+    background: rgba(232,133,101,0.04);
+    border: 1px solid rgba(232,133,101,0.1);
+    border-radius: 4px;
+  }
+  .parent-motivation-icon { font-size: 24px; margin-bottom: 8px; }
+  .parent-motivation-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .parent-motivation-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* COMMUNITY HUB */
+  .parent-community-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-community-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-community-header h3 em { font-style: italic; color: #E88565; }
+  .parent-community-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .parent-community-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .parent-community-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 32px 28px;
+    transition: border-color 0.3s;
+  }
+  .parent-community-card:hover {
+    border-color: rgba(232,133,101,0.3);
+  }
+  .parent-community-card-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+  .parent-community-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .parent-community-card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+  }
+  .parent-community-tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .parent-community-tag {
+    padding: 3px 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-weight: 600;
+    background: rgba(232,133,101,0.08);
+    color: rgba(232,133,101,0.7);
+    border: 1px solid rgba(232,133,101,0.15);
+  }
+  .parent-community-principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .parent-principle {
+    text-align: center;
+    padding: 20px 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+  }
+  .parent-principle-icon { font-size: 20px; margin-bottom: 6px; }
+  .parent-principle-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .parent-principle-desc {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+  }
+
+  /* SAFE SPACE */
+  .parent-safe-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-safe-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: rgba(76,175,80,0.12);
+    color: #66BB6A;
+    border: 1px solid rgba(76,175,80,0.3);
+    margin-bottom: 20px;
+  }
+  .parent-safe-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-safe-header h3 em { font-style: italic; color: #66BB6A; }
+  .parent-safe-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .parent-safe-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .parent-safe-step {
+    text-align: center;
+    padding: 24px 12px;
+    background: rgba(76,175,80,0.04);
+    border: 1px solid rgba(76,175,80,0.12);
+    border-radius: 4px;
+    position: relative;
+  }
+  .parent-safe-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #66BB6A;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .parent-safe-step-icon { font-size: 24px; margin-bottom: 8px; }
+  .parent-safe-step-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .parent-safe-step-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+  .parent-safe-step::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(76,175,80,0.3);
+    font-size: 14px;
+  }
+  .parent-safe-step:last-child::after { display: none; }
+  .parent-safe-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .parent-safe-feature {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: border-color 0.3s;
+  }
+  .parent-safe-feature:hover {
+    border-color: rgba(76,175,80,0.3);
+  }
+  .parent-safe-feature-icon { font-size: 24px; margin-bottom: 12px; }
+  .parent-safe-feature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .parent-safe-feature-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  .parent-safe-promise {
+    text-align: center;
+    padding: 40px;
+    background: rgba(76,175,80,0.04);
+    border: 1px solid rgba(76,175,80,0.15);
+    border-radius: 4px;
+    margin-top: 32px;
+  }
+  .parent-safe-promise h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-safe-promise h4 em { font-style: italic; color: #66BB6A; }
+  .parent-safe-promise p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
   /* PRICING */
   .pricing-section {
     padding: 120px 0;
@@ -1112,8 +2373,22 @@
     .hero-visual { display: none; }
     .how-grid { grid-template-columns: repeat(2, 1fr); }
     @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
-    .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
-    .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
+    .framework-grid, .persona-grid, .artic-mode-grid, .artic-drill-grid { grid-template-columns: repeat(2, 1fr); }
+    .curriculum-header, .sparring-header, .artic-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
+    .artic-feature-row, .artic-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .artic-labs-grid { grid-template-columns: repeat(3, 1fr); }
+    .artic-ladder { grid-template-columns: repeat(3, 1fr); }
+    .parent-mode-grid, .parent-drill-grid { grid-template-columns: repeat(2, 1fr); }
+    .parent-header { grid-template-columns: 1fr; gap: 32px; }
+    .parent-feature-row, .parent-score-row { grid-template-columns: 1fr; gap: 32px; }
+    .parent-labs-grid { grid-template-columns: repeat(3, 1fr); }
+    .parent-ladder { grid-template-columns: repeat(3, 1fr); }
+    .parent-games-grid { grid-template-columns: repeat(2, 1fr); }
+    .parent-games-motivation { grid-template-columns: repeat(3, 1fr); }
+    .parent-community-grid { grid-template-columns: 1fr; }
+    .parent-community-principles { grid-template-columns: repeat(2, 1fr); }
+    .parent-safe-flow { grid-template-columns: repeat(3, 1fr); }
+    .parent-safe-features { grid-template-columns: repeat(3, 1fr); }
     .pricing-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     nav { padding: 16px 24px; }
@@ -1138,6 +2413,8 @@
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
+    <li><a href="#articulation">Articulation</a></li>
+    <li><a href="#parent-child">Parent &amp; Child</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#get-started" class="nav-cta">Get the App</a></li>
@@ -1415,6 +2692,877 @@
   </div>
 </section>
 
+<!-- ARTICULATION ADD-ON -->
+<section class="artic-section" id="articulation" aria-labelledby="artic-heading">
+  <div class="section-inner">
+
+    <!-- HEADER -->
+    <div class="artic-header">
+      <div>
+        <div class="artic-badge reveal">Premium Add-On</div>
+        <div class="section-label reveal">Articulation Training</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="artic-heading">
+          Say what you mean.<br>
+          <em>Mean what you say.</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        The Core Gym trains you to read conversations and respond under pressure. Articulation Training goes deeper — rebuilding how you structure thoughts, hold your line, and land your point with the precision of a courtroom advocate, the clarity of a media-trained executive, and the composure of a seasoned negotiator.
+      </p>
+    </div>
+
+    <!-- THREE INTENSITY MODES -->
+    <div class="artic-mode-grid">
+      <article class="artic-mode-card mode-gentle reveal">
+        <div class="artic-mode-icon">🌿</div>
+        <h3 class="artic-mode-name">Gentle Mode</h3>
+        <div class="artic-mode-intensity">Low Pressure</div>
+        <p class="artic-mode-desc">Guided prompts with supportive, encouraging feedback. Build confidence with new frameworks or warm up before a high-stakes moment. The coach scaffolds your thinking and suggests improvements without judgment.</p>
+        <ul class="artic-mode-traits">
+          <li>Scaffolded sentence starters</li>
+          <li>Tone and pacing suggestions</li>
+          <li>Encouraging corrections</li>
+          <li>Supportive audience simulation</li>
+        </ul>
+      </article>
+      <article class="artic-mode-card mode-standard reveal reveal-delay-1">
+        <div class="artic-mode-icon">🎯</div>
+        <h3 class="artic-mode-name">Standard Mode</h3>
+        <div class="artic-mode-intensity">Moderate Pressure</div>
+        <p class="artic-mode-desc">Real-time coaching with direct, specific feedback. The coach flags filler words, detects hedging, analyzes your sentence structure, and scores your clarity live. No hand-holding — honest assessment.</p>
+        <ul class="artic-mode-traits">
+          <li>Live clarity scoring</li>
+          <li>Filler and hedge detection</li>
+          <li>Structure and flow analysis</li>
+          <li>Neutral audience simulation</li>
+        </ul>
+      </article>
+      <article class="artic-mode-card mode-intensive reveal reveal-delay-2">
+        <div class="artic-mode-icon">🔥</div>
+        <h3 class="artic-mode-name">Intensive Mode</h3>
+        <div class="artic-mode-intensity">High Pressure</div>
+        <p class="artic-mode-desc">Adversarial, real-world conditions. The coach interrupts mid-sentence, challenges weak phrasing, imposes time pressure, and demands precision. You lose points for vague language. No mercy.</p>
+        <ul class="artic-mode-traits">
+          <li>Active interruption challenges</li>
+          <li>Point-loss on vague language</li>
+          <li>Rapid-fire rebuttals</li>
+          <li>Hostile audience simulation</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- DRILL CATEGORIES -->
+    <div class="artic-drill-header reveal">
+      <h3>27 drills across <em>6 categories</em></h3>
+      <p>Every drill is drawn from competitive debate, moot court advocacy, media training, executive coaching, and improv — adapted for AI-powered practice.</p>
+    </div>
+
+    <div class="artic-drill-grid">
+      <article class="artic-drill-card reveal">
+        <div class="artic-drill-icon">💎</div>
+        <h4 class="artic-drill-name">Clarity Drills</h4>
+        <p class="artic-drill-desc">Strip away complexity. Land your message so anyone can understand it — no jargon, no ambiguity, no confusion.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Plain Language Rewrite</span>
+          <span class="artic-drill-tag">Non-Expert Playback</span>
+          <span class="artic-drill-tag">Three-Sentence Story</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-1">
+        <div class="artic-drill-icon">✂️</div>
+        <h4 class="artic-drill-name">Conciseness Drills</h4>
+        <p class="artic-drill-desc">Say more with less. Eliminate padding, cut filler words, and learn to land your point in 15 seconds flat.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Countdown Rebuttal</span>
+          <span class="artic-drill-tag">Sound Bite Challenge</span>
+          <span class="artic-drill-tag">Filler Detector</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-2">
+        <div class="artic-drill-icon">🏗️</div>
+        <h4 class="artic-drill-name">Structure Drills</h4>
+        <p class="artic-drill-desc">Organize your thoughts on the fly using proven frameworks from military briefings, debate, and executive communication.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">PREP Sprint</span>
+          <span class="artic-drill-tag">BLUF Briefing</span>
+          <span class="artic-drill-tag">Argument Flip</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal">
+        <div class="artic-drill-icon">🔬</div>
+        <h4 class="artic-drill-name">Word Choice Drills</h4>
+        <p class="artic-drill-desc">Choose precise, powerful words. Eliminate hedges, strip intensifiers, and anchor your message with sticky, intentional language.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Hedge Hunter</span>
+          <span class="artic-drill-tag">Intensifier Strip</span>
+          <span class="artic-drill-tag">Word Swap</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-1">
+        <div class="artic-drill-icon">⚡</div>
+        <h4 class="artic-drill-name">Conviction Drills</h4>
+        <p class="artic-drill-desc">Deliver with confidence. Use silence as a weapon, answer without stalling, and project authority even when you feel uncertain.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">Silence Hold</span>
+          <span class="artic-drill-tag">Hot Seat</span>
+          <span class="artic-drill-tag">Dynamics Drill</span>
+        </div>
+      </article>
+      <article class="artic-drill-card reveal reveal-delay-2">
+        <div class="artic-drill-icon">🛡️</div>
+        <h4 class="artic-drill-name">Composure Drills</h4>
+        <p class="artic-drill-desc">Hold your point under fire. Handle interruptions, bridge past hostile questions, and maintain your line when the pressure climbs.</p>
+        <div class="artic-drill-tags">
+          <span class="artic-drill-tag">The Interrupt</span>
+          <span class="artic-drill-tag">Bridge &amp; Pivot</span>
+          <span class="artic-drill-tag">Pressure Ratchet</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- SCENARIO LABS -->
+    <div class="artic-labs-header reveal">
+      <h3>Practice where it <em>actually matters</em></h3>
+      <p>Full scenario simulations that combine multiple drill skills into realistic, high-stakes conversations you'll face in real life.</p>
+    </div>
+
+    <div class="artic-labs-grid">
+      <article class="artic-lab-card reveal">
+        <div class="artic-lab-emoji">💰</div>
+        <div class="artic-lab-name">Salary Negotiation</div>
+        <div class="artic-lab-skills">Conviction + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-1">
+        <div class="artic-lab-emoji">🚧</div>
+        <div class="artic-lab-name">Setting a Boundary</div>
+        <div class="artic-lab-skills">Word Choice + Conviction</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-2">
+        <div class="artic-lab-emoji">💡</div>
+        <div class="artic-lab-name">Defending Your Idea</div>
+        <div class="artic-lab-skills">Structure + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-3">
+        <div class="artic-lab-emoji">🎤</div>
+        <div class="artic-lab-name">Job Interview</div>
+        <div class="artic-lab-skills">Structure + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-4">
+        <div class="artic-lab-emoji">💬</div>
+        <div class="artic-lab-name">Difficult Feedback</div>
+        <div class="artic-lab-skills">Word Choice + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal">
+        <div class="artic-lab-emoji">🕊️</div>
+        <div class="artic-lab-name">Conflict De-escalation</div>
+        <div class="artic-lab-skills">Composure + Clarity</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-1">
+        <div class="artic-lab-emoji">🚀</div>
+        <div class="artic-lab-name">Elevator Pitch</div>
+        <div class="artic-lab-skills">Conciseness + Conviction</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-2">
+        <div class="artic-lab-emoji">🤝</div>
+        <div class="artic-lab-name">Apologizing Well</div>
+        <div class="artic-lab-skills">Clarity + Word Choice</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-3">
+        <div class="artic-lab-emoji">✋</div>
+        <div class="artic-lab-name">Saying No</div>
+        <div class="artic-lab-skills">Conviction + Composure</div>
+      </article>
+      <article class="artic-lab-card reveal reveal-delay-4">
+        <div class="artic-lab-emoji">🧠</div>
+        <div class="artic-lab-name">Persuading a Skeptic</div>
+        <div class="artic-lab-skills">Structure + Composure</div>
+      </article>
+    </div>
+
+    <div class="artic-divider" aria-hidden="true"></div>
+
+    <!-- SKILL LADDER -->
+    <div class="artic-ladder-header reveal">
+      <h3>Five levels from <em>foundations to mastery</em></h3>
+      <p>Progression modeled on how debate teams, law school moot court, improv programs, and military briefing training ladder skills from beginner to expert.</p>
+    </div>
+
+    <div class="artic-ladder">
+      <div class="artic-ladder-step reveal">
+        <div class="artic-ladder-num" aria-hidden="true">01</div>
+        <div class="artic-ladder-level">Foundations</div>
+        <div class="artic-ladder-title">Build the basics</div>
+        <p class="artic-ladder-desc">Supportive coach, no time pressure. Learn PREP and BLUF frameworks. Friendly audience.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-1">
+        <div class="artic-ladder-num" aria-hidden="true">02</div>
+        <div class="artic-ladder-level">Building</div>
+        <div class="artic-ladder-title">Sharpen precision</div>
+        <p class="artic-ladder-desc">Constructive coaching. Word choice drills, conciseness training. Moderate time limits.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-2">
+        <div class="artic-ladder-num" aria-hidden="true">03</div>
+        <div class="artic-ladder-level">Sharpening</div>
+        <div class="artic-ladder-title">Deliver with conviction</div>
+        <p class="artic-ladder-desc">Performance scoring. Hot Seat, Silence Hold, real-time feedback. Strict time constraints.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-3">
+        <div class="artic-ladder-num" aria-hidden="true">04</div>
+        <div class="artic-ladder-level">Pressure Testing</div>
+        <div class="artic-ladder-title">Hold under fire</div>
+        <p class="artic-ladder-desc">Adversarial conditions. Interruptions, hostile questions, curveballs. Composure is everything.</p>
+      </div>
+      <div class="artic-ladder-step reveal reveal-delay-4">
+        <div class="artic-ladder-num" aria-hidden="true">05</div>
+        <div class="artic-ladder-level">Mastery</div>
+        <div class="artic-ladder-title">Full scenario command</div>
+        <p class="artic-ladder-desc">Combined drill chains at max difficulty. Scored against personal bests. High-stakes simulations.</p>
+      </div>
+    </div>
+
+    <!-- CLARITY SCORE -->
+    <div class="artic-score-row reveal">
+      <div class="artic-score-text">
+        <h3>One score that tracks <em>everything</em></h3>
+        <p>Your Clarity Score is a composite metric built from six sub-dimensions — tracked across every drill, every session, every scenario. Like the Core Gym's ELO, it shows exactly where you stand and what to train next.</p>
+      </div>
+      <div class="artic-score-grid">
+        <div class="artic-score-item">
+          <div class="artic-score-icon">💎</div>
+          <div class="artic-score-name">Clarity</div>
+          <div class="artic-score-what">Comprehension rate</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">✂️</div>
+          <div class="artic-score-name">Conciseness</div>
+          <div class="artic-score-what">Signal-to-noise</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🏗️</div>
+          <div class="artic-score-name">Structure</div>
+          <div class="artic-score-what">Logical flow</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🔬</div>
+          <div class="artic-score-name">Precision</div>
+          <div class="artic-score-what">Hedge frequency</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">⚡</div>
+          <div class="artic-score-name">Conviction</div>
+          <div class="artic-score-what">Assertion rate</div>
+        </div>
+        <div class="artic-score-item">
+          <div class="artic-score-icon">🛡️</div>
+          <div class="artic-score-name">Composure</div>
+          <div class="artic-score-what">Pressure resilience</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS SUMMARY -->
+    <div class="artic-feature-row reveal" style="margin-top: 48px;">
+      <div class="artic-feature-text">
+        <h3>Built on the science of <em>deliberate practice</em></h3>
+        <p>Every drill draws from evidence-based methodology — competitive debate, media training, moot court advocacy, executive coaching, and improv. Not random exercises. Structured, progressive training designed to produce measurable skill gains.</p>
+      </div>
+      <div class="artic-stat-row">
+        <div class="artic-stat">
+          <div class="artic-stat-num">27</div>
+          <div class="artic-stat-label">Drill Types</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">10</div>
+          <div class="artic-stat-label">Scenario Labs</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">5</div>
+          <div class="artic-stat-label">Skill Levels</div>
+        </div>
+        <div class="artic-stat">
+          <div class="artic-stat-num">6</div>
+          <div class="artic-stat-label">Score Dimensions</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARENT/CHILD ADD-ON -->
+<section class="parent-section" id="parent-child" aria-labelledby="parent-heading">
+  <div class="section-inner">
+
+    <!-- HEADER -->
+    <div class="parent-header">
+      <div>
+        <div class="parent-badge reveal">Premium Add-On</div>
+        <div class="section-label reveal">Parent &amp; Child Training</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="parent-heading">
+          Hear them out.<br>
+          <em>Help them grow.</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        The hardest conversations happen at home. Parent &amp; Child Training uses attachment science, Gottman emotion coaching, and developmental neuroscience to rebuild how you connect — from toddler meltdowns to teenage door slams. Practice the moments that matter most before they happen.
+      </p>
+    </div>
+
+    <!-- THREE TRAINING MODES -->
+    <div class="parent-mode-grid">
+      <article class="parent-mode-card mode-emotion reveal">
+        <div class="parent-mode-icon">💚</div>
+        <h3 class="parent-mode-name">Emotion Coach</h3>
+        <div class="parent-mode-intensity">Gottman 5-Step</div>
+        <p class="parent-mode-desc">Learn to notice your child's emotions before they escalate. The coach walks you through Gottman's five steps: awareness, connection, listening, naming feelings, and problem-solving together. Build emotional literacy for both of you.</p>
+        <ul class="parent-mode-traits">
+          <li>Emotion awareness prompts</li>
+          <li>Feeling-word vocabulary builder</li>
+          <li>Co-regulation practice</li>
+          <li>Problem-solving scaffolds</li>
+        </ul>
+      </article>
+      <article class="parent-mode-card mode-adapt reveal reveal-delay-1">
+        <div class="parent-mode-icon">🧠</div>
+        <h3 class="parent-mode-name">Age Adapter</h3>
+        <div class="parent-mode-intensity">Developmental Science</div>
+        <p class="parent-mode-desc">The same words don't work at every age. Age Adapter adjusts your language, expectations, and approach based on your child's developmental stage — from concrete toddler thinking to abstract teen reasoning.</p>
+        <ul class="parent-mode-traits">
+          <li>Stage-matched vocabulary</li>
+          <li>Developmental expectation checks</li>
+          <li>Brain-state awareness cues</li>
+          <li>Autonomy calibration</li>
+        </ul>
+      </article>
+      <article class="parent-mode-card mode-repair reveal reveal-delay-2">
+        <div class="parent-mode-icon">🩹</div>
+        <h3 class="parent-mode-name">Repair Lab</h3>
+        <div class="parent-mode-intensity">Rupture-Repair Science</div>
+        <p class="parent-mode-desc">Every parent loses it sometimes. Repair Lab teaches you how to come back after you've yelled, dismissed, or disconnected. Based on Tronick's still-face research and Siegel's interpersonal neurobiology — repair is the skill that matters most.</p>
+        <ul class="parent-mode-traits">
+          <li>Rupture recognition signals</li>
+          <li>Repair script generator</li>
+          <li>Reconnection timing coach</li>
+          <li>Trust-rebuilding patterns</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="parent-divider" aria-hidden="true"></div>
+
+    <!-- DRILL CATEGORIES -->
+    <div class="parent-drill-header reveal">
+      <h3>24 drills across <em>6 categories</em></h3>
+      <p>Every drill draws from PCIT, Parent Effectiveness Training, Positive Discipline, and attachment research — adapted for AI-powered practice with your specific family dynamics.</p>
+    </div>
+
+    <div class="parent-drill-grid">
+      <article class="parent-drill-card reveal">
+        <div class="parent-drill-icon">🫧</div>
+        <h4 class="parent-drill-name">Emotion Labeling</h4>
+        <p class="parent-drill-desc">Name feelings accurately before trying to fix them. Build your child's emotional vocabulary by modeling precise, non-judgmental language for what they're experiencing.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Feeling Finder</span>
+          <span class="parent-drill-tag">Body-to-Emotion Map</span>
+          <span class="parent-drill-tag">Tone Mirror</span>
+          <span class="parent-drill-tag">Emotion Narration</span>
+        </div>
+      </article>
+      <article class="parent-drill-card reveal reveal-delay-1">
+        <div class="parent-drill-icon">👂</div>
+        <h4 class="parent-drill-name">Active Listening</h4>
+        <p class="parent-drill-desc">Stop solving and start hearing. Practice reflective listening, silence, and playback until your child feels genuinely understood — not managed.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Reflective Playback</span>
+          <span class="parent-drill-tag">Silence Hold</span>
+          <span class="parent-drill-tag">Question Pause</span>
+          <span class="parent-drill-tag">Story Completion</span>
+        </div>
+      </article>
+      <article class="parent-drill-card reveal reveal-delay-2">
+        <div class="parent-drill-icon">💛</div>
+        <h4 class="parent-drill-name">Validation Response</h4>
+        <p class="parent-drill-desc">Acknowledge what's real for them without agreeing, fixing, or minimizing. Practice the Faber &amp; Mazlish technique of giving feelings their full weight before offering guidance.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Feel-Before-Fix</span>
+          <span class="parent-drill-tag">Fantasy Granting</span>
+          <span class="parent-drill-tag">Validate-Then-Guide</span>
+          <span class="parent-drill-tag">Empathy Bridge</span>
+        </div>
+      </article>
+      <article class="parent-drill-card reveal">
+        <div class="parent-drill-icon">🌱</div>
+        <h4 class="parent-drill-name">Age-Adaptive Communication</h4>
+        <p class="parent-drill-desc">Match your words to their world. Toddlers need concrete choices, tweens need autonomy signals, teens need respect before reasoning. Practice switching registers.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Two-Choice Offer</span>
+          <span class="parent-drill-tag">Autonomy Ladder</span>
+          <span class="parent-drill-tag">Respect-First Opener</span>
+          <span class="parent-drill-tag">Stage Switcher</span>
+        </div>
+      </article>
+      <article class="parent-drill-card reveal reveal-delay-1">
+        <div class="parent-drill-icon">🌊</div>
+        <h4 class="parent-drill-name">Hard Conversation Navigation</h4>
+        <p class="parent-drill-desc">Navigate death, divorce, bullying, identity, and other big topics without shutting down or over-explaining. Practice age-appropriate honesty with emotional safety.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Ask-First Opener</span>
+          <span class="parent-drill-tag">Honest Scaffold</span>
+          <span class="parent-drill-tag">Safety Anchor</span>
+          <span class="parent-drill-tag">Follow-Up Check</span>
+        </div>
+      </article>
+      <article class="parent-drill-card reveal reveal-delay-2">
+        <div class="parent-drill-icon">🩹</div>
+        <h4 class="parent-drill-name">Rupture &amp; Repair</h4>
+        <p class="parent-drill-desc">Come back after you've lost it. Practice owning your part without over-apologizing, reconnecting without lecturing, and rebuilding trust one honest conversation at a time.</p>
+        <div class="parent-drill-tags">
+          <span class="parent-drill-tag">Own-It Opener</span>
+          <span class="parent-drill-tag">Reconnection Bid</span>
+          <span class="parent-drill-tag">Trust Rebuild</span>
+          <span class="parent-drill-tag">Cool-Down Return</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="parent-divider" aria-hidden="true"></div>
+
+    <!-- SCENARIO LABS -->
+    <div class="parent-labs-header reveal">
+      <h3>Real moments, <em>practiced safely</em></h3>
+      <p>Full scenario simulations spanning toddler through teen — the conversations every parent dreads, practiced before they happen.</p>
+    </div>
+
+    <div class="parent-labs-grid">
+      <article class="parent-lab-card reveal">
+        <div class="parent-lab-emoji">🛒</div>
+        <div class="parent-lab-name">Grocery Meltdown</div>
+        <div class="parent-lab-age">Toddler</div>
+        <div class="parent-lab-skills">Emotion Coach + Labeling</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-1">
+        <div class="parent-lab-emoji">😢</div>
+        <div class="parent-lab-name">"Nobody Likes Me"</div>
+        <div class="parent-lab-age">School-Age</div>
+        <div class="parent-lab-skills">Validation + Listening</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-2">
+        <div class="parent-lab-emoji">🤥</div>
+        <div class="parent-lab-name">Caught Lying</div>
+        <div class="parent-lab-age">School-Age</div>
+        <div class="parent-lab-skills">Hard Nav + Age-Adapt</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-3">
+        <div class="parent-lab-emoji">📱</div>
+        <div class="parent-lab-name">Screen Time Battle</div>
+        <div class="parent-lab-age">Tween</div>
+        <div class="parent-lab-skills">Age-Adapt + Validation</div>
+      </article>
+      <article class="parent-lab-card reveal">
+        <div class="parent-lab-emoji">💻</div>
+        <div class="parent-lab-name">Cyberbullying Talk</div>
+        <div class="parent-lab-age">Tween</div>
+        <div class="parent-lab-skills">Hard Nav + Listening</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-1">
+        <div class="parent-lab-emoji">💔</div>
+        <div class="parent-lab-name">First Heartbreak</div>
+        <div class="parent-lab-age">Teen</div>
+        <div class="parent-lab-skills">Validation + Emotion Coach</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-2">
+        <div class="parent-lab-emoji">🚪</div>
+        <div class="parent-lab-name">"I Hate You" Slam</div>
+        <div class="parent-lab-age">Teen</div>
+        <div class="parent-lab-skills">Repair + Composure</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-3">
+        <div class="parent-lab-emoji">🕊️</div>
+        <div class="parent-lab-name">Explaining Death</div>
+        <div class="parent-lab-age">Any Age</div>
+        <div class="parent-lab-skills">Hard Nav + Age-Adapt</div>
+      </article>
+      <article class="parent-lab-card reveal">
+        <div class="parent-lab-emoji">⚡</div>
+        <div class="parent-lab-name">Sibling Blowup</div>
+        <div class="parent-lab-age">Any Age</div>
+        <div class="parent-lab-skills">Labeling + Repair</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-1">
+        <div class="parent-lab-emoji">🌀</div>
+        <div class="parent-lab-name">Anxiety Spiral</div>
+        <div class="parent-lab-age">Any Age</div>
+        <div class="parent-lab-skills">Emotion Coach + Listening</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-2">
+        <div class="parent-lab-emoji">🏠</div>
+        <div class="parent-lab-name">"Why Are You Fighting?"</div>
+        <div class="parent-lab-age">Any Age</div>
+        <div class="parent-lab-skills">Hard Nav + Validation</div>
+      </article>
+      <article class="parent-lab-card reveal reveal-delay-3">
+        <div class="parent-lab-emoji">🌙</div>
+        <div class="parent-lab-name">Coming Home Late</div>
+        <div class="parent-lab-age">Teen</div>
+        <div class="parent-lab-skills">Repair + Age-Adapt</div>
+      </article>
+    </div>
+
+    <div class="parent-divider" aria-hidden="true"></div>
+
+    <!-- CONNECTION LADDER -->
+    <div class="parent-ladder-header reveal">
+      <h3>Five levels from <em>awareness to repair</em></h3>
+      <p>Progression built on attachment science — from learning to notice your child's emotional bids to mastering the rupture-repair cycle that builds lifelong trust.</p>
+    </div>
+
+    <div class="parent-ladder">
+      <div class="parent-ladder-step reveal">
+        <div class="parent-ladder-num" aria-hidden="true">01</div>
+        <div class="parent-ladder-level">Observer</div>
+        <div class="parent-ladder-title">Notice the bids</div>
+        <p class="parent-ladder-desc">Learn to see your child's emotional signals — the subtle bids for connection hiding inside tantrums, withdrawal, and acting out.</p>
+      </div>
+      <div class="parent-ladder-step reveal reveal-delay-1">
+        <div class="parent-ladder-num" aria-hidden="true">02</div>
+        <div class="parent-ladder-level">Listener</div>
+        <div class="parent-ladder-title">Hear before helping</div>
+        <p class="parent-ladder-desc">Practice staying present without fixing. Reflective listening, silence, and genuine curiosity before advice or correction.</p>
+      </div>
+      <div class="parent-ladder-step reveal reveal-delay-2">
+        <div class="parent-ladder-num" aria-hidden="true">03</div>
+        <div class="parent-ladder-level">Coach</div>
+        <div class="parent-ladder-title">Guide through feelings</div>
+        <p class="parent-ladder-desc">Gottman emotion coaching in action. Walk your child through big feelings with validation, naming, and collaborative problem-solving.</p>
+      </div>
+      <div class="parent-ladder-step reveal reveal-delay-3">
+        <div class="parent-ladder-num" aria-hidden="true">04</div>
+        <div class="parent-ladder-level">Adapter</div>
+        <div class="parent-ladder-title">Match the stage</div>
+        <p class="parent-ladder-desc">Seamlessly shift communication style across developmental stages. Concrete for toddlers, collaborative for tweens, respect-first for teens.</p>
+      </div>
+      <div class="parent-ladder-step reveal reveal-delay-4">
+        <div class="parent-ladder-num" aria-hidden="true">05</div>
+        <div class="parent-ladder-level">Repairer</div>
+        <div class="parent-ladder-title">Rebuild after rupture</div>
+        <p class="parent-ladder-desc">Master the skill that matters most. Come back after disconnection with ownership, empathy, and genuine reconnection — every time.</p>
+      </div>
+    </div>
+
+    <!-- CONNECTION SCORE -->
+    <div class="parent-score-row reveal">
+      <div class="parent-score-text">
+        <h3>One score that tracks <em>connection</em></h3>
+        <p>Your Connection Score is a composite metric built from five dimensions — tracked across every drill, every scenario, every practice session. It shows exactly where your parent-child communication strengths and growth areas are.</p>
+      </div>
+      <div class="parent-score-grid">
+        <div class="parent-score-item">
+          <div class="parent-score-icon">💛</div>
+          <div class="parent-score-name">Validation</div>
+          <div class="parent-score-what">Accuracy rate</div>
+        </div>
+        <div class="parent-score-item">
+          <div class="parent-score-icon">🧠</div>
+          <div class="parent-score-name">Age Fit</div>
+          <div class="parent-score-what">Stage match</div>
+        </div>
+        <div class="parent-score-item">
+          <div class="parent-score-icon">👂</div>
+          <div class="parent-score-name">Listen Ratio</div>
+          <div class="parent-score-what">Listen vs lecture</div>
+        </div>
+        <div class="parent-score-item">
+          <div class="parent-score-icon">🩹</div>
+          <div class="parent-score-name">Repair Speed</div>
+          <div class="parent-score-what">Recovery time</div>
+        </div>
+        <div class="parent-score-item">
+          <div class="parent-score-icon">🛡️</div>
+          <div class="parent-score-name">Safety</div>
+          <div class="parent-score-what">Emotional safety</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS SUMMARY -->
+    <div class="parent-feature-row reveal" style="margin-top: 48px;">
+      <div class="parent-feature-text">
+        <h3>Built on the science of <em>secure attachment</em></h3>
+        <p>Every drill draws from evidence-based methodology — Gottman emotion coaching, PCIT, Positive Discipline, attachment theory, Faber &amp; Mazlish, and interpersonal neurobiology. Not generic advice. Structured, progressive training designed for the conversations that shape your child's life.</p>
+      </div>
+      <div class="parent-stat-row">
+        <div class="parent-stat">
+          <div class="parent-stat-num">24</div>
+          <div class="parent-stat-label">Drill Types</div>
+        </div>
+        <div class="parent-stat">
+          <div class="parent-stat-num">12</div>
+          <div class="parent-stat-label">Scenario Labs</div>
+        </div>
+        <div class="parent-stat">
+          <div class="parent-stat-num">8</div>
+          <div class="parent-stat-label">Learning Games</div>
+        </div>
+        <div class="parent-stat">
+          <div class="parent-stat-num">5</div>
+          <div class="parent-stat-label">Score Dimensions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- LEARNING GAMES -->
+    <div class="parent-games-header reveal">
+      <h3>Learn through <em>play</em></h3>
+      <p>Age-appropriate games that teach emotional intelligence through cooperative play, storytelling challenges, and parent-child missions. Intrinsic motivation — not screen-time bribery.</p>
+    </div>
+
+    <div class="parent-games-age-tabs reveal">
+      <span class="parent-age-tab active">Toddler 3-5</span>
+      <span class="parent-age-tab">School-Age 6-8</span>
+      <span class="parent-age-tab">Tween 9-12</span>
+      <span class="parent-age-tab">Teen 13-17</span>
+    </div>
+
+    <div class="parent-games-grid reveal">
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎭</div>
+        <div class="parent-game-name">Feelings Faces</div>
+        <div class="parent-game-age">Ages 3-5</div>
+        <div class="parent-game-desc">Match emotion faces to scenarios. Build a feelings vocabulary through playful picture cards and silly voices.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🏰</div>
+        <div class="parent-game-name">Story Builder</div>
+        <div class="parent-game-age">Ages 6-8</div>
+        <div class="parent-game-desc">Take turns building a story about characters facing big emotions. Practice perspective-taking through narrative play.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🗺️</div>
+        <div class="parent-game-name">Empathy Quest</div>
+        <div class="parent-game-age">Ages 9-12</div>
+        <div class="parent-game-desc">Navigate social scenarios as a team. Unlock new levels by demonstrating active listening and validation skills.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">💬</div>
+        <div class="parent-game-name">Real Talk</div>
+        <div class="parent-game-age">Ages 13-17</div>
+        <div class="parent-game-desc">Scenario-based conversation challenges. Practice navigating peer pressure, conflict, and tough topics with a trusted adult.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎨</div>
+        <div class="parent-game-name">Mood Canvas</div>
+        <div class="parent-game-age">Ages 3-5</div>
+        <div class="parent-game-desc">Draw and color how you feel. Parent and child create emotion art together, building body-feeling connections.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🔍</div>
+        <div class="parent-game-name">Detective Duo</div>
+        <div class="parent-game-age">Ages 6-8</div>
+        <div class="parent-game-desc">Solve social mysteries together. Read body language clues, decode hidden feelings, and crack the case as a team.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">⚡</div>
+        <div class="parent-game-name">Conflict Lab</div>
+        <div class="parent-game-age">Ages 9-12</div>
+        <div class="parent-game-desc">Experiment with different responses to the same conflict. See how word choice and tone change outcomes.</div>
+        <span class="parent-game-tag tag-solo">Solo</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎙️</div>
+        <div class="parent-game-name">Perspective Swap</div>
+        <div class="parent-game-age">Ages 13-17</div>
+        <div class="parent-game-desc">Argue the other side. Parent and teen switch roles in guided debates, building genuine empathy and understanding.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+    </div>
+
+    <div class="parent-games-motivation reveal">
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🏆</div>
+        <div class="parent-motivation-name">Streaks &amp; Milestones</div>
+        <div class="parent-motivation-desc">Daily play streaks unlock new game modes. Celebrate progress, not perfection.</div>
+      </div>
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🌱</div>
+        <div class="parent-motivation-name">Growth Garden</div>
+        <div class="parent-motivation-desc">Plant a virtual seed for each skill practiced. Watch your family garden grow over time.</div>
+      </div>
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🤝</div>
+        <div class="parent-motivation-name">Family Missions</div>
+        <div class="parent-motivation-desc">Weekly cooperative challenges that bring the whole family together around shared goals.</div>
+      </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- COMMUNITY HUB -->
+    <div class="parent-community-header reveal">
+      <h3>A village that <em>gets it</em></h3>
+      <p>Connect with families on the same journey. Kids find peers, parents find allies, and everyone shares what actually works — not generic advice from strangers.</p>
+    </div>
+
+    <div class="parent-community-grid reveal">
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">👦👧</div>
+        <div class="parent-community-card-title">Kid Circles</div>
+        <div class="parent-community-card-desc">Age-matched peer groups where kids connect over shared experiences. Moderated spaces for building social skills, sharing wins, and knowing they're not alone.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Age-Matched</span>
+          <span class="parent-community-tag">Moderated</span>
+          <span class="parent-community-tag">COPPA Safe</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">👨‍👩‍👧‍👦</div>
+        <div class="parent-community-card-title">Family-to-Family</div>
+        <div class="parent-community-card-desc">Pair your family with others at a similar stage. Share strategies, celebrate breakthroughs, and support each other through the hard chapters.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Stage-Matched</span>
+          <span class="parent-community-tag">Private Groups</span>
+          <span class="parent-community-tag">Verified</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">💡</div>
+        <div class="parent-community-card-title">What Works Wall</div>
+        <div class="parent-community-card-desc">A living library of parent-tested strategies. Upvote tactics that actually helped, filter by age and challenge, and contribute your own discoveries.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Crowdsourced</span>
+          <span class="parent-community-tag">Evidence-Tagged</span>
+          <span class="parent-community-tag">Searchable</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">🎯</div>
+        <div class="parent-community-card-title">Ask the Circle</div>
+        <div class="parent-community-card-desc">Post a real challenge you're facing and get advice from parents who've been there. Expert-moderated threads keep guidance grounded and safe.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Expert-Moderated</span>
+          <span class="parent-community-tag">Anonymous Option</span>
+          <span class="parent-community-tag">Real Advice</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="parent-community-principles reveal">
+      <div class="parent-principle">
+        <div class="parent-principle-icon">🔒</div>
+        <div class="parent-principle-name">Private by Default</div>
+        <div class="parent-principle-desc">Nothing shared leaves the circle</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">✅</div>
+        <div class="parent-principle-name">Verified Families</div>
+        <div class="parent-principle-desc">Real parents, real kids, real trust</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">🛡️</div>
+        <div class="parent-principle-name">Expert-Backed</div>
+        <div class="parent-principle-desc">Child psych professionals moderate</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">💚</div>
+        <div class="parent-principle-name">No Judgment Zone</div>
+        <div class="parent-principle-desc">Struggle is universal, shame is not</div>
+      </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- SAFE SPACE -->
+    <div class="parent-safe-header reveal">
+      <span class="parent-safe-badge">🛡️ Core Feature</span>
+      <h3>A place to say <em>the hard things</em></h3>
+      <p>Children need a channel to share difficult truths without fear. The Safe Space gives kids a structured, guided way to tell their parents things — and gives parents the tools to respond with connection instead of punishment.</p>
+    </div>
+
+    <div class="parent-safe-flow reveal">
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">01</div>
+        <div class="parent-safe-step-icon">💭</div>
+        <div class="parent-safe-step-name">Child Initiates</div>
+        <div class="parent-safe-step-desc">Tap "I need to tell you something" in a private, guided flow</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">02</div>
+        <div class="parent-safe-step-icon">🤖</div>
+        <div class="parent-safe-step-name">AI Helps Frame</div>
+        <div class="parent-safe-step-desc">Attune helps the child organize thoughts and find the right words</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">03</div>
+        <div class="parent-safe-step-icon">🔔</div>
+        <div class="parent-safe-step-name">Parent Notified</div>
+        <div class="parent-safe-step-desc">Parent gets a gentle alert with coaching on how to receive the message</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">04</div>
+        <div class="parent-safe-step-icon">💬</div>
+        <div class="parent-safe-step-name">Guided Conversation</div>
+        <div class="parent-safe-step-desc">AI coaches both sides through the disclosure in real time</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">05</div>
+        <div class="parent-safe-step-icon">🤝</div>
+        <div class="parent-safe-step-name">Connection Restored</div>
+        <div class="parent-safe-step-desc">Structured repair ensures trust deepens — not breaks</div>
+      </div>
+    </div>
+
+    <div class="parent-safe-features reveal">
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🏳️</div>
+        <div class="parent-safe-feature-title">Amnesty Mode</div>
+        <div class="parent-safe-feature-desc">Parents pre-commit to listening without punishment. Children know they can be honest about mistakes, fears, and struggles.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">📝</div>
+        <div class="parent-safe-feature-title">Guided Disclosure</div>
+        <div class="parent-safe-feature-desc">Age-appropriate prompts help children articulate what happened, how they feel, and what they need — at their own pace.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🧘</div>
+        <div class="parent-safe-feature-title">Parent Prep</div>
+        <div class="parent-safe-feature-desc">Before hearing the disclosure, parents receive real-time coaching on staying calm, validating emotions, and separating behavior from identity.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🔄</div>
+        <div class="parent-safe-feature-title">Repair Protocol</div>
+        <div class="parent-safe-feature-desc">After the conversation, both sides complete a structured repair — acknowledging feelings, making agreements, and rebuilding trust together.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">📊</div>
+        <div class="parent-safe-feature-title">Trust Tracker</div>
+        <div class="parent-safe-feature-desc">Track how Safe Space conversations strengthen the relationship over time. See patterns in what children share and how parents grow.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🚨</div>
+        <div class="parent-safe-feature-title">Safety Net</div>
+        <div class="parent-safe-feature-desc">If disclosures indicate danger or abuse, Attune provides immediate resources and age-appropriate guidance to connect with trusted adults and services.</div>
+      </div>
+    </div>
+
+    <div class="parent-safe-promise reveal">
+      <h4>The <em>Attune Promise</em></h4>
+      <p>Every child deserves to be heard without fear. Every parent deserves the chance to respond with love instead of reaction. The Safe Space exists because the hardest conversations are the ones that matter most.</p>
+    </div>
+
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
   <div class="section-inner">
@@ -1449,9 +3597,9 @@
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Everything in Core Gym</li>
-          <li>Articulation Add-on (3 modes)</li>
+          <li>Articulation Add-on (27 drills)</li>
+          <li>Parent &amp; Child Add-on (24 drills + games + community)</li>
           <li>IntroProfiles (context-specific intros)</li>
-          <li>Gifted access support</li>
           <li>Priority coach feedback</li>
           <li>Full admin dashboard</li>
         </ul>
@@ -1465,11 +3613,11 @@
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Articulation Training</li>
-          <li>Gentle / Standard / Intensive modes</li>
+          <li>27 drills · 10 scenario labs</li>
+          <li>Parent &amp; Child Training</li>
+          <li>24 drills · 8 games · Safe Space · community</li>
           <li>IntroProfiles module</li>
-          <li>Context-aware intro builder</li>
-          <li>Reusable profile templates</li>
-          <li>Mix & match your stack</li>
+          <li>Mix &amp; match your stack</li>
         </ul>
         <a href="#get-started" class="btn-pricing btn-pricing-outline" aria-label="Explore Add-Ons">Explore Add-Ons</a>
       </article>
