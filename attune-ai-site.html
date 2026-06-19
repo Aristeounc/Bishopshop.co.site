@@ -1218,6 +1218,13 @@
     .parent-ladder { grid-template-columns: 1fr; }
     .parent-score-row { grid-template-columns: 1fr; gap: 32px; }
     .parent-score-grid { grid-template-columns: repeat(3, 1fr); }
+    .parent-games-grid { grid-template-columns: 1fr; }
+    .parent-games-motivation { grid-template-columns: 1fr; }
+    .parent-community-grid { grid-template-columns: 1fr; }
+    .parent-community-principles { grid-template-columns: repeat(2, 1fr); }
+    .parent-safe-flow { grid-template-columns: 1fr; }
+    .parent-safe-step::after { display: none; }
+    .parent-safe-features { grid-template-columns: 1fr; }
   }
 
   /* PARENT/CHILD ADD-ON */
@@ -1659,6 +1666,360 @@
     margin: 0 auto 64px;
   }
 
+  /* LEARNING GAMES */
+  .parent-games-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-games-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-games-header h3 em { font-style: italic; color: #E88565; }
+  .parent-games-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .parent-games-age-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .parent-age-tab {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(232,133,101,0.25);
+    color: rgba(255,255,255,0.6);
+    background: transparent;
+  }
+  .parent-age-tab.active {
+    background: rgba(232,133,101,0.15);
+    color: #E88565;
+    border-color: #E88565;
+  }
+  .parent-games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .parent-game-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 24px 20px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .parent-game-card:hover {
+    border-color: rgba(232,133,101,0.3);
+    transform: translateY(-2px);
+  }
+  .parent-game-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .parent-game-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .parent-game-age {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #E88565;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .parent-game-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  .parent-game-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .parent-game-tag.tag-coop {
+    background: rgba(76,175,80,0.12);
+    color: #66BB6A;
+    border: 1px solid rgba(76,175,80,0.25);
+  }
+  .parent-game-tag.tag-solo {
+    background: rgba(66,165,245,0.12);
+    color: #42A5F5;
+    border: 1px solid rgba(66,165,245,0.25);
+  }
+  .parent-game-tag.tag-family {
+    background: rgba(232,133,101,0.12);
+    color: #E88565;
+    border: 1px solid rgba(232,133,101,0.25);
+  }
+  .parent-games-motivation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .parent-motivation-item {
+    text-align: center;
+    padding: 24px 16px;
+    background: rgba(232,133,101,0.04);
+    border: 1px solid rgba(232,133,101,0.1);
+    border-radius: 4px;
+  }
+  .parent-motivation-icon { font-size: 24px; margin-bottom: 8px; }
+  .parent-motivation-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .parent-motivation-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* COMMUNITY HUB */
+  .parent-community-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-community-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-community-header h3 em { font-style: italic; color: #E88565; }
+  .parent-community-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .parent-community-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .parent-community-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 32px 28px;
+    transition: border-color 0.3s;
+  }
+  .parent-community-card:hover {
+    border-color: rgba(232,133,101,0.3);
+  }
+  .parent-community-card-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+  .parent-community-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .parent-community-card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+  }
+  .parent-community-tag-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .parent-community-tag {
+    padding: 3px 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    font-weight: 600;
+    background: rgba(232,133,101,0.08);
+    color: rgba(232,133,101,0.7);
+    border: 1px solid rgba(232,133,101,0.15);
+  }
+  .parent-community-principles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .parent-principle {
+    text-align: center;
+    padding: 20px 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+  }
+  .parent-principle-icon { font-size: 20px; margin-bottom: 6px; }
+  .parent-principle-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .parent-principle-desc {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+  }
+
+  /* SAFE SPACE */
+  .parent-safe-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .parent-safe-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: rgba(76,175,80,0.12);
+    color: #66BB6A;
+    border: 1px solid rgba(76,175,80,0.3);
+    margin-bottom: 20px;
+  }
+  .parent-safe-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-safe-header h3 em { font-style: italic; color: #66BB6A; }
+  .parent-safe-header p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.55);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .parent-safe-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .parent-safe-step {
+    text-align: center;
+    padding: 24px 12px;
+    background: rgba(76,175,80,0.04);
+    border: 1px solid rgba(76,175,80,0.12);
+    border-radius: 4px;
+    position: relative;
+  }
+  .parent-safe-step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #66BB6A;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .parent-safe-step-icon { font-size: 24px; margin-bottom: 8px; }
+  .parent-safe-step-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .parent-safe-step-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+  .parent-safe-step::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(76,175,80,0.3);
+    font-size: 14px;
+  }
+  .parent-safe-step:last-child::after { display: none; }
+  .parent-safe-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .parent-safe-feature {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: border-color 0.3s;
+  }
+  .parent-safe-feature:hover {
+    border-color: rgba(76,175,80,0.3);
+  }
+  .parent-safe-feature-icon { font-size: 24px; margin-bottom: 12px; }
+  .parent-safe-feature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .parent-safe-feature-desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+  .parent-safe-promise {
+    text-align: center;
+    padding: 40px;
+    background: rgba(76,175,80,0.04);
+    border: 1px solid rgba(76,175,80,0.15);
+    border-radius: 4px;
+    margin-top: 32px;
+  }
+  .parent-safe-promise h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .parent-safe-promise h4 em { font-style: italic; color: #66BB6A; }
+  .parent-safe-promise p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
   /* PRICING */
   .pricing-section {
     padding: 120px 0;
@@ -2026,6 +2387,12 @@
     .parent-feature-row, .parent-score-row { grid-template-columns: 1fr; gap: 32px; }
     .parent-labs-grid { grid-template-columns: repeat(3, 1fr); }
     .parent-ladder { grid-template-columns: repeat(3, 1fr); }
+    .parent-games-grid { grid-template-columns: repeat(2, 1fr); }
+    .parent-games-motivation { grid-template-columns: repeat(3, 1fr); }
+    .parent-community-grid { grid-template-columns: 1fr; }
+    .parent-community-principles { grid-template-columns: repeat(2, 1fr); }
+    .parent-safe-flow { grid-template-columns: repeat(3, 1fr); }
+    .parent-safe-features { grid-template-columns: repeat(3, 1fr); }
     .pricing-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     nav { padding: 16px 24px; }
@@ -2947,14 +3314,260 @@
           <div class="parent-stat-label">Scenario Labs</div>
         </div>
         <div class="parent-stat">
-          <div class="parent-stat-num">5</div>
-          <div class="parent-stat-label">Skill Levels</div>
+          <div class="parent-stat-num">8</div>
+          <div class="parent-stat-label">Learning Games</div>
         </div>
         <div class="parent-stat">
           <div class="parent-stat-num">5</div>
           <div class="parent-stat-label">Score Dimensions</div>
         </div>
       </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- LEARNING GAMES -->
+    <div class="parent-games-header reveal">
+      <h3>Learn through <em>play</em></h3>
+      <p>Age-appropriate games that teach emotional intelligence through cooperative play, storytelling challenges, and parent-child missions. Intrinsic motivation — not screen-time bribery.</p>
+    </div>
+
+    <div class="parent-games-age-tabs reveal">
+      <span class="parent-age-tab active">Toddler 3-5</span>
+      <span class="parent-age-tab">School-Age 6-8</span>
+      <span class="parent-age-tab">Tween 9-12</span>
+      <span class="parent-age-tab">Teen 13-17</span>
+    </div>
+
+    <div class="parent-games-grid reveal">
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎭</div>
+        <div class="parent-game-name">Feelings Faces</div>
+        <div class="parent-game-age">Ages 3-5</div>
+        <div class="parent-game-desc">Match emotion faces to scenarios. Build a feelings vocabulary through playful picture cards and silly voices.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🏰</div>
+        <div class="parent-game-name">Story Builder</div>
+        <div class="parent-game-age">Ages 6-8</div>
+        <div class="parent-game-desc">Take turns building a story about characters facing big emotions. Practice perspective-taking through narrative play.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🗺️</div>
+        <div class="parent-game-name">Empathy Quest</div>
+        <div class="parent-game-age">Ages 9-12</div>
+        <div class="parent-game-desc">Navigate social scenarios as a team. Unlock new levels by demonstrating active listening and validation skills.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">💬</div>
+        <div class="parent-game-name">Real Talk</div>
+        <div class="parent-game-age">Ages 13-17</div>
+        <div class="parent-game-desc">Scenario-based conversation challenges. Practice navigating peer pressure, conflict, and tough topics with a trusted adult.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎨</div>
+        <div class="parent-game-name">Mood Canvas</div>
+        <div class="parent-game-age">Ages 3-5</div>
+        <div class="parent-game-desc">Draw and color how you feel. Parent and child create emotion art together, building body-feeling connections.</div>
+        <span class="parent-game-tag tag-coop">Co-op</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🔍</div>
+        <div class="parent-game-name">Detective Duo</div>
+        <div class="parent-game-age">Ages 6-8</div>
+        <div class="parent-game-desc">Solve social mysteries together. Read body language clues, decode hidden feelings, and crack the case as a team.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">⚡</div>
+        <div class="parent-game-name">Conflict Lab</div>
+        <div class="parent-game-age">Ages 9-12</div>
+        <div class="parent-game-desc">Experiment with different responses to the same conflict. See how word choice and tone change outcomes.</div>
+        <span class="parent-game-tag tag-solo">Solo</span>
+      </div>
+      <div class="parent-game-card">
+        <div class="parent-game-icon">🎙️</div>
+        <div class="parent-game-name">Perspective Swap</div>
+        <div class="parent-game-age">Ages 13-17</div>
+        <div class="parent-game-desc">Argue the other side. Parent and teen switch roles in guided debates, building genuine empathy and understanding.</div>
+        <span class="parent-game-tag tag-family">Family</span>
+      </div>
+    </div>
+
+    <div class="parent-games-motivation reveal">
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🏆</div>
+        <div class="parent-motivation-name">Streaks &amp; Milestones</div>
+        <div class="parent-motivation-desc">Daily play streaks unlock new game modes. Celebrate progress, not perfection.</div>
+      </div>
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🌱</div>
+        <div class="parent-motivation-name">Growth Garden</div>
+        <div class="parent-motivation-desc">Plant a virtual seed for each skill practiced. Watch your family garden grow over time.</div>
+      </div>
+      <div class="parent-motivation-item">
+        <div class="parent-motivation-icon">🤝</div>
+        <div class="parent-motivation-name">Family Missions</div>
+        <div class="parent-motivation-desc">Weekly cooperative challenges that bring the whole family together around shared goals.</div>
+      </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- COMMUNITY HUB -->
+    <div class="parent-community-header reveal">
+      <h3>A village that <em>gets it</em></h3>
+      <p>Connect with families on the same journey. Kids find peers, parents find allies, and everyone shares what actually works — not generic advice from strangers.</p>
+    </div>
+
+    <div class="parent-community-grid reveal">
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">👦👧</div>
+        <div class="parent-community-card-title">Kid Circles</div>
+        <div class="parent-community-card-desc">Age-matched peer groups where kids connect over shared experiences. Moderated spaces for building social skills, sharing wins, and knowing they're not alone.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Age-Matched</span>
+          <span class="parent-community-tag">Moderated</span>
+          <span class="parent-community-tag">COPPA Safe</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">👨‍👩‍👧‍👦</div>
+        <div class="parent-community-card-title">Family-to-Family</div>
+        <div class="parent-community-card-desc">Pair your family with others at a similar stage. Share strategies, celebrate breakthroughs, and support each other through the hard chapters.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Stage-Matched</span>
+          <span class="parent-community-tag">Private Groups</span>
+          <span class="parent-community-tag">Verified</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">💡</div>
+        <div class="parent-community-card-title">What Works Wall</div>
+        <div class="parent-community-card-desc">A living library of parent-tested strategies. Upvote tactics that actually helped, filter by age and challenge, and contribute your own discoveries.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Crowdsourced</span>
+          <span class="parent-community-tag">Evidence-Tagged</span>
+          <span class="parent-community-tag">Searchable</span>
+        </div>
+      </div>
+      <div class="parent-community-card">
+        <div class="parent-community-card-icon">🎯</div>
+        <div class="parent-community-card-title">Ask the Circle</div>
+        <div class="parent-community-card-desc">Post a real challenge you're facing and get advice from parents who've been there. Expert-moderated threads keep guidance grounded and safe.</div>
+        <div class="parent-community-tag-row">
+          <span class="parent-community-tag">Expert-Moderated</span>
+          <span class="parent-community-tag">Anonymous Option</span>
+          <span class="parent-community-tag">Real Advice</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="parent-community-principles reveal">
+      <div class="parent-principle">
+        <div class="parent-principle-icon">🔒</div>
+        <div class="parent-principle-name">Private by Default</div>
+        <div class="parent-principle-desc">Nothing shared leaves the circle</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">✅</div>
+        <div class="parent-principle-name">Verified Families</div>
+        <div class="parent-principle-desc">Real parents, real kids, real trust</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">🛡️</div>
+        <div class="parent-principle-name">Expert-Backed</div>
+        <div class="parent-principle-desc">Child psych professionals moderate</div>
+      </div>
+      <div class="parent-principle">
+        <div class="parent-principle-icon">💚</div>
+        <div class="parent-principle-name">No Judgment Zone</div>
+        <div class="parent-principle-desc">Struggle is universal, shame is not</div>
+      </div>
+    </div>
+
+    <div class="parent-divider reveal"></div>
+
+    <!-- SAFE SPACE -->
+    <div class="parent-safe-header reveal">
+      <span class="parent-safe-badge">🛡️ Core Feature</span>
+      <h3>A place to say <em>the hard things</em></h3>
+      <p>Children need a channel to share difficult truths without fear. The Safe Space gives kids a structured, guided way to tell their parents things — and gives parents the tools to respond with connection instead of punishment.</p>
+    </div>
+
+    <div class="parent-safe-flow reveal">
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">01</div>
+        <div class="parent-safe-step-icon">💭</div>
+        <div class="parent-safe-step-name">Child Initiates</div>
+        <div class="parent-safe-step-desc">Tap "I need to tell you something" in a private, guided flow</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">02</div>
+        <div class="parent-safe-step-icon">🤖</div>
+        <div class="parent-safe-step-name">AI Helps Frame</div>
+        <div class="parent-safe-step-desc">Attune helps the child organize thoughts and find the right words</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">03</div>
+        <div class="parent-safe-step-icon">🔔</div>
+        <div class="parent-safe-step-name">Parent Notified</div>
+        <div class="parent-safe-step-desc">Parent gets a gentle alert with coaching on how to receive the message</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">04</div>
+        <div class="parent-safe-step-icon">💬</div>
+        <div class="parent-safe-step-name">Guided Conversation</div>
+        <div class="parent-safe-step-desc">AI coaches both sides through the disclosure in real time</div>
+      </div>
+      <div class="parent-safe-step">
+        <div class="parent-safe-step-num">05</div>
+        <div class="parent-safe-step-icon">🤝</div>
+        <div class="parent-safe-step-name">Connection Restored</div>
+        <div class="parent-safe-step-desc">Structured repair ensures trust deepens — not breaks</div>
+      </div>
+    </div>
+
+    <div class="parent-safe-features reveal">
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🏳️</div>
+        <div class="parent-safe-feature-title">Amnesty Mode</div>
+        <div class="parent-safe-feature-desc">Parents pre-commit to listening without punishment. Children know they can be honest about mistakes, fears, and struggles.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">📝</div>
+        <div class="parent-safe-feature-title">Guided Disclosure</div>
+        <div class="parent-safe-feature-desc">Age-appropriate prompts help children articulate what happened, how they feel, and what they need — at their own pace.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🧘</div>
+        <div class="parent-safe-feature-title">Parent Prep</div>
+        <div class="parent-safe-feature-desc">Before hearing the disclosure, parents receive real-time coaching on staying calm, validating emotions, and separating behavior from identity.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🔄</div>
+        <div class="parent-safe-feature-title">Repair Protocol</div>
+        <div class="parent-safe-feature-desc">After the conversation, both sides complete a structured repair — acknowledging feelings, making agreements, and rebuilding trust together.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">📊</div>
+        <div class="parent-safe-feature-title">Trust Tracker</div>
+        <div class="parent-safe-feature-desc">Track how Safe Space conversations strengthen the relationship over time. See patterns in what children share and how parents grow.</div>
+      </div>
+      <div class="parent-safe-feature">
+        <div class="parent-safe-feature-icon">🚨</div>
+        <div class="parent-safe-feature-title">Safety Net</div>
+        <div class="parent-safe-feature-desc">If disclosures indicate danger or abuse, Attune provides immediate resources and age-appropriate guidance to connect with trusted adults and services.</div>
+      </div>
+    </div>
+
+    <div class="parent-safe-promise reveal">
+      <h4>The <em>Attune Promise</em></h4>
+      <p>Every child deserves to be heard without fear. Every parent deserves the chance to respond with love instead of reaction. The Safe Space exists because the hardest conversations are the ones that matter most.</p>
     </div>
 
   </div>
@@ -2995,7 +3608,7 @@
         <ul class="price-features">
           <li>Everything in Core Gym</li>
           <li>Articulation Add-on (27 drills)</li>
-          <li>Parent &amp; Child Add-on (24 drills)</li>
+          <li>Parent &amp; Child Add-on (24 drills + games + community)</li>
           <li>IntroProfiles (context-specific intros)</li>
           <li>Priority coach feedback</li>
           <li>Full admin dashboard</li>
@@ -3012,7 +3625,7 @@
           <li>Articulation Training</li>
           <li>27 drills · 10 scenario labs</li>
           <li>Parent &amp; Child Training</li>
-          <li>24 drills · 12 scenario labs</li>
+          <li>24 drills · 8 games · Safe Space · community</li>
           <li>IntroProfiles module</li>
           <li>Mix &amp; match your stack</li>
         </ul>
