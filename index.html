@@ -1451,11 +1451,38 @@
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     nav { padding: 16px 24px; }
     nav.scrolled { padding: 12px 24px; }
-    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,14,23,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { list-style: none; }
+    .nav-links a {
+      font-size: 20px !important;
+      padding: 16px 32px !important;
+      display: block;
+      text-align: center;
+      color: rgba(255,255,255,0.7) !important;
+    }
+    .nav-links a:not(.nav-cta)::after { display: none; }
+    .nav-links .nav-cta {
+      margin-top: 12px;
+      font-size: 14px !important;
+    }
     .hero-content { padding: 60px 24px; }
     .section-inner { padding: 0 24px; }
     .hero-stats { gap: 20px; flex-wrap: wrap; }
     .faq-grid { grid-template-columns: 1fr; }
+    .orb { display: none; }
   }
 
   @media (max-width: 600px) {
@@ -1466,6 +1493,107 @@
     .cta-actions { flex-direction: column; }
     .ethics-values-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* PAGE LOADER */
+  .page-loader {
+    position: fixed; inset: 0;
+    z-index: 10000;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.5s var(--ease-out), visibility 0.5s;
+  }
+  .page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-inner { text-align: center; }
+  .loader-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--yellow), #F59E0B);
+    color: var(--ink);
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    animation: loaderPulse 1.5s ease-in-out infinite;
+    box-shadow: 0 8px 32px rgba(251,191,36,0.3);
+  }
+  @keyframes loaderPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(251,191,36,0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 12px 48px rgba(251,191,36,0.4); }
+  }
+  .loader-bar {
+    width: 120px; height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .loader-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--yellow), var(--blue-light));
+    border-radius: 2px;
+    animation: loaderFill 1.2s var(--ease-out) forwards;
+  }
+  @keyframes loaderFill {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  /* MOBILE NAV TOGGLE */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 101;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--white);
+    border-radius: 1px;
+    transition: all 0.35s var(--ease-out);
+    transform-origin: center;
+  }
+  .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* FLOATING GRADIENT ORBS */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.5;
+    animation: orbFloat 20s ease-in-out infinite alternate;
+  }
+  .orb-blue {
+    background: rgba(37,99,235,0.15);
+    width: 400px; height: 400px;
+  }
+  .orb-yellow {
+    background: rgba(251,191,36,0.08);
+    width: 300px; height: 300px;
+  }
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 15px) scale(0.95); }
+    100% { transform: translate(10px, -10px) scale(1.05); }
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.2), rgba(251,191,36,0.15), rgba(37,99,235,0.2), transparent);
   }
 
   /* Reduced motion for accessibility */
@@ -1482,6 +1610,14 @@
 </head>
 <body>
 
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-inner">
+    <div class="loader-logo">A</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+</div>
+
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -1492,7 +1628,10 @@
     <div class="nav-logo-mark" aria-hidden="true">A</div>
     <span class="nav-wordmark">Attune <span>AI</span></span>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
@@ -1624,8 +1763,11 @@
   </div>
 </div>
 
+<div class="section-divider"></div>
+
 <!-- HOW IT WORKS -->
 <section class="how-section" id="how-it-works" aria-labelledby="how-heading">
+  <div class="orb orb-blue" style="top:-10%;right:-5%;animation-delay:-5s;"></div>
   <div class="section-inner">
     <div class="section-label reveal">The Gym Loop</div>
     <h2 class="section-headline reveal reveal-delay-1" id="how-heading">
@@ -1718,6 +1860,7 @@
 
 <!-- SPARRING PERSONAS -->
 <section class="sparring-section" id="sparring" aria-labelledby="sparring-heading">
+  <div class="orb orb-yellow" style="bottom:5%;left:-8%;animation-delay:-12s;"></div>
   <div class="section-inner">
     <div class="sparring-header">
       <div>
@@ -1962,8 +2105,12 @@
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- FINAL CTA -->
 <section class="cta-section" id="get-started" aria-labelledby="cta-heading">
+  <div class="orb orb-blue" style="top:20%;left:10%;animation-delay:-8s;"></div>
+  <div class="orb orb-yellow" style="bottom:10%;right:5%;animation-delay:-15s;"></div>
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="section-inner" style="position:relative">
     <div class="section-label reveal" style="justify-content:center">Available Now on iOS</div>
@@ -2133,9 +2280,57 @@
         e.preventDefault();
         const offset = navbar.offsetHeight + 20;
         window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        // Close mobile nav if open
+        const navLinks = document.getElementById('navLinks');
+        const navToggle = document.getElementById('navToggle');
+        if (navLinks && navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          navToggle.classList.remove('active');
+          navToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
       }
     });
   });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinksEl = document.getElementById('navLinks');
+  if (navToggle && navLinksEl) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinksEl.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+  }
+
+  // Page loader
+  const loader = document.getElementById('pageLoader');
+  if (loader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.classList.add('loaded'), 600);
+      setTimeout(() => loader.remove(), 1100);
+    });
+  }
+
+  // Subtle parallax on orbs
+  const orbs = document.querySelectorAll('.orb');
+  if (orbs.length && !isTouch) {
+    let scrollY = 0;
+    let rafId;
+    function updateOrbs() {
+      orbs.forEach((orb, i) => {
+        const speed = 0.03 + (i * 0.01);
+        orb.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+      rafId = null;
+    }
+    window.addEventListener('scroll', () => {
+      scrollY = window.pageYOffset;
+      if (!rafId) rafId = requestAnimationFrame(updateOrbs);
+    }, { passive: true });
+  }
 </script>
 
 </body>
