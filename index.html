@@ -11,9 +11,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- SEO Primary -->
-<title>Attune AI — The Conversation Gym | Master High-Stakes Communication</title>
-<meta name="description" content="Attune AI is a subscription app that trains you to read context, reduce defensiveness, and practice real influence without manipulation. 8 skill tracks, AI sparring, and a curriculum built on peer-reviewed behavioral science.">
-<meta name="keywords" content="conversation gym, communication skills app, AI roleplay training, negotiation practice, conflict resolution training, NVC, influence skills, Attune AI, Bishop Shop Enterprises">
+<title>Peitho — The Art of Influence | Master High-Stakes Communication</title>
+<meta name="description" content="Peitho is the conversation gym that trains you to read, persuade, and perform under pressure. 47 concepts, 8 training modes, AI sparring, and a curriculum built on peer-reviewed behavioral science.">
+<meta name="keywords" content="conversation gym, communication skills app, AI roleplay training, negotiation practice, conflict resolution training, persuasion training, influence skills, Peitho, Bishop Shop Enterprises">
 <meta name="author" content="Bishop Shop Enterprises LLC">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://bishopshop.co.site">
@@ -21,16 +21,16 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bishopshop.co.site">
-<meta property="og:title" content="Attune AI — The Conversation Gym">
-<meta property="og:description" content="Train your conversations like an athlete trains their body. AI-powered sparring, 8 ELO skill tracks, and frameworks from the world's top communication experts.">
+<meta property="og:title" content="Peitho — The Art of Influence">
+<meta property="og:description" content="Train your conversations like an athlete trains their body. AI-powered sparring, 8 ELO skill tracks, 8 training modes, and frameworks from the world's top communication experts.">
 <meta property="og:image" content="https://bishopshop.co.site/og-image.jpg">
-<meta property="og:site_name" content="Attune AI">
+<meta property="og:site_name" content="Peitho">
 <meta property="og:locale" content="en_US">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Attune AI — The Conversation Gym">
-<meta name="twitter:description" content="Train your conversations like an athlete. AI sparring partners, real feedback, proven frameworks. Your words are your edge.">
+<meta name="twitter:title" content="Peitho — The Art of Influence">
+<meta name="twitter:description" content="Train your conversations like an athlete. AI sparring partners, real feedback, proven frameworks. Master the art of influence.">
 <meta name="twitter:image" content="https://bishopshop.co.site/og-image.jpg">
 
 <!-- Structured Data -->
@@ -38,10 +38,10 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "Attune AI",
+  "name": "Peitho",
   "applicationCategory": "EducationalApplication",
   "operatingSystem": "iOS",
-  "description": "Attune AI is a conversation gym app that trains communication skills through AI sparring, guided frameworks, and ELO-based skill progression.",
+  "description": "Peitho is the conversation gym that trains communication skills through AI sparring, 8 training modes, guided frameworks, and ELO-based skill progression.",
   "offers": {
     "@type": "Offer",
     "price": "9.99",
@@ -55,7 +55,7 @@
     "@type": "Organization",
     "name": "Bishop Shop Enterprises LLC",
     "url": "https://bishopshop.co.site",
-    "email": "attuneai@bishopshop.co.site"
+    "email": "peitho@bishopshop.co.site"
   }
 }
 </script>
@@ -68,11 +68,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --blue: #1F5BA8;
-    --blue-dark: #163e76;
-    --blue-light: #3a7ed4;
-    --yellow: #F2C744;
-    --yellow-dark: #d4a91a;
+    --purple: #8E44AD;
+    --purple-dark: #6C3483;
+    --purple-light: #A569BD;
+    --gold: #D4AF37;
+    --gold-dark: #B8961E;
     --tan: #F5EFE3;
     --tan-dark: #E8DEC8;
     --ink: #0D1117;
@@ -97,7 +97,7 @@
   .cursor {
     position: fixed;
     width: 10px; height: 10px;
-    background: var(--yellow);
+    background: var(--gold);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -108,7 +108,7 @@
   .cursor-ring {
     position: fixed;
     width: 36px; height: 36px;
-    border: 1.5px solid rgba(242,199,68,0.5);
+    border: 1.5px solid rgba(212,175,55,0.5);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
@@ -116,12 +116,12 @@
     transition: transform 0.25s var(--ease-out), width 0.25s, height 0.25s, opacity 0.2s;
   }
   .cursor.hover { width: 20px; height: 20px; }
-  .cursor-ring.hover { width: 60px; height: 60px; border-color: var(--yellow); }
+  .cursor-ring.hover { width: 60px; height: 60px; border-color: var(--gold); }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--ink); }
-  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
 
   /* NAV */
   nav {
@@ -143,7 +143,7 @@
   }
   .nav-logo-mark {
     width: 36px; height: 36px;
-    background: var(--yellow);
+    background: var(--gold);
     border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
@@ -157,7 +157,7 @@
     letter-spacing: 2px;
     color: var(--white);
   }
-  .nav-wordmark span { color: var(--yellow); }
+  .nav-wordmark span { color: var(--gold); }
   .nav-links {
     display: flex; gap: 36px; list-style: none;
   }
@@ -171,7 +171,7 @@
   }
   .nav-links a:hover { color: var(--white); }
   .nav-cta {
-    background: var(--yellow);
+    background: var(--gold);
     color: var(--ink) !important;
     padding: 10px 22px;
     border-radius: var(--radius);
@@ -181,7 +181,7 @@
     text-transform: uppercase;
     transition: background 0.2s, transform 0.15s !important;
   }
-  .nav-cta:hover { background: var(--yellow-dark) !important; transform: translateY(-1px) !important; }
+  .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px) !important; }
 
   /* HERO */
   .hero {
@@ -195,16 +195,16 @@
 
   .hero-bg {
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(31,91,168,0.18) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(242,199,68,0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(142,68,173,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(212,175,55,0.06) 0%, transparent 60%);
   }
 
   /* Animated grid */
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(31,91,168,0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(31,91,168,0.08) 1px, transparent 1px);
+      linear-gradient(rgba(142,68,173,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142,68,173,0.08) 1px, transparent 1px);
     background-size: 60px 60px;
     animation: gridShift 20s linear infinite;
     mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 75%);
@@ -222,15 +222,15 @@
 
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(31,91,168,0.2);
-    border: 1px solid rgba(31,91,168,0.4);
+    background: rgba(142,68,173,0.2);
+    border: 1px solid rgba(142,68,173,0.4);
     border-radius: 100px;
     padding: 6px 14px;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--blue-light);
+    color: var(--purple-light);
     width: fit-content;
     margin-bottom: 28px;
     animation: fadeUp 0.8s var(--ease-out) 0.2s both;
@@ -238,7 +238,7 @@
   .hero-eyebrow::before {
     content: '';
     width: 6px; height: 6px;
-    background: var(--yellow);
+    background: var(--gold);
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
@@ -257,7 +257,7 @@
   }
   .hero-headline em {
     font-style: normal;
-    color: var(--yellow);
+    color: var(--gold);
     position: relative;
   }
   .hero-headline .stroke-text {
@@ -283,7 +283,7 @@
 
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--yellow);
+    background: var(--gold);
     color: var(--ink);
     padding: 16px 32px;
     border-radius: var(--radius);
@@ -294,7 +294,7 @@
     text-decoration: none;
     border: none; cursor: none;
     transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
-    box-shadow: 0 0 0 0 rgba(242,199,68,0.4);
+    box-shadow: 0 0 0 0 rgba(212,175,55,0.4);
     position: relative; overflow: hidden;
   }
   .btn-primary::after {
@@ -304,7 +304,7 @@
     transform: translateX(-100%) skewX(-15deg);
     transition: transform 0.4s var(--ease-out);
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(242,199,68,0.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,175,55,0.35); }
   .btn-primary:hover::after { transform: translateX(120%) skewX(-15deg); }
 
   .btn-ghost {
@@ -332,7 +332,7 @@
   .stat-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
-    color: var(--yellow);
+    color: var(--gold);
     letter-spacing: 1px;
     line-height: 1;
   }
@@ -386,7 +386,7 @@
     color: var(--white);
   }
   .belt-badge {
-    background: var(--yellow);
+    background: var(--gold);
     color: var(--ink);
     font-size: 10px;
     font-weight: 700;
@@ -396,8 +396,8 @@
   }
 
   .scenario-card {
-    background: rgba(31,91,168,0.15);
-    border: 1px solid rgba(31,91,168,0.3);
+    background: rgba(142,68,173,0.15);
+    border: 1px solid rgba(142,68,173,0.3);
     border-radius: 12px;
     padding: 14px;
     margin-bottom: 10px;
@@ -406,7 +406,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--blue-light);
+    color: var(--purple-light);
     margin-bottom: 6px;
   }
   .scenario-text {
@@ -416,14 +416,14 @@
   }
 
   .coach-bubble {
-    background: rgba(242,199,68,0.1);
-    border: 1px solid rgba(242,199,68,0.2);
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.2);
     border-radius: 12px;
     padding: 12px 14px;
     margin-bottom: 10px;
   }
   .coach-bubble-label {
-    font-size: 10px; color: var(--yellow);
+    font-size: 10px; color: var(--gold);
     text-transform: uppercase; letter-spacing: 1px;
     margin-bottom: 4px;
   }
@@ -443,12 +443,12 @@
     color: rgba(255,255,255,0.5);
   }
   .elo-pill.active {
-    background: rgba(31,91,168,0.25);
-    border-color: var(--blue);
+    background: rgba(142,68,173,0.25);
+    border-color: var(--purple);
     color: var(--white);
   }
-  .elo-pill span { display: block; font-size: 14px; color: var(--blue-light); font-family: 'Bebas Neue', serif; }
-  .elo-pill.active span { color: var(--yellow); }
+  .elo-pill span { display: block; font-size: 14px; color: var(--purple-light); font-family: 'Bebas Neue', serif; }
+  .elo-pill.active span { color: var(--gold); }
 
   .progress-bar-wrap { margin-bottom: 10px; }
   .progress-bar-label {
@@ -457,7 +457,7 @@
   }
   .progress-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; }
   .progress-bar-fill {
-    height: 100%; background: linear-gradient(90deg, var(--blue), var(--yellow));
+    height: 100%; background: linear-gradient(90deg, var(--purple), var(--gold));
     border-radius: 2px;
     animation: growBar 2s var(--ease-out) 1s both;
   }
@@ -473,7 +473,7 @@
   .orbit-chip {
     position: absolute;
     background: rgba(13,17,23,0.9);
-    border: 1px solid rgba(31,91,168,0.4);
+    border: 1px solid rgba(142,68,173,0.4);
     border-radius: 8px;
     padding: 8px 12px;
     font-size: 11px;
@@ -489,7 +489,7 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-  .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); }
+  .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
 
   /* SECTION COMMONS */
   section { position: relative; }
@@ -505,14 +505,14 @@
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--blue-light);
+    color: var(--purple-light);
     display: flex; align-items: center; gap: 10px;
     margin-bottom: 20px;
   }
   .section-label::before {
     content: '';
     width: 30px; height: 1px;
-    background: var(--blue-light);
+    background: var(--purple-light);
   }
 
   .section-headline {
@@ -521,7 +521,7 @@
     line-height: 1.1;
     margin-bottom: 20px;
   }
-  .section-headline em { font-style: italic; color: var(--yellow); }
+  .section-headline em { font-style: italic; color: var(--gold); }
 
   .section-body {
     font-size: 16px;
@@ -533,11 +533,11 @@
 
   /* MARQUEE */
   .marquee-wrap {
-    background: var(--yellow);
+    background: var(--gold);
     padding: 14px 0;
     overflow: hidden;
-    border-top: 2px solid var(--yellow-dark);
-    border-bottom: 2px solid var(--yellow-dark);
+    border-top: 2px solid var(--gold-dark);
+    border-bottom: 2px solid var(--gold-dark);
   }
   .marquee-track {
     display: flex; gap: 40px;
@@ -579,12 +579,12 @@
     position: relative;
     transition: background 0.3s;
   }
-  .how-card:hover { background: rgba(31,91,168,0.12); }
+  .how-card:hover { background: rgba(142,68,173,0.12); }
   .how-card::after {
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
-    background: var(--blue);
+    background: var(--purple);
     transform: scaleX(0);
     transition: transform 0.3s var(--ease-out);
     transform-origin: left;
@@ -602,8 +602,8 @@
   }
   .step-icon {
     width: 48px; height: 48px;
-    background: rgba(31,91,168,0.2);
-    border: 1px solid rgba(31,91,168,0.4);
+    background: rgba(142,68,173,0.2);
+    border: 1px solid rgba(142,68,173,0.4);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-size: 22px;
@@ -655,12 +655,12 @@
     content: '';
     position: absolute; top: 0; left: 0;
     width: 3px; height: 100%;
-    background: var(--blue);
+    background: var(--purple);
     transform: scaleY(0);
     transition: transform 0.3s var(--ease-out);
     transform-origin: bottom;
   }
-  .framework-card:hover { border-color: rgba(31,91,168,0.4); transform: translateY(-3px); }
+  .framework-card:hover { border-color: rgba(142,68,173,0.4); transform: translateY(-3px); }
   .framework-card:hover::before { transform: scaleY(1); }
 
   .framework-icon { font-size: 28px; margin-bottom: 12px; }
@@ -673,7 +673,7 @@
   }
   .framework-author {
     font-size: 11px;
-    color: var(--blue-light);
+    color: var(--purple-light);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 8px;
@@ -714,7 +714,7 @@
     transition: transform 0.3s, border-color 0.3s;
     cursor: none;
   }
-  .persona-card:hover { transform: translateY(-4px); border-color: rgba(242,199,68,0.3); }
+  .persona-card:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.3); }
   .persona-card::after {
     content: 'SPAR →';
     position: absolute;
@@ -722,7 +722,7 @@
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--yellow);
+    color: var(--gold);
     opacity: 0;
     transform: translateX(-8px);
     transition: opacity 0.3s, transform 0.3s;
@@ -749,9 +749,9 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: rgba(31,91,168,0.2);
-    border: 1px solid rgba(31,91,168,0.35);
-    color: var(--blue-light);
+    background: rgba(142,68,173,0.2);
+    border: 1px solid rgba(142,68,173,0.35);
+    color: var(--purple-light);
   }
 
   /* PRICING */
@@ -781,8 +781,8 @@
   }
   .pricing-card:hover { transform: translateY(-4px); }
   .pricing-card.featured {
-    background: rgba(31,91,168,0.15);
-    border-color: var(--blue);
+    background: rgba(142,68,173,0.15);
+    border-color: var(--purple);
     transform: scale(1.03);
   }
   .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
@@ -791,7 +791,7 @@
     position: absolute;
     top: -12px; left: 50%;
     transform: translateX(-50%);
-    background: var(--yellow);
+    background: var(--gold);
     color: var(--ink);
     font-size: 10px;
     font-weight: 700;
@@ -817,7 +817,7 @@
     display: flex; align-items: center; gap: 10px;
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
-  .price-features li::before { content: '✓'; color: var(--yellow); font-weight: 700; font-size: 12px; }
+  .price-features li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 12px; }
 
   .btn-pricing {
     width: 100%;
@@ -839,10 +839,10 @@
   }
   .btn-pricing-outline:hover { border-color: var(--white); color: var(--white); }
   .btn-pricing-solid {
-    background: var(--yellow);
+    background: var(--gold);
     color: var(--ink);
   }
-  .btn-pricing-solid:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+  .btn-pricing-solid:hover { background: var(--gold-dark); transform: translateY(-1px); }
 
   /* TESTIMONIALS */
   .testimonials-section {
@@ -865,18 +865,18 @@
     position: relative;
     transition: border-color 0.3s;
   }
-  .testimonial-card:hover { border-color: rgba(31,91,168,0.35); }
+  .testimonial-card:hover { border-color: rgba(142,68,173,0.35); }
   .testimonial-card:first-child {
     grid-column: span 2;
-    background: rgba(31,91,168,0.1);
-    border-color: rgba(31,91,168,0.25);
+    background: rgba(142,68,173,0.1);
+    border-color: rgba(142,68,173,0.25);
   }
 
   .quote-mark {
     font-family: 'DM Serif Display', serif;
     font-size: 80px;
     line-height: 0.6;
-    color: rgba(242,199,68,0.2);
+    color: rgba(212,175,55,0.2);
     margin-bottom: 20px;
     display: block;
   }
@@ -894,18 +894,18 @@
   .author-avatar {
     width: 40px; height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    background: linear-gradient(135deg, var(--purple), var(--purple-light));
     display: flex; align-items: center; justify-content: center;
     font-size: 14px; font-weight: 700; color: var(--white);
   }
   .author-name { font-size: 14px; font-weight: 600; color: var(--white); }
   .author-role { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-  .stars { color: var(--yellow); font-size: 12px; letter-spacing: 2px; margin-top: 2px; }
+  .stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-top: 2px; }
 
   /* ETHICS BLOCK */
   .ethics-section {
     padding: 100px 0;
-    background: var(--blue-dark);
+    background: var(--purple-dark);
     border-top: 1px solid rgba(255,255,255,0.06);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
@@ -922,7 +922,7 @@
     line-height: 0.95;
     margin-bottom: 20px;
   }
-  .ethics-headline span { color: var(--yellow); }
+  .ethics-headline span { color: var(--gold); }
   .ethics-body {
     font-size: 15px;
     line-height: 1.8;
@@ -938,7 +938,7 @@
     color: rgba(255,255,255,0.75);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .will-not-list li::before { content: '✗'; color: rgba(242,199,68,0.7); font-weight: 700; }
+  .will-not-list li::before { content: '✗'; color: rgba(212,175,55,0.7); font-weight: 700; }
 
   .ethics-values-grid {
     display: grid;
@@ -974,7 +974,7 @@
     cursor: none;
     transition: border-color 0.2s;
   }
-  .faq-item:hover { border-color: rgba(31,91,168,0.35); }
+  .faq-item:hover { border-color: rgba(142,68,173,0.35); }
   .faq-q {
     font-size: 15px;
     font-weight: 600;
@@ -982,7 +982,7 @@
     margin-bottom: 10px;
     display: flex; align-items: start; gap: 10px;
   }
-  .faq-q::before { content: 'Q'; color: var(--yellow); font-family: 'Bebas Neue', serif; font-size: 18px; flex-shrink: 0; }
+  .faq-q::before { content: 'Q'; color: var(--gold); font-family: 'Bebas Neue', serif; font-size: 18px; flex-shrink: 0; }
   .faq-a {
     font-size: 14px;
     line-height: 1.7;
@@ -1001,7 +1001,7 @@
   }
   .cta-bg {
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(31,91,168,0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(142,68,173,0.15) 0%, transparent 70%);
   }
   .cta-section .section-label { justify-content: center; }
   .cta-headline {
@@ -1012,7 +1012,7 @@
     margin-bottom: 24px;
     position: relative;
   }
-  .cta-headline span { color: var(--yellow); }
+  .cta-headline span { color: var(--gold); }
   .cta-sub {
     font-size: 17px;
     color: rgba(255,255,255,0.55);
@@ -1057,7 +1057,7 @@
   .footer-email {
     margin-top: 16px;
     font-size: 13px;
-    color: var(--blue-light);
+    color: var(--purple-light);
     text-decoration: none;
     display: inline-flex; align-items: center; gap: 6px;
   }
@@ -1074,7 +1074,7 @@
     color: rgba(255,255,255,0.25);
   }
   .footer-bse { display: flex; align-items: center; gap: 6px; }
-  .footer-bse span { color: var(--yellow); }
+  .footer-bse span { color: var(--gold); }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -1130,14 +1130,15 @@
 
 <!-- NAV -->
 <nav id="navbar" role="navigation" aria-label="Main navigation">
-  <a href="#" class="nav-logo" aria-label="Attune AI Home">
-    <div class="nav-logo-mark" aria-hidden="true">A</div>
-    <span class="nav-wordmark">Attune <span>AI</span></span>
+  <a href="#" class="nav-logo" aria-label="Peitho Home">
+    <div class="nav-logo-mark" aria-hidden="true">P</div>
+    <span class="nav-wordmark">Peitho</span>
   </a>
   <ul class="nav-links">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
+    <li><a href="#training-modes">Training</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#get-started" class="nav-cta">Get the App</a></li>
@@ -1159,10 +1160,10 @@
       <span class="stroke-text">Athlete</span>
     </h1>
     <p class="hero-sub">
-      Attune AI is the first <strong>ethical conversation gym</strong> — real AI sparring partners, proven frameworks, and a belt system that tracks your growth across <strong>8 skill dimensions</strong>.
+      Peitho is the <strong>conversation gym for influence</strong> — AI sparring partners, 8 training modes, proven frameworks, and a belt system that tracks your growth across <strong>8 skill dimensions</strong>.
     </p>
     <div class="hero-actions">
-      <a href="#get-started" class="btn-primary" aria-label="Get the Attune AI app">
+      <a href="#get-started" class="btn-primary" aria-label="Get the Peitho app">
         <span>Start Training</span>
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -1170,20 +1171,20 @@
     </div>
     <div class="hero-stats" aria-label="Key statistics">
       <div class="stat-item">
-        <div class="stat-num" aria-label="33">33+</div>
+        <div class="stat-num" aria-label="47">47+</div>
         <div class="stat-label">Concepts Trained</div>
       </div>
       <div class="stat-item">
+        <div class="stat-num" aria-label="8">8</div>
+        <div class="stat-label">Training Modes</div>
+      </div>
+      <div class="stat-item">
         <div class="stat-num" aria-label="6">6</div>
-        <div class="stat-label">Belt Levels</div>
+        <div class="stat-label">AI Sparring Partners</div>
       </div>
       <div class="stat-item">
         <div class="stat-num" aria-label="8">8</div>
         <div class="stat-label">ELO Skill Tracks</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" aria-label="Zero">0</div>
-        <div class="stat-label">Manipulation Tactics Taught</div>
       </div>
     </div>
   </div>
@@ -1200,7 +1201,7 @@
       </div>
       <div class="orbit-chip">
         <div class="chip-dot"></div>
-        <span>Defensive Influence Mode</span>
+        <span>Offense &amp; Defense Training</span>
       </div>
     </div>
 
@@ -1233,7 +1234,7 @@
       </div>
 
       <div style="text-align:center; margin-top: 12px;">
-        <div style="font-size:10px; color: rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase;">Attune AI · Conversation Gym</div>
+        <div style="font-size:10px; color: rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase;">Peitho · The Art of Influence</div>
       </div>
     </div>
   </div>
@@ -1319,7 +1320,7 @@
         </h2>
       </div>
       <p class="section-body reveal">
-        Every concept in Attune is drawn from peer-reviewed behavioral science and proven communication frameworks — not productivity gurus, not hype.
+        47 concepts drawn from peer-reviewed behavioral science and proven communication frameworks — covering both influence offense and defense. Not productivity gurus, not hype.
       </p>
     </div>
 
@@ -1415,6 +1416,75 @@
   </div>
 </section>
 
+<!-- TRAINING MODES -->
+<section class="how-section" id="training-modes" aria-labelledby="modes-heading" style="background: var(--ink);">
+  <div class="section-inner">
+    <div class="curriculum-header">
+      <div>
+        <div class="section-label reveal">Training Modes</div>
+        <h2 class="section-headline reveal reveal-delay-1" id="modes-heading">
+          Eight ways to<br>
+          <em>sharpen your edge.</em>
+        </h2>
+      </div>
+      <p class="section-body reveal">
+        Beyond sparring, Peitho offers specialized training modes — each designed to isolate and strengthen a different dimension of conversational intelligence.
+      </p>
+    </div>
+
+    <div class="how-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <article class="how-card reveal">
+        <div class="step-num" aria-hidden="true">01</div>
+        <div class="step-icon" aria-hidden="true">🔥</div>
+        <h3 class="step-title">Daily Program</h3>
+        <p class="step-desc">Adaptive daily loop — warm-up, drill, sparring, recovery. Targets your weakest skills with fresh content each session.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-1">
+        <div class="step-num" aria-hidden="true">02</div>
+        <div class="step-icon" aria-hidden="true">🥊</div>
+        <h3 class="step-title">AI Sparring</h3>
+        <p class="step-desc">Free-form practice against 6 AI personas. Real pressure, real feedback, zero judgment. ELO-rated performance.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-2">
+        <div class="step-num" aria-hidden="true">03</div>
+        <div class="step-icon" aria-hidden="true">🔍</div>
+        <h3 class="step-title">Spot the Influence</h3>
+        <p class="step-desc">Watch dialogue unfold and tag manipulation tactics in real time. 10 real-world scenarios from car deals to MLM pitches.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-3">
+        <div class="step-num" aria-hidden="true">04</div>
+        <div class="step-icon" aria-hidden="true">🔬</div>
+        <h3 class="step-title">Conversation Autopsy</h3>
+        <p class="step-desc">Find where a conversation derailed, diagnose the mistake, and rewrite the critical moment. 17 scenarios across conflict types.</p>
+      </article>
+      <article class="how-card reveal">
+        <div class="step-num" aria-hidden="true">05</div>
+        <div class="step-icon" aria-hidden="true">💬</div>
+        <h3 class="step-title">Subtext Translator</h3>
+        <p class="step-desc">Decode what people really mean beneath what they say. 8 prompt sets spanning workplace, family, dating, and friendship dynamics.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-1">
+        <div class="step-num" aria-hidden="true">06</div>
+        <div class="step-icon" aria-hidden="true">🌡️</div>
+        <h3 class="step-title">Escalation Gauntlet</h3>
+        <p class="step-desc">Stay composed through 4 rounds of rising pressure — civil to threatening. Composure scoring penalizes reactive language.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-2">
+        <div class="step-num" aria-hidden="true">07</div>
+        <div class="step-icon" aria-hidden="true">🔮</div>
+        <h3 class="step-title">Tactic Forecast</h3>
+        <p class="step-desc">Predict manipulation tactics before they land. Watch a setup, call the play, then see if you were right. Pattern recognition training.</p>
+      </article>
+      <article class="how-card reveal reveal-delay-3">
+        <div class="step-num" aria-hidden="true">08</div>
+        <div class="step-icon" aria-hidden="true">✍️</div>
+        <h3 class="step-title">Text Drills</h3>
+        <p class="step-desc">Concept-specific practice exercises tied to your weakest skills. Short, focused reps that build muscle memory for real conversations.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
   <div class="section-inner">
@@ -1436,7 +1506,7 @@
           <li>8 ELO skill tracks</li>
           <li>6 belt progression levels</li>
           <li>Vector memory (Coach recall)</li>
-          <li>33+ concept corpus</li>
+          <li>47+ concept corpus</li>
         </ul>
         <a href="#get-started" class="btn-pricing btn-pricing-outline" aria-label="Start with Core Gym">Start Training</a>
       </article>
@@ -1486,7 +1556,7 @@
     <div class="testimonials-grid">
       <article class="testimonial-card reveal">
         <span class="quote-mark" aria-hidden="true">"</span>
-        <p class="testimonial-text">Attune AI doesn't just teach you what to say — it trains you to notice what's happening in a conversation before you react. That's the part that actually changes how you show up.</p>
+        <p class="testimonial-text">Peitho doesn't just teach you what to say — it trains you to notice what's happening in a conversation before you react. That's the part that actually changes how you show up.</p>
         <div class="testimonial-author">
           <div class="author-avatar" aria-hidden="true">JA</div>
           <div>
@@ -1498,7 +1568,7 @@
       </article>
       <article class="testimonial-card reveal reveal-delay-1">
         <span class="quote-mark" aria-hidden="true">"</span>
-        <p class="testimonial-text">I walked into a salary negotiation the week after my first month on Attune. The conversation felt different — I felt different. Got the number I wanted.</p>
+        <p class="testimonial-text">I walked into a salary negotiation the week after my first month on Peitho. The conversation felt different — I felt different. Got the number I wanted.</p>
         <div class="testimonial-author">
           <div class="author-avatar" aria-hidden="true">SK</div>
           <div>
@@ -1530,16 +1600,16 @@
     <div class="ethics-inner">
       <div>
         <div class="section-label reveal">Our Commitment</div>
-        <h2 class="ethics-headline reveal reveal-delay-1" id="ethics-heading">We have a<br><span>Will-Not-Train</span><br>list.</h2>
+        <h2 class="ethics-headline reveal reveal-delay-1" id="ethics-heading">Power with<br><span>principles.</span></h2>
         <p class="ethics-body reveal reveal-delay-2">
-          Attune is built on an ethical framework that is public, permanent, and non-negotiable. We teach <em>influence without coercion</em> — there are things we will never train, no matter the request.
+          Peitho teaches real persuasion — strategic framing, charisma, negotiation, influence. But power without ethics is manipulation. Our framework is public, permanent, and non-negotiable.
         </p>
         <ul class="will-not-list reveal reveal-delay-3" aria-label="Things we will not train">
-          <li>Manipulation tactics disguised as persuasion</li>
-          <li>Coercive language patterns</li>
+          <li>Coercive language patterns or psychological pressure</li>
           <li>Scripts designed to override someone's autonomy</li>
           <li>Dark-pattern conversation techniques</li>
-          <li>Bypassing consent through psychological pressure</li>
+          <li>Deception-based tactics or gaslighting playbooks</li>
+          <li>Anything that trades long-term trust for short-term gain</li>
         </ul>
       </div>
       <div class="ethics-values-grid">
@@ -1550,8 +1620,8 @@
         </article>
         <article class="ethics-value-card reveal reveal-delay-1">
           <div class="ethics-value-icon">🛡️</div>
-          <div class="ethics-value-title">Defense-Aware</div>
-          <p class="ethics-value-desc">Spot-the-Influence mode teaches you to recognize manipulation when it's being used on you.</p>
+          <div class="ethics-value-title">Offense &amp; Defense</div>
+          <p class="ethics-value-desc">Learn to persuade ethically and recognize when tactics are being used on you — both sides of the coin.</p>
         </article>
         <article class="ethics-value-card reveal reveal-delay-2">
           <div class="ethics-value-icon">💛</div>
@@ -1561,7 +1631,7 @@
         <article class="ethics-value-card reveal reveal-delay-3">
           <div class="ethics-value-icon">🔓</div>
           <div class="ethics-value-title">Transparent Framework</div>
-          <p class="ethics-value-desc">Our ethical guidelines are fully public. You know exactly what Attune will and won't do — always.</p>
+          <p class="ethics-value-desc">Our ethical guidelines are fully public. You know exactly what Peitho will and won't do — always.</p>
         </article>
       </div>
     </div>
@@ -1590,11 +1660,11 @@
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <p class="faq-q">Is the app available on Android?</p>
-        <p class="faq-a">Currently, Attune AI is available exclusively on the iOS App Store. Android development is in the roadmap — subscribe to updates to know when it launches.</p>
+        <p class="faq-a">Peitho is available on the iOS App Store with Android in active development. Subscribe to updates to be notified when the Android version launches.</p>
       </div>
       <div class="faq-item reveal">
         <p class="faq-q">What is Spot-the-Influence mode?</p>
-        <p class="faq-a">A unique Attune feature where you watch a conversation scenario unfold and identify influence and manipulation tactics in real time. Builds awareness as a defense skill, not an attack skill.</p>
+        <p class="faq-a">One of 8 training modes in Peitho. Watch a conversation scenario unfold and identify influence and manipulation tactics in real time. Other modes include Conversation Autopsy, Subtext Translator, Escalation Gauntlet, and Tactic Forecast.</p>
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <p class="faq-q">Can I cancel or pause my subscription?</p>
@@ -1621,7 +1691,7 @@
           <div class="app-badge-name">App Store</div>
         </div>
       </a>
-      <a href="mailto:attuneai@bishopshop.co.site" class="btn-ghost" aria-label="Contact Attune AI team">Contact Us</a>
+      <a href="mailto:peitho@bishopshop.co.site" class="btn-ghost" aria-label="Contact Peitho team">Contact Us</a>
     </div>
   </div>
 </section>
@@ -1632,10 +1702,10 @@
   <div class="section-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="nav-wordmark">Attune <span style="color:var(--yellow)">AI</span></span>
-        <p class="footer-desc">The ethical conversation gym. Train influence without manipulation, build real skill under real pressure.</p>
-        <a href="mailto:attuneai@bishopshop.co.site" class="footer-email" aria-label="Email Attune AI">
-          ✉ attuneai@bishopshop.co.site
+        <span class="nav-wordmark">Peitho</span>
+        <p class="footer-desc">The art of influence. Train persuasion, build real skill under real pressure, master every conversation.</p>
+        <a href="mailto:peitho@bishopshop.co.site" class="footer-email" aria-label="Email Peitho">
+          ✉ peitho@bishopshop.co.site
         </a>
       </div>
       <div>
@@ -1644,16 +1714,17 @@
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#curriculum">Curriculum</a></li>
           <li><a href="#sparring">Sparring Personas</a></li>
+          <li><a href="#training-modes">Training Modes</a></li>
           <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="About Attune AI">About</a></li>
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Attune AI ethical framework">Ethics Framework</a></li>
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Bishop Shop Enterprises">Bishop Shop Enterprises</a></li>
-          <li><a href="mailto:attuneai@bishopshop.co.site" aria-label="Contact us">Contact</a></li>
+          <li><a href="mailto:peitho@bishopshop.co.site" aria-label="About Peitho">About</a></li>
+          <li><a href="mailto:peitho@bishopshop.co.site" aria-label="Peitho ethical framework">Ethics Framework</a></li>
+          <li><a href="mailto:peitho@bishopshop.co.site" aria-label="Bishop Shop Enterprises">Bishop Shop Enterprises</a></li>
+          <li><a href="mailto:peitho@bishopshop.co.site" aria-label="Contact us">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -1738,7 +1809,7 @@
     entries.forEach(e => {
       if (e.isIntersecting) {
         const nums = e.target.querySelectorAll('.stat-num');
-        const vals = [33, 6, 8, 0];
+        const vals = [47, 8, 6, 8];
         const suffixes = ['+', '', '', ''];
         nums.forEach((n, i) => animateCounter(n, vals[i], suffixes[i]));
         statsObserver.unobserve(e.target);
