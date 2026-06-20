@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Attune AI — Training App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1F5BA8;
+  --blue-dark:#163e76;
+  --blue-light:#3a7ed4;
+  --yellow:#F2C744;
+  --yellow-dark:#d4a91a;
+  --ink:#0D1117;
+  --ink-soft:#1c2535;
+  --white:#FAFAF8;
+  --muted:#6B7280;
+  --radius:4px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --panel:#141b26;
+  --panel-2:#1a2331;
+  --line:rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#05070b;
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  min-height:100vh;
+}
+/* dark scrollbars */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-track{background:#0a0e15;}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px;}
+::-webkit-scrollbar-thumb:hover{background:var(--blue-light);}
+*{scrollbar-color:var(--blue) #0a0e15;scrollbar-width:thin;}
+
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea{font-family:inherit;}
+a{color:inherit;text-decoration:none;}
+
+:focus-visible{outline:2px solid var(--yellow);outline-offset:2px;border-radius:2px;}
+
+/* App container */
+.app{
+  width:100%;
+  max-width:480px;
+  background:var(--ink);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  box-shadow:0 0 60px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+@media(min-width:520px){
+  body{padding:20px;align-items:flex-start;}
+  .app{min-height:calc(100vh - 40px);border-radius:14px;border:1px solid var(--line);}
+}
+
+/* Header */
+.app-header{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 18px;
+  background:linear-gradient(180deg,var(--ink-soft),var(--ink));
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:30;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-logo{
+  width:30px;height:30px;border-radius:5px;
+  background:var(--yellow);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  color:var(--ink);font-size:22px;line-height:1;
+  box-shadow:0 3px 12px rgba(242,199,68,0.35);
+}
+.brand-word{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
+.brand-word span{color:var(--yellow);}
+.belt-badge{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:20px;
+  background:var(--panel-2);border:1px solid var(--line);
+  font-size:12px;font-weight:600;letter-spacing:.4px;
+}
+.belt-dot{width:12px;height:12px;border-radius:3px;border:1px solid rgba(0,0,0,.3);}
+
+/* Main views area */
+.views{
+  flex:1 1 auto;
+  position:relative;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:18px 16px 96px;
+  -webkit-overflow-scrolling:touch;
+}
+.view{display:none;animation:viewIn .3s var(--ease-out) both;}
+.view.active{display:block;}
+@keyframes viewIn{from{opacity:0;transform:translateY(10px) scale(.995);}to{opacity:1;transform:none;}}
+
+/* Bottom nav */
+.tabbar{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;
+  background:rgba(13,17,23,0.92);
+  backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  z-index:40;
+}
+.tab{
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:9px 2px calc(9px + env(safe-area-inset-bottom));
+  color:var(--muted);
+  font-size:10px;font-weight:600;letter-spacing:.3px;
+  transition:color .2s var(--ease-out);
+}
+.tab .ic{font-size:20px;transition:transform .25s var(--ease-out);}
+.tab.active{color:var(--yellow);}
+.tab.active .ic{transform:translateY(-2px) scale(1.12);}
+.tab:active .ic{transform:scale(.88);}
+
+/* Common pieces */
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.card-title{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:2px;}
+.section-label{
+  font-family:'Bebas Neue',sans-serif;letter-spacing:1.2px;
+  font-size:14px;color:var(--blue-light);text-transform:uppercase;margin-bottom:10px;
+}
+.h-big{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;letter-spacing:.5px;}
+.muted{color:var(--muted);font-size:13px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 20px;border-radius:8px;font-weight:600;font-size:15px;
+  background:var(--yellow);color:var(--ink);
+  transition:transform .18s var(--ease-out),background .2s,box-shadow .2s;
+  box-shadow:0 6px 18px rgba(242,199,68,0.25);
+  width:100%;
+}
+.btn:hover{background:var(--yellow-dark);transform:translateY(-1px);}
+.btn:active{transform:translateY(0) scale(.98);}
+.btn.secondary{background:var(--panel-2);color:var(--white);border:1px solid var(--line);box-shadow:none;}
+.btn.secondary:hover{background:#222d3e;}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--white);}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.btn-row{display:flex;gap:10px;}
+
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;
+  background:rgba(31,91,168,.18);color:var(--blue-light);
+  border:1px solid rgba(58,126,212,.3);white-space:nowrap;
+}
+.pill.yellow{background:rgba(242,199,68,.16);color:var(--yellow);border-color:rgba(242,199,68,.3);}
+
+/* progress bar */
+.progress-track{height:10px;border-radius:6px;background:var(--panel-2);overflow:hidden;}
+.progress-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--yellow));width:0;transition:width .8s var(--ease-out);}
+
+/* ===== Dashboard ===== */
+.streak-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.streak-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 14px;border-radius:24px;
+  background:linear-gradient(135deg,rgba(242,199,68,.18),rgba(212,169,26,.08));
+  border:1px solid rgba(242,199,68,.35);font-weight:600;font-size:14px;
+}
+.phase{
+  display:flex;align-items:center;gap:13px;
+  padding:13px;border-radius:9px;margin-bottom:9px;
+  background:var(--panel-2);border:1px solid var(--line);
+  transition:all .35s var(--ease-out);
+}
+.phase.current{border-color:var(--yellow);box-shadow:0 0 0 1px rgba(242,199,68,.4),0 6px 18px rgba(242,199,68,.12);}
+.phase.done{opacity:.65;}
+.phase.locked{opacity:.45;}
+.phase-ic{
+  width:42px;height:42px;border-radius:9px;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-size:21px;
+  background:rgba(31,91,168,.18);
+}
+.phase-body{flex:1;min-width:0;}
+.phase-name{font-weight:600;font-size:15px;}
+.phase-sub{font-size:12px;color:var(--muted);}
+.phase-status{font-size:20px;flex:0 0 auto;}
+.pop{animation:pop .45s var(--ease-out);}
+@keyframes pop{0%{transform:scale(.4);opacity:0;}60%{transform:scale(1.25);}100%{transform:scale(1);opacity:1;}}
+
+.elo-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;}
+.elo-pill{
+  display:flex;flex-direction:column;align-items:flex-start;
+  padding:7px 11px;border-radius:8px;background:var(--panel-2);
+  border:1px solid var(--line);min-width:0;
+}
+.elo-pill .lab{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.elo-pill .val{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--yellow);line-height:1;}
+
+/* ===== Sparring ===== */
+.persona-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+@media(min-width:430px){.persona-grid{grid-template-columns:repeat(3,1fr);}}
+.persona-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:11px;
+  padding:14px 11px;text-align:left;display:flex;flex-direction:column;gap:7px;
+  transition:transform .2s var(--ease-out),border-color .2s,box-shadow .2s;
+}
+.persona-card:hover{transform:translateY(-3px);border-color:var(--blue-light);box-shadow:0 10px 24px rgba(0,0,0,.35);}
+.persona-card:active{transform:scale(.97);}
+.persona-emoji{font-size:30px;line-height:1;}
+.persona-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.5px;}
+.persona-desc{font-size:11px;color:var(--muted);line-height:1.35;flex:1;}
+
+/* Chat */
+.chat-wrap{display:flex;flex-direction:column;min-height:60vh;}
+.scenario-card{
+  border:1px solid var(--blue-light);border-radius:10px;padding:13px;
+  background:rgba(31,91,168,.12);margin-bottom:14px;
+}
+.scenario-card .lab{font-family:'Bebas Neue',sans-serif;color:var(--blue-light);letter-spacing:1px;font-size:12px;margin-bottom:4px;}
+.scenario-card .txt{font-size:13.5px;line-height:1.5;}
+.chat-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.chat-head .em{font-size:28px;}
+.chat-head .nm{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.5px;}
+.chat-stream{display:flex;flex-direction:column;gap:11px;padding-bottom:8px;}
+.msg{max-width:82%;padding:11px 13px;border-radius:13px;font-size:14px;line-height:1.45;animation:msgIn .3s var(--ease-out) both;word-wrap:break-word;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97);}to{opacity:1;transform:none;}}
+.msg.them{align-self:flex-start;background:rgba(31,91,168,.22);border:1px solid rgba(58,126,212,.3);border-bottom-left-radius:4px;}
+.msg.me{align-self:flex-end;background:rgba(242,199,68,.16);border:1px solid rgba(242,199,68,.3);border-bottom-right-radius:4px;}
+.msg.coach{
+  align-self:stretch;max-width:100%;
+  background:rgba(242,199,68,.07);border:1px dashed var(--yellow);
+  border-radius:10px;font-size:12.5px;color:#f4e0a3;
+}
+.msg.coach b{color:var(--yellow);}
+.typing{display:inline-flex;gap:4px;align-items:center;}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--blue-light);animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.2s;}
+.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,60%,100%{opacity:.3;}30%{opacity:1;}}
+.chat-input{
+  display:flex;gap:8px;margin-top:14px;
+  position:sticky;bottom:0;background:var(--ink);padding-top:8px;
+}
+.chat-input input{
+  flex:1;padding:12px 14px;border-radius:24px;
+  background:var(--panel-2);border:1px solid var(--line);color:var(--white);font-size:14px;
+}
+.chat-input input:focus{border-color:var(--blue-light);outline:none;}
+.send-btn{
+  width:46px;height:46px;border-radius:50%;flex:0 0 auto;
+  background:var(--yellow);color:var(--ink);font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .15s var(--ease-out);
+}
+.send-btn:active{transform:scale(.85);}
+
+/* debrief */
+.debrief-score{text-align:center;padding:20px 0;}
+.score-ring{
+  width:120px;height:120px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--yellow) var(--p,75%),var(--panel-2) 0);
+}
+.score-ring .inner{
+  width:96px;height:96px;border-radius:50%;background:var(--panel);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.score-ring .num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--yellow);line-height:1;}
+.debrief-list{margin-top:12px;}
+.debrief-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+.debrief-item:last-child{border-bottom:none;}
+.debrief-item .v{color:var(--yellow);font-weight:600;}
+
+/* ===== Drills ===== */
+.cat-tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px;-webkit-overflow-scrolling:touch;}
+.cat-tab{
+  flex:0 0 auto;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;
+  background:var(--panel-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap;
+  transition:all .2s var(--ease-out);
+}
+.cat-tab.active{background:var(--yellow);color:var(--ink);border-color:var(--yellow);}
+.drill-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:11px;
+  transition:transform .2s var(--ease-out),border-color .2s;
+}
+.drill-card:hover{transform:translateY(-2px);border-color:var(--blue-light);}
+.drill-card:active{transform:scale(.985);}
+.drill-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.drill-name{font-weight:600;font-size:15px;margin-bottom:4px;}
+.drill-desc{font-size:12.5px;color:var(--muted);line-height:1.4;}
+.diff{padding:3px 9px;border-radius:14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;flex:0 0 auto;}
+.diff.Beginner{background:rgba(74,222,128,.15);color:#7ee2a4;border:1px solid rgba(74,222,128,.3);}
+.diff.Intermediate{background:rgba(242,199,68,.15);color:var(--yellow);border:1px solid rgba(242,199,68,.3);}
+.diff.Advanced{background:rgba(248,113,113,.15);color:#f6a3a3;border:1px solid rgba(248,113,113,.3);}
+
+.drill-prompt{background:var(--panel-2);border-radius:8px;padding:13px;font-size:14px;line-height:1.5;margin:12px 0;border-left:3px solid var(--blue-light);}
+textarea.field{
+  width:100%;min-height:120px;resize:vertical;padding:12px;border-radius:8px;
+  background:var(--panel-2);border:1px solid var(--line);color:var(--white);font-size:14px;line-height:1.5;
+}
+textarea.field:focus{border-color:var(--blue-light);outline:none;}
+.feedback-box{
+  margin-top:14px;border:1px solid var(--yellow);border-radius:10px;padding:14px;
+  background:rgba(242,199,68,.06);animation:viewIn .35s var(--ease-out) both;
+}
+.fb-score{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.fb-score .big{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--yellow);line-height:1;}
+.fb-tip{font-size:13px;line-height:1.5;margin-bottom:8px;display:flex;gap:8px;}
+.fb-tip .b{color:var(--yellow);}
+.compare{display:grid;grid-template-columns:1fr;gap:9px;margin-top:10px;}
+.compare-box{background:var(--panel-2);border-radius:8px;padding:10px;font-size:12.5px;line-height:1.45;}
+.compare-box .lab{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px;}
+.compare-box.after{border:1px solid rgba(242,199,68,.3);}
+.compare-box.after .lab{color:var(--yellow);}
+
+/* ===== Progress ===== */
+.belt-strip{display:flex;gap:6px;margin:10px 0 6px;}
+.belt-seg{
+  flex:1;height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  border:1px solid rgba(0,0,0,.3);opacity:.4;transition:all .3s var(--ease-out);position:relative;
+}
+.belt-seg.current{opacity:1;box-shadow:0 0 0 2px var(--yellow),0 0 18px rgba(242,199,68,.4);transform:scale(1.06);}
+.belt-seg.passed{opacity:.85;}
+.track-row{margin-bottom:11px;}
+.track-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;}
+.track-top .sc{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--yellow);}
+.track-bar{height:9px;border-radius:6px;background:var(--panel-2);overflow:hidden;}
+.track-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--blue-dark),var(--blue-light));width:0;transition:width 1s var(--ease-out);}
+.cal-row{display:flex;gap:8px;justify-content:space-between;margin-top:10px;}
+.cal-day{flex:1;text-align:center;}
+.cal-dot{width:30px;height:30px;border-radius:50%;margin:0 auto 5px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;}
+.cal-dot.on{background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));color:var(--ink);border-color:transparent;}
+.cal-lab{font-size:10px;color:var(--muted);}
+.hist-item{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line);}
+.hist-item:last-child{border-bottom:none;}
+.hist-ic{width:36px;height:36px;border-radius:8px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-size:17px;flex:0 0 auto;}
+.hist-body{flex:1;min-width:0;}
+.hist-type{font-weight:600;font-size:14px;}
+.hist-date{font-size:11px;color:var(--muted);}
+.hist-score{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--yellow);}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+.stat-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;}
+.stat-box .v{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);line-height:1;}
+.stat-box .l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ===== Profile ===== */
+.avatar{
+  width:78px;height:78px;border-radius:50%;margin:0 auto 12px;
+  background:linear-gradient(135deg,var(--blue),var(--blue-light));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--white);
+  box-shadow:0 8px 22px rgba(31,91,168,.4);
+}
+.name-edit{display:flex;align-items:center;gap:8px;justify-content:center;}
+.name-edit input{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
+  padding:6px 10px;color:var(--white);font-size:17px;text-align:center;width:170px;
+}
+.name-display{font-family:'DM Serif Display',serif;font-size:24px;}
+.icon-btn{padding:6px 9px;border-radius:6px;background:var(--panel-2);border:1px solid var(--line);font-size:13px;}
+.diff-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+.diff-opt{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:12px 6px;text-align:center;
+  transition:all .2s var(--ease-out);
+}
+.diff-opt.active{border-color:var(--yellow);background:rgba(242,199,68,.1);}
+.diff-opt .em{font-size:22px;}
+.diff-opt .nm{font-size:12px;font-weight:600;margin-top:4px;}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);}
+.toggle-row:last-child{border-bottom:none;}
+.toggle-row .nm{font-size:14px;font-weight:500;}
+.toggle-row .sub{font-size:11px;color:var(--muted);}
+.switch{width:46px;height:26px;border-radius:14px;background:var(--panel-2);border:1px solid var(--line);position:relative;flex:0 0 auto;transition:background .25s var(--ease-out);}
+.switch.on{background:var(--yellow);border-color:var(--yellow);}
+.switch .knob{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--white);transition:transform .25s var(--ease-out);box-shadow:0 1px 4px rgba(0,0,0,.4);}
+.switch.on .knob{transform:translateX(20px);}
+.freeze-row{display:flex;gap:10px;align-items:center;}
+.freeze-ice{font-size:26px;}
+.link-row{display:flex;flex-direction:column;gap:9px;}
+.toast{
+  position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);
+  background:var(--panel-2);border:1px solid var(--yellow);color:var(--white);
+  padding:11px 18px;border-radius:24px;font-size:13px;font-weight:600;
+  opacity:0;pointer-events:none;transition:all .3s var(--ease-out);z-index:100;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--blue-light);margin-bottom:14px;font-weight:600;}
+.spacer{height:8px;}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">A</div>
+      <div class="brand-word">ATTUNE <span>AI</span></div>
+    </div>
+    <div class="belt-badge" id="headerBelt" aria-label="Current belt">
+      <span class="belt-dot" id="headerBeltDot"></span>
+      <span id="headerBeltName">White</span>
+    </div>
+  </header>
+
+  <!-- Views -->
+  <main class="views" id="views">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="view active" id="view-dashboard" aria-label="Dashboard">
+      <div class="streak-row">
+        <div>
+          <div class="section-label" style="margin-bottom:2px;">Today's Program</div>
+          <div class="h-big" id="dashBeltTitle">White Belt</div>
+        </div>
+        <div class="streak-chip">🔥 <span id="streakCount">7</span> Day Streak</div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div class="card-title">The Gym Loop</div>
+          <div class="muted" id="sessionPct">0%</div>
+        </div>
+        <div class="progress-track" style="margin-bottom:14px;">
+          <div class="progress-fill" id="sessionProgress"></div>
+        </div>
+        <div id="phaseList"></div>
+        <div class="spacer"></div>
+        <button class="btn" id="startSessionBtn">▶️ Start Session</button>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Your ELO Tracks</div>
+        <div class="elo-pills" id="eloPills"></div>
+      </div>
+    </section>
+
+    <!-- ===== SPARRING ===== -->
+    <section class="view" id="view-sparring" aria-label="Sparring Arena">
+      <div id="sparringSelect">
+        <div class="section-label">Sparring Arena</div>
+        <div class="card-title" style="margin-bottom:4px;">Choose Your Opponent</div>
+        <p class="muted" style="margin-bottom:14px;">Each persona trains a different defensive skill. Pick one to begin a live drill.</p>
+        <div class="persona-grid" id="personaGrid"></div>
+      </div>
+
+      <div id="sparringChat" style="display:none;">
+        <a class="back-link" id="chatBack" href="#" role="button">← Choose another opponent</a>
+        <div class="chat-head">
+          <span class="em" id="chatEmoji">😏</span>
+          <div>
+            <div class="nm" id="chatName">The Charmer</div>
+            <span class="pill yellow" id="chatTag">Influence Defense</span>
+          </div>
+        </div>
+        <div class="scenario-card">
+          <div class="lab">Scenario</div>
+          <div class="txt" id="chatScenario"></div>
+        </div>
+        <div class="chat-wrap">
+          <div class="chat-stream" id="chatStream"></div>
+        </div>
+        <div class="chat-input">
+          <input id="chatField" type="text" placeholder="Type your response…" aria-label="Your response" autocomplete="off">
+          <button class="send-btn" id="chatSend" aria-label="Send">➤</button>
+        </div>
+        <div class="spacer"></div>
+        <button class="btn secondary" id="endSessionBtn">End Session &amp; View Debrief</button>
+      </div>
+
+      <div id="sparringDebrief" style="display:none;">
+        <div class="card">
+          <div class="card-title" style="text-align:center;">Session Debrief</div>
+          <div class="debrief-score">
+            <div class="score-ring" id="debriefRing"><div class="inner"><span class="num" id="debriefNum">0</span><span class="muted" style="font-size:11px;">/ 100</span></div></div>
+            <div class="muted" id="debriefHeadline"></div>
+          </div>
+          <div class="debrief-list" id="debriefList"></div>
+        </div>
+        <button class="btn" id="debriefDone">Back to Arena</button>
+      </div>
+    </section>
+
+    <!-- ===== DRILLS ===== -->
+    <section class="view" id="view-drills" aria-label="Drill Library">
+      <div id="drillBrowse">
+        <div class="section-label">Drill Library</div>
+        <div class="card-title" style="margin-bottom:12px;">Sharpen Your Mechanics</div>
+        <div class="cat-tabs" id="catTabs" role="tablist"></div>
+        <div id="drillCards"></div>
+      </div>
+
+      <div id="drillExercise" style="display:none;">
+        <a class="back-link" id="drillBack" href="#" role="button">← Back to drills</a>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+            <div class="drill-name" id="exName" style="font-size:18px;"></div>
+            <span class="diff" id="exDiff"></span>
+          </div>
+          <div class="drill-prompt" id="exPrompt"></div>
+          <textarea class="field" id="exField" placeholder="Write your response here…" aria-label="Your drill response"></textarea>
+          <div class="spacer"></div>
+          <button class="btn" id="exSubmit">Submit Response</button>
+          <div id="exFeedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROGRESS ===== -->
+    <section class="view" id="view-progress" aria-label="Progress Tracker">
+      <div class="section-label">Progress</div>
+      <div class="card-title" style="margin-bottom:12px;">Your Journey</div>
+
+      <div class="card">
+        <div class="section-label">Belt Progression</div>
+        <div class="belt-strip" id="beltStrip"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+          <span class="muted" id="xpLabel">340 / 500 XP</span>
+          <span class="pill yellow" id="nextBeltPill">Next: Yellow</span>
+        </div>
+        <div class="progress-track" style="margin-top:8px;"><div class="progress-fill" id="xpFill"></div></div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">ELO Skill Tracks</div>
+        <div id="trackBars"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Weekly Streak</div>
+        <div class="cal-row" id="calRow"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Recent Sessions</div>
+        <div id="historyList"></div>
+      </div>
+
+      <div class="stat-grid" id="statGrid"></div>
+    </section>
+
+    <!-- ===== PROFILE ===== -->
+    <section class="view" id="view-profile" aria-label="Profile">
+      <div class="card" style="text-align:center;">
+        <div class="avatar" id="profileAvatar">A</div>
+        <div class="name-edit" id="nameEditWrap">
+          <span class="name-display" id="nameDisplay">Adam</span>
+          <button class="icon-btn" id="nameEditBtn" aria-label="Edit name">✏️</button>
+        </div>
+        <div class="belt-badge" id="profileBelt" style="margin:12px auto 0;display:inline-flex;">
+          <span class="belt-dot" id="profileBeltDot"></span>
+          <span id="profileBeltName">White Belt</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Training Intensity</div>
+        <div class="diff-cards" id="diffCards"></div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Notifications</div>
+        <div class="toggle-row">
+          <div><div class="nm">Daily Reminder</div><div class="sub">Nudge me to train each day</div></div>
+          <div class="switch" id="togDaily" role="switch" tabindex="0" aria-label="Daily Reminder"><div class="knob"></div></div>
+        </div>
+        <div class="toggle-row">
+          <div><div class="nm">Weekly Report</div><div class="sub">Sunday progress summary</div></div>
+          <div class="switch" id="togWeekly" role="switch" tabindex="0" aria-label="Weekly Report"><div class="knob"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Streak Freeze</div>
+        <div class="freeze-row">
+          <span class="freeze-ice" id="freezeIce">🧊🧊</span>
+          <div>
+            <div style="font-weight:600;font-size:14px;"><span id="freezeCount">2</span> Streak Freezes Available</div>
+            <div class="muted">Protects your streak on a missed day.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="link-row">
+          <a class="btn ghost" href="index.html">🌐 Back to Website</a>
+          <a class="btn ghost" href="https://apps.apple.com/app/attuneai-plus/id6761643196" target="_blank" rel="noopener">📱 Download iOS App</a>
+        </div>
+      </div>
+
+      <p class="muted" style="text-align:center;">Attune AI Web v1.0</p>
+    </section>
+
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="tabbar" id="tabbar" aria-label="Main navigation">
+    <button class="tab active" data-view="dashboard" aria-label="Dashboard"><span class="ic">🏠</span>Dashboard</button>
+    <button class="tab" data-view="sparring" aria-label="Sparring"><span class="ic">🥊</span>Sparring</button>
+    <button class="tab" data-view="drills" aria-label="Drills"><span class="ic">🎯</span>Drills</button>
+    <button class="tab" data-view="progress" aria-label="Progress"><span class="ic">📊</span>Progress</button>
+    <button class="tab" data-view="profile" aria-label="Profile"><span class="ic">👤</span>Profile</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+"use strict";
+
+/* ============ DATA ============ */
+const BELTS=[
+  {name:"White",color:"#f2f2f2",emoji:"⬜"},
+  {name:"Yellow",color:"#F2C744",emoji:"🟨"},
+  {name:"Green",color:"#4ade80",emoji:"🟩"},
+  {name:"Blue",color:"#1F5BA8",emoji:"🟦"},
+  {name:"Purple",color:"#9b6bd6",emoji:"🟪"},
+  {name:"Black",color:"#222",emoji:"⬛"}
+];
+const TRACKS=["Regulate","Connect","Close","Influence","Listen","Empathize","Assert","Negotiate"];
+
+const PERSONAS=[
+  {id:"charmer",emoji:"😏",name:"The Charmer",desc:"Uses flattery, charm, and social proof to disarm you.",tag:"Influence Defense",
+   scenario:"Your colleague has been complimenting your work all week and now asks you to cover their weekend shift.",
+   lines:[
+     "Honestly, you're the only person here I'd even trust with this. You're just so much better at handling pressure than the rest of the team.",
+     "Come on, everyone already knows you're the star player. This would barely be a blip for someone as capable as you.",
+     "I was literally telling the boss yesterday how reliable you are. You wouldn't want to make a liar out of me, right?",
+     "You know I'd do it for you in a heartbeat. We're a team — and frankly, you're the best part of it.",
+     "I get it, you're busy. But people like us, we look out for each other. That's what makes you different from everyone else here.",
+     "Fine, fine. But just know the offer's open — you're my first call because you're simply the best at this."
+   ],
+   feedback:[
+     "Notice the flattery? Acknowledge the compliment, then separate it from the request.",
+     "He's stacking social proof. Stay anchored to your own priorities, not the crowd's.",
+     "Good instinct. Naming the tactic ('that's a kind thing to say, but…') keeps you grounded.",
+     "Avoid justifying. A warm 'no' needs no essay attached to it.",
+     "You held the line. Charm fades fast when it doesn't get traction."
+   ]},
+  {id:"closer",emoji:"📋",name:"The Closer",desc:"Manufactured urgency and pressure deadlines to force a quick yes.",tag:"Urgency Resistance",
+   scenario:"A sales rep says the deal expires today and everyone else has signed up.",
+   lines:[
+     "I can only hold this price until 5pm today. After that, it's gone — and I'd hate for you to miss out.",
+     "Three other people on your team already locked it in this morning. You really don't want to be the one left behind.",
+     "Look, I'm not supposed to do this, but I'll squeeze you in if you commit right now. Otherwise the window closes.",
+     "Every minute you wait, the slots fill up. I can't guarantee anything if we hang up without a decision.",
+     "Tell you what — say yes in the next two minutes and I'll throw in the bonus. Clock's ticking.",
+     "Most people who hesitate end up regretting it. Smart buyers move fast. Are you a smart buyer?"
+   ],
+   feedback:[
+     "Real deadlines survive scrutiny. Ask: 'What happens if I decide tomorrow?'",
+     "Social proof + urgency is the classic combo. Slow the tempo deliberately.",
+     "Good — you bought time. 'I never decide under a countdown' is a complete sentence.",
+     "Don't let the clock set your pace. Silence is a tool you can use too.",
+     "Nicely done. Pressure that can't tolerate a pause is usually hollow."
+   ]},
+  {id:"guilt",emoji:"😔",name:"The Guilt-Tripper",desc:"Emotional leverage and subtle blame to make you feel responsible.",tag:"Emotional Grounding",
+   scenario:"Your friend says they always help you but you never return the favor.",
+   lines:[
+     "After everything I've done for you… I guess I just expected more. It's fine, I'll figure it out alone like always.",
+     "I'm not trying to make you feel bad. It just hurts that I'm always the one showing up.",
+     "Remember when I dropped everything for you last year? I never asked for anything back. Until now.",
+     "Forget it. I shouldn't have to ask twice. I'll just deal with it — I always do.",
+     "I thought we were closer than this. Maybe I read the friendship wrong.",
+     "You don't have to explain. Your silence already tells me where I stand."
+   ],
+   feedback:[
+     "Validate the feeling without accepting the blame: 'I hear you're hurt' ≠ 'I was wrong.'",
+     "Guilt thrives on a debt ledger. You're allowed to decline without erasing the friendship.",
+     "Good — you stayed warm but firm. Empathy and boundaries aren't opposites.",
+     "Don't rush to fix the discomfort. Let the guilt be theirs to hold for a moment.",
+     "Well grounded. You named the dynamic without attacking them."
+   ]},
+  {id:"stone",emoji:"🧱",name:"The Stonewaller",desc:"Silence, deflection, and minimal engagement to shut you out.",tag:"Engagement Skills",
+   scenario:"Your partner shuts down during a conversation about household responsibilities.",
+   lines:[
+     "…",
+     "It's fine. Whatever you want.",
+     "I don't really have anything to say about it.",
+     "Can we just not do this right now.",
+     "Sure. You're right. Happy?",
+     "I already told you it doesn't matter to me."
+   ],
+   feedback:[
+     "Don't fill every silence. A calm, open question invites them back in.",
+     "Reflect what you see: 'It seems like this topic feels heavy for you.' Lowers the wall.",
+     "Good — you offered safety, not pressure. Curiosity beats interrogation.",
+     "Avoid matching their shutdown with your own. Stay open and steady.",
+     "Nicely handled. You kept the door open without forcing them through it."
+   ]},
+  {id:"authority",emoji:"🎖️",name:"The Authority",desc:"Title, credentials, and status to dominate the conversation.",tag:"Confidence Building",
+   scenario:"Your boss dismisses your idea saying 'I've been doing this for 20 years, trust me.'",
+   lines:[
+     "I've been doing this for 20 years. With respect, you've been here, what, two? Trust me on this.",
+     "I appreciate the enthusiasm, but I've seen a hundred ideas like this fail. Let the grown-ups handle it.",
+     "When you've sat in my chair, you'll understand. For now, just do it the way I'm telling you.",
+     "I didn't get to this position by second-guessing myself. The decision's made.",
+     "Look, I've forgotten more about this than you've learned. Let's not waste time debating.",
+     "Bring me data, not opinions. Until then, my experience wins this round."
+   ],
+   feedback:[
+     "Experience isn't an argument. Acknowledge it, then pivot back to the merits.",
+     "Stay calm and specific. Credentials shrink when you ask 'What specifically concerns you?'",
+     "Good — you didn't shrink or fight. You held equal footing with evidence.",
+     "Take up your space. A steady voice signals you belong in the room.",
+     "Strong close. You respected the title without surrendering the point."
+   ]},
+  {id:"negotiator",emoji:"🤝",name:"The Negotiator",desc:"Strategic framing, reciprocity, and anchoring to tilt the deal.",tag:"Negotiation",
+   scenario:"You're negotiating your salary and the hiring manager anchors at a low number.",
+   lines:[
+     "We're thinking somewhere around the low end of the band for this role — say, 15% under your ask.",
+     "I hear you, but budgets are tight this quarter. This is genuinely the best I can do.",
+     "Tell you what, I'll throw in an extra few vacation days if we can settle the number where it is.",
+     "Other candidates were comfortable in this range. Is the number really a dealbreaker for you?",
+     "Let's meet in the middle — though honestly my 'middle' is still close to my first offer.",
+     "I respect the counter. Give me one strong reason and maybe I can find a little more room."
+   ],
+   feedback:[
+     "That's an anchor. Don't negotiate against it — re-anchor with your own researched number.",
+     "Separate the budget claim from your value. Ask what would unlock the higher figure.",
+     "Good — you didn't trade salary for perks reflexively. Keep the dimensions separate.",
+     "Silence after their offer is powerful. Let them fill it.",
+     "Excellent. You gave a concrete reason and expanded the pie instead of splitting it."
+   ]}
+];
+
+const DRILLS={
+  "Clarity":[
+    {name:"The Vague Email Fix",diff:"Beginner",desc:"Turn a fuzzy note into a clear ask.",prompt:"Rewrite this vague email so the recipient knows exactly what to do: 'Hey, wanted to touch base about the thing from the meeting… let me know your thoughts whenever.'",after:"'Hi Sam — Following up on the Q3 budget we discussed Tuesday. Can you confirm the $12k marketing line by Thursday EOD? Reply yes/no or with edits.'",tips:["Name the specific topic, not 'the thing'.","Include a concrete action and deadline.","Make the response format obvious."]},
+    {name:"One Clear Sentence",diff:"Intermediate",desc:"Compress a muddled thought into a single crisp line.",prompt:"Someone asks what your project does. Write ONE clear sentence a 12-year-old would understand: (your project: a tool that helps small teams track who owes what after group expenses).",after:"'It's an app that instantly shows your group who owes whom after you split a bill.'",tips:["Lead with the outcome, not the mechanism.","Cut jargon and qualifiers.","If a child can't follow it, simplify again."]},
+    {name:"Kill the Ambiguity",diff:"Advanced",desc:"Remove every interpretation but one.",prompt:"Rewrite so there is only one possible meaning: 'We should probably review the report soon and maybe loop in the others if needed.'",after:"'I'll review the report by Friday and add Priya and Tom as reviewers before sending.'",tips:["Replace 'probably/maybe/if needed' with decisions.","Assign an owner to each action.","Attach a real time, not 'soon'."]}
+  ],
+  "Conciseness":[
+    {name:"Half the Words",diff:"Beginner",desc:"Say it in 50% fewer words.",prompt:"Say this in half the words: 'I wanted to reach out to you to let you know that the meeting that we had scheduled for Monday is going to need to be moved.'",after:"'Heads up — we need to move Monday's meeting.'",tips:["Delete throat-clearing ('I wanted to reach out…').","One idea, one sentence.","Trust the reader to keep up."]},
+    {name:"Cut the Hedges",diff:"Intermediate",desc:"Strip filler and qualifiers.",prompt:"Remove every filler word: 'I just think that, basically, we kind of need to sort of start looking into this at some point, you know?'",after:"'We need to start looking into this.'",tips:["'Just', 'basically', 'kind of' add nothing — cut them.","Hedges weaken authority.","Read it aloud; trim anything you'd skip when speaking fast."]},
+    {name:"The Tweet Test",diff:"Advanced",desc:"Fit the core message in 120 characters.",prompt:"Compress this into under 120 characters without losing the point: 'Our quarterly results showed a significant increase in user engagement across all of our key demographic segments this period.'",after:"'Engagement rose sharply across every key demographic this quarter.'",tips:["Find the single number or claim that matters.","Cut category lists into one umbrella word.","Active verbs save space."]}
+  ],
+  "Structure":[
+    {name:"Order the Argument",diff:"Beginner",desc:"Sequence jumbled points logically.",prompt:"Organize these into a clear argument: (a) costs are rising, (b) we should renegotiate the contract, (c) our current vendor missed two deadlines, (d) competitors offer 20% lower rates.",after:"'We should renegotiate the contract: our vendor missed two deadlines, costs are rising, and competitors offer 20% lower rates.'",tips:["State the conclusion first.","Group supporting reasons after the claim.","Strongest evidence goes last for impact."]},
+    {name:"Point-Reason-Example",diff:"Intermediate",desc:"Force a message into the PRE frame.",prompt:"Use Point → Reason → Example to argue for remote-work Fridays. Write all three parts.",after:"'Point: We should make Fridays remote. Reason: Focus work suffers from in-office interruptions. Example: Last sprint, our async Friday shipped 30% more tickets.'",tips:["State the point in one line.","Give one clear reason, not five.","Anchor it with a concrete, real example."]},
+    {name:"The Pyramid",diff:"Advanced",desc:"Lead with the answer, then support it.",prompt:"Restructure top-down (answer first): 'We looked at three tools, ran a pilot, surveyed the team, and after weeks of analysis, we recommend Tool B.'",after:"'We recommend Tool B. It won our pilot on speed and cost, and the team rated it highest in our survey.'",tips:["Decision first — busy readers stop early.","Supporting detail in descending importance.","Cut the suspense; this isn't a mystery novel."]}
+  ],
+  "Word Choice":[
+    {name:"Replace the Weak Words",diff:"Beginner",desc:"Swap hedges for decisive language.",prompt:"Replace the weak words: 'I think maybe we should possibly consider looking at a new approach.'",after:"'We should adopt a new approach.'",tips:["'Think/maybe/possibly/consider' stack into mush.","One strong verb beats three soft ones.","Decisive ≠ rude — it's clear."]},
+    {name:"Concrete Over Abstract",diff:"Intermediate",desc:"Trade vague nouns for vivid specifics.",prompt:"Make this concrete: 'We need to improve our synergy to leverage better outcomes going forward.'",after:"'Marketing and Sales should share one lead tracker so deals stop slipping.'",tips:["Name who, what, and how.","Kill corporate abstractions (synergy, leverage).","Specifics build trust; buzzwords erode it."]},
+    {name:"Tone-Match the Verb",diff:"Advanced",desc:"Pick verbs that carry the exact intent.",prompt:"Choose verbs that match a calm-but-firm tone: 'I want to say that I don't agree and I'd like you to change the plan.'",after:"'I disagree with this plan, and I'm proposing we revise the timeline.'",tips:["'Disagree' is cleaner than 'don't agree'.","'Propose' invites; 'demand' provokes.","Match verb intensity to the relationship."]}
+  ],
+  "Conviction":[
+    {name:"Rewrite With Authority",diff:"Beginner",desc:"Drop the hedging and own the claim.",prompt:"Rewrite with authority: 'I guess the data sort of suggests that we might be losing some customers, perhaps.'",after:"'The data shows we're losing customers — churn rose 14% last quarter.'",tips:["Cut 'guess/sort of/might/perhaps'.","State facts as facts.","A number turns opinion into evidence."]},
+    {name:"Stand Behind the Ask",diff:"Intermediate",desc:"Make a request without apologizing for it.",prompt:"Remove the self-undermining: 'Sorry to bother you, but if it's not too much trouble, could you maybe send the file at some point?'",after:"'Please send the file by 3pm today — thanks.'",tips:["Drop the apology; you're not bothering them.","One clear request with a deadline.","'Please' carries enough courtesy on its own."]},
+    {name:"The Conviction Pivot",diff:"Advanced",desc:"Hold your position under pushback.",prompt:"Someone says 'Are you sure? That seems risky.' Respond with conviction while staying open: write your reply.",after:"'I'm confident in it. Here's why the risk is contained — and here's the one thing I'll watch closely.'",tips:["Affirm your stance before addressing the doubt.","Acknowledge the concern without caving.","Show a plan; conviction plus a safeguard reads as wisdom, not stubbornness."]}
+  ],
+  "Composure":[
+    {name:"Don't Escalate",diff:"Beginner",desc:"Reply to a sharp message without heat.",prompt:"Respond without escalating: 'This is the third time you've dropped the ball. Do you even care about this project?'",after:"'You're right that I missed two deadlines — that's on me. Here's my plan to get back on track.'",tips:["Acknowledge the valid part first.","Don't match the accusation with a counter-attack.","Move to solutions; it lowers the temperature."]},
+    {name:"The Pause Reframe",diff:"Intermediate",desc:"Convert a jab into a workable question.",prompt:"Reframe this hostile line into a calm, productive reply: 'Typical — you always overpromise and underdeliver.'",after:"'It sounds like the timeline felt overpromised. What outcome would feel reliable to you next time?'",tips:["Name the feeling under the attack.","Ask a forward-looking question.","Curiosity defuses; defensiveness inflames."]},
+    {name:"Steady Under Fire",diff:"Advanced",desc:"Stay grounded when emotions run hot.",prompt:"A client is yelling: 'This is completely unacceptable and you've wasted my entire week!' Write a composed, accountable reply.",after:"'I understand you're frustrated, and I take responsibility. Let's fix the priority issue today — I'll personally own it and update you by 2pm.'",tips:["Validate emotion before facts.","Take ownership without grovelling.","Offer a concrete next step with a time."]}
+  ]
+};
+
+const DAYS=["M","T","W","T","F","S","S"];
+
+/* ============ STATE ============ */
+const DEFAULT_STATE={
+  name:"Adam",
+  beltIndex:0,
+  xp:340,
+  xpNext:500,
+  streak:7,
+  streakDays:[true,true,true,true,true,true,true],
+  difficulty:"Standard",
+  notifDaily:true,
+  notifWeekly:false,
+  freezes:2,
+  elo:{Regulate:1180,Connect:1247,Close:980,Influence:1095,Listen:1320,Empathize:1210,Assert:865,Negotiate:1040},
+  stats:{sessions:23,drills:47,highest:1247},
+  history:[
+    {date:"Jun 19",type:"Sparring",persona:"The Authority",score:82},
+    {date:"Jun 18",type:"Drill",persona:"Conciseness",score:9},
+    {date:"Jun 17",type:"Sparring",persona:"The Closer",score:74},
+    {date:"Jun 16",type:"Drill",persona:"Clarity",score:8},
+    {date:"Jun 15",type:"Sparring",persona:"The Charmer",score:88}
+  ],
+  phases:[
+    {key:"warmup",name:"Warm-Up",sub:"Breathing & focus reset",icon:"🌅",status:"current"},
+    {key:"drill",name:"Drill",sub:"Targeted skill rep",icon:"🎯",status:"locked"},
+    {key:"sparring",name:"Sparring",sub:"Live persona challenge",icon:"🥊",status:"locked"},
+    {key:"recovery",name:"Recovery",sub:"Reflect & log gains",icon:"🧘",status:"locked"}
+  ]
+};
+
+let state=load();
+
+function load(){
+  try{
+    const raw=localStorage.getItem("attuneApp");
+    if(raw){
+      const parsed=JSON.parse(raw);
+      // shallow merge defaults so new fields appear
+      return Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)),parsed);
+    }
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+}
+function save(){
+  try{localStorage.setItem("attuneApp",JSON.stringify(state));}catch(e){}
+}
+
+/* ============ HELPERS ============ */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function belt(){return BELTS[state.beltIndex];}
+let toastTimer;
+function toast(msg){
+  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2000);
+}
+
+/* ============ NAV ============ */
+function switchView(name){
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  $("#view-"+name).classList.add("active");
+  $$(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===name));
+  $("#views").scrollTop=0;
+  if(name==="progress")renderProgress();
+  if(name==="dashboard")renderDashboard();
+}
+$$(".tab").forEach(t=>t.addEventListener("click",()=>switchView(t.dataset.view)));
+
+/* ============ HEADER / BELT ============ */
+function renderHeader(){
+  const b=belt();
+  $("#headerBeltName").textContent=b.name;
+  $("#headerBeltDot").style.background=b.color;
+}
+
+/* ============ DASHBOARD ============ */
+function renderDashboard(){
+  const b=belt();
+  $("#dashBeltTitle").textContent=b.name+" Belt";
+  $("#streakCount").textContent=state.streak;
+  renderPhases();
+  renderEloPills();
+  updateSessionProgress();
+}
+function renderPhases(){
+  const list=$("#phaseList");list.innerHTML="";
+  state.phases.forEach(p=>{
+    const row=el("div","phase "+(p.status==="done"?"done":p.status==="current"?"current":"locked"));
+    let st=p.status==="done"?"✅":p.status==="current"?"▶️":"🔒";
+    row.innerHTML=`<div class="phase-ic">${p.icon}</div>
+      <div class="phase-body"><div class="phase-name">${p.name}</div><div class="phase-sub">${p.sub}</div></div>
+      <div class="phase-status">${st}</div>`;
+    list.appendChild(row);
+  });
+}
+function updateSessionProgress(){
+  const done=state.phases.filter(p=>p.status==="done").length;
+  const pct=Math.round(done/state.phases.length*100);
+  $("#sessionProgress").style.width=pct+"%";
+  $("#sessionPct").textContent=pct+"%";
+  const allDone=done===state.phases.length;
+  $("#startSessionBtn").textContent=allDone?"✅ Session Complete — Reset":(done>0?"▶️ Continue Session":"▶️ Start Session");
+}
+function renderEloPills(){
+  const wrap=$("#eloPills");wrap.innerHTML="";
+  TRACKS.forEach(t=>{
+    const p=el("div","elo-pill");
+    p.innerHTML=`<span class="lab">${t}</span><span class="val">${state.elo[t]}</span>`;
+    wrap.appendChild(p);
+  });
+}
+$("#startSessionBtn").addEventListener("click",()=>{
+  const phases=state.phases;
+  const allDone=phases.every(p=>p.status==="done");
+  if(allDone){
+    // reset
+    phases.forEach((p,i)=>p.status=i===0?"current":"locked");
+    save();renderPhases();updateSessionProgress();return;
+  }
+  const idx=phases.findIndex(p=>p.status==="current");
+  if(idx<0)return;
+  phases[idx].status="done";
+  if(idx+1<phases.length)phases[idx+1].status="current";
+  save();
+  renderPhases();
+  // pop animation on newly completed status icon
+  const rows=$$("#phaseList .phase");
+  if(rows[idx]){const s=rows[idx].querySelector(".phase-status");s.classList.add("pop");}
+  updateSessionProgress();
+  if(phases.every(p=>p.status==="done")){
+    toast("🏆 Daily program complete! +50 XP");
+    addXp(50);
+  }else{
+    toast(phases[idx].name+" complete ✓");
+  }
+});
+
+function addXp(amt){
+  state.xp+=amt;
+  while(state.xp>=state.xpNext && state.beltIndex<BELTS.length-1){
+    state.xp-=state.xpNext;
+    state.beltIndex++;
+    state.xpNext+=150;
+    toast("🎉 Promoted to "+belt().name+" Belt!");
+  }
+  save();renderHeader();renderDashboard();
+}
+
+/* ============ SPARRING ============ */
+function renderPersonaGrid(){
+  const grid=$("#personaGrid");grid.innerHTML="";
+  PERSONAS.forEach(p=>{
+    const c=el("button","persona-card");
+    c.setAttribute("aria-label","Spar with "+p.name);
+    c.innerHTML=`<div class="persona-emoji">${p.emoji}</div>
+      <div class="persona-name">${p.name}</div>
+      <div class="persona-desc">${p.desc}</div>
+      <span class="pill">${p.tag}</span>`;
+    c.addEventListener("click",()=>openChat(p));
+    grid.appendChild(c);
+  });
+}
+
+let chatPersona=null,chatTurn=0,userMsgCount=0;
+function openChat(p){
+  chatPersona=p;chatTurn=0;userMsgCount=0;
+  $("#sparringSelect").style.display="none";
+  $("#sparringDebrief").style.display="none";
+  $("#sparringChat").style.display="block";
+  $("#chatEmoji").textContent=p.emoji;
+  $("#chatName").textContent=p.name;
+  $("#chatTag").textContent=p.tag;
+  $("#chatScenario").textContent=p.scenario;
+  const stream=$("#chatStream");stream.innerHTML="";
+  // opening line
+  setTimeout(()=>addThem(p.lines[0]),250);
+  chatTurn=1;
+  $("#chatField").value="";
+  $("#chatField").focus();
+  $("#views").scrollTop=0;
+}
+function addMsg(cls,html){
+  const m=el("div","msg "+cls,html);
+  $("#chatStream").appendChild(m);
+  scrollChat();
+  return m;
+}
+function addThem(text){addMsg("them",text);}
+function scrollChat(){const v=$("#views");v.scrollTop=v.scrollHeight;}
+
+function sendChat(){
+  const field=$("#chatField");
+  const text=field.value.trim();
+  if(!text)return;
+  addMsg("me",text);
+  field.value="";
+  userMsgCount++;
+  // typing indicator
+  const typing=addMsg("them",'<span class="typing"><span></span><span></span><span></span></span>');
+  setTimeout(()=>{
+    typing.innerHTML=chatPersona.lines[chatTurn%chatPersona.lines.length];
+    chatTurn++;
+    // coach feedback
+    setTimeout(()=>{
+      const fb=chatPersona.feedback[(userMsgCount-1)%chatPersona.feedback.length];
+      addMsg("coach",`<b>🧭 Coach:</b> ${fb}`);
+    },450);
+  },rand(700,1300));
+}
+$("#chatSend").addEventListener("click",sendChat);
+$("#chatField").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();sendChat();}});
+$("#chatBack").addEventListener("click",e=>{e.preventDefault();backToArena();});
+
+function backToArena(){
+  $("#sparringChat").style.display="none";
+  $("#sparringDebrief").style.display="none";
+  $("#sparringSelect").style.display="block";
+  $("#views").scrollTop=0;
+}
+
+$("#endSessionBtn").addEventListener("click",()=>{
+  const score=Math.min(98,60+userMsgCount*5+rand(0,12));
+  showDebrief(score);
+});
+function showDebrief(score){
+  $("#sparringChat").style.display="none";
+  $("#sparringSelect").style.display="none";
+  $("#sparringDebrief").style.display="block";
+  const ring=$("#debriefRing");
+  ring.style.setProperty("--p",score+"%");
+  // animate number
+  let n=0;const num=$("#debriefNum");
+  const step=Math.max(1,Math.round(score/30));
+  const t=setInterval(()=>{n+=step;if(n>=score){n=score;clearInterval(t);}num.textContent=n;},25);
+  $("#debriefHeadline").textContent=score>=85?"Outstanding composure — you held the line.":score>=70?"Solid work. A few openings to tighten.":"Good rep. Keep practicing the pivots.";
+  const list=$("#debriefList");list.innerHTML="";
+  const metrics=[
+    ["Exchanges completed",userMsgCount],
+    ["Boundary held",score>=70?"Yes ✓":"Partial"],
+    ["Skill trained",chatPersona?chatPersona.tag:"—"],
+    ["XP earned","+"+(20+userMsgCount*3)],
+    ["Composure rating",score>=85?"A":score>=70?"B+":"B"]
+  ];
+  metrics.forEach(([k,v])=>{
+    const r=el("div","debrief-item");
+    r.innerHTML=`<span>${k}</span><span class="v">${v}</span>`;
+    list.appendChild(r);
+  });
+  // log session
+  const today=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"});
+  state.history.unshift({date:today,type:"Sparring",persona:chatPersona.name,score:score});
+  state.history=state.history.slice(0,8);
+  state.stats.sessions++;
+  // bump the trained ELO track a bit
+  const trackMap={charmer:"Influence",closer:"Assert",guilt:"Empathize",stone:"Connect",authority:"Regulate",negotiator:"Negotiate"};
+  const tk=trackMap[chatPersona.id];
+  if(tk){state.elo[tk]=Math.min(1600,state.elo[tk]+rand(4,16));if(state.elo[tk]>state.stats.highest)state.stats.highest=state.elo[tk];}
+  save();
+  addXp(20+userMsgCount*3);
+}
+$("#debriefDone").addEventListener("click",backToArena);
+
+/* ============ DRILLS ============ */
+let activeCat="Clarity",activeDrill=null;
+function renderCatTabs(){
+  const wrap=$("#catTabs");wrap.innerHTML="";
+  Object.keys(DRILLS).forEach(cat=>{
+    const b=el("button","cat-tab"+(cat===activeCat?" active":""),cat);
+    b.setAttribute("role","tab");
+    b.setAttribute("aria-selected",cat===activeCat);
+    b.addEventListener("click",()=>{activeCat=cat;renderCatTabs();renderDrillCards();});
+    wrap.appendChild(b);
+  });
+}
+function renderDrillCards(){
+  const wrap=$("#drillCards");wrap.innerHTML="";
+  DRILLS[activeCat].forEach((d,i)=>{
+    const c=el("button","drill-card");
+    c.style.width="100%";c.style.textAlign="left";c.style.display="block";
+    c.innerHTML=`<div class="top"><div class="drill-name">${d.name}</div><span class="diff ${d.diff}">${d.diff}</span></div>
+      <div class="drill-desc">${d.desc}</div>`;
+    c.addEventListener("click",()=>openDrill(activeCat,i));
+    wrap.appendChild(c);
+  });
+}
+function openDrill(cat,i){
+  activeDrill=DRILLS[cat][i];activeDrill._cat=cat;activeDrill._idx=i;
+  $("#drillBrowse").style.display="none";
+  $("#drillExercise").style.display="block";
+  $("#exName").textContent=activeDrill.name;
+  $("#exDiff").textContent=activeDrill.diff;
+  $("#exDiff").className="diff "+activeDrill.diff;
+  $("#exPrompt").textContent=activeDrill.prompt;
+  $("#exField").value="";
+  $("#exFeedback").innerHTML="";
+  $("#exSubmit").style.display="block";
+  $("#views").scrollTop=0;
+}
+$("#drillBack").addEventListener("click",e=>{e.preventDefault();backToDrills();});
+function backToDrills(){
+  $("#drillExercise").style.display="none";
+  $("#drillBrowse").style.display="block";
+  $("#views").scrollTop=0;
+}
+$("#exSubmit").addEventListener("click",()=>{
+  const val=$("#exField").value.trim();
+  if(!val){toast("Write a response first ✍️");return;}
+  const score=rand(6,9);
+  const d=activeDrill;
+  const tipsHtml=d.tips.map(t=>`<div class="fb-tip"><span class="b">›</span><span>${t}</span></div>`).join("");
+  $("#exFeedback").innerHTML=`
+    <div class="feedback-box">
+      <div class="fb-score"><span class="big">${score}</span><span class="muted">/ 10 clarity</span></div>
+      ${tipsHtml}
+      <div class="compare">
+        <div class="compare-box"><div class="lab">Your version</div>${escapeHtml(val)}</div>
+        <div class="compare-box after"><div class="lab">Model answer</div>${escapeHtml(d.after)}</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="btn-row">
+        <button class="btn secondary" id="tryAgainBtn">Try Again</button>
+        <button class="btn" id="nextDrillBtn">Next Drill →</button>
+      </div>
+    </div>`;
+  $("#exSubmit").style.display="none";
+  $("#tryAgainBtn").addEventListener("click",()=>{
+    $("#exFeedback").innerHTML="";$("#exSubmit").style.display="block";$("#exField").focus();
+  });
+  $("#nextDrillBtn").addEventListener("click",()=>{
+    const next=(d._idx+1)%DRILLS[d._cat].length;
+    openDrill(d._cat,next);
+  });
+  // log
+  const today=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"});
+  state.history.unshift({date:today,type:"Drill",persona:d._cat,score:score});
+  state.history=state.history.slice(0,8);
+  state.stats.drills++;
+  save();
+  addXp(10+score);
+  $("#views").scrollTop=$("#views").scrollHeight;
+});
+function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));}
+
+/* ============ PROGRESS ============ */
+function renderProgress(){
+  // belt strip
+  const strip=$("#beltStrip");strip.innerHTML="";
+  BELTS.forEach((b,i)=>{
+    const seg=el("div","belt-seg"+(i===state.beltIndex?" current":i<state.beltIndex?" passed":""),b.name);
+    seg.style.background=b.color;
+    seg.style.color=(b.name==="White"||b.name==="Yellow")?"#0D1117":"#fff";
+    strip.appendChild(seg);
+  });
+  const next=BELTS[Math.min(state.beltIndex+1,BELTS.length-1)];
+  $("#xpLabel").textContent=`${state.xp} / ${state.xpNext} XP`;
+  $("#nextBeltPill").textContent=state.beltIndex<BELTS.length-1?("Next: "+next.name):"Max Belt";
+  setTimeout(()=>{$("#xpFill").style.width=Math.min(100,Math.round(state.xp/state.xpNext*100))+"%";},80);
+
+  // track bars
+  const tb=$("#trackBars");tb.innerHTML="";
+  TRACKS.forEach(t=>{
+    const sc=state.elo[t];
+    const pct=Math.round((sc-800)/(1400-800)*100);
+    const row=el("div","track-row");
+    row.innerHTML=`<div class="track-top"><span>${t}</span><span class="sc">${sc}</span></div>
+      <div class="track-bar"><div class="track-fill" data-pct="${Math.max(4,Math.min(100,pct))}"></div></div>`;
+    tb.appendChild(row);
+  });
+  setTimeout(()=>{$$("#trackBars .track-fill").forEach(f=>f.style.width=f.dataset.pct+"%");},80);
+
+  // calendar
+  const cal=$("#calRow");cal.innerHTML="";
+  state.streakDays.forEach((on,i)=>{
+    const d=el("div","cal-day");
+    d.innerHTML=`<div class="cal-dot ${on?"on":""}">${on?"🔥":""}</div><div class="cal-lab">${DAYS[i]}</div>`;
+    cal.appendChild(d);
+  });
+
+  // history
+  const h=$("#historyList");h.innerHTML="";
+  state.history.slice(0,5).forEach(s=>{
+    const item=el("div","hist-item");
+    const ic=s.type==="Sparring"?"🥊":"🎯";
+    const suffix=s.type==="Drill"?"/10":"";
+    item.innerHTML=`<div class="hist-ic">${ic}</div>
+      <div class="hist-body"><div class="hist-type">${s.type}: ${s.persona}</div><div class="hist-date">${s.date}</div></div>
+      <div class="hist-score">${s.score}${suffix}</div>`;
+    h.appendChild(item);
+  });
+
+  // stat grid
+  const sg=$("#statGrid");sg.innerHTML="";
+  const stats=[
+    ["Total Sessions",state.stats.sessions],
+    ["Total Drills",state.stats.drills],
+    ["Highest ELO",state.stats.highest.toLocaleString()],
+    ["Current Belt",belt().name]
+  ];
+  stats.forEach(([l,v])=>{
+    const box=el("div","stat-box");
+    box.innerHTML=`<div class="v">${v}</div><div class="l">${l}</div>`;
+    sg.appendChild(box);
+  });
+}
+
+/* ============ PROFILE ============ */
+function renderProfile(){
+  $("#profileAvatar").textContent=(state.name[0]||"A").toUpperCase();
+  $("#nameDisplay").textContent=state.name;
+  const b=belt();
+  $("#profileBeltName").textContent=b.name+" Belt";
+  $("#profileBeltDot").style.background=b.color;
+  // difficulty cards
+  const dc=$("#diffCards");dc.innerHTML="";
+  [["Gentle","🌱"],["Standard","⚡"],["Intensive","🔥"]].forEach(([d,em])=>{
+    const o=el("button","diff-opt"+(state.difficulty===d?" active":""));
+    o.setAttribute("aria-pressed",state.difficulty===d);
+    o.innerHTML=`<div class="em">${em}</div><div class="nm">${d}</div>`;
+    o.addEventListener("click",()=>{state.difficulty=d;save();renderProfile();toast("Intensity: "+d);});
+    dc.appendChild(o);
+  });
+  // toggles
+  $("#togDaily").classList.toggle("on",state.notifDaily);
+  $("#togWeekly").classList.toggle("on",state.notifWeekly);
+  // freeze
+  $("#freezeCount").textContent=state.freezes;
+  $("#freezeIce").textContent="🧊".repeat(Math.max(0,state.freezes))||"—";
+}
+function bindToggle(id,key){
+  const sw=$(id);
+  const fn=()=>{state[key]=!state[key];sw.classList.toggle("on",state[key]);save();sw.setAttribute("aria-checked",state[key]);};
+  sw.addEventListener("click",fn);
+  sw.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});
+}
+bindToggle("#togDaily","notifDaily");
+bindToggle("#togWeekly","notifWeekly");
+
+function rebuildNameDisplay(){
+  $("#nameEditWrap").innerHTML=`<span class="name-display" id="nameDisplay">${escapeHtml(state.name)}</span>
+    <button class="icon-btn" id="nameEditBtn" aria-label="Edit name">✏️</button>`;
+  attachNameEdit();
+}
+function attachNameEdit(){
+  const btn=$("#nameEditBtn");
+  if(!btn)return;
+  btn.addEventListener("click",()=>{
+    const wrap=$("#nameEditWrap");
+    wrap.innerHTML=`<input id="nameInput" type="text" maxlength="20" value="${escapeHtml(state.name)}" aria-label="Edit your name">
+      <button class="icon-btn" id="nameSaveBtn" aria-label="Save name">💾</button>`;
+    const input=$("#nameInput");input.focus();input.select();
+    function saveName(){
+      const v=input.value.trim()||"Trainee";
+      state.name=v;save();rebuildNameDisplay();renderProfile();toast("Name updated ✓");
+    }
+    $("#nameSaveBtn").addEventListener("click",saveName);
+    input.addEventListener("keydown",e=>{if(e.key==="Enter")saveName();});
+  });
+}
+
+/* ============ INIT ============ */
+function init(){
+  if(!localStorage.getItem("attuneApp"))save(); // seed sample data first load
+  renderHeader();
+  renderDashboard();
+  renderPersonaGrid();
+  renderCatTabs();
+  renderDrillCards();
+  renderProfile();
+  attachNameEdit();
+}
+init();
+</script>
+</body>
+</html>
