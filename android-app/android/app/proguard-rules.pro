@@ -14,4 +14,4 @@
 -keep class com.facebook.react.turbomodule.** { *; }
 
 # Keep our models
--keep class com.bishopshop.attuneai.** { *; }
+-keep class com.bishopshop.peitho.** { *; }

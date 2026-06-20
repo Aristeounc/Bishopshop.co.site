@@ -208,7 +208,7 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
         size="md"
       />
 
-      <Text style={styles.version}>Attune AI v1.0.0 (Android)</Text>
+      <Text style={styles.version}>Peitho v1.0.0 (Android)</Text>
       <Text style={styles.legal}>Bishop Shop Enterprises LLC</Text>
     </ScrollView>
   );

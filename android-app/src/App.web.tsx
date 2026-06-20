@@ -11,7 +11,7 @@ export function App() {
   useEffect(() => {
     setUser({
       id: 'web-preview',
-      email: 'preview@attuneai.com',
+      email: 'preview@peitho.app',
       displayName: 'Preview User',
       subscription: 'core_gym',
       beltLevel: 'green',

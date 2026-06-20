@@ -21,12 +21,12 @@ export function SplashScreen({ navigation }: SplashScreenProps) {
     <View style={styles.container}>
       <View style={styles.logoContainer}>
         <View style={styles.logoMark}>
-          <Text style={styles.logoLetter}>A</Text>
+          <Text style={styles.logoLetter}>P</Text>
         </View>
-        <Text style={styles.logoText}>Attune AI</Text>
+        <Text style={styles.logoText}>Peitho</Text>
       </View>
-      <Text style={styles.tagline}>The Conversation Gym</Text>
-      <Text style={styles.subtitle}>Train your words. Sharpen your edge.</Text>
+      <Text style={styles.tagline}>The Art of Influence</Text>
+      <Text style={styles.subtitle}>Master every conversation.</Text>
     </View>
   );
 }

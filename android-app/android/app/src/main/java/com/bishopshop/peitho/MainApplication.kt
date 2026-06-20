@@ -1,4 +1,4 @@
-package com.bishopshop.attuneai
+package com.bishopshop.peitho
 
 import android.app.Application
 import android.app.NotificationChannel

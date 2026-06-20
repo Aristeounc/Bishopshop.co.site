@@ -258,16 +258,16 @@ export const BELT_LEVELS = [
 export const BADGE_TIERS = [
   { tier: 'emerging' as const, label: 'Emerging', color: '#8B949E' },
   { tier: 'developing' as const, label: 'Developing', color: '#2EA043' },
-  { tier: 'proficient' as const, label: 'Proficient', color: '#1F5BA8' },
-  { tier: 'advanced' as const, label: 'Advanced', color: '#F2C744' },
+  { tier: 'proficient' as const, label: 'Proficient', color: '#8E44AD' },
+  { tier: 'advanced' as const, label: 'Advanced', color: '#D4AF37' },
   { tier: 'master' as const, label: 'Master', color: '#D93025' },
 ];
 
 export const BILLING_PRODUCTS = {
-  CORE_GYM_MONTHLY: 'com.bishopshop.attuneai.core_gym_monthly',
-  FULL_BUNDLE_MONTHLY: 'com.bishopshop.attuneai.full_bundle_monthly',
-  ARTICULATION_ADDON: 'com.bishopshop.attuneai.articulation_addon',
-  INTROPROFILES_ADDON: 'com.bishopshop.attuneai.introprofiles_addon',
+  CORE_GYM_MONTHLY: 'com.bishopshop.peitho.core_gym_monthly',
+  FULL_BUNDLE_MONTHLY: 'com.bishopshop.peitho.full_bundle_monthly',
+  ARTICULATION_ADDON: 'com.bishopshop.peitho.articulation_addon',
+  INTROPROFILES_ADDON: 'com.bishopshop.peitho.introprofiles_addon',
 };
 
 export const ELO_CONFIG = {

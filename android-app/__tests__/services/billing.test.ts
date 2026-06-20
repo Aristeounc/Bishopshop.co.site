@@ -42,9 +42,9 @@ describe('Billing Service', () => {
       expect(BILLING_PRODUCTS.INTROPROFILES_ADDON).toContain('introprofiles');
     });
 
-    it('all use com.bishopshop.attuneai prefix', () => {
+    it('all use com.bishopshop.peitho prefix', () => {
       for (const id of Object.values(BILLING_PRODUCTS)) {
-        expect(id).toMatch(/^com\.bishopshop\.attuneai\./);
+        expect(id).toMatch(/^com\.bishopshop\.peitho\./);
       }
     });
   });
