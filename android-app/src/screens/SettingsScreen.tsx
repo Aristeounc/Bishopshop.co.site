@@ -171,6 +171,23 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
         )}
       </Card>
 
+      <Text style={styles.sectionTitle}>Family</Text>
+      <Card>
+        <TouchableOpacity
+          style={styles.settingRow}
+          onPress={() => navigation.navigate('ParentDashboard')}
+        >
+          <View style={styles.settingInfo}>
+            <Icon name="account-child-outline" size={20} color={colors.text} />
+            <View>
+              <Text style={styles.settingLabel}>Parent/Kid Dashboard</Text>
+              <Text style={styles.subStatus}>Manage child profiles & content filters</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={20} color={colors.textMuted} />
+        </TouchableOpacity>
+      </Card>
+
       <Text style={styles.sectionTitle}>Preferences</Text>
       <Card>
         <View style={styles.settingRow}>

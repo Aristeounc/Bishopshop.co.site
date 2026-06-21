@@ -17,4 +17,5 @@ export const COLLECTIONS = {
   BADGES: 'badges',
   DAILY_PROGRAMS: 'dailyPrograms',
   NOTIFICATIONS: 'notifications',
+  CHILD_PROFILES: 'childProfiles',
 } as const;

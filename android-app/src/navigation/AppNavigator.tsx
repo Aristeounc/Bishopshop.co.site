@@ -19,6 +19,7 @@ import { ConversationAutopsyScreen } from '@/screens/ConversationAutopsyScreen';
 import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
+import { ParentDashboardScreen } from '@/screens/ParentDashboardScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -141,6 +142,11 @@ export function AppNavigator() {
         <Stack.Screen
           name="TacticForecast"
           component={TacticForecastScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ParentDashboard"
+          component={ParentDashboardScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
