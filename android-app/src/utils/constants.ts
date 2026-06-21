@@ -268,6 +268,24 @@ export const BILLING_PRODUCTS = {
   FULL_BUNDLE_MONTHLY: 'com.bishopshop.peitho.full_bundle_monthly',
   ARTICULATION_ADDON: 'com.bishopshop.peitho.articulation_addon',
   INTROPROFILES_ADDON: 'com.bishopshop.peitho.introprofiles_addon',
+  PARENT_KID_ADDON: 'com.bishopshop.peitho.parent_kid_addon',
+};
+
+export const PARENT_KID_CONFIG = {
+  MAX_CHILDREN: 4,
+  PRICE_MONTHLY: 7.99,
+  DEFAULT_CONTENT_FILTER_YOUNG: {
+    allowSparring: true,
+    allowEscalationGauntlet: false,
+    maxDifficultyLevel: 2,
+    allowedPersonas: ['charmer', 'closer', 'stonewaller'] as const,
+  },
+  DEFAULT_CONTENT_FILTER_TEEN: {
+    allowSparring: true,
+    allowEscalationGauntlet: true,
+    maxDifficultyLevel: 4,
+    allowedPersonas: ['charmer', 'closer', 'guilt_tripper', 'stonewaller', 'authority'] as const,
+  },
 };
 
 export const ELO_CONFIG = {

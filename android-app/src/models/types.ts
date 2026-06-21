@@ -1,5 +1,50 @@
 export type SubscriptionTier = 'free_trial' | 'core_gym' | 'full_bundle';
 
+export type ChildAgeGroup = 'ages_8_12' | 'ages_13_17';
+
+export interface ChildProfile {
+  id: string;
+  parentUserId: string;
+  displayName: string;
+  ageGroup: ChildAgeGroup;
+  avatarEmoji: string;
+  beltLevel: BeltLevel;
+  totalSessions: number;
+  currentStreak: number;
+  longestStreak: number;
+  createdAt: string;
+  lastSessionAt?: string;
+  contentFilter: ChildContentFilter;
+}
+
+export interface ChildContentFilter {
+  allowSparring: boolean;
+  allowEscalationGauntlet: boolean;
+  maxDifficultyLevel: number;
+  allowedPersonas: PersonaId[];
+}
+
+export interface ChildProgressSummary {
+  childId: string;
+  displayName: string;
+  ageGroup: ChildAgeGroup;
+  beltLevel: BeltLevel;
+  totalSessions: number;
+  currentStreak: number;
+  weeklySessionCount: number;
+  topSkill: SkillTrackId;
+  topSkillElo: number;
+  recentActivity: ChildActivityEntry[];
+}
+
+export interface ChildActivityEntry {
+  date: string;
+  mode: string;
+  skillsWorked: SkillTrackId[];
+  duration: number;
+  score?: number;
+}
+
 export type BeltLevel = 'white' | 'yellow' | 'green' | 'blue' | 'brown' | 'black';
 
 export type SkillTrackId =
@@ -189,3 +234,11 @@ export type PurchaseResult = {
   productId?: string;
   error?: string;
 };
+
+export type ParentKidAddonStatus = 'inactive' | 'active';
+
+export interface ParentKidAddon {
+  status: ParentKidAddonStatus;
+  maxChildren: number;
+  childProfiles: ChildProfile[];
+}

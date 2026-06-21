@@ -9,6 +9,7 @@ import {
   GymPhase,
   PersonaId,
   SkillTrackId,
+  ChildProfile,
 } from '@/models/types';
 import { ELO_CONFIG } from '@/utils/constants';
 
@@ -22,6 +23,7 @@ interface AppState {
   badges: Badge[];
   dailyProgram: DailyProgram | null;
   notificationToken: string | null;
+  childProfiles: ChildProfile[];
 
   setUser: (user: User | null) => void;
   setLoading: (loading: boolean) => void;
@@ -37,6 +39,10 @@ interface AppState {
   earnBadge: (badge: Badge) => void;
   setDailyProgram: (program: DailyProgram) => void;
   setNotificationToken: (token: string | null) => void;
+  setChildProfiles: (profiles: ChildProfile[]) => void;
+  addChildProfile: (profile: ChildProfile) => void;
+  removeChildProfile: (childId: string) => void;
+  updateChildProfileInStore: (childId: string, updates: Partial<ChildProfile>) => void;
   logout: () => void;
 }
 
@@ -61,6 +67,7 @@ export const useStore = create<AppState>((set, get) => ({
   badges: [],
   dailyProgram: null,
   notificationToken: null,
+  childProfiles: [],
 
   setUser: (user) => set({ user, isAuthenticated: !!user }),
   setLoading: (isLoading) => set({ isLoading }),
@@ -132,6 +139,18 @@ export const useStore = create<AppState>((set, get) => ({
   setDailyProgram: (program) => set({ dailyProgram: program }),
   setNotificationToken: (token) => set({ notificationToken: token }),
 
+  setChildProfiles: (childProfiles) => set({ childProfiles }),
+  addChildProfile: (profile) =>
+    set((s) => ({ childProfiles: [...s.childProfiles, profile] })),
+  removeChildProfile: (childId) =>
+    set((s) => ({ childProfiles: s.childProfiles.filter((c) => c.id !== childId) })),
+  updateChildProfileInStore: (childId, updates) =>
+    set((s) => ({
+      childProfiles: s.childProfiles.map((c) =>
+        c.id === childId ? { ...c, ...updates } : c,
+      ),
+    })),
+
   logout: () =>
     set({
       user: null,
@@ -141,5 +160,6 @@ export const useStore = create<AppState>((set, get) => ({
       sessionHistory: [],
       badges: [],
       dailyProgram: null,
+      childProfiles: [],
     }),
 }));

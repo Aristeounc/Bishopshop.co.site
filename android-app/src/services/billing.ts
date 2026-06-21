@@ -18,6 +18,7 @@ const SUBSCRIPTION_SKUS = [
   BILLING_PRODUCTS.FULL_BUNDLE_MONTHLY,
   BILLING_PRODUCTS.ARTICULATION_ADDON,
   BILLING_PRODUCTS.INTROPROFILES_ADDON,
+  BILLING_PRODUCTS.PARENT_KID_ADDON,
 ];
 
 export async function initializeBilling(): Promise<boolean> {
@@ -184,6 +185,18 @@ export function getProductDisplayInfo(productId: string): {
           'Context-specific introductions',
           'Scenario-matched profiles',
           'Custom intro generation',
+        ],
+        recommended: false,
+      };
+    case BILLING_PRODUCTS.PARENT_KID_ADDON:
+      return {
+        name: 'Parent/Kid Add-on',
+        features: [
+          'Up to 4 child profiles',
+          'Age-adapted scenarios (8-12 & 13-17)',
+          'Parent progress dashboard',
+          'Content & difficulty filters',
+          'Kid-safe persona selection',
         ],
         recommended: false,
       };
