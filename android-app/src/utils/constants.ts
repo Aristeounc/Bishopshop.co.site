@@ -266,8 +266,10 @@ export const BADGE_TIERS = [
 export const BILLING_PRODUCTS = {
   CORE_GYM_MONTHLY: 'com.bishopshop.peitho.core_gym_monthly',
   FULL_BUNDLE_MONTHLY: 'com.bishopshop.peitho.full_bundle_monthly',
+  PARENT_KID_ADDON: 'com.bishopshop.peitho.parent_kid_addon',
   ARTICULATION_ADDON: 'com.bishopshop.peitho.articulation_addon',
-  INTROPROFILES_ADDON: 'com.bishopshop.peitho.introprofiles_addon',
+  INTRO_NEGOTIATION_ADDON: 'com.bishopshop.peitho.intro_negotiation_addon',
+  SALES_TRAINING_ADDON: 'com.bishopshop.peitho.sales_training_addon',
 };
 
 export const ELO_CONFIG = {

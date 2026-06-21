@@ -148,7 +148,7 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
                       )}
                     </View>
                     <Text style={styles.planPrice}>
-                      {product?.price ?? (productId.includes('full') ? '$32' : '$9.99')}/mo
+                      {product?.price ?? (productId.includes('full') ? '$39.99' : '$9.99')}/mo
                     </Text>
                     {info.features.map((f, i) => (
                       <View key={i} style={styles.featureRow}>
