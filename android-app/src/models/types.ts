@@ -242,3 +242,146 @@ export interface ParentKidAddon {
   maxChildren: number;
   childProfiles: ChildProfile[];
 }
+
+// --- Family Message Board ---
+
+export interface FamilyBoardPost {
+  id: string;
+  authorId: string;
+  authorName: string;
+  authorRole: 'parent' | 'teen';
+  title: string;
+  body: string;
+  category: BoardCategory;
+  tags: string[];
+  likeCount: number;
+  replyCount: number;
+  createdAt: string;
+  updatedAt?: string;
+  isPinned: boolean;
+}
+
+export type BoardCategory =
+  | 'what_worked'
+  | 'ask_families'
+  | 'wins'
+  | 'exercise_share'
+  | 'teen_corner';
+
+export interface FamilyBoardReply {
+  id: string;
+  postId: string;
+  authorId: string;
+  authorName: string;
+  authorRole: 'parent' | 'teen';
+  body: string;
+  likeCount: number;
+  createdAt: string;
+}
+
+// --- Safe Space Messaging ---
+
+export interface SafeSpaceThread {
+  id: string;
+  parentUserId: string;
+  childProfileId: string;
+  childDisplayName: string;
+  lastMessageAt: string;
+  lastMessagePreview: string;
+  unreadParent: number;
+  unreadChild: number;
+  safeSpaceRules: SafeSpaceRules;
+}
+
+export interface SafeSpaceRules {
+  noConsequencesMode: boolean;
+  cooldownMinutes: number;
+  promptReflectionBeforeSend: boolean;
+  aiMediationEnabled: boolean;
+}
+
+export interface SafeSpaceMessage {
+  id: string;
+  threadId: string;
+  senderId: string;
+  senderRole: 'parent' | 'child';
+  content: string;
+  timestamp: string;
+  emotionTag?: string;
+  reflectionPrompt?: string;
+  aiSuggestion?: string;
+}
+
+// --- Family Exercise Modules ---
+
+export type FamilyModuleId = 'emotion_coaching' | 'say_it_different' | 'solve_together';
+
+export type ExerciseRole = 'parent' | 'child' | 'both';
+
+export interface FamilyModule {
+  id: FamilyModuleId;
+  name: string;
+  subtitle: string;
+  icon: string;
+  color: string;
+  description: string;
+  framework: string;
+  expert: string;
+  principles: string[];
+  exercises: FamilyExercise[];
+}
+
+export interface FamilyExercise {
+  id: string;
+  moduleId: FamilyModuleId;
+  title: string;
+  description: string;
+  role: ExerciseRole;
+  ageGroup: ChildAgeGroup | 'all';
+  type: ExerciseType;
+  difficulty: number;
+  estimatedMinutes: number;
+  instructions: string[];
+  scenarios: ExerciseScenario[];
+  systemPrompt: string;
+}
+
+export type ExerciseType =
+  | 'ai_roleplay'
+  | 'reflection'
+  | 'sorting'
+  | 'rewrite'
+  | 'assessment'
+  | 'conversation_practice';
+
+export interface ExerciseScenario {
+  id: string;
+  title: string;
+  setup: string;
+  ageGroup: ChildAgeGroup | 'all';
+  openingLine: string;
+}
+
+export interface FamilyExerciseSession {
+  id: string;
+  userId: string;
+  childProfileId?: string;
+  exerciseId: string;
+  moduleId: FamilyModuleId;
+  role: ExerciseRole;
+  startedAt: string;
+  completedAt?: string;
+  messages: SafeSpaceMessage[];
+  score?: number;
+  feedback?: FamilyExerciseFeedback;
+}
+
+export interface FamilyExerciseFeedback {
+  techniqueScore: number;
+  empathyScore: number;
+  validationScore: number;
+  summary: string;
+  strengths: string[];
+  improvements: string[];
+  frameworkTips: string[];
+}

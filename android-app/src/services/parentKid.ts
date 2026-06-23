@@ -152,3 +152,35 @@ export function getDefaultPersonasForAge(ageGroup: ChildAgeGroup): PersonaId[] {
   }
   return [...PARENT_KID_CONFIG.DEFAULT_CONTENT_FILTER_TEEN.allowedPersonas] as PersonaId[];
 }
+
+export async function searchUsersByNameOrPhone(
+  query: string,
+): Promise<Array<{ id: string; displayName: string; avatarEmoji: string }>> {
+  const isPhone = /^\+?\d[\d\s\-()]{6,}$/.test(query.trim());
+
+  let snapshot;
+  if (isPhone) {
+    const normalized = query.replace(/[\s\-()]/g, '');
+    snapshot = await firestore()
+      .collection(COLLECTIONS.USERS)
+      .where('phoneNumber', '==', normalized)
+      .limit(10)
+      .get();
+  } else {
+    snapshot = await firestore()
+      .collection(COLLECTIONS.USERS)
+      .where('displayName', '>=', query)
+      .where('displayName', '<=', query + '')
+      .limit(10)
+      .get();
+  }
+
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      displayName: data.displayName ?? 'Unknown',
+      avatarEmoji: data.avatarEmoji ?? '👤',
+    };
+  });
+}

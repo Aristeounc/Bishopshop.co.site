@@ -20,6 +20,9 @@ import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
 import { ParentDashboardScreen } from '@/screens/ParentDashboardScreen';
+import { FamilyBoardScreen } from '@/screens/FamilyBoardScreen';
+import { SafeSpaceScreen } from '@/screens/SafeSpaceScreen';
+import { FamilyExercisesScreen } from '@/screens/FamilyExercisesScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -147,6 +150,21 @@ export function AppNavigator() {
         <Stack.Screen
           name="ParentDashboard"
           component={ParentDashboardScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="FamilyBoard"
+          component={FamilyBoardScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="SafeSpace"
+          component={SafeSpaceScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="FamilyExercises"
+          component={FamilyExercisesScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>

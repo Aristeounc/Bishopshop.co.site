@@ -18,4 +18,9 @@ export const COLLECTIONS = {
   DAILY_PROGRAMS: 'dailyPrograms',
   NOTIFICATIONS: 'notifications',
   CHILD_PROFILES: 'childProfiles',
+  FAMILY_BOARD_POSTS: 'familyBoardPosts',
+  FAMILY_BOARD_REPLIES: 'familyBoardReplies',
+  SAFE_SPACE_THREADS: 'safeSpaceThreads',
+  SAFE_SPACE_MESSAGES: 'safeSpaceMessages',
+  FAMILY_EXERCISE_SESSIONS: 'familyExerciseSessions',
 } as const;

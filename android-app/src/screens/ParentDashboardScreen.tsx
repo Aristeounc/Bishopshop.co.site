@@ -31,8 +31,10 @@ import {
   ChildProgressSummary,
   PersonaId,
 } from '@/models/types';
+import { searchUsersByNameOrPhone } from '@/services/parentKid';
 
 const AVATAR_OPTIONS = ['🧒', '👦', '👧', '🧑', '👶', '🐣', '🌟', '🎮'];
+const PARENT_AVATAR_OPTIONS = ['👤', '👩', '👨', '🧑‍🦱', '🧔', '👩‍🦳', '🦸', '🌻'];
 
 interface ParentDashboardScreenProps {
   navigation: any;
@@ -53,6 +55,13 @@ export function ParentDashboardScreen({ navigation }: ParentDashboardScreenProps
   const [selectedChild, setSelectedChild] = useState<string | null>(null);
   const [progressData, setProgressData] = useState<Record<string, ChildProgressSummary>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Array<{ id: string; displayName: string; avatarEmoji: string }>>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [editName, setEditName] = useState('');
+  const [editAvatar, setEditAvatar] = useState('');
 
   useEffect(() => {
     logScreenView('ParentDashboard');
@@ -139,6 +148,22 @@ export function ParentDashboardScreen({ navigation }: ParentDashboardScreenProps
     useStore.getState().updateChildProfileInStore(child.id, { contentFilter: newFilter });
   }
 
+  async function handleSearch() {
+    if (!searchQuery.trim()) return;
+    setIsSearching(true);
+    const results = await searchUsersByNameOrPhone(searchQuery.trim());
+    setSearchResults(results);
+    setIsSearching(false);
+  }
+
+  async function handleEditParentProfile() {
+    if (!user || !editName.trim()) return;
+    const { updateUserProfile } = require('@/services/auth');
+    await updateUserProfile(user.id, { displayName: editName.trim() });
+    useStore.getState().setUser({ ...user, displayName: editName.trim() });
+    setShowEditProfile(false);
+  }
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -198,6 +223,146 @@ export function ParentDashboardScreen({ navigation }: ParentDashboardScreenProps
           </TouchableOpacity>
         )}
       </View>
+
+      {/* Feature Hub */}
+      <View style={styles.featureHub}>
+        <TouchableOpacity
+          style={styles.featureCard}
+          onPress={() => navigation.navigate('FamilyExercises')}
+        >
+          <View style={[styles.featureIconBg, { backgroundColor: '#7B68EE20' }]}>
+            <Icon name="handshake" size={24} color="#7B68EE" />
+          </View>
+          <Text style={styles.featureLabel}>Exercises</Text>
+          <Text style={styles.featureDesc}>Practice together</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.featureCard}
+          onPress={() => {
+            if (selectedProfile) {
+              navigation.navigate('SafeSpace', { childProfile: selectedProfile });
+            } else if (childProfiles.length > 0) {
+              navigation.navigate('SafeSpace', { childProfile: childProfiles[0] });
+            } else {
+              Alert.alert('Add a child profile first');
+            }
+          }}
+        >
+          <View style={[styles.featureIconBg, { backgroundColor: '#2EA04320' }]}>
+            <Icon name="shield-heart-outline" size={24} color="#2EA043" />
+          </View>
+          <Text style={styles.featureLabel}>Safe Space</Text>
+          <Text style={styles.featureDesc}>Talk without fear</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.featureCard}
+          onPress={() => navigation.navigate('FamilyBoard')}
+        >
+          <View style={[styles.featureIconBg, { backgroundColor: '#FF8C4220' }]}>
+            <Icon name="forum-outline" size={24} color="#FF8C42" />
+          </View>
+          <Text style={styles.featureLabel}>Board</Text>
+          <Text style={styles.featureDesc}>Family community</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Edit Parent Profile */}
+      <TouchableOpacity
+        style={styles.editProfileRow}
+        onPress={() => {
+          setEditName(user?.displayName ?? '');
+          setEditAvatar('');
+          setShowEditProfile(!showEditProfile);
+        }}
+      >
+        <Icon name="account-edit-outline" size={18} color={colors.primaryLight} />
+        <Text style={styles.editProfileText}>Edit your profile name & avatar</Text>
+      </TouchableOpacity>
+
+      {showEditProfile && (
+        <Card style={styles.addForm} variant="elevated">
+          <Text style={styles.formTitle}>Your Profile</Text>
+          <Text style={styles.fieldLabel}>Display Name</Text>
+          <TextInput
+            style={styles.input}
+            value={editName}
+            onChangeText={setEditName}
+            placeholder="Your name"
+            placeholderTextColor={colors.textMuted}
+            maxLength={30}
+          />
+          <Text style={styles.fieldLabel}>Avatar</Text>
+          <View style={styles.avatarRow}>
+            {PARENT_AVATAR_OPTIONS.map((emoji) => (
+              <TouchableOpacity
+                key={emoji}
+                style={[
+                  styles.avatarOption,
+                  editAvatar === emoji && styles.avatarOptionSelected,
+                ]}
+                onPress={() => setEditAvatar(emoji)}
+              >
+                <Text style={styles.avatarOptionText}>{emoji}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          <View style={styles.formActions}>
+            <Button title="Cancel" onPress={() => setShowEditProfile(false)} variant="outline" size="sm" />
+            <Button title="Save" onPress={handleEditParentProfile} variant="accent" size="sm" disabled={!editName.trim()} />
+          </View>
+        </Card>
+      )}
+
+      {/* Search & Add Family Member */}
+      <TouchableOpacity
+        style={styles.editProfileRow}
+        onPress={() => setShowSearch(!showSearch)}
+      >
+        <Icon name="account-search-outline" size={18} color={colors.primaryLight} />
+        <Text style={styles.editProfileText}>Find family member by name or phone</Text>
+      </TouchableOpacity>
+
+      {showSearch && (
+        <Card style={styles.addForm} variant="elevated">
+          <Text style={styles.formTitle}>Find Family Member</Text>
+          <Text style={styles.fieldLabel}>Search by name or phone number</Text>
+          <View style={styles.searchRow}>
+            <TextInput
+              style={[styles.input, { flex: 1 }]}
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              placeholder="Name or phone number..."
+              placeholderTextColor={colors.textMuted}
+              maxLength={40}
+            />
+            <Button
+              title={isSearching ? '...' : 'Search'}
+              onPress={handleSearch}
+              variant="primary"
+              size="sm"
+              disabled={isSearching || !searchQuery.trim()}
+            />
+          </View>
+          {searchResults.length > 0 && (
+            <View style={styles.searchResults}>
+              {searchResults.map((result) => (
+                <TouchableOpacity key={result.id} style={styles.searchResultItem}>
+                  <Text style={styles.searchResultAvatar}>{result.avatarEmoji}</Text>
+                  <Text style={styles.searchResultName}>{result.displayName}</Text>
+                  <Button title="Add" onPress={() => {
+                    Alert.alert('Invite Sent', `An invite has been sent to ${result.displayName}.`);
+                  }} variant="outline" size="sm" />
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+          {searchResults.length === 0 && searchQuery.trim() && !isSearching && (
+            <Text style={styles.noResults}>No users found. They may need to create an account first.</Text>
+          )}
+        </Card>
+      )}
 
       {/* Add Child Form */}
       {showAddForm && (
@@ -748,5 +913,81 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     textAlign: 'center',
     marginTop: spacing.xs,
+  },
+  featureHub: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    marginBottom: spacing.lg,
+  },
+  featureCard: {
+    flex: 1,
+    backgroundColor: colors.surface,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  featureIconBg: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: spacing.xs,
+  },
+  featureLabel: {
+    ...typography.label,
+    color: colors.text,
+    textAlign: 'center',
+  },
+  featureDesc: {
+    ...typography.caption,
+    color: colors.textMuted,
+    textAlign: 'center',
+    fontSize: 10,
+    marginTop: 2,
+  },
+  editProfileRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+    paddingVertical: spacing.xs,
+  },
+  editProfileText: {
+    ...typography.bodySmall,
+    color: colors.primaryLight,
+  },
+  searchRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    alignItems: 'flex-end',
+  },
+  searchResults: {
+    marginTop: spacing.md,
+    gap: spacing.sm,
+  },
+  searchResultItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    paddingVertical: spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  searchResultAvatar: {
+    fontSize: 24,
+  },
+  searchResultName: {
+    ...typography.body,
+    color: colors.text,
+    flex: 1,
+  },
+  noResults: {
+    ...typography.bodySmall,
+    color: colors.textMuted,
+    marginTop: spacing.md,
+    textAlign: 'center',
   },
 });

@@ -192,11 +192,12 @@ export function getProductDisplayInfo(productId: string): {
       return {
         name: 'Parent/Kid Add-on',
         features: [
-          'Up to 4 child profiles',
-          'Age-adapted scenarios (8-12 & 13-17)',
-          'Parent progress dashboard',
-          'Content & difficulty filters',
-          'Kid-safe persona selection',
+          'Up to 4 child profiles (8-12 & 13-17)',
+          '3 research-backed exercise modules',
+          'Safe Space messaging (judgment-free zone)',
+          'Family community message board',
+          'Parent & kid/teen training tracks',
+          'Content filters & persona controls',
         ],
         recommended: false,
       };
