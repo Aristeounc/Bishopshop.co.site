@@ -20,6 +20,7 @@ export function App() {
       longestStreak: 14,
       freezeSlotsRemaining: 2,
       joinedAt: '2026-01-01',
+      hasCompletedOnboarding: true,
       preferences: {
         notificationsEnabled: false,
         dailyReminderTime: '09:00',

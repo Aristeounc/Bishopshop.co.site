@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { colors, typography, spacing } from '@/theme';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors, typography, spacing, borderRadius } from '@/theme';
 import { SkillCard } from '@/components/SkillCard';
+import { Card } from '@/components/Card';
 import { useStore } from '@/store/useStore';
 import { SKILL_TRACKS } from '@/utils/constants';
 import { getAverageElo } from '@/utils/helpers';
@@ -19,6 +21,10 @@ export function SkillsScreen() {
   );
   const totalSessions = Object.values(skillProgress).reduce(
     (sum, sp) => sum + sp.sessionsCompleted,
+    0,
+  );
+  const totalConcepts = Object.values(skillProgress).reduce(
+    (sum, sp) => sum + sp.conceptsMastered.length,
     0,
   );
 
@@ -41,15 +47,20 @@ export function SkillsScreen() {
         </View>
         <View style={styles.statDivider} />
         <View style={styles.stat}>
-          <Text style={styles.statValue}>
-            {Object.values(skillProgress).reduce(
-              (sum, sp) => sum + sp.conceptsMastered.length,
-              0,
-            )}
-          </Text>
+          <Text style={styles.statValue}>{totalConcepts}</Text>
           <Text style={styles.statLabel}>Concepts</Text>
         </View>
       </View>
+
+      {totalSessions === 0 && (
+        <Card style={styles.introCard} variant="outlined">
+          <Icon name="information-outline" size={20} color={colors.accent} />
+          <Text style={styles.introText}>
+            Each skill starts at 100 ELO and grows as you train. Sparring sessions,
+            drills, and daily programs all contribute to your skill ratings.
+          </Text>
+        </Card>
+      )}
 
       <View style={styles.tracks}>
         {SKILL_TRACKS.map((track) => (
@@ -111,5 +122,18 @@ const styles = StyleSheet.create({
   },
   tracks: {
     gap: spacing.md,
+  },
+  introCard: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: spacing.md,
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+  },
+  introText: {
+    ...typography.bodySmall,
+    color: colors.textSecondary,
+    flex: 1,
+    lineHeight: 20,
   },
 });

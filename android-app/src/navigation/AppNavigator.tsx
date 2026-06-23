@@ -19,6 +19,7 @@ import { ConversationAutopsyScreen } from '@/screens/ConversationAutopsyScreen';
 import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
+import { OnboardingScreen } from '@/screens/OnboardingScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -117,6 +118,7 @@ export function AppNavigator() {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="SpotInfluence"

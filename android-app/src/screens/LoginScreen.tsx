@@ -66,7 +66,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
     >
       <View style={styles.header}>
         <View style={styles.logoMark}>
-          <Text style={styles.logoLetter}>A</Text>
+          <Text style={styles.logoLetter}>P</Text>
         </View>
         <Text style={styles.title}>Welcome Back</Text>
         <Text style={styles.subtitle}>Sign in to continue your training</Text>
