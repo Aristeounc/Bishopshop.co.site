@@ -26,6 +26,7 @@ export async function signUp(
     longestStreak: 0,
     freezeSlotsRemaining: 2,
     joinedAt: new Date().toISOString(),
+    hasCompletedOnboarding: false,
     preferences: {
       notificationsEnabled: true,
       dailyReminderTime: '09:00',

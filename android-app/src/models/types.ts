@@ -38,6 +38,7 @@ export interface User {
   freezeSlotsRemaining: number;
   joinedAt: string;
   lastSessionAt?: string;
+  hasCompletedOnboarding: boolean;
   preferences: UserPreferences;
 }
 

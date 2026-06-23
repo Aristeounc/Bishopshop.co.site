@@ -5,10 +5,12 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
 import { BadgeDisplay } from '@/components/BadgeDisplay';
 import { ProgressRing } from '@/components/ProgressRing';
+import { EmptyState } from '@/components/EmptyState';
 import { useStore } from '@/store/useStore';
 import { BELT_LEVELS, SKILL_TRACKS } from '@/utils/constants';
 import { getAverageElo, getBeltForElo, getStreakEmoji } from '@/utils/helpers';
@@ -30,7 +32,11 @@ const DEFAULT_BADGES: Badge[] = [
   { id: 'concepts_33', name: 'Grandmaster', description: 'Master all 33 concepts', icon: '🌟', tier: 'master', requirement: { type: 'concepts_mastered', target: 33 } },
 ];
 
-export function ProgressScreen() {
+interface ProgressScreenProps {
+  navigation?: any;
+}
+
+export function ProgressScreen({ navigation }: ProgressScreenProps) {
   const user = useStore((s) => s.user);
   const skillProgress = useStore((s) => s.skillProgress);
   const badges = useStore((s) => s.badges);
@@ -45,6 +51,7 @@ export function ProgressScreen() {
   const beltLevel = getBeltForElo(avgElo);
   const beltInfo = BELT_LEVELS.find((b) => b.level === beltLevel);
   const earnedBadgeIds = new Set(badges.filter((b) => b.earnedAt).map((b) => b.id));
+  const totalSessions = user?.totalSessions ?? 0;
 
   const displayBadges = DEFAULT_BADGES.map((badge) => ({
     ...badge,
@@ -68,35 +75,47 @@ export function ProgressScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.title}>Your Progress</Text>
 
-      <Card style={styles.overviewCard} variant="elevated">
-        <View style={styles.overviewRow}>
-          <ProgressRing
-            progress={avgElo / 2000}
-            size={90}
-            color={beltInfo?.color ?? colors.primary}
-            label={`${avgElo}`}
-            sublabel="ELO"
-          />
-          <View style={styles.overviewStats}>
-            <View style={styles.overviewStat}>
-              <Text style={styles.overviewValue}>{user?.totalSessions ?? 0}</Text>
-              <Text style={styles.overviewLabel}>Sessions</Text>
-            </View>
-            <View style={styles.overviewStat}>
-              <Text style={styles.overviewValue}>
-                {getStreakEmoji(user?.currentStreak ?? 0)} {user?.currentStreak ?? 0}
-              </Text>
-              <Text style={styles.overviewLabel}>Streak</Text>
-            </View>
-            <View style={styles.overviewStat}>
-              <Text style={styles.overviewValue}>
-                {badges.filter((b) => b.earnedAt).length}/{DEFAULT_BADGES.length}
-              </Text>
-              <Text style={styles.overviewLabel}>Badges</Text>
+      {totalSessions === 0 ? (
+        <EmptyState
+          icon="trophy-outline"
+          iconColor={colors.accent}
+          title="No sessions yet"
+          description="Complete your first sparring session or daily program to start tracking your progress and earning badges."
+          actionLabel="Start Training"
+          onAction={() => navigation?.navigate('Home')}
+          style={styles.emptyState}
+        />
+      ) : (
+        <Card style={styles.overviewCard} variant="elevated">
+          <View style={styles.overviewRow}>
+            <ProgressRing
+              progress={avgElo / 2000}
+              size={90}
+              color={beltInfo?.color ?? colors.primary}
+              label={`${avgElo}`}
+              sublabel="ELO"
+            />
+            <View style={styles.overviewStats}>
+              <View style={styles.overviewStat}>
+                <Text style={styles.overviewValue}>{totalSessions}</Text>
+                <Text style={styles.overviewLabel}>Sessions</Text>
+              </View>
+              <View style={styles.overviewStat}>
+                <Text style={styles.overviewValue}>
+                  {getStreakEmoji(user?.currentStreak ?? 0)} {user?.currentStreak ?? 0}
+                </Text>
+                <Text style={styles.overviewLabel}>Streak</Text>
+              </View>
+              <View style={styles.overviewStat}>
+                <Text style={styles.overviewValue}>
+                  {badges.filter((b) => b.earnedAt).length}/{DEFAULT_BADGES.length}
+                </Text>
+                <Text style={styles.overviewLabel}>Badges</Text>
+              </View>
             </View>
           </View>
-        </View>
-      </Card>
+        </Card>
+      )}
 
       <Text style={styles.sectionTitle}>Skill Radar</Text>
       <Card style={styles.radarCard}>
@@ -121,9 +140,25 @@ export function ProgressScreen() {
             </View>
           );
         })}
+        {totalSessions === 0 && (
+          <View style={styles.radarHint}>
+            <Icon name="information-outline" size={14} color={colors.textMuted} />
+            <Text style={styles.radarHintText}>
+              All skills start at 100 ELO. Train to see them grow.
+            </Text>
+          </View>
+        )}
       </Card>
 
       <Text style={styles.sectionTitle}>Badges</Text>
+      {totalSessions === 0 && (
+        <View style={styles.badgesHint}>
+          <Icon name="lock-outline" size={16} color={colors.textMuted} />
+          <Text style={styles.badgesHintText}>
+            Badges unlock as you train. Here's what you can earn:
+          </Text>
+        </View>
+      )}
       {(Object.entries(tierGroups) as [BadgeTier, Badge[]][]).map(([tier, tierBadges]) => (
         <View key={tier}>
           <Text style={styles.tierLabel}>{tier.charAt(0).toUpperCase() + tier.slice(1)}</Text>
@@ -232,5 +267,33 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.lg,
     marginBottom: spacing.md,
+  },
+  emptyState: {
+    marginBottom: spacing.md,
+  },
+  radarHint: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginTop: spacing.md,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+  radarHintText: {
+    ...typography.caption,
+    color: colors.textMuted,
+    flex: 1,
+  },
+  badgesHint: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+  },
+  badgesHintText: {
+    ...typography.bodySmall,
+    color: colors.textMuted,
+    flex: 1,
   },
 });

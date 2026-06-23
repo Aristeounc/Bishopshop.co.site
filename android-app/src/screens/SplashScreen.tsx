@@ -9,13 +9,20 @@ interface SplashScreenProps {
 
 export function SplashScreen({ navigation }: SplashScreenProps) {
   const isAuthenticated = useStore((s) => s.isAuthenticated);
+  const user = useStore((s) => s.user);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace(isAuthenticated ? 'Main' : 'Login');
+      if (!isAuthenticated) {
+        navigation.replace('Login');
+      } else if (user && !user.hasCompletedOnboarding) {
+        navigation.replace('Onboarding');
+      } else {
+        navigation.replace('Main');
+      }
     }, 2000);
     return () => clearTimeout(timer);
-  }, [isAuthenticated, navigation]);
+  }, [isAuthenticated, user, navigation]);
 
   return (
     <View style={styles.container}>

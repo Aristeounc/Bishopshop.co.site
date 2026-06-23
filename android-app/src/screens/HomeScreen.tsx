@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius, shadows } from '@/theme';
 import { Card } from '@/components/Card';
 import { ProgressRing } from '@/components/ProgressRing';
+import { EmptyState } from '@/components/EmptyState';
 import { useStore } from '@/store/useStore';
 import { SKILL_TRACKS, BELT_LEVELS } from '@/utils/constants';
 import { getGreeting, getStreakEmoji, getAverageElo, getBeltForElo } from '@/utils/helpers';
@@ -61,28 +62,47 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </TouchableOpacity>
       </View>
 
-      <Card style={styles.beltCard} variant="elevated">
-        <View style={styles.beltRow}>
-          <ProgressRing
-            progress={progressToNextBelt}
-            size={100}
-            color={beltInfo?.color ?? colors.primary}
-            label={`${avgElo}`}
-            sublabel="AVG ELO"
-          />
-          <View style={styles.beltInfo}>
-            <Text style={styles.beltName}>{beltInfo?.name ?? 'White Belt'}</Text>
-            {nextBelt && (
-              <Text style={styles.nextBelt}>
-                {nextBelt.minElo - avgElo} ELO to {nextBelt.name}
-              </Text>
-            )}
-            <Text style={styles.sessionsCount}>
-              {user?.totalSessions ?? 0} total sessions
+      {(user?.totalSessions ?? 0) === 0 ? (
+        <Card style={styles.beltCard} variant="elevated">
+          <View style={styles.welcomeBanner}>
+            <Icon name="creation" size={32} color={colors.accent} />
+            <Text style={styles.welcomeTitle}>Your journey starts here</Text>
+            <Text style={styles.welcomeDesc}>
+              Complete your first Daily Program to begin building your skills and earning ELO.
             </Text>
+            <TouchableOpacity
+              style={styles.welcomeCta}
+              onPress={() => navigation.navigate('Program')}
+            >
+              <Icon name="arrow-right-circle" size={20} color={colors.accent} />
+              <Text style={styles.welcomeCtaText}>Start Daily Program</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </Card>
+        </Card>
+      ) : (
+        <Card style={styles.beltCard} variant="elevated">
+          <View style={styles.beltRow}>
+            <ProgressRing
+              progress={progressToNextBelt}
+              size={100}
+              color={beltInfo?.color ?? colors.primary}
+              label={`${avgElo}`}
+              sublabel="AVG ELO"
+            />
+            <View style={styles.beltInfo}>
+              <Text style={styles.beltName}>{beltInfo?.name ?? 'White Belt'}</Text>
+              {nextBelt && (
+                <Text style={styles.nextBelt}>
+                  {nextBelt.minElo - avgElo} ELO to {nextBelt.name}
+                </Text>
+              )}
+              <Text style={styles.sessionsCount}>
+                {user?.totalSessions ?? 0} total sessions
+              </Text>
+            </View>
+          </View>
+        </Card>
+      )}
 
       <View style={styles.quickActions}>
         <Text style={styles.sectionTitle}>Quick Actions</Text>
@@ -114,6 +134,26 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
           >
             <Icon name="trophy-outline" size={28} color={colors.success} />
             <Text style={styles.actionLabel}>Badges</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Study & Review</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.info + '15' }]}
+            onPress={() => navigation.navigate('ConceptLibrary')}
+          >
+            <Icon name="bookshelf" size={28} color={colors.info} />
+            <Text style={styles.actionLabel}>Concepts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.primaryLight + '15' }]}
+            onPress={() => navigation.navigate('SessionHistory')}
+          >
+            <Icon name="history" size={28} color={colors.primaryLight} />
+            <Text style={styles.actionLabel}>History</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -152,23 +192,59 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </View>
       </View>
 
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Speed Drills</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.accent + '15' }]}
+            onPress={() => navigation.navigate('ToneMatch')}
+          >
+            <Icon name="swap-horizontal" size={28} color={colors.accent} />
+            <Text style={styles.actionLabel}>Tone Match</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.error + '15' }]}
+            onPress={() => navigation.navigate('PressureDial')}
+          >
+            <Icon name="gauge" size={28} color={colors.error} />
+            <Text style={styles.actionLabel}>Pressure Dial</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.success + '15' }]}
+            onPress={() => navigation.navigate('ReframeRace')}
+          >
+            <Icon name="pencil-outline" size={28} color={colors.success} />
+            <Text style={styles.actionLabel}>Reframe Race</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.topSkills}>
         <Text style={styles.sectionTitle}>Your Strongest Skills</Text>
-        {topSkills.map((sp) => {
-          const track = SKILL_TRACKS.find((t) => t.id === sp.trackId);
-          if (!track) return null;
-          return (
-            <TouchableOpacity
-              key={sp.trackId}
-              style={styles.skillRow}
-              onPress={() => navigation.navigate('Skills')}
-            >
-              <View style={[styles.skillDot, { backgroundColor: track.color }]} />
-              <Text style={styles.skillName}>{track.name}</Text>
-              <Text style={[styles.skillElo, { color: track.color }]}>{sp.elo}</Text>
-            </TouchableOpacity>
-          );
-        })}
+        {(user?.totalSessions ?? 0) === 0 ? (
+          <Card style={styles.skillsEmpty} variant="outlined">
+            <Icon name="chart-line" size={24} color={colors.textMuted} />
+            <Text style={styles.skillsEmptyText}>
+              Complete your first session to see your skill rankings here.
+            </Text>
+          </Card>
+        ) : (
+          topSkills.map((sp) => {
+            const track = SKILL_TRACKS.find((t) => t.id === sp.trackId);
+            if (!track) return null;
+            return (
+              <TouchableOpacity
+                key={sp.trackId}
+                style={styles.skillRow}
+                onPress={() => navigation.navigate('Skills')}
+              >
+                <View style={[styles.skillDot, { backgroundColor: track.color }]} />
+                <Text style={styles.skillName}>{track.name}</Text>
+                <Text style={[styles.skillElo, { color: track.color }]}>{sp.elo}</Text>
+              </TouchableOpacity>
+            );
+          })
+        )}
       </View>
     </ScrollView>
   );
@@ -285,5 +361,42 @@ const styles = StyleSheet.create({
   },
   skillElo: {
     ...typography.h3,
+  },
+  welcomeBanner: {
+    alignItems: 'center',
+    gap: spacing.sm,
+    paddingVertical: spacing.md,
+  },
+  welcomeTitle: {
+    ...typography.h3,
+    color: colors.text,
+  },
+  welcomeDesc: {
+    ...typography.bodySmall,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    lineHeight: 20,
+    maxWidth: 280,
+  },
+  welcomeCta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    marginTop: spacing.sm,
+  },
+  welcomeCtaText: {
+    ...typography.button,
+    color: colors.accent,
+  },
+  skillsEmpty: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    padding: spacing.md,
+  },
+  skillsEmptyText: {
+    ...typography.bodySmall,
+    color: colors.textMuted,
+    flex: 1,
   },
 });

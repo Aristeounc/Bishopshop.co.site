@@ -45,7 +45,7 @@ export function SignUpScreen({ navigation }: SignUpScreenProps) {
     try {
       const user = await signUp(email.trim(), password, displayName.trim());
       setUser(user);
-      navigation.replace('Main');
+      navigation.replace('Onboarding');
     } catch (error: any) {
       Alert.alert('Sign Up Failed', error.message ?? 'Please try again.');
     } finally {

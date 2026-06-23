@@ -19,6 +19,12 @@ import { ConversationAutopsyScreen } from '@/screens/ConversationAutopsyScreen';
 import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
+import { ToneMatchScreen } from '@/screens/ToneMatchScreen';
+import { PressureDialScreen } from '@/screens/PressureDialScreen';
+import { ReframeRaceScreen } from '@/screens/ReframeRaceScreen';
+import { OnboardingScreen } from '@/screens/OnboardingScreen';
+import { SessionHistoryScreen } from '@/screens/SessionHistoryScreen';
+import { ConceptLibraryScreen } from '@/screens/ConceptLibraryScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -117,6 +123,7 @@ export function AppNavigator() {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Main" component={MainTabs} />
         <Stack.Screen
           name="SpotInfluence"
@@ -141,6 +148,31 @@ export function AppNavigator() {
         <Stack.Screen
           name="TacticForecast"
           component={TacticForecastScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="SessionHistory"
+          component={SessionHistoryScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ConceptLibrary"
+          component={ConceptLibraryScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ToneMatch"
+          component={ToneMatchScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="PressureDial"
+          component={PressureDialScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ReframeRace"
+          component={ReframeRaceScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
