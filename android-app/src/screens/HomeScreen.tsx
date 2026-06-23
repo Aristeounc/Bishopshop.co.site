@@ -152,6 +152,40 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </View>
       </View>
 
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Exercises</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#D4AF37' + '15' }]}
+            onPress={() => navigation.navigate('FlashJudgment')}
+          >
+            <Icon name="flash" size={28} color="#D4AF37" />
+            <Text style={styles.actionLabel}>Flash Judgment</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#D93025' + '15' }]}
+            onPress={() => navigation.navigate('RedFlagRally')}
+          >
+            <Icon name="flag" size={28} color="#D93025" />
+            <Text style={styles.actionLabel}>Red Flag Rally</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#7B68EE' + '15' }]}
+            onPress={() => navigation.navigate('EmotionalDecoder')}
+          >
+            <Icon name="brain" size={28} color="#7B68EE" />
+            <Text style={styles.actionLabel}>Decoder</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: '#2EA043' + '15' }]}
+            onPress={() => navigation.navigate('FirstResponse')}
+          >
+            <Icon name="lightning-bolt" size={28} color="#2EA043" />
+            <Text style={styles.actionLabel}>First Response</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.topSkills}>
         <Text style={styles.sectionTitle}>Your Strongest Skills</Text>
         {topSkills.map((sp) => {
