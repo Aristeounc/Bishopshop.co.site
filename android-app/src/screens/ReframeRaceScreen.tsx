@@ -22,6 +22,9 @@ import {
   getTechniqueColor,
 } from '@/services/reframeRace/engine';
 import { logScreenView } from '@/services/analytics';
+import { saveExerciseResult, updateStreak } from '@/services/firestore';
+import { showStreakMilestone } from '@/services/notifications';
+import { ExerciseResult, SkillTrackId } from '@/models/types';
 import { formatDuration } from '@/utils/helpers';
 
 interface ReframeRaceScreenProps {
@@ -111,10 +114,41 @@ export function ReframeRaceScreen({ navigation }: ReframeRaceScreenProps) {
     setPhase('review');
   }, [userReframe, currentIndex, challenges, roundStartTime, showHint, showExample, rounds, flashGolden]);
 
+  const persistResult = useCallback(
+    (finalRounds: typeof rounds, xp: number) => {
+      if (!user) return;
+      const allSkills = new Set<SkillTrackId>();
+      for (const r of finalRounds) {
+        for (const s of r.challenge.skillsTested) allSkills.add(s);
+      }
+      const totalMs = finalRounds.reduce((sum, r) => sum + r.timeMs, 0);
+      const goldenCount = finalRounds.filter((r) => r.isGoldenReframe).length;
+      const result: ExerciseResult = {
+        id: `rr_${Date.now()}`,
+        userId: user.id,
+        type: 'reframe_race',
+        xpEarned: xp,
+        skillsWorked: [...allSkills],
+        completedAt: new Date().toISOString(),
+        durationMs: totalMs,
+        details: {
+          goldenCount,
+          avgScore: finalRounds.length > 0 ? Math.round(finalRounds.reduce((s, r) => s + r.score, 0) / finalRounds.length) : 0,
+          avgTimeMs: finalRounds.length > 0 ? Math.round(totalMs / finalRounds.length) : 0,
+          perfectRun: goldenCount === ROUND_COUNT,
+        },
+      };
+      saveExerciseResult(result).catch(() => {});
+      updateStreak(user.id).then((s) => showStreakMilestone(s.current)).catch(() => {});
+    },
+    [user],
+  );
+
   const nextRound = useCallback(() => {
     if (currentIndex + 1 >= challenges.length) {
       const xp = calculateReframeXp(rounds);
       setTotalXp(xp);
+      persistResult(rounds, xp);
       setPhase('results');
       return;
     }
@@ -125,7 +159,7 @@ export function ReframeRaceScreen({ navigation }: ReframeRaceScreenProps) {
     setRoundStartTime(Date.now());
     setElapsed(0);
     setPhase('playing');
-  }, [currentIndex, challenges, rounds]);
+  }, [currentIndex, challenges, rounds, persistResult]);
 
   const renderIntro = () => (
     <ScrollView style={styles.container} contentContainerStyle={styles.introContent}>

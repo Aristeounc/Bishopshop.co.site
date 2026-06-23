@@ -4,7 +4,9 @@ import {
   Badge,
   DailyProgram,
   SkillTrackId,
+  ExerciseResult,
 } from '@/models/types';
+import { showBadgeNotification } from '@/services/notifications';
 
 export async function saveSession(session: SparringSession): Promise<void> {
   await firestore()
@@ -47,6 +49,7 @@ export async function awardBadge(userId: string, badge: Badge): Promise<void> {
     .collection(COLLECTIONS.BADGES)
     .doc(badge.id)
     .set({ ...badge, earnedAt: new Date().toISOString() });
+  showBadgeNotification(badge.name, badge.tier).catch(() => {});
 }
 
 export async function fetchDailyProgram(
@@ -116,6 +119,30 @@ export async function updateStreak(userId: string): Promise<{ current: number; l
   });
 
   return { current: currentStreak, longest: longestStreak };
+}
+
+export async function saveExerciseResult(result: ExerciseResult): Promise<void> {
+  await firestore()
+    .collection(COLLECTIONS.USERS)
+    .doc(result.userId)
+    .collection('exerciseResults')
+    .doc(result.id)
+    .set(result);
+}
+
+export async function fetchExerciseHistory(
+  userId: string,
+  limit = 50,
+): Promise<ExerciseResult[]> {
+  const snapshot = await firestore()
+    .collection(COLLECTIONS.USERS)
+    .doc(userId)
+    .collection('exerciseResults')
+    .orderBy('completedAt', 'desc')
+    .limit(limit)
+    .get();
+
+  return snapshot.docs.map((doc) => doc.data() as ExerciseResult);
 }
 
 export async function getLeaderboardPosition(

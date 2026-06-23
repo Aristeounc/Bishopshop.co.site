@@ -184,6 +184,41 @@ export type BillingProduct = {
   subscriptionPeriod: string;
 };
 
+export type ExerciseType = 'tone_match' | 'pressure_dial' | 'reframe_race';
+
+export interface ExerciseResult {
+  id: string;
+  userId: string;
+  type: ExerciseType;
+  xpEarned: number;
+  skillsWorked: SkillTrackId[];
+  completedAt: string;
+  durationMs: number;
+  details: ToneMatchDetails | PressureDialDetails | ReframeRaceDetails;
+}
+
+export interface ToneMatchDetails {
+  scenarioId: string;
+  accuracy: number;
+  maxCombo: number;
+  snapCorrect: number;
+  snapTotal: number;
+}
+
+export interface PressureDialDetails {
+  roundsCompleted: number;
+  peakDifficulty: number;
+  heartsRemaining: number;
+  avgScore: number;
+}
+
+export interface ReframeRaceDetails {
+  goldenCount: number;
+  avgScore: number;
+  avgTimeMs: number;
+  perfectRun: boolean;
+}
+
 export type PurchaseResult = {
   success: boolean;
   transactionId?: string;

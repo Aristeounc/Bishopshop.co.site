@@ -23,6 +23,9 @@ import {
 } from '@/services/pressureDial/engine';
 import { getPersona } from '@/services/sparring/personas';
 import { logScreenView } from '@/services/analytics';
+import { saveExerciseResult, updateStreak } from '@/services/firestore';
+import { showStreakMilestone } from '@/services/notifications';
+import { ExerciseResult, SkillTrackId } from '@/models/types';
 
 interface PressureDialScreenProps {
   navigation: any;
@@ -149,7 +152,34 @@ export function PressureDialScreen({ navigation }: PressureDialScreenProps) {
   function finishGame(finalRounds: PressureRound[], peak: number, remainingHearts: number) {
     const xp = calculatePressureXp(finalRounds, peak, remainingHearts);
     setTotalXp(xp);
+    persistResult(finalRounds, peak, remainingHearts, xp);
     setPhase(remainingHearts <= 0 ? 'gameover' : 'results');
+  }
+
+  function persistResult(finalRounds: PressureRound[], peak: number, remainingHearts: number, xp: number) {
+    if (!user) return;
+    const allSkills = new Set<SkillTrackId>();
+    for (const r of finalRounds) {
+      for (const s of r.prompt.skillsTested) allSkills.add(s);
+    }
+    const totalMs = finalRounds.reduce((sum, r) => sum + r.timeMs, 0);
+    const result: ExerciseResult = {
+      id: `pd_${Date.now()}`,
+      userId: user.id,
+      type: 'pressure_dial',
+      xpEarned: xp,
+      skillsWorked: [...allSkills],
+      completedAt: new Date().toISOString(),
+      durationMs: totalMs,
+      details: {
+        roundsCompleted: finalRounds.length,
+        peakDifficulty: peak,
+        heartsRemaining: remainingHearts,
+        avgScore: finalRounds.length > 0 ? Math.round(finalRounds.reduce((s, r) => s + r.score, 0) / finalRounds.length) : 0,
+      },
+    };
+    saveExerciseResult(result).catch(() => {});
+    updateStreak(user.id).then((s) => showStreakMilestone(s.current)).catch(() => {});
   }
 
   const renderHearts = () => (

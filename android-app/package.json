@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/preset-react": "^8.0.1",
     "@babel/preset-typescript": "^8.0.1",
+    "@notifee/react-native": "^9.1.8",
     "@react-native-async-storage/async-storage": "^2.0.0",
     "@react-native-firebase/analytics": "^20.5.0",
     "@react-native-firebase/app": "^20.5.0",

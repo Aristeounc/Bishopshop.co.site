@@ -16,6 +16,7 @@ import { useStore } from '@/store/useStore';
 import { signOut, updateUserProfile } from '@/services/auth';
 import { fetchProducts, purchaseSubscription, getProductDisplayInfo } from '@/services/billing';
 import { logScreenView, logSubscriptionEvent } from '@/services/analytics';
+import { scheduleDailyReminder, scheduleStreakReminder, cancelAllScheduledNotifications, parseReminderTime } from '@/services/notifications';
 import { BILLING_PRODUCTS } from '@/utils/constants';
 import { BillingProduct } from '@/models/types';
 
@@ -48,6 +49,42 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
     };
     setUser(updated);
     await updateUserProfile(user.id, { preferences: updated.preferences });
+    if (value) {
+      const { hour, minute } = parseReminderTime(user.preferences.dailyReminderTime);
+      await scheduleDailyReminder(hour, minute);
+      await scheduleStreakReminder();
+    } else {
+      await cancelAllScheduledNotifications();
+    }
+  }
+
+  async function handleChangeReminderTime(newTime: string) {
+    if (!user) return;
+    const updated = {
+      ...user,
+      preferences: { ...user.preferences, dailyReminderTime: newTime },
+    };
+    setUser(updated);
+    await updateUserProfile(user.id, { preferences: updated.preferences });
+    if (user.preferences.notificationsEnabled) {
+      const { hour, minute } = parseReminderTime(newTime);
+      await scheduleDailyReminder(hour, minute);
+    }
+  }
+
+  function cycleReminderTime() {
+    const times = ['06:00', '07:00', '08:00', '09:00', '10:00', '12:00', '18:00', '20:00'];
+    const current = user?.preferences.dailyReminderTime ?? '09:00';
+    const idx = times.indexOf(current);
+    const next = times[(idx + 1) % times.length];
+    handleChangeReminderTime(next);
+  }
+
+  function formatTime(timeStr: string): string {
+    const { hour, minute } = parseReminderTime(timeStr);
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+    return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
   }
 
   async function handleToggleHaptics(value: boolean) {
@@ -184,6 +221,19 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
             trackColor={{ false: colors.border, true: colors.primary }}
             thumbColor={colors.text}
           />
+        </View>
+        <View style={styles.divider} />
+        <View style={styles.settingRow}>
+          <View style={styles.settingInfo}>
+            <Icon name="clock-outline" size={20} color={colors.text} />
+            <Text style={styles.settingLabel}>Reminder Time</Text>
+          </View>
+          <TouchableOpacity onPress={cycleReminderTime} style={styles.timePicker}>
+            <Text style={styles.timeText}>
+              {formatTime(user?.preferences.dailyReminderTime ?? '09:00')}
+            </Text>
+            <Icon name="chevron-right" size={16} color={colors.textSecondary} />
+          </TouchableOpacity>
         </View>
         <View style={styles.divider} />
         <View style={styles.settingRow}>
@@ -348,6 +398,19 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: colors.border,
+  },
+  timePicker: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    backgroundColor: colors.surface,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.md,
+  },
+  timeText: {
+    ...typography.body,
+    color: colors.primaryLight,
   },
   version: {
     ...typography.caption,

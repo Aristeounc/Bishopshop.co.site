@@ -4,9 +4,11 @@ import { AppNavigator } from '@/navigation/AppNavigator';
 import { useStore } from '@/store/useStore';
 import { onAuthStateChanged, fetchUserProfile, fetchSkillProgress } from '@/services/auth';
 import { requestNotificationPermission, getAndSaveToken, onForegroundMessage } from '@/services/messaging';
+import { createNotificationChannels, scheduleDailyReminder, scheduleStreakReminder, parseReminderTime } from '@/services/notifications';
 import { initializeBilling, setupPurchaseListeners, verifyAndActivateSubscription } from '@/services/billing';
 import { setUserProperties } from '@/services/analytics';
 import { colors } from '@/theme';
+import notifee from '@notifee/react-native';
 
 LogBox.ignoreLogs(['Reanimated']);
 
@@ -36,6 +38,12 @@ export default function App() {
           if (permissionGranted) {
             const token = await getAndSaveToken(uid);
             setNotificationToken(token);
+            await createNotificationChannels();
+            if (user.preferences.notificationsEnabled) {
+              const { hour, minute } = parseReminderTime(user.preferences.dailyReminderTime);
+              await scheduleDailyReminder(hour, minute);
+              await scheduleStreakReminder();
+            }
           }
         } catch {
           setUser(null);
@@ -66,7 +74,19 @@ export default function App() {
       (_error) => {},
     );
 
-    const unsubMessages = onForegroundMessage((_message) => {});
+    const unsubMessages = onForegroundMessage(async (message) => {
+      if (message.notification) {
+        await notifee.displayNotification({
+          title: message.notification.title ?? 'Peitho',
+          body: message.notification.body ?? '',
+          android: {
+            channelId: 'daily_reminder',
+            smallIcon: 'ic_notification',
+            pressAction: { id: 'default' },
+          },
+        });
+      }
+    });
 
     return () => {
       unsubAuth();

@@ -21,6 +21,9 @@ import {
   getRandomScenario,
 } from '@/services/toneMatch/engine';
 import { logScreenView } from '@/services/analytics';
+import { saveExerciseResult, updateStreak } from '@/services/firestore';
+import { showStreakMilestone } from '@/services/notifications';
+import { ExerciseResult } from '@/models/types';
 import { formatDuration } from '@/utils/helpers';
 
 interface ToneMatchScreenProps {
@@ -204,9 +207,35 @@ export function ToneMatchScreen({ navigation }: ToneMatchScreenProps) {
       const parTimeMs = scenario.pairs.length * 8000;
       const xp = calculateMatchXp(correctCount, comboHistory, snapCorrect, elapsed, parTimeMs);
       setTotalXp(xp);
+      persistResult(scenario, xp);
       setPhase('results');
     }
   }, [scenario, snapIndex, correctCount, comboHistory, snapCorrect, elapsed]);
+
+  const persistResult = useCallback(
+    (s: ToneMatchScenario, xp: number) => {
+      if (!user) return;
+      const result: ExerciseResult = {
+        id: `tm_${Date.now()}`,
+        userId: user.id,
+        type: 'tone_match',
+        xpEarned: xp,
+        skillsWorked: s.skillFocus,
+        completedAt: new Date().toISOString(),
+        durationMs: elapsed,
+        details: {
+          scenarioId: s.id,
+          accuracy: s.pairs.length > 0 ? correctCount / s.pairs.length : 0,
+          maxCombo,
+          snapCorrect,
+          snapTotal: s.snapJudgments.length,
+        },
+      };
+      saveExerciseResult(result).catch(() => {});
+      updateStreak(user.id).then((s) => showStreakMilestone(s.current)).catch(() => {});
+    },
+    [user, elapsed, correctCount, maxCombo, snapCorrect],
+  );
 
   const renderIntro = () => (
     <ScrollView style={styles.container} contentContainerStyle={styles.introContent}>

@@ -9,7 +9,8 @@ import { DrillCard } from '@/components/DrillCard';
 import { ProgressRing } from '@/components/ProgressRing';
 import { useStore } from '@/store/useStore';
 import { generateDailyProgram, calculateProgramProgress, getProgramPhaseLabel, getProgramPhaseDescription } from '@/services/dailyProgram';
-import { saveDailyProgram } from '@/services/firestore';
+import { saveDailyProgram, updateStreak } from '@/services/firestore';
+import { showStreakMilestone } from '@/services/notifications';
 import { DailyProgram, GymPhase } from '@/models/types';
 
 interface DailyProgramScreenProps {
@@ -74,7 +75,7 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
     navigation.navigate('Sparring');
   }
 
-  function handleCompleteProgram() {
+  async function handleCompleteProgram() {
     if (!dailyProgram) return;
     const completed = { ...dailyProgram, completed: true };
     setDailyProgram(completed);
@@ -82,6 +83,10 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
 
     if (user) {
       saveDailyProgram(user.id, completed).catch(() => {});
+      try {
+        const streak = await updateStreak(user.id);
+        await showStreakMilestone(streak.current);
+      } catch {}
     }
   }
 
