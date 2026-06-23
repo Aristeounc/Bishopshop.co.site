@@ -139,6 +139,26 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
       </View>
 
       <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Study & Review</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.info + '15' }]}
+            onPress={() => navigation.navigate('ConceptLibrary')}
+          >
+            <Icon name="bookshelf" size={28} color={colors.info} />
+            <Text style={styles.actionLabel}>Concepts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.primaryLight + '15' }]}
+            onPress={() => navigation.navigate('SessionHistory')}
+          >
+            <Icon name="history" size={28} color={colors.primaryLight} />
+            <Text style={styles.actionLabel}>History</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.quickActions}>
         <Text style={styles.sectionTitle}>Training Activities</Text>
         <View style={styles.actionsGrid}>
           <TouchableOpacity

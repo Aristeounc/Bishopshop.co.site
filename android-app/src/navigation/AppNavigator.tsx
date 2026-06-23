@@ -20,6 +20,8 @@ import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
 import { OnboardingScreen } from '@/screens/OnboardingScreen';
+import { SessionHistoryScreen } from '@/screens/SessionHistoryScreen';
+import { ConceptLibraryScreen } from '@/screens/ConceptLibraryScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -143,6 +145,16 @@ export function AppNavigator() {
         <Stack.Screen
           name="TacticForecast"
           component={TacticForecastScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="SessionHistory"
+          component={SessionHistoryScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="ConceptLibrary"
+          component={ConceptLibraryScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
