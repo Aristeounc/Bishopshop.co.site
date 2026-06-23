@@ -192,6 +192,33 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
         </View>
       </View>
 
+      <View style={styles.quickActions}>
+        <Text style={styles.sectionTitle}>Speed Drills</Text>
+        <View style={styles.actionsGrid}>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.accent + '15' }]}
+            onPress={() => navigation.navigate('ToneMatch')}
+          >
+            <Icon name="swap-horizontal" size={28} color={colors.accent} />
+            <Text style={styles.actionLabel}>Tone Match</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.error + '15' }]}
+            onPress={() => navigation.navigate('PressureDial')}
+          >
+            <Icon name="gauge" size={28} color={colors.error} />
+            <Text style={styles.actionLabel}>Pressure Dial</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.success + '15' }]}
+            onPress={() => navigation.navigate('ReframeRace')}
+          >
+            <Icon name="pencil-outline" size={28} color={colors.success} />
+            <Text style={styles.actionLabel}>Reframe Race</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.topSkills}>
         <Text style={styles.sectionTitle}>Your Strongest Skills</Text>
         {(user?.totalSessions ?? 0) === 0 ? (
