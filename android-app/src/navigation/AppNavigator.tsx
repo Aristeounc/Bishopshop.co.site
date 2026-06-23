@@ -19,6 +19,10 @@ import { ConversationAutopsyScreen } from '@/screens/ConversationAutopsyScreen';
 import { SubtextTranslatorScreen } from '@/screens/SubtextTranslatorScreen';
 import { EscalationGauntletScreen } from '@/screens/EscalationGauntletScreen';
 import { TacticForecastScreen } from '@/screens/TacticForecastScreen';
+import { FlashJudgmentScreen } from '@/screens/FlashJudgmentScreen';
+import { RedFlagRallyScreen } from '@/screens/RedFlagRallyScreen';
+import { EmotionalDecoderScreen } from '@/screens/EmotionalDecoderScreen';
+import { FirstResponseScreen } from '@/screens/FirstResponseScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -141,6 +145,26 @@ export function AppNavigator() {
         <Stack.Screen
           name="TacticForecast"
           component={TacticForecastScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="FlashJudgment"
+          component={FlashJudgmentScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="RedFlagRally"
+          component={RedFlagRallyScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="EmotionalDecoder"
+          component={EmotionalDecoderScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="FirstResponse"
+          component={FirstResponseScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
