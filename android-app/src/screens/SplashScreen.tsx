@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { colors, typography, spacing } from '@/theme';
 import { useStore } from '@/store/useStore';
 
@@ -27,6 +27,11 @@ export function SplashScreen({ navigation }: SplashScreenProps) {
       </View>
       <Text style={styles.tagline}>The Art of Influence</Text>
       <Text style={styles.subtitle}>Master every conversation.</Text>
+      <ActivityIndicator
+        size="small"
+        color={colors.accent}
+        style={styles.loader}
+      />
     </View>
   );
 }
@@ -68,5 +73,8 @@ const styles = StyleSheet.create({
     ...typography.body,
     color: colors.textSecondary,
     marginTop: spacing.sm,
+  },
+  loader: {
+    marginTop: spacing.xl,
   },
 });

@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -97,6 +98,14 @@ export function ProgressScreen() {
           </View>
         </View>
       </Card>
+
+      {(user?.totalSessions ?? 0) === 0 && (
+        <Card style={styles.nudgeCard}>
+          <Text style={styles.nudgeText}>
+            Complete your first sparring session or daily program to start tracking progress.
+          </Text>
+        </Card>
+      )}
 
       <Text style={styles.sectionTitle}>Skill Radar</Text>
       <Card style={styles.radarCard}>
@@ -233,5 +242,16 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.lg,
     marginBottom: spacing.md,
+  },
+  nudgeCard: {
+    padding: spacing.md,
+    marginBottom: spacing.lg,
+    backgroundColor: colors.accent + '15',
+    borderRadius: borderRadius.lg,
+  },
+  nudgeText: {
+    ...typography.body,
+    color: colors.accent,
+    textAlign: 'center',
   },
 });

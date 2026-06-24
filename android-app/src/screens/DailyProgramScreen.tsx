@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -95,6 +95,7 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
   if (!dailyProgram) {
     return (
       <View style={[styles.container, styles.centered]}>
+        <ActivityIndicator size="large" color={colors.accent} />
         <Text style={styles.loading}>Generating today's program...</Text>
       </View>
     );

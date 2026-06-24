@@ -115,6 +115,13 @@ export function HomeScreen({ navigation }: HomeScreenProps) {
             <Icon name="trophy-outline" size={28} color={colors.success} />
             <Text style={styles.actionLabel}>Badges</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionCard, { backgroundColor: colors.info + '15' }]}
+            onPress={() => navigation.navigate('Concepts')}
+          >
+            <Icon name="book-open-variant" size={28} color={colors.info} />
+            <Text style={styles.actionLabel}>Concepts</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
