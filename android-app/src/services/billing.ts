@@ -16,8 +16,10 @@ import { BillingProduct, PurchaseResult, SubscriptionTier } from '@/models/types
 const SUBSCRIPTION_SKUS = [
   BILLING_PRODUCTS.CORE_GYM_MONTHLY,
   BILLING_PRODUCTS.FULL_BUNDLE_MONTHLY,
+  BILLING_PRODUCTS.PARENT_KID_ADDON,
   BILLING_PRODUCTS.ARTICULATION_ADDON,
-  BILLING_PRODUCTS.INTROPROFILES_ADDON,
+  BILLING_PRODUCTS.INTRO_NEGOTIATION_ADDON,
+  BILLING_PRODUCTS.SALES_TRAINING_ADDON,
 ];
 
 export async function initializeBilling(): Promise<boolean> {
@@ -150,7 +152,7 @@ export function getProductDisplayInfo(productId: string): {
           '8 ELO skill tracks',
           '6 belt progression levels',
           'Coach vector memory',
-          '33+ concept corpus',
+          '47+ concept corpus',
         ],
         recommended: false,
       };
@@ -159,13 +161,23 @@ export function getProductDisplayInfo(productId: string): {
         name: 'Full Bundle',
         features: [
           'Everything in Core Gym',
-          'Articulation Training (3 intensities)',
-          'IntroProfiles',
-          'Gifted access support',
+          'Parent/Kid Add-on',
+          'Articulation Add-on (3 modes)',
+          'Introduction & Negotiation Training',
+          'Sales Training Add-on',
           'Priority coach feedback',
-          'Full admin dashboard',
         ],
         recommended: true,
+      };
+    case BILLING_PRODUCTS.PARENT_KID_ADDON:
+      return {
+        name: 'Parent/Kid Add-on',
+        features: [
+          'Age-appropriate communication training',
+          'Parent-child conversation scenarios',
+          'Family conflict resolution drills',
+        ],
+        recommended: false,
       };
     case BILLING_PRODUCTS.ARTICULATION_ADDON:
       return {
@@ -177,13 +189,23 @@ export function getProductDisplayInfo(productId: string): {
         ],
         recommended: false,
       };
-    case BILLING_PRODUCTS.INTROPROFILES_ADDON:
+    case BILLING_PRODUCTS.INTRO_NEGOTIATION_ADDON:
       return {
-        name: 'IntroProfiles Add-on',
+        name: 'Introduction & Negotiation Training',
         features: [
           'Context-specific introductions',
-          'Scenario-matched profiles',
-          'Custom intro generation',
+          'Negotiation scenario practice',
+          'Strategic framing drills',
+        ],
+        recommended: false,
+      };
+    case BILLING_PRODUCTS.SALES_TRAINING_ADDON:
+      return {
+        name: 'Sales Training Add-on',
+        features: [
+          'Sales conversation practice',
+          'Objection handling drills',
+          'Closing technique training',
         ],
         recommended: false,
       };
