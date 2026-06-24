@@ -248,7 +248,7 @@ export function SpotInfluenceScreen() {
         {gameState.revealedLines.map((lineIdx) => {
           const line = gameState.scenario.dialogue[lineIdx];
           const isActive = lineIdx === gameState.currentLineIndex && !reviewMode;
-          const lineSelections = gameState.playerSelections.get(line.id) ?? [];
+          const lineSelections = gameState.playerSelections[line.id] ?? [];
           const hasCorrect = lineSelections.some((s) => s.isCorrect);
 
           return (

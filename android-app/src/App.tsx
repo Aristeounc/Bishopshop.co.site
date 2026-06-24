@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StatusBar, LogBox } from 'react-native';
 import { AppNavigator } from '@/navigation/AppNavigator';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { useStore } from '@/store/useStore';
 import { onAuthStateChanged, fetchUserProfile, fetchSkillProgress } from '@/services/auth';
 import { requestNotificationPermission, getAndSaveToken, onForegroundMessage } from '@/services/messaging';
@@ -76,9 +77,9 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <StatusBar barStyle="light-content" backgroundColor={colors.background} />
       <AppNavigator />
-    </>
+    </ErrorBoundary>
   );
 }

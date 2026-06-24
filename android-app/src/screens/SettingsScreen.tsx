@@ -7,6 +7,7 @@ import {
   Switch,
   TouchableOpacity,
   Alert,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
@@ -209,6 +210,16 @@ export function SettingsScreen({ navigation }: SettingsScreenProps) {
         size="md"
       />
 
+      <Text style={styles.sectionTitle}>Legal</Text>
+      <View style={styles.legalLinks}>
+        <TouchableOpacity onPress={() => Linking.openURL('https://bishopshop.co.site/privacy.html')}>
+          <Text style={styles.link}>Privacy Policy</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('https://bishopshop.co.site/terms.html')}>
+          <Text style={styles.link}>Terms of Service</Text>
+        </TouchableOpacity>
+      </View>
+
       <Text style={styles.version}>Peitho v{appJson.version ?? '1.0.0'} (Android)</Text>
       <Text style={styles.legal}>Bishop Shop Enterprises LLC</Text>
     </ScrollView>
@@ -361,5 +372,16 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     textAlign: 'center',
     marginTop: spacing.xs,
+  },
+  legalLinks: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  link: {
+    ...typography.body,
+    color: colors.accent,
+    textDecorationLine: 'underline',
   },
 });

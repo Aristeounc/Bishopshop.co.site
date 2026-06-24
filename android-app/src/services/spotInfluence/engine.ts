@@ -9,7 +9,7 @@ export interface SpotInfluenceState {
   scenario: InfluenceScenario;
   currentLineIndex: number;
   revealedLines: number[];
-  playerSelections: Map<string, PlayerTacticSelection[]>;
+  playerSelections: Record<string, PlayerTacticSelection[]>;
   score: SpotInfluenceScore;
   isComplete: boolean;
 }
@@ -40,7 +40,7 @@ export function startSpotInfluence(scenarioId?: string): SpotInfluenceState {
     scenario,
     currentLineIndex: 0,
     revealedLines: [0],
-    playerSelections: new Map(),
+    playerSelections: {},
     score: {
       totalTactics: countTotalTactics(scenario),
       tacticsIdentified: 0,
@@ -91,9 +91,11 @@ export function submitTacticGuess(
     matchedTactic,
   };
 
-  const lineSelections = state.playerSelections.get(lineId) ?? [];
-  const updatedSelections = new Map(state.playerSelections);
-  updatedSelections.set(lineId, [...lineSelections, selection]);
+  const lineSelections = state.playerSelections[lineId] ?? [];
+  const updatedSelections = {
+    ...state.playerSelections,
+    [lineId]: [...lineSelections, selection],
+  };
 
   return {
     state: { ...state, playerSelections: updatedSelections },
@@ -119,7 +121,7 @@ export function calculateFinalScore(state: SpotInfluenceState): SpotInfluenceSco
     allTactics.push(...line.tactics);
   }
 
-  for (const [, selections] of state.playerSelections) {
+  for (const selections of Object.values(state.playerSelections)) {
     for (const selection of selections) {
       if (selection.isCorrect && selection.matchedTactic) {
         foundTacticIds.add(selection.matchedTactic.id);
