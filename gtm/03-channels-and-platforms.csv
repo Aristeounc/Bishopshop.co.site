@@ -1,0 +1,18 @@
+stage,platform,type,url,notes
+alpha,Direct DMs,manual outreach,,LinkedIn / X / iMessage to personal network
+alpha,Private Slack/Discord,community,,Founder and dev communities you're already in
+beta,Indie Hackers,community,https://www.indiehackers.com,Build in public post + feedback thread
+beta,Peerlist,listing,https://peerlist.io,Good for dev/founder audience
+beta,Betalist,listing,https://betalist.com,Early-access product directory
+beta,Uneed,listing,https://www.uneed.best,Daily product launches
+beta,Microlaunch,listing,https://microlaunch.net,Bootstrapped product directory
+beta,Startup Buffer,listing,https://startupbuffer.com,Startup discovery site
+v1,Product Hunt,launch,https://www.producthunt.com,Full coordinated launch day
+v1,There's An AI For That,directory,https://theresanaiforthat.com,Largest AI tool directory
+v1,Futurepedia,directory,https://www.futurepedia.io,AI tools directory
+v1,AI Tool Hunt,directory,https://www.aitoolhunt.com,AI tool listing
+v1,SaaSHub,directory,https://www.saashub.com,SaaS product directory
+v1,G2,review,https://www.g2.com,Reviews and credibility
+v1,LinkedIn content,social,,Weekly founder posts and short demos
+v1,X (Twitter),social,,Launch thread + build in public updates
+v1,Founder newsletters,partnership,,Reach out to newsletters like TLDR, Lenny's, etc.
