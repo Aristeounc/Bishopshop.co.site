@@ -14,7 +14,10 @@ interface WarmupCardProps {
 export function WarmupCard({ warmup, onComplete, completed }: WarmupCardProps) {
   return (
     <Card style={styles.container} variant="elevated">
-      <View style={styles.header}>
+      <View
+        style={styles.header}
+        accessibilityLabel={`Warmup: ${warmup.conceptName} by ${warmup.expertSource}${completed ? ', completed' : ''}`}
+      >
         <View style={styles.iconContainer}>
           <Icon name="book-open-outline" size={24} color={colors.accent} />
         </View>

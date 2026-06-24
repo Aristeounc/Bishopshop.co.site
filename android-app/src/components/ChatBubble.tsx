@@ -14,7 +14,10 @@ export function ChatBubble({ message, personaName, personaColor }: ChatBubblePro
   const isCoach = message.role === 'coach';
 
   return (
-    <View style={[styles.container, isUser && styles.containerUser]}>
+    <View
+      style={[styles.container, isUser && styles.containerUser]}
+      accessibilityLabel={`${isUser ? 'You' : isCoach ? 'Coach' : personaName ?? 'Persona'} said: ${message.content}`}
+    >
       {!isUser && (
         <Text style={[styles.sender, isCoach && styles.senderCoach, { color: isCoach ? colors.accent : personaColor }]}>
           {isCoach ? 'Coach' : personaName ?? 'Persona'}

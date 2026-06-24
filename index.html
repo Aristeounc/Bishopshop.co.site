@@ -40,7 +40,7 @@
   "@type": "SoftwareApplication",
   "name": "Peitho",
   "applicationCategory": "EducationalApplication",
-  "operatingSystem": "iOS",
+  "operatingSystem": "Android, iOS",
   "description": "Peitho is the conversation gym that trains communication skills through AI sparring, 8 training modes, guided frameworks, and ELO-based skill progression.",
   "offers": {
     "@type": "Offer",
@@ -90,7 +90,10 @@
     background: var(--ink);
     color: var(--white);
     overflow-x: hidden;
-    cursor: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
   }
 
   /* Custom cursor */
@@ -292,7 +295,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
-    border: none; cursor: none;
+    border: none;
     transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
     box-shadow: 0 0 0 0 rgba(212,175,55,0.4);
     position: relative; overflow: hidden;
@@ -317,7 +320,9 @@
     text-decoration: none;
     border: 1px solid rgba(255,255,255,0.15);
     transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    cursor: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-ghost { cursor: none; }
   }
   .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.35); transform: translateY(-1px); }
 
@@ -712,7 +717,6 @@
     position: relative;
     overflow: hidden;
     transition: transform 0.3s, border-color 0.3s;
-    cursor: none;
   }
   .persona-card:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.3); }
   .persona-card::after {
@@ -831,7 +835,6 @@
     text-transform: uppercase;
     text-decoration: none;
     transition: transform 0.2s, background 0.2s;
-    cursor: none;
   }
   .btn-pricing-outline {
     border: 1px solid rgba(255,255,255,0.2);
@@ -971,7 +974,6 @@
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 4px;
     padding: 28px;
-    cursor: none;
     transition: border-color 0.2s;
   }
   .faq-item:hover { border-color: rgba(142,68,173,0.35); }
@@ -1032,7 +1034,6 @@
     padding: 12px 24px;
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
-    cursor: none;
   }
   .app-badge:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
   .app-badge-icon { font-size: 24px; }
@@ -1107,22 +1108,85 @@
     z-index: 1000;
   }
 
+  /* Skip nav */
+  .skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 16px;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    z-index: 200;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .skip-nav:focus { top: 16px; }
+
+  /* Mobile hamburger */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
     .how-grid { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 600px) { .how-grid { grid-template-columns: 1fr; } }
     .framework-grid, .persona-grid { grid-template-columns: repeat(2, 1fr); }
     .curriculum-header, .sparring-header, .ethics-inner { grid-template-columns: 1fr; gap: 32px; }
     .pricing-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     nav { padding: 16px 24px; }
-    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(13,17,23,0.95);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      padding: 24px;
+      gap: 16px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { font-size: 16px; padding: 8px 0; }
     .hero-content { padding: 60px 24px; }
+  }
+  @media (max-width: 600px) {
+    .how-grid { grid-template-columns: 1fr; }
+    .framework-grid, .persona-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card:first-child { grid-column: span 1; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .ethics-values-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 24px; }
+    .cta-actions { flex-direction: column; }
   }
 </style>
 </head>
 <body>
+
+<!-- Skip nav -->
+<a href="#how-it-works" class="skip-nav">Skip to content</a>
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
@@ -1134,7 +1198,10 @@
     <div class="nav-logo-mark" aria-hidden="true">P</div>
     <span class="nav-wordmark">Peitho</span>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#sparring">Sparring</a></li>
@@ -1152,7 +1219,7 @@
   <div class="hero-grid" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow" role="text">Now Available on iOS</div>
+    <div class="hero-eyebrow" role="text">Now Available on iOS &amp; Android</div>
     <h1 class="hero-headline">
       Train Your<br>
       <em>Conversations</em><br>
@@ -1660,7 +1727,7 @@
       </div>
       <div class="faq-item reveal reveal-delay-1">
         <p class="faq-q">Is the app available on Android?</p>
-        <p class="faq-a">Peitho is available on the iOS App Store with Android in active development. Subscribe to updates to be notified when the Android version launches.</p>
+        <p class="faq-a">Yes! Peitho is available on both the iOS App Store and Google Play Store. Download it on whichever platform you use.</p>
       </div>
       <div class="faq-item reveal">
         <p class="faq-q">What is Spot-the-Influence mode?</p>
@@ -1678,7 +1745,7 @@
 <section class="cta-section" id="get-started" aria-labelledby="cta-heading">
   <div class="cta-bg" aria-hidden="true"></div>
   <div class="section-inner" style="position:relative">
-    <div class="section-label reveal" style="justify-content:center">Available Now on iOS</div>
+    <div class="section-label reveal" style="justify-content:center">Available Now on iOS &amp; Android</div>
     <h2 class="cta-headline reveal reveal-delay-1" id="cta-heading">
       Your words<br>are your <span>edge.</span>
     </h2>
@@ -1691,7 +1758,13 @@
           <div class="app-badge-name">App Store</div>
         </div>
       </a>
-      <a href="mailto:peitho@bishopshop.co.site" class="btn-ghost" aria-label="Contact Peitho team">Contact Us</a>
+      <a href="https://play.google.com/store/apps/details?id=com.bishopshop.peitho" class="app-badge" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+        <span class="app-badge-icon" aria-hidden="true">▶</span>
+        <div class="app-badge-text">
+          <div class="app-badge-sub">Get it on</div>
+          <div class="app-badge-name">Google Play</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1774,6 +1847,20 @@
   document.querySelectorAll('a, button, .persona-card, .faq-item, .framework-card, .how-card').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); ring.classList.add('hover'); });
     el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); ring.classList.remove('hover'); });
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Navbar scroll

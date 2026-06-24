@@ -19,6 +19,8 @@ export function SkillCard({ track, progress, onPress }: SkillCardProps) {
       style={styles.container}
       onPress={onPress}
       activeOpacity={0.7}
+      accessibilityRole="button"
+      accessibilityLabel={`${track.name}, ELO ${progress.elo}, ${progress.sessionsCompleted} sessions completed`}
     >
       <View style={[styles.iconContainer, { backgroundColor: track.color + '20' }]}>
         <Icon name={track.icon} size={24} color={track.color} />

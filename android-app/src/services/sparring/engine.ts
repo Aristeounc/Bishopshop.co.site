@@ -44,14 +44,14 @@ export function createSparringEngine(): SparringEngine {
       };
 
       const openingMessage: SparringMessage = {
-        id: `msg_${Date.now()}_0`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_0`,
         role: 'persona',
         content: openingLine,
         timestamp: new Date().toISOString(),
       };
 
       const scenarioMessage: SparringMessage = {
-        id: `msg_${Date.now()}_scenario`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_scenario`,
         role: 'coach',
         content: `Scenario: ${scenario}\n\nYou're facing ${persona.name} — ${persona.subtitle}. ${persona.trainsFocus}. Use the techniques you've learned.`,
         timestamp: new Date().toISOString(),
@@ -73,7 +73,7 @@ export function createSparringEngine(): SparringEngine {
       const persona = getPersona(session.personaId);
 
       const userMessage: SparringMessage = {
-        id: `msg_${Date.now()}_user`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_user`,
         role: 'user',
         content: userInput,
         timestamp: new Date().toISOString(),
@@ -83,7 +83,7 @@ export function createSparringEngine(): SparringEngine {
       userMessage.feedback = feedback;
 
       const coachMessage: SparringMessage = {
-        id: `msg_${Date.now()}_coach`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_coach`,
         role: 'coach',
         content: feedback.summary,
         timestamp: new Date().toISOString(),
@@ -111,7 +111,7 @@ export function createSparringEngine(): SparringEngine {
       const response = generateContextualResponse(persona.id, roundNumber, session.messages);
 
       return {
-        id: `msg_${Date.now()}_persona`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_persona`,
         role: 'persona',
         content: response,
         timestamp: new Date().toISOString(),
@@ -120,7 +120,7 @@ export function createSparringEngine(): SparringEngine {
 
     transitionPhase(session: SparringSession, newPhase: GymPhase): SparringSession {
       const transitionMessage: SparringMessage = {
-        id: `msg_${Date.now()}_transition`,
+        id: `msg_${Date.now()}_${Math.random().toString(36).slice(2, 7)}_transition`,
         role: 'coach',
         content: getPhaseTransitionMessage(newPhase),
         timestamp: new Date().toISOString(),

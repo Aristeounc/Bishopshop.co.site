@@ -19,7 +19,10 @@ export function PersonaAvatar({
   showInfo = true,
 }: PersonaAvatarProps) {
   const content = (
-    <View style={[styles.container, showInfo && styles.containerWithInfo]}>
+    <View
+      style={[styles.container, showInfo && styles.containerWithInfo]}
+      accessibilityLabel={`${persona.name}, ${persona.subtitle}`}
+    >
       <View
         style={[
           styles.avatar,
@@ -57,7 +60,12 @@ export function PersonaAvatar({
 
   if (onPress) {
     return (
-      <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityLabel={`${persona.name}, ${persona.subtitle}, difficulty ${persona.difficulty} of 5`}
+      >
         {content}
       </TouchableOpacity>
     );

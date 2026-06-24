@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -9,8 +9,9 @@ import { DrillCard } from '@/components/DrillCard';
 import { ProgressRing } from '@/components/ProgressRing';
 import { useStore } from '@/store/useStore';
 import { generateDailyProgram, calculateProgramProgress, getProgramPhaseLabel, getProgramPhaseDescription } from '@/services/dailyProgram';
-import { saveDailyProgram } from '@/services/firestore';
+import { saveDailyProgram, saveDrillResult, updateStreak } from '@/services/firestore';
 import { DailyProgram, GymPhase } from '@/models/types';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 interface DailyProgramScreenProps {
   navigation: any;
@@ -58,6 +59,11 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
   function handleDrillComplete(drillId: string, _response: string) {
     if (!dailyProgram) return;
 
+    const drill = dailyProgram.drills.find((d) => d.id === drillId);
+    if (drill && user) {
+      saveDrillResult(user.id, drill.type, 100, drill.skillTrack).catch(() => {});
+    }
+
     const updatedDrills = dailyProgram.drills.map((d) =>
       d.id === drillId ? { ...d, completed: true } : d,
     );
@@ -82,6 +88,7 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
 
     if (user) {
       saveDailyProgram(user.id, completed).catch(() => {});
+      updateStreak(user.id).catch(() => {});
     }
   }
 
@@ -90,6 +97,31 @@ export function DailyProgramScreen({ navigation }: DailyProgramScreenProps) {
       <View style={[styles.container, styles.centered]}>
         <Text style={styles.loading}>Generating today's program...</Text>
       </View>
+    );
+  }
+
+  if (user && !canAccessFeature(user.subscription, 'daily_program')) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={[styles.content, styles.centered]}>
+        <Icon name="lock-outline" size={64} color={colors.textMuted} />
+        <Text style={styles.title}>Daily Program</Text>
+        <Text style={[styles.loading, { textAlign: 'center', marginTop: spacing.md }]}>
+          {getUpgradeMessage('daily_program')}
+        </Text>
+        <Button
+          title="Upgrade to Core Gym"
+          onPress={() =>
+            Alert.alert(
+              'Upgrade Required',
+              getUpgradeMessage('daily_program'),
+              [{ text: 'OK' }],
+            )
+          }
+          variant="accent"
+          size="lg"
+          style={{ marginTop: spacing.lg }}
+        />
+      </ScrollView>
     );
   }
 

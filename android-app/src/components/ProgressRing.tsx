@@ -25,7 +25,11 @@ export function ProgressRing({
   const strokeDashoffset = circumference * (1 - Math.min(1, Math.max(0, progress)));
 
   return (
-    <View style={[styles.container, { width: size, height: size }]}>
+    <View
+      style={[styles.container, { width: size, height: size }]}
+      accessibilityLabel={`Progress: ${Math.round(Math.min(1, Math.max(0, progress)) * 100)}%${label ? `, ${label}` : ''}${sublabel ? ` ${sublabel}` : ''}`}
+      accessibilityRole="progressbar"
+    >
       <Svg width={size} height={size} style={styles.svg}>
         <Circle
           cx={size / 2}

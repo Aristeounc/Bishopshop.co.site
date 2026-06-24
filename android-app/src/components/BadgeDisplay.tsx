@@ -16,7 +16,10 @@ export function BadgeDisplay({ badge, size = 'md' }: BadgeDisplayProps) {
   const iconSize = size === 'sm' ? 32 : size === 'md' ? 48 : 64;
 
   return (
-    <View style={[styles.container, !isEarned && styles.locked]}>
+    <View
+      style={[styles.container, !isEarned && styles.locked]}
+      accessibilityLabel={`Badge: ${badge.name}, ${tierInfo?.label ?? badge.tier} tier, ${isEarned ? 'earned' : 'locked'}`}
+    >
       <View
         style={[
           styles.iconContainer,

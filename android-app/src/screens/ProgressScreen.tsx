@@ -102,7 +102,8 @@ export function ProgressScreen() {
       <Card style={styles.radarCard}>
         {SKILL_TRACKS.map((track) => {
           const progress = skillProgress[track.id];
-          const percent = Math.min(100, (progress.elo / 2000) * 100);
+          const elo = progress?.elo ?? 0;
+          const percent = Math.min(100, (elo / 2000) * 100);
           return (
             <View key={track.id} style={styles.radarRow}>
               <View style={[styles.radarDot, { backgroundColor: track.color }]} />
@@ -116,7 +117,7 @@ export function ProgressScreen() {
                 />
               </View>
               <Text style={[styles.radarValue, { color: track.color }]}>
-                {progress.elo}
+                {elo}
               </Text>
             </View>
           );
