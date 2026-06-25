@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peitho — Opening Sequence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #8E44AD;
+    --purple-dark: #6C3483;
+    --purple-deep: #2D1B4E;
+    --gold: #D4AF37;
+    --gold-light: #F2D06B;
+    --ink: #0D1117;
+    --white: #FAFAF8;
+  }
+
+  body {
+    background: var(--ink);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  /* === PHASE 1: Particle Vortex === */
+  .particle-field {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    animation: fieldFadeIn 1.5s ease-out 0.3s forwards;
+  }
+
+  @keyframes fieldFadeIn {
+    to { opacity: 1; }
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* === PHASE 2: Radial Pulse === */
+  .radial-pulse {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    z-index: 2;
+    opacity: 0;
+  }
+
+  .radial-pulse.ring1 {
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    animation: pulseExpand 2s cubic-bezier(0.16, 1, 0.3, 1) 2.0s forwards;
+  }
+  .radial-pulse.ring2 {
+    border: 1px solid rgba(142, 68, 173, 0.3);
+    animation: pulseExpand 2.2s cubic-bezier(0.16, 1, 0.3, 1) 2.15s forwards;
+  }
+  .radial-pulse.ring3 {
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    animation: pulseExpand 2.5s cubic-bezier(0.16, 1, 0.3, 1) 2.3s forwards;
+  }
+
+  @keyframes pulseExpand {
+    0% { width: 0; height: 0; opacity: 1; }
+    60% { opacity: 0.6; }
+    100% { width: 200vmax; height: 200vmax; opacity: 0; }
+  }
+
+  /* === PHASE 3: Icon Reveal === */
+  .icon-container {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: scale(0.3);
+    animation: iconReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards;
+  }
+
+  @keyframes iconReveal {
+    0% { opacity: 0; transform: scale(0.3); filter: blur(20px); }
+    50% { opacity: 1; filter: blur(0px); }
+    100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+  }
+
+  .icon-glow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: glowPulse 3s ease-in-out 2.8s infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+
+  .icon-shape {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--gold) 0%, #C4962E 50%, var(--gold-light) 100%);
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow:
+      0 0 60px rgba(212, 175, 55, 0.3),
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-shape::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .icon-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--ink);
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    animation: letterReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
+  }
+
+  @keyframes letterReveal {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === PHASE 4: Wordmark === */
+  .wordmark-container {
+    margin-top: 32px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 12px;
+    color: var(--white);
+    opacity: 0;
+    animation: wordmarkReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 3.0s forwards;
+  }
+
+  @keyframes wordmarkReveal {
+    0% { opacity: 0; transform: translateY(30px); letter-spacing: 30px; }
+    100% { opacity: 1; transform: translateY(0); letter-spacing: 12px; }
+  }
+
+  .wordmark-line {
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 8px auto 0;
+    animation: lineExpand 1s cubic-bezier(0.16, 1, 0.3, 1) 3.4s forwards;
+  }
+
+  @keyframes lineExpand {
+    to { width: 100%; }
+  }
+
+  /* === PHASE 5: Tagline === */
+  .tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(212, 175, 55, 0.8);
+    margin-top: 16px;
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    animation: tagFade 1.2s ease-out 3.8s forwards;
+    letter-spacing: 2px;
+  }
+
+  @keyframes tagFade {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === PHASE 6: Greek Laurel Ornament === */
+  .laurel {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    animation: laurelReveal 1.5s ease-out 3.2s forwards;
+  }
+
+  .laurel-left {
+    left: calc(50% - 200px);
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .laurel-right {
+    right: calc(50% - 200px);
+    top: 50%;
+    transform: translate(0, -50%) scaleX(-1);
+  }
+
+  @keyframes laurelReveal {
+    0% { opacity: 0; }
+    100% { opacity: 0.15; }
+  }
+
+  /* === Background ambient glow === */
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    animation: ambientIn 3s ease-out 1s forwards;
+  }
+
+  .ambient::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(142, 68, 173, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: ambientFloat 8s ease-in-out infinite;
+  }
+
+  .ambient::after {
+    content: '';
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: ambientFloat 10s ease-in-out 1s infinite reverse;
+  }
+
+  @keyframes ambientIn { to { opacity: 1; } }
+  @keyframes ambientFloat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.15); }
+  }
+
+  /* === Geometric grid lines === */
+  .grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    animation: gridFade 2s ease-out 1.5s forwards;
+    background-image:
+      linear-gradient(rgba(142,68,173,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(142,68,173,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, black 20%, transparent 70%);
+  }
+
+  @keyframes gridFade {
+    to { opacity: 1; }
+  }
+
+  /* === Final transition overlay === */
+  .transition-out {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--ink);
+    opacity: 0;
+    pointer-events: none;
+    animation: transOut 0.8s ease-in 6.2s forwards;
+  }
+
+  @keyframes transOut {
+    to { opacity: 1; }
+  }
+
+  /* === Floating orbs === */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .orb-1 {
+    width: 200px; height: 200px;
+    background: rgba(142, 68, 173, 0.15);
+    top: 20%; left: 15%;
+    animation: orbDrift1 12s ease-in-out infinite, orbFadeIn 2s ease-out 0.5s forwards;
+  }
+
+  .orb-2 {
+    width: 160px; height: 160px;
+    background: rgba(212, 175, 55, 0.1);
+    top: 65%; right: 20%;
+    animation: orbDrift2 15s ease-in-out infinite, orbFadeIn 2s ease-out 1s forwards;
+  }
+
+  .orb-3 {
+    width: 120px; height: 120px;
+    background: rgba(142, 68, 173, 0.08);
+    bottom: 15%; left: 35%;
+    animation: orbDrift3 10s ease-in-out 0.5s infinite, orbFadeIn 2s ease-out 1.5s forwards;
+  }
+
+  @keyframes orbFadeIn { to { opacity: 1; } }
+  @keyframes orbDrift1 {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(30px, -20px); }
+    66% { transform: translate(-15px, 15px); }
+  }
+  @keyframes orbDrift2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-25px, -30px); }
+  }
+  @keyframes orbDrift3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -25px); }
+  }
+
+  /* === Constellation dots === */
+  .constellation {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    animation: constellFade 3s ease-out 0.8s forwards;
+  }
+
+  @keyframes constellFade { to { opacity: 1; } }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(212, 175, 55, 0.4);
+    border-radius: 50%;
+  }
+
+  .star::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent);
+    border-radius: 50%;
+  }
+
+  /* === Noise texture === */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* === Instruction overlay === */
+  .instructions {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+    z-index: 998;
+    opacity: 0;
+    animation: instrFade 1s ease-out 5s forwards;
+  }
+
+  @keyframes instrFade {
+    to { opacity: 1; }
+  }
+
+  /* Mobile phone frame preview */
+  .phone-frame {
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    width: 280px;
+    height: 580px;
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 40px;
+    overflow: hidden;
+    z-index: 500;
+    opacity: 0;
+    animation: phoneIn 1s ease-out 5.5s forwards;
+    box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  }
+
+  @keyframes phoneIn {
+    0% { opacity: 0; transform: translateY(-50%) translateX(40px); }
+    100% { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  .phone-frame-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phone-frame-inner::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(142, 68, 173, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .phone-notch-bar {
+    position: absolute;
+    top: 10px;
+    width: 80px;
+    height: 5px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+  }
+
+  .phone-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--gold) 0%, #C4962E 50%, var(--gold-light) 100%);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2), 0 0 0 1px rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .phone-icon::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 17px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  }
+
+  .phone-icon-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .phone-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 6px;
+    color: var(--white);
+    margin-top: 16px;
+  }
+
+  .phone-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(212, 175, 55, 0.7);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  .phone-progress {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+  }
+
+  .phone-progress-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .phone-progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--purple), var(--gold));
+    border-radius: 2px;
+    animation: phoneProg 2s cubic-bezier(0.16, 1, 0.3, 1) 5.8s forwards;
+  }
+
+  @keyframes phoneProg {
+    to { width: 100%; }
+  }
+
+  .phone-loading-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .phone-frame { display: none; }
+    .wordmark { font-size: 48px; letter-spacing: 8px; }
+    .icon-shape { width: 100px; height: 100px; border-radius: 24px; }
+    .icon-letter { font-size: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="ambient"></div>
+<div class="grid-overlay"></div>
+
+<!-- Floating orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- Constellation dots -->
+<div class="constellation" id="constellation"></div>
+
+<!-- Particle field -->
+<div class="particle-field" id="particleField"></div>
+
+<!-- Radial pulse rings -->
+<div class="radial-pulse ring1"></div>
+<div class="radial-pulse ring2"></div>
+<div class="radial-pulse ring3"></div>
+
+<!-- Laurel ornaments -->
+<svg class="laurel laurel-left" width="60" height="160" viewBox="0 0 60 160">
+  <g fill="none" stroke="rgba(212,175,55,0.6)" stroke-width="1">
+    <path d="M55 80 C45 60, 30 50, 25 30 C20 50, 25 65, 30 80"/>
+    <path d="M55 80 C50 65, 40 55, 35 40 C30 55, 35 68, 40 80"/>
+    <path d="M55 80 C45 100, 30 110, 25 130 C20 110, 25 95, 30 80"/>
+    <path d="M55 80 C50 95, 40 105, 35 120 C30 105, 35 92, 40 80"/>
+    <path d="M55 80 C48 72, 38 65, 30 55 C28 65, 33 74, 38 80"/>
+    <path d="M55 80 C48 88, 38 95, 30 105 C28 95, 33 86, 38 80"/>
+  </g>
+</svg>
+<svg class="laurel laurel-right" width="60" height="160" viewBox="0 0 60 160">
+  <g fill="none" stroke="rgba(212,175,55,0.6)" stroke-width="1">
+    <path d="M55 80 C45 60, 30 50, 25 30 C20 50, 25 65, 30 80"/>
+    <path d="M55 80 C50 65, 40 55, 35 40 C30 55, 35 68, 40 80"/>
+    <path d="M55 80 C45 100, 30 110, 25 130 C20 110, 25 95, 30 80"/>
+    <path d="M55 80 C50 95, 40 105, 35 120 C30 105, 35 92, 40 80"/>
+    <path d="M55 80 C48 72, 38 65, 30 55 C28 65, 33 74, 38 80"/>
+    <path d="M55 80 C48 88, 38 95, 30 105 C28 95, 33 86, 38 80"/>
+  </g>
+</svg>
+
+<!-- Main content -->
+<div class="screen">
+  <div class="icon-container">
+    <div class="icon-glow"></div>
+    <div class="icon-shape">
+      <span class="icon-letter">P</span>
+    </div>
+  </div>
+  <div class="wordmark-container">
+    <div class="wordmark">PEITHO</div>
+    <div class="wordmark-line"></div>
+  </div>
+  <div class="tagline">The Art of Influence</div>
+</div>
+
+<!-- Phone frame preview -->
+<div class="phone-frame">
+  <div class="phone-frame-inner">
+    <div class="phone-notch-bar"></div>
+    <div class="phone-icon">
+      <span class="phone-icon-letter">P</span>
+    </div>
+    <div class="phone-wordmark">PEITHO</div>
+    <div class="phone-tagline">The Art of Influence</div>
+    <div class="phone-progress">
+      <div class="phone-progress-bar">
+        <div class="phone-progress-fill"></div>
+      </div>
+      <div class="phone-loading-text">Loading your gym</div>
+    </div>
+  </div>
+</div>
+
+<!-- Transition out -->
+<div class="transition-out"></div>
+
+<div class="instructions">Record this screen &amp; import into Higsfield for motion-enhanced video</div>
+
+<script>
+  // Generate constellation stars
+  const constellation = document.getElementById('constellation');
+  const starPositions = [];
+  for (let i = 0; i < 40; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    star.style.left = x + '%';
+    star.style.top = y + '%';
+    star.style.animationDelay = (Math.random() * 3) + 's';
+    star.style.animation = `starTwinkle ${2 + Math.random() * 3}s ease-in-out infinite`;
+    constellation.appendChild(star);
+    starPositions.push({ x, y, el: star });
+  }
+
+  // Add twinkle animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes starTwinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.5); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Generate particles that swirl toward center
+  const particleField = document.getElementById('particleField');
+  for (let i = 0; i < 60; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = 1 + Math.random() * 3;
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+    const delay = Math.random() * 2;
+    const duration = 2 + Math.random() * 2;
+    const isGold = Math.random() > 0.5;
+
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = startX + '%';
+    particle.style.top = startY + '%';
+    particle.style.background = isGold
+      ? `rgba(212, 175, 55, ${0.3 + Math.random() * 0.5})`
+      : `rgba(142, 68, 173, ${0.3 + Math.random() * 0.4})`;
+    particle.style.boxShadow = isGold
+      ? `0 0 ${size * 2}px rgba(212, 175, 55, 0.3)`
+      : `0 0 ${size * 2}px rgba(142, 68, 173, 0.2)`;
+
+    const keyframeName = `particle${i}`;
+    const midX = 50 + (Math.random() - 0.5) * 20;
+    const midY = 50 + (Math.random() - 0.5) * 20;
+
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes ${keyframeName} {
+        0% { left: ${startX}%; top: ${startY}%; opacity: 0; }
+        20% { opacity: 0.8; }
+        80% { opacity: 0.6; }
+        100% { left: ${midX}%; top: ${midY}%; opacity: 0; transform: scale(0); }
+      }
+    `;
+    document.head.appendChild(particleStyle);
+
+    particle.style.animation = `${keyframeName} ${duration}s cubic-bezier(0.45, 0, 0.55, 1) ${delay}s forwards`;
+    particleField.appendChild(particle);
+  }
+
+  // Replay loop
+  setTimeout(() => {
+    const transOut = document.querySelector('.transition-out');
+    transOut.addEventListener('animationend', () => {
+      setTimeout(() => { location.reload(); }, 800);
+    });
+  }, 100);
+</script>
+</body>
+</html>

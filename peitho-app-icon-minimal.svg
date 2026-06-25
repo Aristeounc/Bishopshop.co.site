@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D06B"/>
+      <stop offset="40%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8861E"/>
+    </linearGradient>
+    <linearGradient id="hi" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <filter id="ds" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="rgba(0,0,0,0.2)"/>
+    </filter>
+    <clipPath id="clip">
+      <rect width="1024" height="1024" rx="224" ry="224"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#clip)">
+    <rect width="1024" height="1024" fill="url(#bg)"/>
+    <circle cx="350" cy="320" r="550" fill="rgba(255,255,255,0.05)"/>
+
+    <!-- Centered P -->
+    <g filter="url(#ds)">
+      <text x="512" y="640" text-anchor="middle"
+        font-family="'Bebas Neue','Arial Black','Impact',sans-serif"
+        font-size="620" fill="#0D1117" letter-spacing="-10">P</text>
+    </g>
+    <text x="510" y="638" text-anchor="middle"
+      font-family="'Bebas Neue','Arial Black','Impact',sans-serif"
+      font-size="620" fill="rgba(255,255,255,0.07)" letter-spacing="-10">P</text>
+
+    <rect width="1024" height="1024" fill="url(#hi)"/>
+    <rect width="1024" height="1024" rx="224" ry="224" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="2"/>
+  </g>
+</svg>

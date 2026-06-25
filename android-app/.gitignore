@@ -19,3 +19,4 @@ coverage/
 .jest/
 __snapshots__/
 .metro-health-check*
+dist/
