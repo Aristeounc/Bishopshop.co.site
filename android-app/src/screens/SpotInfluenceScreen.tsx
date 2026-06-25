@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -20,6 +21,9 @@ import {
   PlayerTacticSelection,
 } from '@/services/spotInfluence/engine';
 import { INFLUENCE_SCENARIOS, InfluenceScenario } from '@/services/spotInfluence/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -36,6 +40,20 @@ const TACTIC_CATEGORIES = [
 ];
 
 export function SpotInfluenceScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'spot_influence')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('spot_influence'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<SpotInfluenceState | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -83,6 +101,11 @@ export function SpotInfluenceScreen() {
     setGameState(updated);
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        saveDrillResult(uid, 'spot_influence', updated.score.accuracy, 'defend').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     }
   }
 
@@ -225,7 +248,7 @@ export function SpotInfluenceScreen() {
         {gameState.revealedLines.map((lineIdx) => {
           const line = gameState.scenario.dialogue[lineIdx];
           const isActive = lineIdx === gameState.currentLineIndex && !reviewMode;
-          const lineSelections = gameState.playerSelections.get(line.id) ?? [];
+          const lineSelections = gameState.playerSelections[line.id] ?? [];
           const hasCorrect = lineSelections.some((s) => s.isCorrect);
 
           return (

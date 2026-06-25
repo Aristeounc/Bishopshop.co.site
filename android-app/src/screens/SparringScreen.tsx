@@ -19,11 +19,12 @@ import { Card } from '@/components/Card';
 import { useStore } from '@/store/useStore';
 import { sparringEngine } from '@/services/sparring/engine';
 import { getPersona } from '@/services/sparring/personas';
-import { saveSession } from '@/services/firestore';
+import { saveSession, updateStreak, checkAndAwardBadges } from '@/services/firestore';
 import { logSessionStart, logSessionComplete } from '@/services/analytics';
 import { SPARRING_PERSONAS } from '@/utils/constants';
 import { PersonaId, SkillTrackId, SparringSession } from '@/models/types';
 import { formatEloChange } from '@/utils/helpers';
+import { canAccessFeature, getUpgradeMessage, FREE_TRIAL_LIMITS } from '@/utils/subscriptionGate';
 
 interface SparringScreenProps {
   navigation: any;
@@ -40,6 +41,7 @@ export function SparringScreen({ navigation }: SparringScreenProps) {
 
   const user = useStore((s) => s.user);
   const skillProgress = useStore((s) => s.skillProgress);
+  const sessionHistory = useStore((s) => s.sessionHistory);
   const completeSession = useStore((s) => s.completeSession);
 
   function handleSelectPersona(personaId: PersonaId) {
@@ -48,6 +50,21 @@ export function SparringScreen({ navigation }: SparringScreenProps) {
 
   function handleStartSparring() {
     if (!selectedPersona || !user) return;
+
+    if (user.subscription === 'free_trial') {
+      const today = new Date().toISOString().split('T')[0];
+      const todaySessions = sessionHistory.filter(
+        (s) => s.completedAt && s.completedAt.startsWith(today),
+      );
+      if (todaySessions.length >= FREE_TRIAL_LIMITS.sparringSessions) {
+        Alert.alert(
+          'Daily Limit Reached',
+          getUpgradeMessage('sparring'),
+          [{ text: 'OK' }],
+        );
+        return;
+      }
+    }
 
     const persona = getPersona(selectedPersona);
     const newSession = sparringEngine.startSession(
@@ -101,7 +118,27 @@ export function SparringScreen({ navigation }: SparringScreenProps) {
       completeSession(completedSession.eloChanges);
     }
 
-    saveSession(completedSession).catch(() => {});
+    saveSession(completedSession).catch((error) => {
+      console.error('Failed to save session:', error);
+      Alert.alert('Save Error', 'Your session could not be saved. Please check your connection.');
+    });
+
+    if (user) {
+      updateStreak(user.id).catch(() => {});
+      const currentProgress = useStore.getState().skillProgress;
+      const totalSessions = (user.totalSessions || 0) + 1;
+      const currentStreak = (user.currentStreak || 0) + 1;
+      checkAndAwardBadges(user.id, currentProgress, totalSessions, currentStreak)
+        .then((newBadges) => {
+          if (newBadges.length > 0) {
+            const earnBadge = useStore.getState().earnBadge;
+            newBadges.forEach((b) => earnBadge(b));
+            const names = newBadges.map((b) => `${b.icon} ${b.name}`).join('\n');
+            Alert.alert('Badge Earned!', `Congratulations!\n\n${names}`);
+          }
+        })
+        .catch(() => {});
+    }
 
     const durationMs = completedSession.completedAt
       ? new Date(completedSession.completedAt).getTime() - new Date(completedSession.startedAt).getTime()

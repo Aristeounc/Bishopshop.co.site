@@ -52,11 +52,12 @@ export function SkillsScreen() {
       </View>
 
       <View style={styles.tracks}>
-        {SKILL_TRACKS.map((track) => (
+        {SKILL_TRACKS.map((track, index) => (
           <SkillCard
             key={track.id}
             track={track}
             progress={skillProgress[track.id]}
+            index={index}
           />
         ))}
       </View>

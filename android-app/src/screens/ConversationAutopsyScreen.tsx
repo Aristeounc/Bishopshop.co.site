@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -25,6 +27,9 @@ import {
   AutopsyScenario,
   MistakeCategory,
 } from '@/services/conversationAutopsy/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -40,6 +45,20 @@ const MISTAKE_CATEGORIES: { id: MistakeCategory; label: string; icon: string; co
 ];
 
 export function ConversationAutopsyScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'conversation_autopsy')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('conversation_autopsy'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<AutopsyState | null>(null);
   const [rewriteText, setRewriteText] = useState('');
@@ -70,12 +89,21 @@ export function ConversationAutopsyScreen() {
     setGameState(submitDiagnosis(gameState, category));
   }
 
+  function persistAutopsyResult(scored: AutopsyState) {
+    const uid = useStore.getState().user?.id;
+    if (uid) {
+      saveDrillResult(uid, 'conversation_autopsy', scored.score.totalScore, 'listen').catch(() => {});
+      updateStreak(uid).catch(() => {});
+    }
+  }
+
   function handleSubmitRewrite() {
     if (!gameState || !rewriteText.trim()) return;
     const withRewrite = submitRewrite(gameState, rewriteText);
     const scored = calculateAutopsyScore(withRewrite);
     setGameState(scored);
     setScreenState('results');
+    persistAutopsyResult(scored);
   }
 
   function handleSkipRewrite() {
@@ -83,6 +111,7 @@ export function ConversationAutopsyScreen() {
     const scored = calculateAutopsyScore(gameState);
     setGameState(scored);
     setScreenState('results');
+    persistAutopsyResult(scored);
   }
 
   // --- SELECT SCREEN ---
@@ -378,6 +407,8 @@ export function ConversationAutopsyScreen() {
               multiline
               numberOfLines={3}
               textAlignVertical="top"
+              maxLength={2000}
+              accessibilityLabel="Rewrite the conversation line"
             />
             <View style={styles.actionRow}>
               <Button title="Skip" onPress={handleSkipRewrite} variant="outline" size="sm" />

@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -21,6 +23,9 @@ import {
   FlashResults,
 } from '@/services/flashJudgment/engine';
 import { FLASH_JUDGMENT_SETS, FlashJudgmentSet, FlashOption } from '@/services/flashJudgment/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -39,6 +44,20 @@ const RATING_CONFIG: Record<string, { label: string; color: string; icon: string
 };
 
 export function FlashJudgmentScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'flash_judgment')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('flash_judgment'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<FlashJudgmentState | null>(null);
   const [lastAnswer, setLastAnswer] = useState<FlashAnswer | null>(null);
@@ -46,10 +65,12 @@ export function FlashJudgmentScreen() {
   const [timerValue, setTimerValue] = useState(15);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressAnim = useRef(new Animated.Value(1)).current;
+  const hasAnsweredRef = useRef(false);
 
   useEffect(() => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
+      progressAnim.stopAnimation();
     };
   }, []);
 
@@ -57,6 +78,7 @@ export function FlashJudgmentScreen() {
     setTimerValue(15);
     progressAnim.setValue(1);
     setQuestionStartTime(Date.now());
+    hasAnsweredRef.current = false;
 
     if (timerRef.current) clearInterval(timerRef.current);
 
@@ -80,10 +102,12 @@ export function FlashJudgmentScreen() {
 
   function stopTimer() {
     if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = null;
     progressAnim.stopAnimation();
   }
 
   function handleTimeout() {
+    if (hasAnsweredRef.current) return;
     if (!gameState || gameState.phase !== 'answering') return;
     const question = gameState.set.questions[gameState.currentIndex];
     const worstOption = question.options.find((o) => o.quality === 'worst') ?? question.options[0];
@@ -95,11 +119,14 @@ export function FlashJudgmentScreen() {
     setGameState(state);
     setScreenState('playing');
     setLastAnswer(null);
+    hasAnsweredRef.current = false;
     setTimeout(() => startTimer(), 100);
   }
 
   function handleSelectOption(optionId: string) {
     if (!gameState || gameState.phase !== 'answering') return;
+    if (hasAnsweredRef.current) return;
+    hasAnsweredRef.current = true;
     stopTimer();
 
     const timeMs = Date.now() - questionStartTime;
@@ -116,6 +143,12 @@ export function FlashJudgmentScreen() {
 
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        const results = calculateFlashResults(updated);
+        saveDrillResult(uid, 'flash_judgment', results.totalScore, 'regulate').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     } else {
       setTimeout(() => startTimer(), 100);
     }
