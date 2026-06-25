@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
-  TouchableOpacity,
+  Pressable,
   Text,
   StyleSheet,
   ActivityIndicator,
   ViewStyle,
   TextStyle,
+  View,
 } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
 import { colors, borderRadius, typography, spacing } from '@/theme';
 
 interface ButtonProps {
@@ -21,6 +28,34 @@ interface ButtonProps {
   icon?: React.ReactNode;
 }
 
+const SPRING_CONFIG = {
+  damping: 15,
+  stiffness: 150,
+  mass: 0.5,
+};
+
+const GRADIENT_COLORS: Record<string, string[]> = {
+  primary: ['#8E44AD', '#6C3483'],
+  accent: ['#D4AF37', '#B8961E'],
+};
+
+const GLOW_SHADOWS: Record<string, ViewStyle> = {
+  primary: {
+    shadowColor: '#8E44AD',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.35,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  accent: {
+    shadowColor: '#D4AF37',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.35,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+};
+
 export function Button({
   title,
   onPress,
@@ -32,40 +67,77 @@ export function Button({
   textStyle,
   icon,
 }: ButtonProps) {
-  const buttonStyles = [
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+    opacity: opacity.value,
+  }));
+
+  const handlePressIn = useCallback(() => {
+    scale.value = withSpring(0.96, SPRING_CONFIG);
+    opacity.value = withSpring(0.92, SPRING_CONFIG);
+  }, [scale, opacity]);
+
+  const handlePressOut = useCallback(() => {
+    scale.value = withSpring(1, SPRING_CONFIG);
+    opacity.value = withSpring(1, SPRING_CONFIG);
+  }, [scale, opacity]);
+
+  const hasGradient = variant === 'primary' || variant === 'accent';
+  const hasGlow = hasGradient && size === 'lg';
+
+  const buttonStyles: ViewStyle[] = [
     styles.base,
     styles[variant],
-    styles[`size_${size}`],
-    disabled && styles.disabled,
+    styles[`size_${size}` as keyof typeof styles] as ViewStyle,
+    hasGlow ? (GLOW_SHADOWS[variant] as ViewStyle) : undefined,
+    disabled ? styles.disabled : undefined,
     style,
-  ];
+  ].filter(Boolean) as ViewStyle[];
 
   const labelStyles = [
     styles.label,
-    styles[`label_${variant}`],
-    styles[`labelSize_${size}`],
+    styles[`label_${variant}` as keyof typeof styles],
+    styles[`labelSize_${size}` as keyof typeof styles],
     textStyle,
   ];
 
+  const content = loading ? (
+    <ActivityIndicator color={variant === 'outline' ? colors.primary : colors.textOnPrimary} />
+  ) : (
+    <>
+      {icon}
+      <Text style={labelStyles}>{title}</Text>
+    </>
+  );
+
   return (
-    <TouchableOpacity
-      style={buttonStyles}
-      onPress={onPress}
-      disabled={disabled || loading}
-      activeOpacity={0.8}
-      accessibilityRole="button"
-      accessibilityLabel={title}
-      accessibilityState={{ disabled: disabled || loading }}
-    >
-      {loading ? (
-        <ActivityIndicator color={variant === 'outline' ? colors.primary : colors.textOnPrimary} />
-      ) : (
-        <>
-          {icon}
-          <Text style={labelStyles}>{title}</Text>
-        </>
-      )}
-    </TouchableOpacity>
+    <Animated.View style={animatedStyle}>
+      <Pressable
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        disabled={disabled || loading}
+        accessibilityRole="button"
+        accessibilityLabel={title}
+        accessibilityState={{ disabled: disabled || loading }}
+      >
+        {hasGradient ? (
+          <LinearGradient
+            colors={GRADIENT_COLORS[variant]}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            style={buttonStyles}
+          >
+            {content}
+          </LinearGradient>
+        ) : (
+          <View style={buttonStyles}>{content}</View>
+        )}
+      </Pressable>
+    </Animated.View>
   );
 }
 
