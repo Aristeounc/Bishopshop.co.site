@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Main gold gradient -->
+    <linearGradient id="bgGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D06B"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#C4962E"/>
+      <stop offset="100%" stop-color="#B8861E"/>
+    </linearGradient>
+
+    <!-- Highlight sheen -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="50%" y2="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.28)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+
+    <!-- Bottom shadow gradient -->
+    <linearGradient id="bottomShadow" x1="50%" y1="70%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.12)"/>
+    </linearGradient>
+
+    <!-- Purple accent gradient -->
+    <linearGradient id="purpleAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8E44AD"/>
+      <stop offset="100%" stop-color="#6C3483"/>
+    </linearGradient>
+
+    <!-- Letter shadow -->
+    <filter id="letterShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(0,0,0,0.25)"/>
+    </filter>
+
+    <!-- Outer glow for decorative ring -->
+    <filter id="ringGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+
+    <!-- Clip for iOS rounded rect -->
+    <clipPath id="iosClip">
+      <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background with iOS rounding -->
+  <g clip-path="url(#iosClip)">
+    <!-- Gold base -->
+    <rect width="1024" height="1024" fill="url(#bgGold)"/>
+
+    <!-- Subtle radial texture -->
+    <circle cx="380" cy="340" r="600" fill="rgba(255,255,255,0.06)"/>
+    <circle cx="700" cy="750" r="500" fill="rgba(0,0,0,0.04)"/>
+
+    <!-- Geometric Greek key accent - top right corner -->
+    <g opacity="0.08" stroke="#0D1117" stroke-width="3" fill="none">
+      <polyline points="824,80 944,80 944,200"/>
+      <polyline points="864,80 944,80 944,160"/>
+      <polyline points="864,120 904,120 904,80"/>
+    </g>
+
+    <!-- Geometric Greek key accent - bottom left corner -->
+    <g opacity="0.08" stroke="#0D1117" stroke-width="3" fill="none">
+      <polyline points="200,944 80,944 80,824"/>
+      <polyline points="160,944 80,944 80,864"/>
+      <polyline points="160,904 120,904 120,944"/>
+    </g>
+
+    <!-- Decorative circular ring behind the P -->
+    <g filter="url(#ringGlow)">
+      <circle cx="512" cy="460" r="300" fill="none" stroke="rgba(13,17,23,0.06)" stroke-width="2"/>
+    </g>
+    <circle cx="512" cy="460" r="300" fill="none" stroke="rgba(13,17,23,0.04)" stroke-width="1.5" stroke-dasharray="8 12"/>
+
+    <!-- Inner decorative ring -->
+    <circle cx="512" cy="460" r="260" fill="none" stroke="rgba(13,17,23,0.03)" stroke-width="1"/>
+
+    <!-- The Letter P -->
+    <g filter="url(#letterShadow)">
+      <text
+        x="512"
+        y="560"
+        text-anchor="middle"
+        font-family="'Bebas Neue', 'Arial Black', 'Impact', sans-serif"
+        font-weight="400"
+        font-size="520"
+        fill="#0D1117"
+        letter-spacing="-10"
+      >P</text>
+    </g>
+
+    <!-- Subtle highlight on letter -->
+    <text
+      x="510"
+      y="558"
+      text-anchor="middle"
+      font-family="'Bebas Neue', 'Arial Black', 'Impact', sans-serif"
+      font-weight="400"
+      font-size="520"
+      fill="rgba(255,255,255,0.08)"
+      letter-spacing="-10"
+    >P</text>
+
+    <!-- Wordmark "PEITHO" at bottom -->
+    <text
+      x="512"
+      y="830"
+      text-anchor="middle"
+      font-family="'Bebas Neue', 'Arial Black', 'Impact', sans-serif"
+      font-weight="400"
+      font-size="72"
+      fill="#0D1117"
+      letter-spacing="18"
+      opacity="0.7"
+    >PEITHO</text>
+
+    <!-- Thin line above wordmark -->
+    <line x1="362" y1="760" x2="662" y2="760" stroke="#0D1117" stroke-width="1.5" opacity="0.15"/>
+
+    <!-- Tagline -->
+    <text
+      x="512"
+      y="880"
+      text-anchor="middle"
+      font-family="'DM Serif Display', 'Georgia', serif"
+      font-style="italic"
+      font-size="32"
+      fill="#0D1117"
+      opacity="0.35"
+      letter-spacing="3"
+    >The Art of Influence</text>
+
+    <!-- Purple accent dot - top left area -->
+    <circle cx="180" cy="180" r="8" fill="url(#purpleAccent)" opacity="0.5"/>
+    <circle cx="844" cy="844" r="8" fill="url(#purpleAccent)" opacity="0.5"/>
+
+    <!-- Small laurel leaf accents flanking the wordmark -->
+    <g opacity="0.12" fill="#0D1117">
+      <!-- Left leaf cluster -->
+      <ellipse cx="320" cy="830" rx="12" ry="5" transform="rotate(-30 320 830)"/>
+      <ellipse cx="330" cy="815" rx="10" ry="4" transform="rotate(-45 330 815)"/>
+      <ellipse cx="335" cy="845" rx="10" ry="4" transform="rotate(-15 335 845)"/>
+      <!-- Right leaf cluster -->
+      <ellipse cx="704" cy="830" rx="12" ry="5" transform="rotate(30 704 830)"/>
+      <ellipse cx="694" cy="815" rx="10" ry="4" transform="rotate(45 694 815)"/>
+      <ellipse cx="689" cy="845" rx="10" ry="4" transform="rotate(15 689 845)"/>
+    </g>
+
+    <!-- Top sheen overlay -->
+    <rect width="1024" height="1024" fill="url(#sheen)"/>
+
+    <!-- Bottom shadow overlay -->
+    <rect width="1024" height="1024" fill="url(#bottomShadow)"/>
+
+    <!-- Edge border -->
+    <rect x="0" y="0" width="1024" height="1024" rx="224" ry="224"
+      fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="2"/>
+  </g>
+</svg>
