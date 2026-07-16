@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 export function Header() {
   return (
@@ -9,14 +10,33 @@ export function Header() {
         <Link href="/" className="text-xl font-bold text-brand-light">
           Abacus
         </Link>
+
         <ul className="hidden md:flex gap-8">
-          <li><Link href="/#how" className="text-slate-300 hover:text-brand-light transition">How it works</Link></li>
-          <li><Link href="/#scenarios" className="text-slate-300 hover:text-brand-light transition">Scenarios</Link></li>
-          <li><Link href="/#pricing" className="text-slate-300 hover:text-brand-light transition">Pricing</Link></li>
+          <li>
+            <a href="/#scenarios" className="text-slate-300 hover:text-brand-light transition">
+              Scenarios
+            </a>
+          </li>
+          <li>
+            <a href="/#how" className="text-slate-300 hover:text-brand-light transition">
+              How it Works
+            </a>
+          </li>
+          <li>
+            <a href="/#pricing" className="text-slate-300 hover:text-brand-light transition">
+              Pricing
+            </a>
+          </li>
+          <li>
+            <Link href="/blog" className="text-slate-300 hover:text-brand-light transition">
+              Blog
+            </Link>
+          </li>
         </ul>
-        <button className="bg-brand-primary hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition">
+
+        <Button size="md" variant="primary">
           Download App
-        </button>
+        </Button>
       </nav>
     </header>
   );

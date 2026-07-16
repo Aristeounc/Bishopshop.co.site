@@ -2,6 +2,8 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { ValuePropsSection } from '@/components/sections/ValuePropsSection';
 import { ScenariosSection } from '@/components/sections/ScenariosSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { LeaderboardSection } from '@/components/sections/LeaderboardSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { CTASection } from '@/components/sections/CTASection';
@@ -17,6 +19,8 @@ export default function Home() {
         <ValuePropsSection />
         <ScenariosSection />
         <HowItWorksSection />
+        <TestimonialsSection />
+        <LeaderboardSection />
         <PricingSection />
         <FAQSection />
         <CTASection />
