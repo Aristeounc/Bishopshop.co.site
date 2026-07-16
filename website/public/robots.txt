@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.next/
+
+Sitemap: https://bishopshop.co.site/sitemap.xml
+
+# Crawl delay recommendations
+Crawl-delay: 0
+Request-rate: 1 request per 1 second
