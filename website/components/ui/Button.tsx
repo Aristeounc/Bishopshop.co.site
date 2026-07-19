@@ -1,4 +1,7 @@
+'use client';
+
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '@/utils/cn';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -34,11 +37,14 @@ export function Button({
   };
 
   return (
-    <button
+    <motion.button
       className={cn(baseStyles, variants[variant], sizes[size], className)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2 }}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }
