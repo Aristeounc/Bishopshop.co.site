@@ -94,7 +94,7 @@ export function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setMessage('Thanks for reaching out! We'll get back to you soon.');
+        setMessage('Thanks for reaching out! We will get back to you soon.');
         setFormData({ name: '', email: '', subject: '', message: '' });
         setErrors({});
         setTimeout(() => setStatus('idle'), 5000);

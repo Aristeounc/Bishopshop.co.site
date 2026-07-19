@@ -69,9 +69,6 @@ const nextConfig: NextConfig = {
     };
   },
 
-  // Enable optimized font loading
-  optimizeFonts: true,
-
   // Compress static assets
   compress: true,
 

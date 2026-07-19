@@ -20,11 +20,13 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/#scenarios" className="hover:text-brand-accent transition">
                   Scenarios
                 </a>
               </li>
               <li>
+                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                 <a href="/#pricing" className="hover:text-brand-accent transition">
                   Pricing
                 </a>

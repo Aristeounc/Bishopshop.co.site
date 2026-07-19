@@ -5,7 +5,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 
 export const metadata = {
   title: 'Contact Us — Abacus',
-  description: 'Get in touch with the Abacus team. We'd love to hear from you.',
+  description: 'Get in touch with the Abacus team. We would love to hear from you.',
 };
 
 export default function ContactPage() {

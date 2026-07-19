@@ -13,16 +13,19 @@ export function Header() {
 
         <ul className="hidden md:flex gap-8">
           <li>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/#scenarios" className="text-slate-300 hover:text-brand-light transition">
               Scenarios
             </a>
           </li>
           <li>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/#how" className="text-slate-300 hover:text-brand-light transition">
               How it Works
             </a>
           </li>
           <li>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/#pricing" className="text-slate-300 hover:text-brand-light transition">
               Pricing
             </a>

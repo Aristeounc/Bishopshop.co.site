@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "jsx": "preserve",
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -15,16 +19,33 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./lib/*"],
+      "@/*": ["./*"],
+      "@/app/*": ["./app/*"],
       "@/components/*": ["./components/*"],
-      "@/content/*": ["./content/*"]
+      "@/lib/*": ["./lib/*"],
+      "@/blog": ["./lib/blog.ts"],
+      "@/blog/*": ["./lib/blog/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/content/*": ["./content/*"],
+      "@/public/*": ["./public/*"],
+      "@/utils/*": ["./lib/utils/*"],
+      "@/constants/*": ["./lib/constants/*"]
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "allowJs": true,
+    "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
