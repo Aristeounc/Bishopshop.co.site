@@ -6,54 +6,91 @@ interface SignupRequest {
   goal?: string;
 }
 
-// Simple in-memory storage for demo
-// In production, this would write to a database (Supabase, MongoDB, etc.)
-const subscribers: SignupRequest[] = [];
+const subscribers: Map<string, SignupRequest> = new Map();
+
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function sanitizeEmail(email: string): string {
+  return email.toLowerCase().trim();
+}
 
 export async function POST(request: NextRequest) {
   try {
     const body: SignupRequest = await request.json();
 
-    // Validate email
-    if (!body.email || !isValidEmail(body.email)) {
+    if (!body.email) {
       return NextResponse.json(
-        { error: 'Invalid email address' },
+        { error: 'Email is required' },
         { status: 400 }
       );
     }
 
-    // Check for duplicates
-    if (subscribers.some((s) => s.email === body.email)) {
+    const email = sanitizeEmail(body.email);
+
+    if (!isValidEmail(email)) {
       return NextResponse.json(
-        { error: 'Email already subscribed' },
+        { error: 'Invalid email address format' },
         { status: 400 }
       );
     }
 
-    // Add to subscribers (in production, save to DB)
-    subscribers.push(body);
+    if (email.length > 254) {
+      return NextResponse.json(
+        { error: 'Email address is too long' },
+        { status: 400 }
+      );
+    }
 
-    // TODO: Integrate with SendGrid or similar
-    // await sendWelcomeEmail(body.email);
+    if (subscribers.has(email)) {
+      return NextResponse.json(
+        { error: 'This email is already subscribed' },
+        { status: 409 }
+      );
+    }
+
+    const signupData: SignupRequest = {
+      email,
+      scenario: body.scenario,
+      goal: body.goal,
+    };
+
+    subscribers.set(email, signupData);
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Successfully subscribed!',
-        email: body.email,
+        message: 'Successfully subscribed to newsletter',
+        email: email,
       },
       { status: 201 }
     );
   } catch (error) {
     console.error('Email signup error:', error);
     return NextResponse.json(
-      { error: 'Failed to subscribe' },
+      { error: 'Failed to process subscription. Please try again later.' },
       { status: 500 }
     );
   }
 }
 
-function isValidEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+export async function GET(request: NextRequest) {
+  const email = request.nextUrl.searchParams.get('email');
+
+  if (!email) {
+    return NextResponse.json(
+      { error: 'Email parameter is required' },
+      { status: 400 }
+    );
+  }
+
+  const sanitized = sanitizeEmail(email);
+  const isSubscribed = subscribers.has(sanitized);
+
+  return NextResponse.json({
+    email: sanitized,
+    subscribed: isSubscribed,
+  });
 }
