@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 
 export const metadata = {
-  title: 'Product — Abacus | The Conversation Gym',
-  description: 'Learn about Abacus features: AI practice, peer sparring, skill progression, analytics, and community.',
+  title: 'Product — Refutation | The Conversation Gym',
+  description: 'Learn about Refutation features: AI practice, peer sparring, skill progression, analytics, and community.',
 };
 
 const features = [
@@ -45,7 +45,7 @@ const pricingTiers = [
   {
     name: 'Free',
     price: '$0',
-    description: 'Great for trying Abacus',
+    description: 'Great for trying Refutation',
     features: [
       '3 practice rounds per month',
       'All 6 scenarios',
@@ -86,7 +86,7 @@ export default function ProductPage() {
               Everything You Need to Master Conversations
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl">
-              Abacus combines AI practice, peer competition, and habit-building tools to transform how you communicate.
+              Refutation combines AI practice, peer competition, and habit-building tools to transform how you communicate.
             </p>
           </div>
 
@@ -109,7 +109,7 @@ export default function ProductPage() {
 
           {/* How it works section */}
           <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-8 mb-20">
-            <h2 className="text-3xl font-bold mb-8">How Abacus Works</h2>
+            <h2 className="text-3xl font-bold mb-8">How Refutation Works</h2>
 
             <div className="space-y-6">
               <div className="flex gap-6">
@@ -208,10 +208,10 @@ export default function ProductPage() {
           <div className="bg-gradient-to-r from-brand-primary/20 to-brand-accent/20 border-2 border-brand-accent/30 rounded-xl p-12 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Communication?</h2>
             <p className="text-lg text-slate-300 mb-8">
-              Download Abacus free today. No credit card required. Premium available in-app.
+              Download Refutation free today. No credit card required. Premium available in-app.
             </p>
             <Button size="lg" variant="primary">
-              Download Abacus for Free
+              Download Refutation for Free
             </Button>
           </div>
         </div>

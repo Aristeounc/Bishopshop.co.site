@@ -6,21 +6,21 @@ const inter = Inter({ variable: '--font-inter', subsets: ['latin'] });
 const outfit = Outfit({ variable: '--font-outfit', weight: ['400', '600', '700'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Abacus — Master High-Stakes Conversations',
-  description: 'The conversation gym. Practice difficult conversations with AI, peer with others, progress through skill levels. Master job interviews, negotiation, and influence.',
-  keywords: ['conversation practice', 'interview prep', 'negotiation training', 'public speaking', 'communication skills'],
+  title: 'Refutation — Master Persuasive Debate',
+  description: 'The ultimate debate practice platform. Master argumentation with AI opponents, compete with peers, and win high-stakes discussions. Practice refutations, counterarguments, and logical reasoning.',
+  keywords: ['debate practice', 'argumentation training', 'debate skills', 'logical reasoning', 'persuasive speaking', 'refutation'],
   authors: [{ name: 'Bishop Shop Enterprises' }],
   openGraph: {
     type: 'website',
     url: 'https://bishopshop.co.site',
-    title: 'Abacus — Master High-Stakes Conversations',
-    description: 'The conversation gym. Practice with AI. Compete with peers. Progress through skill levels.',
+    title: 'Refutation — Master Persuasive Debate',
+    description: 'Practice debate with AI. Compete with peers. Master argumentation. Win discussions.',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Abacus — Master High-Stakes Conversations',
-    description: 'Practice difficult conversations with AI and peers. Progress through skill levels.',
+    title: 'Refutation — Master Persuasive Debate',
+    description: 'Master persuasive debate with AI opponents and peer competition. Progress through debate levels.',
     images: ['/og-image.png'],
   },
 };

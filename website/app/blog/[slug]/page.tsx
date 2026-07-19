@@ -23,7 +23,7 @@ export async function generateMetadata(props: Props) {
   }
 
   return {
-    title: `${post.title} — Abacus Blog`,
+    title: `${post.title} — Refutation Blog`,
     description: post.description,
   };
 }

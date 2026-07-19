@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Scenarios — Practice Conversations | Abacus',
+  title: 'Scenarios — Practice Conversations | Refutation',
   description: 'Master 6 different conversation types: job interviews, negotiations, public speaking, and more.',
 };
 

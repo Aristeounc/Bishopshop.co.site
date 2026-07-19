@@ -19,7 +19,7 @@ export const TESTIMONIALS: Testimonial[] = [
     author: 'Sarah Chen',
     company: 'Google',
     role: 'Product Manager',
-    quote: 'I practiced my interview with Abacus for 2 weeks. The feedback was incredibly detailed and helped me handle tough questions with confidence.',
+    quote: 'I practiced debate scenarios with Refutation for 2 weeks. The feedback on my arguments was incredibly detailed and helped me counter tough objections with confidence.',
     result: 'Got the job offer',
   },
   {
@@ -43,7 +43,7 @@ export const TESTIMONIALS: Testimonial[] = [
     author: 'James Liu',
     company: 'Stripe',
     role: 'Sales Lead',
-    quote: 'The AI feedback on my communication style was spot-on. I\'ve closed 40% more deals since using Abacus.',
+    quote: 'The AI feedback on my argumentation was spot-on. My persuasion improved dramatically and I\'ve closed 40% more deals since using Refutation.',
     result: 'Sales up 40%',
   },
   {
@@ -51,7 +51,7 @@ export const TESTIMONIALS: Testimonial[] = [
     author: 'Priya Patel',
     company: 'Meta',
     role: 'Manager',
-    quote: 'Used Abacus to practice difficult employee conversations. It made me a better manager and my team engagement scores improved significantly.',
+    quote: 'Used Refutation to sharpen my persuasion and refutation skills for difficult discussions. It made me a better manager and my team engagement scores improved by 35%.',
     result: 'Team engagement +35%',
   },
   {

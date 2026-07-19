@@ -8,7 +8,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand colors - Abacus premium palette
+        // Brand colors - Refutation premium palette
         'brand-primary': '#4F46E5', // Deep Indigo
         'brand-accent': '#A78BFA', // Violet Electric
         'brand-energy': '#FF6B4A', // Coral Flame

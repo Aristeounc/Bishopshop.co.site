@@ -5,7 +5,7 @@ import { LeaderboardSection } from '@/components/sections/LeaderboardSection';
 import { TESTIMONIALS } from '@/constants/testimonials';
 
 export const metadata = {
-  title: 'Community — Abacus Leaderboard & Stories',
+  title: 'Community — Refutation Leaderboard & Stories',
   description: 'Join 10K+ users building communication skills. See who\'s climbing the ranks and read their success stories.',
 };
 
@@ -91,7 +91,7 @@ export default function CommunityPage() {
               Start practicing today and climb the global leaderboard. Compete with thousands of ambitious communicators.
             </p>
             <button className="bg-brand-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-bold transition-colors text-lg">
-              Download Abacus Free
+              Download Refutation Free
             </button>
           </div>
         </div>

@@ -9,9 +9,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Abacus</h3>
+            <h3 className="text-lg font-bold mb-4">Refutation</h3>
             <p className="text-sm text-slate-400">
-              The conversation gym. Practice difficult conversations, compete with peers, master communication.
+              Master persuasive argumentation. Practice debate, refine counterarguments, win discussions.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export function Footer() {
         {/* Bottom section */}
         <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-400">
           <p>&copy; 2024 Bishop Shop Enterprises LLC. All rights reserved.</p>
-          <p>Abacus — The Conversation Gym</p>
+          <p>Refutation — Master Persuasive Debate</p>
         </div>
       </div>
     </footer>

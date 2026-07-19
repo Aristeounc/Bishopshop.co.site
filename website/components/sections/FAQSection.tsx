@@ -6,8 +6,8 @@ import { Badge } from '@/components/ui/Badge';
 
 const faqs = [
   {
-    question: 'What is Abacus?',
-    answer: 'Abacus is "The Conversation Gym" — a practice app for mastering difficult conversations. You practice with AI, get real-time feedback, compete with peers, and progress through skill levels.',
+    question: 'What is Refutation?',
+    answer: 'Refutation is the ultimate debate practice platform — master persuasive argumentation, craft powerful counterarguments, and win high-stakes discussions. Practice with AI opponents, compete with peers, and progress through debate levels.',
   },
   {
     question: 'How does AI sparring work?',
@@ -22,8 +22,8 @@ const faqs = [
     answer: 'Absolutely. We never sell user data. Conversations are encrypted and only used for your feedback. You control what information appears on your public profile.',
   },
   {
-    question: 'What techniques does Abacus teach?',
-    answer: 'We teach 47 evidence-based techniques from psychology, negotiation, public speaking, and behavioral science. Topics include active listening, STAR method, anchoring, and much more.',
+    question: 'What debate techniques does Refutation teach?',
+    answer: 'We teach 47 evidence-based argumentation techniques from logic, rhetoric, behavioral psychology, and debate science. Topics include constructing rebuttals, addressing counterarguments, logical fallacies, and persuasive framing.',
   },
   {
     question: 'Is there a free trial?',

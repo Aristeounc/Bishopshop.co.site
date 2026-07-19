@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/Footer';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Blog — Abacus',
+  title: 'Blog — Refutation',
   description: 'Tips, techniques, and insights for mastering difficult conversations.',
 };
 

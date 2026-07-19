@@ -23,7 +23,7 @@ export async function generateMetadata(props: Props) {
   }
 
   return {
-    title: `${scenario.title} Practice — Abacus`,
+    title: `${scenario.title} Practice — Refutation`,
     description: scenario.description,
   };
 }
@@ -156,9 +156,9 @@ export default async function ScenarioDetailPage(props: Props) {
             {/* CTA */}
             <div className="bg-gradient-to-r from-brand-primary/20 to-brand-accent/20 border-2 border-brand-accent/30 rounded-xl p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">Ready to Practice?</h3>
-              <p className="text-slate-300 mb-6">Download Abacus and start practicing this scenario today. Free tier includes 3 practice rounds per month.</p>
+              <p className="text-slate-300 mb-6">Download Refutation and start practicing this scenario today. Free tier includes 3 practice rounds per month.</p>
               <Button size="lg" variant="primary">
-                Download Abacus Now
+                Download Refutation Now
               </Button>
             </div>
           </div>

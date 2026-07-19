@@ -1,5 +1,5 @@
 /**
- * Scenario definitions for Abacus
+ * Scenario definitions for Refutation
  * These are used throughout the site: hero, product page, scenarios listing, etc.
  */
 

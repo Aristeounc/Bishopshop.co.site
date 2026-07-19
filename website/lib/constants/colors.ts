@@ -1,5 +1,5 @@
 /**
- * Abacus Brand Color System
+ * Refutation Brand Color System
  * All colors defined here to ensure consistency across the site
  */
 

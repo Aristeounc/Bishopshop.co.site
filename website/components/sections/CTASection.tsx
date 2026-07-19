@@ -18,7 +18,7 @@ export function CTASection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
         >
-          Ready to Master <GradientText>Difficult Conversations?</GradientText>
+          Ready to Master <GradientText>Persuasive Debate?</GradientText>
         </motion.h2>
 
         <motion.p
@@ -39,7 +39,7 @@ export function CTASection() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <Button size="lg" variant="primary">
-            Download Abacus Free
+            Download Refutation Free
           </Button>
           <Button size="lg" variant="ghost">
             Try Free Preview

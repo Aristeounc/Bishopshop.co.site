@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/Badge';
 import { ContactForm } from '@/components/forms/ContactForm';
 
 export const metadata = {
-  title: 'Contact Us — Abacus',
-  description: 'Get in touch with the Abacus team. We would love to hear from you.',
+  title: 'Contact Us — Refutation',
+  description: 'Get in touch with the Refutation team. We would love to hear from you.',
 };
 
 export default function ContactPage() {
