@@ -6,23 +6,23 @@ import { Badge } from '@/components/ui/Badge';
 const steps = [
   {
     number: 1,
-    title: 'Pick a Scenario',
-    description: 'Choose from job interviews, difficult conversations, negotiations, and more',
+    title: 'Select a Debate',
+    description: 'Choose from policy, logical fallacies, public debate, business pitch defense, tournaments, and more',
   },
   {
     number: 2,
-    title: 'Practice with AI',
-    description: 'Have a realistic conversation with Claude playing the other person',
+    title: 'Debate the AI',
+    description: 'Face Claude as your AI opponent, who challenges your arguments and pushes back on weak reasoning',
   },
   {
     number: 3,
-    title: 'Get Feedback',
-    description: 'Receive detailed analysis of your communication style and technique usage',
+    title: 'Get Analyzed',
+    description: 'Receive expert feedback on argument strength, fallacy detection, and persuasion effectiveness',
   },
   {
     number: 4,
-    title: 'Track Progress',
-    description: 'Build streaks, earn belt ranks, and compete on the global leaderboard',
+    title: 'Climb Rankings',
+    description: 'Earn ELO ratings, master debate techniques, and compete on the global debate leaderboard',
   },
 ];
 
@@ -58,12 +58,12 @@ export function HowItWorksSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: '-100px' }}
         >
-          <Badge variant="primary">How it Works</Badge>
+          <Badge variant="primary">How It Works</Badge>
           <h2 className="text-4xl lg:text-5xl font-bold">
-            Practice Like an Athlete
+            Master Debate Systematically
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Just like physical training, conversation skills improve with deliberate practice, feedback, and progression.
+            Like elite athletes, great debaters improve through deliberate practice, expert feedback, and competitive progression.
           </p>
         </motion.div>
 

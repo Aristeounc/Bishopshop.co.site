@@ -5,19 +5,19 @@ import { Card } from '@/components/ui/Card';
 
 const valuePropps = [
   {
-    icon: '🤖',
-    title: 'AI Practice Partner',
-    description: 'Powered by Claude, our AI adapts to your skill level and gives real-time feedback on your communication techniques.',
+    icon: '⚡',
+    title: 'AI Debate Opponent',
+    description: 'Powered by Claude, our AI challenges your arguments, identifies fallacies, and provides detailed feedback on your refutation tactics.',
   },
   {
-    icon: '👥',
-    title: 'Peer Sparring',
-    description: 'Match with real users for voice conversations. Get scored and see how you compare on the global leaderboard.',
+    icon: '🏆',
+    title: 'Competitive Debate',
+    description: 'Challenge real opponents in structured debates. Get ranked using ELO ratings and compete for tournament championships.',
   },
   {
-    icon: '📈',
-    title: 'Skill Progression',
-    description: 'Track your progress with ELO-style rankings, streak tracking, and detailed analytics on your communication growth.',
+    icon: '📊',
+    title: 'Argumentation Mastery',
+    description: 'Track argument quality, fallacy detection rate, and persuasion effectiveness. Analytics show your debate strengths and growth.',
   },
 ];
 

@@ -78,18 +78,18 @@ export function HeroSection() {
           >
             {/* Eyebrow badge */}
             <motion.div className="inline-block" variants={itemVariants}>
-              <Badge variant="primary">✨ Master difficult conversations</Badge>
+              <Badge variant="primary">⚡ Win Every Argument</Badge>
             </motion.div>
 
             {/* Main headline */}
             <motion.div variants={itemVariants}>
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4">
-                Master High-Stakes
+                Master Persuasive
                 <br />
-                <GradientText>Conversations</GradientText>
+                <GradientText>Debate</GradientText>
               </h1>
               <p className="text-xl text-slate-300 max-w-lg font-light leading-relaxed">
-                Practice difficult conversations with AI, compete with peers, and progress through skill levels. The conversation gym for ambitious communicators.
+                Practice debate with AI opponents, compete with peers, and master argumentation. The elite debate platform for ambitious debaters.
               </p>
             </motion.div>
 
@@ -111,9 +111,9 @@ export function HeroSection() {
               animate="visible"
             >
               {[
-                { label: 'Active Users', value: '10K+' },
-                { label: 'Scenarios', value: '6' },
-                { label: 'Techniques', value: '47' },
+                { label: 'Debate Masters', value: '50K+' },
+                { label: 'Debate Types', value: '6' },
+                { label: 'Techniques', value: '100+' },
               ].map((stat, i) => (
                 <motion.div key={stat.label} variants={itemVariants}>
                   <motion.div

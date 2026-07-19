@@ -8,13 +8,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand colors - Refutation premium palette
-        'brand-primary': '#4F46E5', // Deep Indigo
-        'brand-accent': '#A78BFA', // Violet Electric
-        'brand-energy': '#FF6B4A', // Coral Flame
-        'brand-surface': '#0F172A', // Midnight Navy
-        'brand-light': '#F8FAFC', // Off-white
-        'brand-neutral': '#64748B', // Slate
+        // Brand colors - Refutation debate platform palette
+        'brand-primary': '#DC2626', // Victory Red - bold, confident
+        'brand-accent': '#F59E0B', // Gold Strike - precision, winning argument
+        'brand-energy': '#7C3AED', // Deep Purple - intellect, debate mastery
+        'brand-surface': '#0F172A', // Midnight Navy - professional debate
+        'brand-light': '#F8FAFC', // Off-white - clarity
+        'brand-neutral': '#64748B', // Slate - balance
       },
       fontFamily: {
         display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],

@@ -7,30 +7,32 @@ import { Card } from '@/components/ui/Card';
 
 const tiers = [
   {
-    name: 'Free',
+    name: 'Novice',
     price: '$0',
-    description: 'Get started with limited practice',
+    description: 'Start your debate journey free',
     features: [
-      '3 practice rounds per month',
-      'All 6 scenarios',
-      'AI feedback on responses',
+      '3 debate rounds per month',
+      'All 6 debate types',
+      'AI opponent feedback',
+      'Fallacy detection guide',
       'Community leaderboards (view only)',
     ],
     cta: 'Start Free',
     highlighted: false,
   },
   {
-    name: 'Premium',
-    price: '$9.99',
-    description: 'Unlimited practice and peer sparring',
+    name: 'Champion',
+    price: '$11.99',
+    description: 'Unlimited debates and tournament access',
     features: [
-      'Unlimited practice rounds',
-      'Peer sparring (voice)',
-      'Detailed analytics & progress tracking',
-      'Belt ranks and skill progression',
-      'Advanced feedback on techniques',
-      'Global & skill-based leaderboards',
-      'Priority matching in sparring queue',
+      'Unlimited debate rounds',
+      'Live peer-to-peer debate',
+      'Tournament competitions',
+      'ELO rating system',
+      'Advanced argumentation analytics',
+      'Technique mastery tracking',
+      'Priority opponent matching',
+      'Debate strategy coaching',
     ],
     cta: 'Download App',
     highlighted: true,
@@ -83,10 +85,10 @@ export function PricingSection() {
         >
           <Badge variant="primary">Pricing</Badge>
           <h2 className="text-4xl lg:text-5xl font-bold">
-            Simple, Transparent Pricing
+            Debate Levels for Every Competitor
           </h2>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            Start free. Upgrade when you want unlimited practice and peer sparring.
+            Start free as a Novice debater. Upgrade to Champion for unlimited tournaments and live peer debates.
           </p>
         </motion.div>
 
