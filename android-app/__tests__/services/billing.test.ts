@@ -22,9 +22,19 @@ describe('Billing Service', () => {
       expect(info.name).toBe('Articulation Add-on');
     });
 
-    it('returns IntroProfiles add-on info', () => {
-      const info = getProductDisplayInfo(BILLING_PRODUCTS.INTROPROFILES_ADDON);
-      expect(info.name).toBe('IntroProfiles Add-on');
+    it('returns Parent/Kid add-on info', () => {
+      const info = getProductDisplayInfo(BILLING_PRODUCTS.PARENT_KID_ADDON);
+      expect(info.name).toBe('Parent/Kid Add-on');
+    });
+
+    it('returns Introduction & Negotiation Training add-on info', () => {
+      const info = getProductDisplayInfo(BILLING_PRODUCTS.INTRO_NEGOTIATION_ADDON);
+      expect(info.name).toBe('Introduction & Negotiation Training');
+    });
+
+    it('returns Sales Training add-on info', () => {
+      const info = getProductDisplayInfo(BILLING_PRODUCTS.SALES_TRAINING_ADDON);
+      expect(info.name).toBe('Sales Training Add-on');
     });
 
     it('handles unknown product IDs', () => {
@@ -38,8 +48,10 @@ describe('Billing Service', () => {
     it('has correct product IDs', () => {
       expect(BILLING_PRODUCTS.CORE_GYM_MONTHLY).toContain('core_gym');
       expect(BILLING_PRODUCTS.FULL_BUNDLE_MONTHLY).toContain('full_bundle');
+      expect(BILLING_PRODUCTS.PARENT_KID_ADDON).toContain('parent_kid');
       expect(BILLING_PRODUCTS.ARTICULATION_ADDON).toContain('articulation');
-      expect(BILLING_PRODUCTS.INTROPROFILES_ADDON).toContain('introprofiles');
+      expect(BILLING_PRODUCTS.INTRO_NEGOTIATION_ADDON).toContain('intro_negotiation');
+      expect(BILLING_PRODUCTS.SALES_TRAINING_ADDON).toContain('sales_training');
     });
 
     it('all use com.bishopshop.peitho prefix', () => {
