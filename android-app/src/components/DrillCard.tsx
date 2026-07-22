@@ -61,6 +61,8 @@ export function DrillCard({ drill, index, onComplete }: DrillCardProps) {
             onChangeText={setResponse}
             multiline
             textAlignVertical="top"
+            maxLength={2000}
+            accessibilityLabel={`Response for drill ${index + 1}: ${typeInfo.label}`}
           />
           <Button
             title="Submit"

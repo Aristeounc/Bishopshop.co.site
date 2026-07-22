@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -20,6 +22,9 @@ import {
   FirstResponseAnswer,
 } from '@/services/firstResponse/engine';
 import { FIRST_RESPONSE_SETS, FirstResponseSet } from '@/services/firstResponse/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -31,6 +36,20 @@ const RATING_CONFIG: Record<string, { label: string; color: string; icon: string
 };
 
 export function FirstResponseScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'first_response')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('first_response'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<FirstResponseState | null>(null);
   const [lastAnswer, setLastAnswer] = useState<FirstResponseAnswer | null>(null);
@@ -119,6 +138,11 @@ export function FirstResponseScreen() {
 
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        saveDrillResult(uid, 'first_response', updated.score.totalPoints, 'regulate').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     }
   }
 

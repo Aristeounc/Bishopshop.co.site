@@ -84,7 +84,7 @@ describe('Spot the Influence Engine', () => {
       const firstLine = state.scenario.dialogue[0];
       const r = submitTacticGuess(state, firstLine.id, 'good eye', 'flattery');
       state = r.state;
-      expect(state.playerSelections.get(firstLine.id)?.length).toBe(1);
+      expect(state.playerSelections[firstLine.id]?.length).toBe(1);
     });
   });
 

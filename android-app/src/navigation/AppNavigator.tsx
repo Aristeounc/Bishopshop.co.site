@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography } from '@/theme';
+import { useReducedMotion } from '@/utils/useReducedMotion';
 
 import { SplashScreen } from '@/screens/SplashScreen';
 import { LoginScreen } from '@/screens/LoginScreen';
@@ -23,6 +24,7 @@ import { FlashJudgmentScreen } from '@/screens/FlashJudgmentScreen';
 import { RedFlagRallyScreen } from '@/screens/RedFlagRallyScreen';
 import { EmotionalDecoderScreen } from '@/screens/EmotionalDecoderScreen';
 import { FirstResponseScreen } from '@/screens/FirstResponseScreen';
+import { ConceptsScreen } from '@/screens/ConceptsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -109,13 +111,16 @@ function MainTabs() {
 }
 
 export function AppNavigator() {
+  const reduceMotion = useReducedMotion();
+  const slideAnim = reduceMotion ? 'none' : 'slide_from_right';
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: colors.background },
-          animation: 'fade',
+          animation: reduceMotion ? 'none' : 'fade',
         }}
       >
         <Stack.Screen name="Splash" component={SplashScreen} />
@@ -125,47 +130,52 @@ export function AppNavigator() {
         <Stack.Screen
           name="SpotInfluence"
           component={SpotInfluenceScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="ConversationAutopsy"
           component={ConversationAutopsyScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="SubtextTranslator"
           component={SubtextTranslatorScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="EscalationGauntlet"
           component={EscalationGauntletScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="TacticForecast"
           component={TacticForecastScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="FlashJudgment"
           component={FlashJudgmentScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="RedFlagRally"
           component={RedFlagRallyScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="EmotionalDecoder"
           component={EmotionalDecoderScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
         />
         <Stack.Screen
           name="FirstResponse"
           component={FirstResponseScreen}
-          options={{ animation: 'slide_from_right' }}
+          options={{ animation: slideAnim }}
+        />
+        <Stack.Screen
+          name="Concepts"
+          component={ConceptsScreen}
+          options={{ animation: slideAnim }}
         />
       </Stack.Navigator>
     </NavigationContainer>

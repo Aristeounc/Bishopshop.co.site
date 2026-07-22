@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withRepeat,
+  withDelay,
+  Easing,
+} from 'react-native-reanimated';
 import { SparringMessage } from '@/models/types';
 import { colors, borderRadius, spacing, typography } from '@/theme';
 
@@ -9,12 +17,52 @@ interface ChatBubbleProps {
   personaColor?: string;
 }
 
+/** Concept tag with shimmer border animation */
+function ConceptTag({ concept }: { concept: string }) {
+  const shimmer = useSharedValue(0);
+
+  useEffect(() => {
+    shimmer.value = withRepeat(
+      withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
+      -1,
+      true,
+    );
+  }, []);
+
+  const shimmerStyle = useAnimatedStyle(() => ({
+    borderColor: `rgba(142, 68, 173, ${0.15 + shimmer.value * 0.25})`,
+  }));
+
+  return (
+    <Animated.View style={[styles.conceptTag, shimmerStyle]}>
+      <Text style={styles.conceptText}>{concept}</Text>
+    </Animated.View>
+  );
+}
+
 export function ChatBubble({ message, personaName, personaColor }: ChatBubbleProps) {
   const isUser = message.role === 'user';
   const isCoach = message.role === 'coach';
 
+  // Slide-in animation
+  const translateX = useSharedValue(isUser ? 20 : -20);
+  const opacity = useSharedValue(0);
+
+  useEffect(() => {
+    translateX.value = withTiming(0, { duration: 300, easing: Easing.out(Easing.ease) });
+    opacity.value = withTiming(1, { duration: 300, easing: Easing.out(Easing.ease) });
+  }, []);
+
+  const slideStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }],
+    opacity: opacity.value,
+  }));
+
   return (
-    <View style={[styles.container, isUser && styles.containerUser]}>
+    <Animated.View
+      style={[styles.container, isUser && styles.containerUser, slideStyle]}
+      accessibilityLabel={`${isUser ? 'You' : isCoach ? 'Coach' : personaName ?? 'Persona'} said: ${message.content}`}
+    >
       {!isUser && (
         <Text style={[styles.sender, isCoach && styles.senderCoach, { color: isCoach ? colors.accent : personaColor }]}>
           {isCoach ? 'Coach' : personaName ?? 'Persona'}
@@ -40,18 +88,27 @@ export function ChatBubble({ message, personaName, personaColor }: ChatBubblePro
               {message.feedback.score}/100
             </Text>
           </View>
+          <View style={styles.scoreBarContainer}>
+            <View
+              style={[
+                styles.scoreBarFill,
+                {
+                  width: `${message.feedback.score}%`,
+                  backgroundColor: getScoreColor(message.feedback.score),
+                },
+              ]}
+            />
+          </View>
           {message.feedback.conceptsApplied.length > 0 && (
             <View style={styles.conceptsRow}>
               {message.feedback.conceptsApplied.map((concept) => (
-                <View key={concept} style={styles.conceptTag}>
-                  <Text style={styles.conceptText}>{concept}</Text>
-                </View>
+                <ConceptTag key={concept} concept={concept} />
               ))}
             </View>
           )}
         </View>
       )}
-    </View>
+    </Animated.View>
   );
 }
 
@@ -122,6 +179,17 @@ const styles = StyleSheet.create({
     ...typography.caption,
     fontWeight: '700',
   },
+  scoreBarContainer: {
+    height: 4,
+    backgroundColor: colors.border,
+    borderRadius: 2,
+    marginTop: spacing.xs,
+    overflow: 'hidden',
+  },
+  scoreBarFill: {
+    height: '100%',
+    borderRadius: 2,
+  },
   conceptsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -133,6 +201,8 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.full,
     paddingHorizontal: spacing.sm,
     paddingVertical: 2,
+    borderWidth: 1,
+    borderColor: colors.primary + '25',
   },
   conceptText: {
     ...typography.caption,

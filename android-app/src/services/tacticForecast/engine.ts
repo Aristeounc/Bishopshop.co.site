@@ -119,7 +119,7 @@ export function calculateForecastScore(state: ForecastState): ForecastScore {
   }
 
   const correctPredictions = predictions.filter((p) => p.isCorrect).length;
-  const accuracy = predictions.length > 0 ? correctPredictions / predictions.length : 0;
+  const accuracy = predictions.length > 0 ? Math.round((correctPredictions / predictions.length) * 100) : 0;
 
   const totalTime = predictions.reduce((sum, p) => sum + p.timeToAnswer, 0);
   const averageTime = predictions.length > 0 ? totalTime / predictions.length : 0;
@@ -140,11 +140,11 @@ export function calculateForecastScore(state: ForecastState): ForecastScore {
 
   // Determine overall rating
   let overallRating: ForecastScore['overallRating'];
-  if (accuracy >= 0.9) {
+  if (accuracy >= 90) {
     overallRating = 'oracle';
-  } else if (accuracy >= 0.7) {
+  } else if (accuracy >= 70) {
     overallRating = 'anticipator';
-  } else if (accuracy >= 0.4) {
+  } else if (accuracy >= 40) {
     overallRating = 'aware';
   } else {
     overallRating = 'blind_spot';

@@ -6,7 +6,7 @@ export function calculateEloChange(
   personaDifficulty: number,
   sessionScore: number,
 ): number {
-  const opponentRating = personaDifficulty * 300 + 200;
+  const opponentRating = personaDifficulty * 200;
   const expectedScore = 1 / (1 + Math.pow(10, (opponentRating - currentElo) / 400));
   const normalizedScore = sessionScore / 100;
   return Math.round(ELO_CONFIG.K_FACTOR * (normalizedScore - expectedScore));

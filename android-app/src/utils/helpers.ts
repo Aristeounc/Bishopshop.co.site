@@ -20,9 +20,10 @@ export function calculateEloChange(
   opponentDifficulty: number,
   score: number,
 ): number {
-  const expected = 1 / (1 + Math.pow(10, (opponentDifficulty * 200 - currentElo) / 400));
-  const change = Math.round(ELO_CONFIG.K_FACTOR * (score - expected));
-  return change;
+  const opponentRating = opponentDifficulty * 200;
+  const expected = 1 / (1 + Math.pow(10, (opponentRating - currentElo) / 400));
+  const normalizedScore = score / 100;
+  return Math.round(ELO_CONFIG.K_FACTOR * (normalizedScore - expected));
 }
 
 export function clampElo(elo: number): number {

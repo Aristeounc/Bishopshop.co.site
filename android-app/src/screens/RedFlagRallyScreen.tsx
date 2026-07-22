@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -21,6 +23,9 @@ import {
   RedFlagResults,
 } from '@/services/redFlagRally/engine';
 import { RED_FLAG_SETS, RedFlagSet } from '@/services/redFlagRally/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -43,6 +48,20 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 export function RedFlagRallyScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'red_flag_rally')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('red_flag_rally'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<RedFlagState | null>(null);
   const [lastAnswer, setLastAnswer] = useState<FlagAnswer | null>(null);
@@ -90,6 +109,12 @@ export function RedFlagRallyScreen() {
 
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        const results = calculateRedFlagResults(updated);
+        saveDrillResult(uid, 'red_flag_rally', results.accuracy, 'defend').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     } else {
       setStatementStartTime(Date.now());
       cardAnim.setValue(0);

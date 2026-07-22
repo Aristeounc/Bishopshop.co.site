@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -23,6 +25,9 @@ import {
   GauntletScenario,
   GauntletRound,
 } from '@/services/escalationGauntlet/scenarios';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -52,6 +57,20 @@ const TREND_CONFIG: Record<string, { label: string; icon: string; color: string 
 };
 
 export function EscalationGauntletScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'escalation_gauntlet')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('escalation_gauntlet'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<GauntletState | null>(null);
   const [responseText, setResponseText] = useState('');
@@ -86,6 +105,11 @@ export function EscalationGauntletScreen() {
 
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        saveDrillResult(uid, 'escalation_gauntlet', updated.score.averageComposure, 'regulate').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     }
   }
 

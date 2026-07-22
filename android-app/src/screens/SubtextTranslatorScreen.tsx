@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, typography, spacing, borderRadius } from '@/theme';
 import { Card } from '@/components/Card';
@@ -19,6 +21,9 @@ import {
   SubtextResponse,
 } from '@/services/subtextTranslator/engine';
 import { SUBTEXT_SETS, SubtextSet } from '@/services/subtextTranslator/prompts';
+import { useStore } from '@/store/useStore';
+import { saveDrillResult, updateStreak } from '@/services/firestore';
+import { canAccessFeature, getUpgradeMessage } from '@/utils/subscriptionGate';
 
 type ScreenState = 'select' | 'playing' | 'results';
 
@@ -43,6 +48,20 @@ const RATING_LABELS: Record<string, { label: string; icon: string; color: string
 };
 
 export function SubtextTranslatorScreen() {
+  const navigation = useNavigation();
+  const user = useStore((s) => s.user);
+
+  useEffect(() => {
+    if (user && !canAccessFeature(user.subscription, 'subtext_translator')) {
+      Alert.alert(
+        'Upgrade Required',
+        getUpgradeMessage('subtext_translator'),
+        [{ text: 'OK', onPress: () => navigation.goBack() }],
+        { cancelable: false },
+      );
+    }
+  }, []);
+
   const [screenState, setScreenState] = useState<ScreenState>('select');
   const [gameState, setGameState] = useState<SubtextState | null>(null);
   const [translationInput, setTranslationInput] = useState('');
@@ -83,6 +102,11 @@ export function SubtextTranslatorScreen() {
 
     if (updated.isComplete) {
       setScreenState('results');
+      const uid = useStore.getState().user?.id;
+      if (uid) {
+        saveDrillResult(uid, 'subtext_translator', updated.score.averageAccuracy, 'listen').catch(() => {});
+        updateStreak(uid).catch(() => {});
+      }
     }
   }
 
@@ -285,6 +309,8 @@ export function SubtextTranslatorScreen() {
               placeholderTextColor={colors.textMuted}
               multiline
               textAlignVertical="top"
+              maxLength={2000}
+              accessibilityLabel="Translate the subtext"
             />
 
             <Text style={styles.inputLabel}>What emotion is underneath?</Text>

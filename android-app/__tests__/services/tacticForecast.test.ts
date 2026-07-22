@@ -124,7 +124,7 @@ describe('Tactic Forecast Engine', () => {
       }
 
       expect(state.score.correctPredictions).toBe(totalRounds);
-      expect(state.score.accuracy).toBe(1);
+      expect(state.score.accuracy).toBe(100);
       expect(state.score.overallRating).toBe('oracle');
     });
   });
@@ -150,7 +150,7 @@ describe('Tactic Forecast Engine', () => {
 
       const score = calculateForecastScore(state);
       expect(score.correctPredictions).toBe(2);
-      expect(score.accuracy).toBeCloseTo(2 / 3, 5);
+      expect(score.accuracy).toBe(67);
     });
 
     it('calculates average time', () => {

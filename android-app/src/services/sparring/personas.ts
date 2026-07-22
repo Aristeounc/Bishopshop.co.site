@@ -22,7 +22,7 @@ export function getRecommendedPersona(
 ): SparringPersona | null {
   const scored = SPARRING_PERSONAS.map((persona) => {
     const skillOverlap = persona.primarySkills.filter((s) => weakestSkills.includes(s)).length;
-    const noveltyBonus = completedPersonas.includes(persona.id) ? 0 : 1;
+    const noveltyBonus = completedPersonas.includes(persona.id) ? -2 : 1;
     return { persona, score: skillOverlap * 2 + noveltyBonus };
   });
 
